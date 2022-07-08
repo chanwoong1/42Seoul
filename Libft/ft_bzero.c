@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 14:32:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/07 16:12:01 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/07 13:55:47 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/07 16:15:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *b, int c, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	while (len--)
-		*((unsigned char *)b++) = (unsigned char)c;
-	return (b);
+	while (n--)
+		*((unsigned char *)s++) = (unsigned char)'\0';
 }
 
-/*
+
 #include <string.h>
 #include <stdio.h>
 int main(void)
@@ -25,15 +24,14 @@ int main(void)
 	int arr[10] = {0,};
 	int i;
 	printf("==설정 전 ==\n");
-	for(i=0;i<10;i++)
-		printf("%d",arr[i]);//쓰레기 값 출력
+	for(i=0; i<10; i++)
+		printf("%d", arr[i]);//쓰레기 값 출력
 	printf("\n");
-	//memset(arr,1,3);//arr의 메모리를 0으로 설정    
-	ft_memset(arr,1,3);//arr의 메모리를 0으로 설정    
+	//bzero(arr, 1);
+	ft_bzero(arr, 1);//arr의 메모리를 0으로 설정
 	printf("==설정 후 ==\n");
-	for(i=0;i<10;i++)
+	for(i=0; i<10; i++)
 		printf("%d",arr[i]);
 	printf("\n");
 	return 0;
 }
-*/
