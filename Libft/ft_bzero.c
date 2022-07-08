@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:55:47 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/08 15:29:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:10:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_bzero(void *s, size_t n)
 		*((unsigned char *)s++) = 0;
 }
 
-
+/*
 #include <string.h>
 #include <stdio.h>
 int main(void)
@@ -37,3 +37,4 @@ int main(void)
 	printf("\n");
 	return 0;
 }
+*/

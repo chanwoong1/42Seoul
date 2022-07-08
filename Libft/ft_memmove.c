@@ -6,19 +6,20 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:49:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/08 17:09:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:12:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-    while (len--)
-        *((unsigned char *)dst++) = *((unsigned char *)src++);
-    return (dst);
+	while (len--)
+		*((unsigned char *)dst++) = *((unsigned char *)src++);
+	return (dst);
 }
 
+/*
 #include <string.h>
 #include <stdio.h>
 int main(void)
@@ -40,3 +41,4 @@ int main(void)
     for(i = 0; i < 5; i++)
         printf("%s%d%s", "[", dst1[i], "]");
 }
+*/

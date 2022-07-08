@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42seoul.kr      +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:33:47 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/08 16:30:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:12:56 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	return (dst);
 }
 
-
+/*
 #include<string.h>
 #include<stdio.h>
 int main(void)
@@ -39,3 +39,4 @@ int main(void)
 	}
 	return 0;
 }
+*/
