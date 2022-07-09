@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 15:15:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 16:48:46 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/09 16:49:39 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/09 17:18:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (*s != c)
+	const unsigned char	*uc;
+
+	uc = s;
+	while (n-- != 0)
 	{
-		if (*s == '\0')
-			return (0);
-		s++;
+		if (*uc == c)
+			return ((void *)uc);
+		uc++;
 	}
-	return ((char *)s);
+	return (0);
 }
 
 /*
@@ -28,16 +31,14 @@ char	*ft_strchr(const char *s, int c)
 #include <stdio.h>
 int main(void)
 {
-	char str[10] = "abcdeabcde";
+	char *str = "abcdeabcde";
 
 	printf("--str--\n%s", str);
-	printf("\n--strchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *strchr(str, 'c'), \
-		"string : ", strchr(str, 'c'));
-	printf("\n--strchr('k')--\n%s", strchr(str, 'k'));
-	printf("\n--ft_strchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *ft_strchr(str, 'c'), \
-		"string : ", ft_strchr(str, 'c'));
-	printf("\n--ft_strchr('k')--\n%s", ft_strchr(str, 'k'));
+	printf("\n\n--memchr(5)--\n%s%s", \
+		"string : ", memchr(str, 'c', 5));
+	printf("\n\n--memchr(2)--\n%s", memchr(str, 'k', 2));
+	printf("\n\n--ft_memchr(5)--\n%s%s", \
+		"string : ", ft_memchr(str, 'c', 5));
+	printf("\n\n--ft_memchr(2)--\n%s", ft_memchr(str, 'k', 2));
 }
 */

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:35:35 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 16:29:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/09 17:47:27 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,6 @@ int		strncmp(const char *s1, const char *s2, size_t n);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
