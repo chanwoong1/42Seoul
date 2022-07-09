@@ -6,28 +6,33 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:15:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 12:56:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:09:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t  ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-    int i;
+	int	i;
+	int	j;
 
-    i = 0;
-    if (dstsize == 0)
-        return (NULL);
-    while (i < dstsize - 1)
-    {
-        dst[i] = src[i];
-        i++;
-    }
-    dst[i] = '\0';
-    return (i);     
+	i = 0;
+	j = 0;
+	while (src[j])
+		j++;
+	if (dstsize < 1)
+		return (j);
+	while (src[i] && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (j);
 }
 
+/*
 #include <stdio.h>
 #include <string.h>
 int main(void)
@@ -49,3 +54,4 @@ int main(void)
     for (i = 0; i < 10; i++)
         printf("%s%d%s", "[", dst[i], "]");
 }
+*/
