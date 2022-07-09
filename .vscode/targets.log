@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Jul  8 20:39:16 2022
+# Make data base, printed on Sat Jul  9 12:38:05 2022
 
 # Variables
 
@@ -39,11 +39,11 @@ VSCODE_NODE_CACHED_DATA_DIR =
 # environment
 VERBOSE_LOGGING = true
 # environment
-VSCODE_LOGS = /Users/chanwjeo/Library/Application Support/Code/logs/20220708T203913
+VSCODE_LOGS = /Users/chanwjeo/Library/Application Support/Code/logs/20220709T123802
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-1c5b4f0c-e601-40e4-950a-5c8e80950c7d.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-b1c88233-9e78-4c4c-af91-e8ed11eec60a.sock
 # environment
 PATH = /Users/chanwjeo/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/chanwjeo/.fzf/bin
 # environment
@@ -55,7 +55,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.lyDiv63bdM/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.pW2Sraw1uo/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -117,7 +117,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2164
+XPC_SERVICE_NAME = com.microsoft.VSCode.2136
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -143,7 +143,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 54278
+VSCODE_PID = 51342
 # variable set hash-table stats:
 # Load=65/1024=6%, Rehash=0, Collisions=2/86=2%
 
@@ -227,6 +227,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Jul  8 20:39:16 2022
+# Finished Make data base on Sat Jul  9 12:38:05 2022
 
  

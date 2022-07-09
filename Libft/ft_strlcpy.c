@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:15:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/08 20:44:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:56:25 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t  ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
     int i;
 
     i = 0;
+    if (dstsize == 0)
+        return (NULL);
     while (i < dstsize - 1)
     {
         dst[i] = src[i];
@@ -37,12 +39,12 @@ int main(void)
     printf("---src---\n");
     for (i = 0; i < 10; i++)
         printf("%s%d%s", "[", src[i], "]");
-    strlcpy(dst, src, 5);
+    strlcpy(dst, src, 6);
     printf("\n---strlcpy---\n");
     for (i = 0; i < 10; i++)
         printf("%s%d%s", "[", dst[i], "]");
     char dst1[10];
-    ft_strlcpy(dst1, src, 5);
+    ft_strlcpy(dst1, src, 6);
     printf("\n---ft_strlcpy---\n");
     for (i = 0; i < 10; i++)
         printf("%s%d%s", "[", dst[i], "]");
