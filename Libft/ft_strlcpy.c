@@ -6,13 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 17:15:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 13:09:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/11 12:16:32 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	int	i;
 	int	j;

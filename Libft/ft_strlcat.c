@@ -6,13 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 12:49:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 14:49:53 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/11 12:15:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	dst_len;
 	size_t	n;
