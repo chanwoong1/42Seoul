@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:07:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 20:39:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:29:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
+	j = 0;
 	if (*needle == '\0')
 		return ((char *)haystack);
-	while (*haystack && len > 0)
+	while (i + j < len)
 	{
-		while (*haystack != *needle)
+		if (haystack[i])
 		{
-			haystack++;
-			len--;
+			if (haystack[i + j] == needle[j])
+				j++;
+			else
+				j = 0;
+			if (!needle[j])
+				return ((char *)(haystack + i));
 		}
-		i = 0;
-		while (haystack[i] == needle[i])
-		{
-			if (needle[i] == '\0')
-				return ((char *)haystack);
+		else
+			return (0);
+		if (j == 0)
 			i++;
-		}
 	}
 	return (0);
 }
@@ -58,5 +62,10 @@ int main(void)
 	printf("%s%s\n", "ft_strnstr(large, small, 8) : ", ptr);
 	ptr = strnstr(largestring, smallstring, 2);
 	printf("%s%s\n", "ft_strnstr(large, small, 2) : ", ptr);
+
+	printf("----------------------------------------\n");
+	char haystack[30] = "aaabcabcd";
+	printf("\n\n%s", strnstr(haystack, "cd", 8));
+	printf("\n\n%s", ft_strnstr(haystack, "cd", 8));
 }
 */

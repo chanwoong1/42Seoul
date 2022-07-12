@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:49:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/08 17:12:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:03:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,45 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (len--)
-		*((unsigned char *)dst++) = *((unsigned char *)src++);
+	unsigned char	*d;
+	unsigned char	*s;
+
+	if (dst == src || len == 0)
+		return (dst);
+	if (dst < src)
+	{
+		d = (unsigned char *)dst;
+		s = (unsigned char *)src;
+		while (len--)
+			*d++ = *s++;
+	}
+	else
+	{
+		d = (unsigned char *)dst + (len - 1);
+		s = (unsigned char *)src + (len - 1);
+		while (len--)
+			*d-- = *s--;
+	}
 	return (dst);
 }
 
 /*
 #include <string.h>
 #include <stdio.h>
-int main(void)
+int main() 
 {
-    int src[5] = {1, 2, 3, 4, 5};
-    int dst[5];
-    int i;
+	char Like[10] = "ILikeYou";
+	char Hate[10] = "IHateYou";
+	char str[] = "12345678";
+
+	printf("memmove before : %s\n", Like);
+	ft_memmove(Like + 1, Hate + 1, 4);
+	printf("memmove after : %s\n", Like);
+
+	printf("memmove before : %s\n", str);
+	ft_memmove(str+3, str +1, 3);
+	printf("memmove after : %s\n", str);
     
-    printf("==설정 전==\n");
-    for(i = 0; i < 5; i++)
-        printf("%s%d%s", "[", dst[i], "]");
-    memmove(dst, src, sizeof(int) * 3);
-    printf("\n==memmove 설정 후==\n");
-    for(i = 0; i < 5; i++)
-        printf("%s%d%s", "[", dst[i], "]");
-    int dst1[5];
-    ft_memmove(dst1, src, sizeof(int) * 3);
-    printf("\n==ft_memmove 설정 후==\n");
-    for(i = 0; i < 5; i++)
-        printf("%s%d%s", "[", dst1[i], "]");
+	return 0;
 }
 */

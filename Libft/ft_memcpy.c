@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:33:47 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 12:14:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:05:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,34 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
+	unsigned char	*d;
+	unsigned char	*s;
+
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
 	while (n--)
-		*((unsigned char *)dst++) = *((unsigned char *)src++);
+		*d++ = *s++;
 	return (dst);
 }
+
+// void	*ft_memcpy(void *dest, const void *source, size_t num)
+// {
+// 	char		*dest_point;
+// 	const char	*source_point;
+
+// 	if (dest == NULL && source == NULL)
+// 		return (NULL);
+// 	dest_point = dest;
+// 	source_point = source;
+// 	while (num > 0)
+// 	{
+// 		dest_point[num - 1] = source_point[num - 1];
+// 		num--;
+// 	}
+// 	return (dest);
+// }
 
 /*
 #include<string.h>
@@ -50,6 +74,8 @@ int main(void)
 	printf("\n%s", "ft_memcpy(dst) : ");
 	for (int i = 0; i < 6; ++i)
 		printf("%d", dst1[i]);
+
+	printf("\n\n\n%s\n", ft_memcpy(((void *)0), ((void *)0), 3));
 	return 0;
 }
 */

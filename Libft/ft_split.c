@@ -6,27 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 15:35:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:15:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_sep(char c, char *charset)
-{
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_size_check(char const *str, char *charset)
+int	ft_size_check(char const *str, char c)
 {
 	int	size;
 	int	i;
@@ -35,42 +21,36 @@ int	ft_size_check(char const *str, char *charset)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] && is_sep(str[i], charset))
+		while (str[i] && str[i] == c)
 			i++;
 		if (str[i] != '\0')
 			size++;
-		while (str[i] && !is_sep(str[i], charset))
+		while (str[i] && str[i] != c)
 			i++;
 	}
 	return (size);
 }
 
-int	ft_str_check(char const *str, char *charset)
+int	ft_str_check(char const *str, char c)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (str[i])
 	{
-		j = 0;
-		while (charset[j])
-		{
-			if (str[i] == charset[j])
-				return (i);
-			j++;
-		}
+		if (str[i] == c)
+			return (i);
 		i++;
 	}
 	return (i);
 }
 
-char	**ft_too_many_lines(char **arr, char const *str, char *charset, int i)
+char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
 {
 	int	len;
 	int	j;
 
-	len = ft_str_check(str, charset);
+	len = ft_str_check(str, c);
 	arr[i] = (char *)malloc(sizeof(char) * (len + 1));
 	j = 0;
 	while (j < len)
@@ -82,7 +62,7 @@ char	**ft_too_many_lines(char **arr, char const *str, char *charset, int i)
 	return (arr);
 }
 
-char	**ft_split(char const *s, char *c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		size;
@@ -93,14 +73,14 @@ char	**ft_split(char const *s, char *c)
 	split = (char **)malloc(sizeof(char *) * (size + 1));
 	while (*s)
 	{
-		while (*s && is_sep(*s, c))
+		while (*s && *s == c)
 			s++;
 		if (*s)
 		{
 			split = ft_too_many_lines(split, s, c, i);
 			i++;
 		}
-		while (*s && !is_sep(*s, c))
+		while (*s && *s != c)
 			s++;
 	}
 	split[i] = 0;
@@ -111,13 +91,13 @@ char	**ft_split(char const *s, char *c)
 #include <stdio.h>
 int main(void)
 {
-	char *s = "He@@llo, Wor!!ld! 12!@#$34#689*879&8a^scnkp#oqnk@al!wiihuv";
-	char *c = " !@#$^&()*";
+	char *s = "Hello, Wor!!ld! 12!@#$3 4#689*879 &8a^scnkp# oqnk@al! wiihuv";
+	char c = ' ';
 	char **result;
 
 	printf("\n--------------------\n");
 	printf("%s%s\n", "s : ", s);
-	printf("%s%s\n", "c : ", c);
+	printf("%s%c\n", "c : ", c);
 	result = ft_split(s, c);
 	int i = 0;
 	int j = 0;

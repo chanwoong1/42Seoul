@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 15:15:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 16:48:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 14:08:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strchr(const char *s, int c)
 #include <stdio.h>
 int main(void)
 {
-	char str[10] = "abcdeabcde";
+	char str[10] = { "abcdeabcde" };
 
 	printf("--str--\n%s", str);
 	printf("\n--strchr('f')--\n%s%c\n%s%s", \

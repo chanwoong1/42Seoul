@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:19:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 17:47:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:54:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	uc2 = s2;
 	if (n == 0)
 		return (0);
-	while (n-- > 1 && *uc1 == *uc2 && *uc1 != '\0' && *uc2 != '\0')
+	while (n > 1 && *uc1 == *uc2)
 	{
 		uc1++;
 		uc2++;
+		n--;
 	}
 	return (*uc1 - *uc2);
 }

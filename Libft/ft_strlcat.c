@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 12:49:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 12:15:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:20:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,23 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	dst_len;
-	size_t	n;
+	size_t	i;
 	size_t	src_len;
 
-	n = dstsize;
-	src_len = 0;
-	dst_len = 0;
-	while (src[src_len] != '\0')
-		src_len++;
-	while (dst[dst_len] != '\0')
-		dst_len++;
-	n = dstsize - dst_len;
-	if (n == 0)
-		return (dst_len + src_len);
-	while (*src != '\0')
+	i = 0;
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dstsize < dst_len + 1)
+		return (dstsize + src_len);
+	if (dstsize > dst_len + 1)
 	{
-		if (n != 1)
+		while (src[i] != 0 && dst_len + i < dstsize - 1)
 		{
-			*dst++ = *src;
-			n--;
+			dst[dst_len + i] = src[i];
+			i++;
 		}
-		src++;
 	}
-	*dst = '\0';
+	dst[dst_len + i] = 0;
 	return (dst_len + src_len);
 }
 
@@ -62,5 +56,6 @@ int main(void)
 	printf("\n%lu\n", ft_strlcat(dst1, src, 5));
 	for (i = 0; i < 10; i++)
 		printf("%s%d%s", "[", dst[i], "]");
+	return (0);
 }
 */
