@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:43:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 20:59:36 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:02:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	slen;
 	unsigned int	range;
 
-	slen = 0;
-	while (s[slen])
-		slen++;
-	if (slen - 1 < start)
+	slen = ft_strlen(s);
+	if (slen <= start)
 		return (0);
 	if (slen - 1 < start + len)
 		range = slen - start;
 	else
 		range = len;
-	sub = (char *)malloc(sizeof(char) * range);
+	sub = (char *)malloc(sizeof(char) * (range + 1));
+	if (!sub)
+		return (0);
 	slen = 0;
 	while (slen < range)
 	{
 		sub[slen] = s[start + slen];
 		slen++;
 	}
+	sub[slen] = '\0';
 	return (sub);
 }
 
