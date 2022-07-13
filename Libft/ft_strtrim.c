@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:04:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 15:24:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:01:51 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,16 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 	int		j;
 
-	i = 0;
-	while (find_set(*s1, set) == 0)
+	while (find_set(*s1, set))
 		s1++;
-	while (s1[i])
-		i++;
+	i = ft_strlen(s1);
 	while (i > 0)
 	{
-		if (find_set(s1[i - 1], set))
+		if (!(find_set(s1[i - 1], set)))
 			break ;
 		i--;
 	}
-	str = (char *)malloc(sizeof(char) * i);
+	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (str == 0)
 		return (0);
 	j = 0;
@@ -49,20 +47,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		str[j] = s1[j];
 		j++;
 	}
+	str[j] = '\0';
 	return (str);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char *s = "Hello, World!";
-	char *set = "ldr";
-
-	printf("\n--------------------\n");
-	printf("%s%s\n", "s : ", s);
-	printf("%s%s\n", "set : ", set);
-	printf("%s%s\n", "ft_strtrim(s, set) : ", ft_strtrim(s, set));
-	return 0;
-}
-*/

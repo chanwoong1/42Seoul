@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 16:30:28 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/09 16:48:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:59:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 	ss = s;
 	while (*s)
 		s++;
-	while (*s != c)
+	while (*s != (unsigned char)c)
 	{
 		if (*s == *ss)
 			return (0);
@@ -27,22 +27,3 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return ((char *)s);
 }
-
-/*
-#include <string.h>
-#include <stdio.h>
-int main(void)
-{
-	char str[10] = "abcdeabcde";
-
-	printf("--str--\n%s", str);
-	printf("\n--strrchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *strrchr(str, 'c'), \
-		"string : ", strrchr(str, 'c'));
-	printf("\n--strrchr('k')--\n%s", strrchr(str, 'k'));
-	printf("\n--ft_strrchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *ft_strrchr(str, 'c'), \
-		"string : ", ft_strrchr(str, 'c'));
-	printf("\n--ft_strrchr('k')--\n%s", ft_strrchr(str, 'k'));
-}
-*/

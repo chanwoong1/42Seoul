@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 21:15:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:41:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	size = ft_size_check(s, c);
 	split = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!split)
+		return (0);
 	while (*s)
 	{
 		while (*s && *s == c)
@@ -86,30 +88,3 @@ char	**ft_split(char const *s, char c)
 	split[i] = 0;
 	return (split);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char *s = "Hello, Wor!!ld! 12!@#$3 4#689*879 &8a^scnkp# oqnk@al! wiihuv";
-	char c = ' ';
-	char **result;
-
-	printf("\n--------------------\n");
-	printf("%s%s\n", "s : ", s);
-	printf("%s%c\n", "c : ", c);
-	result = ft_split(s, c);
-	int i = 0;
-	int j = 0;
-	while (result[i])
-		i++;
-	printf("%s%d\n", "str's size : ", i);
-	printf("%s\n", "split");
-	while (j < i)
-	{
-		printf("%s%s%s ", "[", result[j], "]");
-		j++;
-	}
-	return 0;
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:48:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 20:20:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:39:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,3 @@ void	ft_putstr_fd(char *s, int fd)
 		s++;
 	}
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char *s = "abcdefg";
-
-	ft_putstr_fd(s, 1);
-	return (0);
-}
-*/

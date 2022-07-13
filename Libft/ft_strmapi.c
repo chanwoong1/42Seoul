@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:16:09 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 19:44:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:56:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	map_s[j] = '\0';
 	return (map_s);
 }
-
-/*
-#include <stdio.h>
-char mapi(unsigned int i, char c)
-{
-	return (c + i);
-}
-int main(void)
-{
-	char *s = "aaaaaaaaaaaaaaaaaaaaaaaaaa";
-
-	printf("-----------------------------\n");
-	printf("%s%s\n", "s : ", s);
-	printf("%s%s", "ft_strmapi(s) : ", ft_strmapi(s, &mapi));
-	return (0);
-}
-*/

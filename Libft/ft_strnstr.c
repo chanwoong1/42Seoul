@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:07:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/12 16:29:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:56:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
-
-/*
-#include <string.h>
-#include <stdio.h>
-int main(void)
-{
-	const char *largestring = "Foo Bar Baz";
-	const char *smallstring = "Bar";
-	char *ptr;
-	
-	printf("----string----\n");
-	printf("%s%s\n%s%s\n\n", "largestring : ", largestring, \
-		"smallstring : ", smallstring);
-	printf("----strnstr----\n");
-	ptr = strnstr(largestring, smallstring, 8);
-	printf("%s%s\n", "strnstr(large, small, 8) : ", ptr);
-	ptr = strnstr(largestring, smallstring, 2);
-	printf("%s%s\n\n", "strnstr(large, small, 2) : ", ptr);
-	printf("----ft_strnstr----\n");
-	ptr = strnstr(largestring, smallstring, 8);
-	printf("%s%s\n", "ft_strnstr(large, small, 8) : ", ptr);
-	ptr = strnstr(largestring, smallstring, 2);
-	printf("%s%s\n", "ft_strnstr(large, small, 2) : ", ptr);
-
-	printf("----------------------------------------\n");
-	char haystack[30] = "aaabcabcd";
-	printf("\n\n%s", strnstr(haystack, "cd", 8));
-	printf("\n\n%s", ft_strnstr(haystack, "cd", 8));
-}
-*/

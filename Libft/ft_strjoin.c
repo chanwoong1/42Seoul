@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:21:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 14:03:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:55:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	joinstr[i + j] = '\0';
 	return (joinstr);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char *s1 = "Hello, World!";
-	char *s2 = " I'm chanwjeo.";
-
-	printf("\n--------------------\n");
-	printf("%s%s\n", "s1 : ", s1);
-	printf("%s%s\n", "s2 : ", s2);
-	printf("%s%s\n", "ft_strjoin(s1, s2) : ", ft_strjoin(s1, s2));
-	return 0;
-}
-*/

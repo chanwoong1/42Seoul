@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 12:31:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 12:41:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:54:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,3 @@ char	*ft_strdup(const char *s1)
 	cp[i] = '\0';
 	return (cp);
 }
-
-/*
-#include<string.h>
-#include<stdio.h>
-int main(void)
-{
-	char src[] = "Hello, World!";
-
-	printf("\n--------------------\n");
-	printf("%s%s\n", "src : ", src);
-	printf("%s%s\n", "strdup(src) : ", strdup(src));
-	printf("%s%s\n", "ft_strdup(src) : ", ft_strdup(src));
-	return 0;
-}
-*/
