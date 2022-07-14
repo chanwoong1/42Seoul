@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 12:41:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:03:56 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ int	ft_str_check(char const *str, char c)
 	return (i);
 }
 
+void	free_arr(char **arr, int i)
+{
+	while (i > 0)
+	{
+		free(arr[i]);
+		i--;
+	}
+	free(arr);
+}
+
 char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
 {
 	int	len;
@@ -52,6 +62,11 @@ char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
 
 	len = ft_str_check(str, c);
 	arr[i] = (char *)malloc(sizeof(char) * (len + 1));
+	if (!arr[i])
+	{
+		free_arr(arr, i);
+		return (0);
+	}
 	j = 0;
 	while (j < len)
 	{
