@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:24:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 12:39:30 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:10:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putnbr_fd(int n, int fd)
 	long	ln;
 	char	c;
 
+	if (fd < 0)
+		return ;
 	ln = (long)n;
 	if (n < 0)
 	{

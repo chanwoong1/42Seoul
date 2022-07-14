@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:22:31 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 20:24:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:10:47 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
+	if (fd < 0)
+		return ;
 	while (*s)
 	{
 		write(fd, &s[0], 1);
