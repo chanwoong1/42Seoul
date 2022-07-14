@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 15:31:29 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 13:51:27 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/13 15:14:16 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/13 15:16:09 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	return (c >= '0' && c <= '9');
+	while (*lst)
+	{
+		*lst = *lst->next;
+	}
+	*lst = ft_lstnew(new);
 }
