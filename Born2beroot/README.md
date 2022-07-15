@@ -105,29 +105,6 @@ Ext4 file system : Ext3 file system을 개선한 버전으로 대용량 파일 �
 
 subject의 내용을 충실하게 따라야 하기 때문에 순차적으로 진행한다.
 
-<pre><code>
-Your password has to expire every 30 days.
-여러분의 비밀번호는 30일마다 소멸되어야 합니다.
-
-The minimum number of days allowed before the modification of a password will be set to 2.
-비밀번호 변경을 위해 기다려야 하는 기간은 최소 이틀로 설정되어야 합니다.
-
-The user has to receive a warning message 7 days before their password expires.
-유저는 비밀번호 소멸 7일 전에 경고 메시지를 받아야 합니다.
-
-Your password must be at least 10 characters long. It must contain an uppercase letter and a number. Also, it must not contain more than 3 consecutive identical characters.
-비밀번호는 최소 10글자 이상이 되어야 하고, 대문자와 숫자를 포함하여야 하며, 같은 글자가 3번 이상 연속되면 안 됩니다.
-
-The password must not include the name of the user.
-비밀번호에 유저명이 포함되면 안 됩니다.
-
-The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.
-다음 규칙은 루트 계정의 비밀번호에 적용되지 않습니다: 비밀번호는 이전 비밀번호에 포함되지 않는 문자를 최소 7개 이상 포함하여야 합니다.
-
-Of course, your root password has to comply with this policy.
-당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
-</code></pre>
-
 1. root 계정으로 전환
 
 ```
@@ -169,9 +146,7 @@ Defaults	passwd_tries=3
 
 * authfail_message
 
-	권한 획득 실패 시 출력하는 메세지.
-
-	즉 sudo 인증 실패 시 출력하는 메세지.
+	권한 획득 실패(즉, sudo 인증 실패) 시 출력하는 메세지.
 
 * badpass_messgae
 
@@ -195,6 +170,31 @@ Defaults	passwd_tries=3
 
 * passwd_tries
 
-	sudo 실행 횟수를 지정하는 설정.
+	sudo 실행 횟수를 지정하는 설정.(default = 3)
 
-	default = 3.
+<pre><code>
+Your password has to expire every 30 days.
+여러분의 비밀번호는 30일마다 소멸되어야 합니다.
+
+The minimum number of days allowed before the modification of a password will be set to 2.
+비밀번호 변경을 위해 기다려야 하는 기간은 최소 이틀로 설정되어야 합니다.
+
+The user has to receive a warning message 7 days before their password expires.
+유저는 비밀번호 소멸 7일 전에 경고 메시지를 받아야 합니다.
+
+Your password must be at least 10 characters long. It must contain an uppercase letter and a number. Also, it must not contain more than 3 consecutive identical characters.
+비밀번호는 최소 10글자 이상이 되어야 하고, 대문자와 숫자를 포함하여야 하며, 같은 글자가 3번 이상 연속되면 안 됩니다.
+
+The password must not include the name of the user.
+비밀번호에 유저명이 포함되면 안 됩니다.
+
+The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.
+다음 규칙은 루트 계정의 비밀번호에 적용되지 않습니다: 비밀번호는 이전 비밀번호에 포함되지 않는 문자를 최소 7개 이상 포함하여야 합니다.
+
+Of course, your root password has to comply with this policy.
+당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
+</code></pre>
+
+```
+sudo vi /etc/passwd
+```
