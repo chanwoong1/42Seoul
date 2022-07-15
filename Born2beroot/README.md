@@ -168,23 +168,33 @@ Defaults	passwd_tries=3
 로 수정한다.
 
 * authfail_message
+
 	권한 획득 실패 시 출력하는 메세지.
+
 	즉 sudo 인증 실패 시 출력하는 메세지.
 
 * badpass_messgae
+
 	sudo 인증에서 비밀번호를 틀렸을 시 출력하는 메세지.
 
 * log_input
-sudo 명령어 실행 시 입력된 명령어를 log로 저장하겠다는 설정.
+
+	sudo 명령어 실행 시 입력된 명령어를 log로 저장하겠다는 설정.
 
 * log-output
+
 	sudo 명령어 실행 시 출력 결과를 log로 저장하겠다는 설정.
 
 * requiretty
+
 	sudo 명령어 실행 시 tty를 강제하는 설정.
 
 * iolog_dir
+
 	sudo log 저장 디렉토리를 지정하는 설정.
+
 * passwd_tries
+
 	sudo 실행 횟수를 지정하는 설정.
+
 	default = 3.
