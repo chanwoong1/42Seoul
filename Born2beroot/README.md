@@ -63,4 +63,49 @@ MAC
 높은 보안을 요구하는 정보는 낮은 보안 수준의 주체가 접근할 수 없으며 소유자라고 할 지라도 정책에 어긋나면 객체에 접근할 수 없으므로 강력한 보안을 제공한다.
 
 **Debian Setup**
-![Alt text](./debian_setup1.png)
+![Alt text](./pictures/debian_setup1.png)
+
+- 마운트 과정 중 LVMGroup - LVhome 선택
+![Alt text](./pictures/debian_setup2.png)
+Ext4 file system : Ext3 file system을 개선한 버전으로 대용량 파일 시스템을 지원함. Ext3과 호환 가능하므로, Ext4 사용 권장.
+
+마운트 위치도 변경 : 없음 -> /home
+
+- 각각의 그룹을 용도에 맞게 변경
+단, swap은 swap area 선택, var-log는 경로 직접 입력으로 /var/log 입력
+![Alt text](./pictures/debian_setup3.png)
+
+- GRUB 부트로더 설정 (YES -> /dev/sda 선택)
+부트로더 : 운영 체제가 실행되기 이전에 미리 실행되어 커널이 올바르게 실행될 수 있도록 사전작업을 수행하고, 최종적으로는 아무 이상 없이 운영체제를 실행시키기 위한 프로그램
+
+여기까지 수행하면 설치를 모두 마치게 된다.
+![Alt text](./pictures/debian_setup4.png)
+
+설치 후 접속하여 lsblk 명령어 입력했을 때
+![Alt text](./pictures/debian_setup5.png)
+
+**sudo setup**
+subject의 내용을 충실하게 따라야 하기 때문에 순차적으로 진행한다.
+
+₩₩₩
+Your password has to expire every 30 days.
+여러분의 비밀번호는 30일마다 소멸되어야 합니다.
+
+The minimum number of days allowed before the modification of a password will be set to 2.
+비밀번호 변경을 위해 기다려야 하는 기간은 최소 이틀로 설정되어야 합니다.
+
+The user has to receive a warning message 7 days before their password expires.
+유저는 비밀번호 소멸 7일 전에 경고 메시지를 받아야 합니다.
+
+Your password must be at least 10 characters long. It must contain an uppercase letter and a number. Also, it must not contain more than 3 consecutive identical characters.
+비밀번호는 최소 10글자 이상이 되어야 하고, 대문자와 숫자를 포함하여야 하며, 같은 글자가 3번 이상 연속되면 안 됩니다.
+
+The password must not include the name of the user.
+비밀번호에 유저명이 포함되면 안 됩니다.
+
+The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.
+다음 규칙은 루트 계정의 비밀번호에 적용되지 않습니다: 비밀번호는 이전 비밀번호에 포함되지 않는 문자를 최소 7개 이상 포함하여야 합니다.
+
+Of course, your root password has to comply with this policy.
+당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
+₩₩₩
