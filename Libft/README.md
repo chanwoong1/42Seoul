@@ -35,7 +35,8 @@ memory 부분은 string 부분과 다르게 공백문자일 경우 반환하지 
 	return (dst);
 }
 
-}
+}</code></pre>
+
 
 <pre><code>{
 void	*ft_memmove(void *dst, const void *src, size_t len)
