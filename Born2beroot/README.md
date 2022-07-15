@@ -85,9 +85,10 @@ Ext4 file system : Ext3 file system을 개선한 버전으로 대용량 파일 �
 ![Alt text](./pictures/debian_setup5.png)
 
 **sudo setup**
+
 subject의 내용을 충실하게 따라야 하기 때문에 순차적으로 진행한다.
 
-₩₩₩
+<pre><code>
 Your password has to expire every 30 days.
 여러분의 비밀번호는 30일마다 소멸되어야 합니다.
 
@@ -108,4 +109,4 @@ The following rule does not apply to the root password: The password must have a
 
 Of course, your root password has to comply with this policy.
 당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
-₩₩₩
+</code></pre>
