@@ -14,7 +14,8 @@
 		- LV (Logical Volume) : VG에서 논리적으로 Volume을 지정한다. VG의 용량을 초과하여 지정할 수 없다.
 		- PE(Physical Extent) 와 LE(Logical Extent)는 각각 PV와 LV를 이루는 최소 단위이고 기본 4MB로 할당되어있다.
 - aptitude VS apt
-'''
+
+```
 apt
 Apt : Advanced Packaging Tool
 소프트웨어의 설치와 제거를 처리하는 패키지 관리 툴이다. 초기에는 .deb 패키지를 관리하기 위해 만들었지만 현재는 rpm 패키지 매니저와도 호환된다.
@@ -34,4 +35,4 @@ apt-get이 패키지 설치, 업그레이드, 시스템 업그레이드, 종속�
 1. 어떤 패키지를 삭제할 때, aptitude는 사용되지 않는 패키지까지 삭제한다. 반면 apt 는 사용자가 '-auto-remove', 'apt-get autoremove'를 명시해줘야 한다.
 2. 이거는 찾아보면서 되게 재밌었던 점인데, aptitude는 'why', 'why-not' 명령어를 이용해 어떤 동작이 왜 안되고 되는지를 볼 수 있다.
 3. apt는 설치, 제거 중 충돌이 일어날 경우 종료되지만 aptitude는 해결 방법을 제시할 수 있다.
-'''
+```

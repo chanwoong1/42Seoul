@@ -20,7 +20,7 @@ memory 부분은 string 부분과 다르게 공백문자일 경우 반환하지 
 
 또한, memcpy와 memmove의 기능은 거의 흡사한데, memcpy의 경우 dst와 src의 메모리 주소값이 겹칠 경우, 초기값을 저장하지 않아 주소값을 잃어버릴 수도 있지만, move의 경우는 겹칠 경우도 고려해야해서 조금 더 안정적이라는 것을 알 수 있었다.
 
-<pre><code>
+```C
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*d;
@@ -34,10 +34,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		*d++ = *s++;
 	return (dst);
 }
-</code></pre>
+```
 
-
-<pre><code>
+```C
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*d;
@@ -61,7 +60,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-</code></pre>
+```
 
 ### 2. bonus(linked list)
 
@@ -69,7 +68,8 @@ bonus 파트는 구조체를 통한 연결리스트 사용을 중점적으로 �
 
 bonus 파트에서 앞서 만든 연결리스트 함수들을 사용해야 하는 함수인 lstmap애 대해서만 알아보자면,
 
-<pre><code>
+
+```C
 typedef struct s_list
 {
 	void			*content;
@@ -103,7 +103,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (new_lst);
 }
-</code></pre>
+```
+
 
 이런식으로 만들었는데, 기존 lst를 통해 함수 f를 적용하여 새로운 리스트를 반환하게 한다. 생성 도중 오류가 발생하게 된다면, 지금까지 만들었던 리스트들을 삭제하고 NULL을 반환하게 한다.
 
@@ -113,7 +114,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 테스트기를 충분히 활용하였고, 모든 함수에 문제가 없다고 판단하여 제출하였으나, strrchr부분에서 문제가 발생하였다. 어떤 부분이 틀렸는지 명확하게 나오지 않아서 혼란스러웠다.
 
-<pre><code>
+```C
 char	*ft_strrchr(const char *s, int c)
 {
 	const char	*ss;
@@ -129,7 +130,7 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return ((char *)s);
 }
-</code></pre>
+```
 
 이 부분인데, 모든 경우의 테스트를 통과했음에도 기계평가에서 오류가 발생하여 틀렸다고 나왔다.
 
