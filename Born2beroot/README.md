@@ -63,6 +63,23 @@ MAC
 높은 보안을 요구하는 정보는 낮은 보안 수준의 주체가 접근할 수 없으며 소유자라고 할 지라도 정책에 어긋나면 객체에 접근할 수 없으므로 강력한 보안을 제공한다.
 
 **Debian Setup**
+
+디스크 분할에서 수동(Manual 선택)
+
+그 후, 주 영역과 논리 영역으로 파티션 분할. 
+![Alt text](./pictures/debian_setup0.png)
+논리 영역에서 부팅을 안하는 이유는 논리 영역으로 설정은 했지만 확장 영역에 속해야한다.
+
+확장 영역이란 주 영역에서 사용가능한 영역.
+
+실제 데이터는 저장할 수 없으므로 마운트 불가능.
+
+이와 같이 설정 후, 암호화를 위해 Configure encryped volumns 선택.
+
+create 선택 후, sda5 선택.
+
+그 후 암호화 여러 설정 후, Configure the Logical Volume Manager 선택.
+
 ![Alt text](./pictures/debian_setup1.png)
 
 - 마운트 과정 중 LVMGroup - LVhome 선택
@@ -110,3 +127,64 @@ The following rule does not apply to the root password: The password must have a
 Of course, your root password has to comply with this policy.
 당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
 </code></pre>
+
+1. root 계정으로 전환
+
+```
+su -
+```
+
+2. sudo 패키지 설치
+
+```
+apt-get install sudo
+```
+
+- sudo 패키지 설치 여부
+dpkg -l | grep 'sudo'
+
+- sudo log를 저장할 수 있는 디렉토리 생성
+```
+mkdir /var/log/sudo
+```
+
+- sudo 설정
+```
+visudo
+```
+
+설정 창에 들어가면
+```
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+Defaults	authfail_message="Authentication attempt failed custom."
+Defaults	badpass_message="Wrong password custom."
+Defaults	log_input
+Defaults	log_output
+Defaults	requiretty
+Defaults	iolog_dir="/var/log/sudo/"
+Defaults	passwd_tries=3
+```
+로 수정한다.
+
+* authfail_message
+	권한 획득 실패 시 출력하는 메세지.
+	즉 sudo 인증 실패 시 출력하는 메세지.
+
+* badpass_messgae
+	sudo 인증에서 비밀번호를 틀렸을 시 출력하는 메세지.
+
+* log_input
+sudo 명령어 실행 시 입력된 명령어를 log로 저장하겠다는 설정.
+
+* log-output
+	sudo 명령어 실행 시 출력 결과를 log로 저장하겠다는 설정.
+
+* requiretty
+	sudo 명령어 실행 시 tty를 강제하는 설정.
+
+* iolog_dir
+	sudo log 저장 디렉토리를 지정하는 설정.
+* passwd_tries
+	sudo 실행 횟수를 지정하는 설정.
+	default = 3.
