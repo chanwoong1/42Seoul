@@ -92,8 +92,8 @@ Ext4 file system : Ext3 file system을 개선한 버전으로 대용량 파일 �
 단, swap은 swap area 선택, var-log는 경로 직접 입력으로 /var/log 입력
 ![Alt text](./pictures/debian_setup3.png)
 
-- GRUB 부트로더 설정 (YES -> /dev/sda 선택)
-부트로더 : 운영 체제가 실행되기 이전에 미리 실행되어 커널이 올바르게 실행될 수 있도록 사전작업을 수행하고, 최종적으로는 아무 이상 없이 운영체제를 실행시키기 위한 프로그램
+- GRUB(Grand Unified Bootloader) 부트로더 설정 (YES -> /dev/sda 선택)
+부트로더 : 운영 체제가 실행되기 이전에 미리 실행되어 커널이 올바르게 실행될 수 있도록 사전작업을 수행하고, 최종적으로는 아무 이상 없이 운영체제를 실행시키기 위한 프로그램 (부팅의 전 과정을 진행하는 부팅 전문 프로그램을 의미)
 
 여기까지 수행하면 설치를 모두 마치게 된다.
 ![Alt text](./pictures/debian_setup4.png)
@@ -198,3 +198,5 @@ Of course, your root password has to comply with this policy.
 ```
 sudo vi /etc/passwd
 ```
+
+inet 169.254.226.188
