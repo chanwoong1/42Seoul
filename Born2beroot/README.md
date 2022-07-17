@@ -195,8 +195,54 @@ Of course, your root password has to comply with this policy.
 당연히, 루트 권한 비밀번호 또한 해당 규칙을 따라야 합니다.
 </code></pre>
 
-```
-sudo vi /etc/passwd
-```
+<pre><code>
+// 비밀번호 정책 설정을 위한 패키지 설치
+sudo apt install libpam-pwdquality
 
-inet 169.254.226.188
+sudo vi /etc/pam.d/common-password
+
+
+// 다음과 같이 수정
+password	requisite	pam_pwquality.so retry=3 minlen=10 difok=7 ucredit=-1 lcredit=-1 dcredit=-1 reject_username enforce_for_root maxrepeat=3
+
+// 강화된 비밀번호로 적용하지 위해 명령어 실행
+passwd -e [user_name]
+</code></pre>
+
+* retry=3
+
+	비밀번호 입력 횟수 설정, 최대 3회 입력 가능.
+
+* minlen=10
+
+	비밀번호 최소 길이
+
+* difok=7
+
+	이전 비밀번호와 달라야하는 문자 수, root의 경우 이전 비밀번호를 저장하지 않기 때문에 적용되지 않음.
+
+* ucredit=-1
+
+	대문자 제한, -1은 최소 한 글자 이상을 의미함.
+
+* lcredit=-1
+
+	소문자 제한
+
+* dcredit=-1
+
+	숫자 제한
+
+* reject_username
+
+	유저 이름이 그대로 또는 뒤집혀서 비밀번호에 입력될 수 없음
+
+* enforce_for_root
+
+	해당 비밀번호 정책을 root에도 적용
+
+* maxrepeat=3
+
+	중복 글자 제한. 최대 3글자까지 중복 가능
+
+
