@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:48:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/14 17:11:05 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:14:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (fd < 0)
+	if (fd < 0 || !s)
 		return ;
 	while (*s)
 	{

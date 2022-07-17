@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:16:09 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 12:56:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:15:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	j;
 	char			*map_s;
 
+	if (!s || !f)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;

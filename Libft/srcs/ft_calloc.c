@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:59:37 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 12:29:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:48:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*ret;
-	size_t			i;
 
 	if (count == 0 || size == 0)
 	{
@@ -23,13 +22,8 @@ void	*ft_calloc(size_t count, size_t size)
 		size = 1;
 	}
 	ret = (void *)malloc(size * count);
-	if (ret == (void *)0)
+	if (!ret)
 		return (0);
-	i = 0;
-	while (i < size * count)
-	{
-		ret[i] = 0;
-		i++;
-	}
+	ft_memset(ret, 0, size * count);
 	return (ret);
 }

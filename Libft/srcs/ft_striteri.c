@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:40:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/11 21:16:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:12:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	unsigned int	i;
 	unsigned int	j;
 
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
 		i++;

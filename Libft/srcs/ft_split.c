@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/14 17:03:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/17 14:15:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ char	**ft_split(char const *s, char c)
 	int		size;
 	int		i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	size = ft_size_check(s, c);
 	split = (char **)malloc(sizeof(char *) * (size + 1));
