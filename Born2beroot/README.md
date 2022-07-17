@@ -62,7 +62,7 @@ MAC
 
 높은 보안을 요구하는 정보는 낮은 보안 수준의 주체가 접근할 수 없으며 소유자라고 할 지라도 정책에 어긋나면 객체에 접근할 수 없으므로 강력한 보안을 제공한다.
 
-**Debian Setup**
+### Debian Setup
 
 디스크 분할에서 수동(Manual 선택)
 
@@ -101,7 +101,7 @@ Ext4 file system : Ext3 file system을 개선한 버전으로 대용량 파일 �
 설치 후 접속하여 lsblk 명령어 입력했을 때
 ![Alt text](./pictures/debian_setup5.png)
 
-**sudo setup**
+### sudo setup
 
 subject의 내용을 충실하게 따라야 하기 때문에 순차적으로 진행한다.
 
@@ -144,6 +144,8 @@ Defaults	passwd_tries=3
 ```
 로 수정한다.
 
+![Alt text](./pictures/sudo_setup1.png)
+
 * authfail_message
 
 	권한 획득 실패(즉, sudo 인증 실패) 시 출력하는 메세지.
@@ -171,6 +173,28 @@ Defaults	passwd_tries=3
 * passwd_tries
 
 	sudo 실행 횟수를 지정하는 설정.(default = 3)
+
+vim 설치
+```
+sudo apt-get install vim
+```
+
+### AppArmor vs SELinux
+
+둘 다 관리자가 시스템 엑세스 권한을 효과적으로 제어할 수 있게 하는 security framework이다.
+소스코드가 공개되어 있는 리눅스의 보안을 강화하기 위해 만들어짐.
+SELinux는 IBM/RedHat 계열에서 선호되고 같은 계열의 CentOS와 같은 운영체제에서 사용된다. 나머지는 AppArmor사용
+SELinux는 policy file과 right file system을 통해 작동. AppArmor는 policy file만으로 작동. SELinux가 조금 더 복잡하고 표준화하여 설정하기 어려운 단점.
+데비안에서는 기본적으로 깔려 있으나 깔려 있지 않다면 "apt install apparmor apparmor-utils"을 통해 설치 가능.
+"aa-enabled" 명령어 통해 활성화 여부 확인 가능
+앱아머는 정책 파일을 통해 어떤 어플리케이션이 어떤 파일/경로에 접근 가능한지 허용해준다.
+enforce모드와 complain모드 두 가지 존재
+enforce 모드 : 허가되지 않은 파일에 접근하는 것을 거부하는 모드
+complain 모드 : 실질적으로 보안을 제공하는 것은 아님. 대신 어플리케이션이 해야 할 행동이 아닌 다른 행동을 하는 경우에 앱아머는 로그를 남겨준다(중지하지는 않음).
+"sudo aa-status"통해 현재 상태 확인 가능(enforced, complain, unconfined)
+"ps auxZ | grep -v '^unconfined'" 통해 현재 앱아머에 의해 제한된 실행 파일 확인 가능
+
+### password
 
 <pre><code>
 Your password has to expire every 30 days.
@@ -207,6 +231,11 @@ password	requisite	pam_pwquality.so retry=3 minlen=10 difok=7 ucredit=-1 lcredit
 
 // 강화된 비밀번호로 적용하지 위해 명령어 실행
 passwd -e [user_name]
+
+// 설정 변경 이후 강화된 비밀번호가 적용되지 않은 root와 기존 유저에 대해 비밀번호 기간을 설정하기 위해 다음 명령어 실행
+change -m 2 -M 30 -W 7 [user_name]
+
+
 </code></pre>
 
 * retry=3
