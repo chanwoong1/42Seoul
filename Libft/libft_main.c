@@ -487,21 +487,34 @@ int main(void)
 
 //// strrchr
 /*
-#include <string.h>
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 int main(void)
 {
-	char str[10] = "abcdeabcde";
+	printf(">>>Your<<<\n");
+	printf("%s\n", ft_strrchr("hello0h", 0));
+	printf("%s\n", ft_strrchr("hello0h", 'l'));
+	printf("%s\n", ft_strrchr("hello0h", 'h'));
+	printf("%s\n", ft_strrchr("hello0h", '0'));
+	printf("%s\n", ft_strrchr("hello0h", 'a'));
+	printf(">>>Test<<<\n");
+	printf("%s\n", strrchr("hello0h", 0));
+	printf("%s\n", strrchr("hello0h", 'l'));
+	printf("%s\n", strrchr("hello0h", 'h'));
+	printf("%s\n", strrchr("hello0h", '0'));
+	printf("%s\n", strrchr("hello0h", 'a'));
 
-	printf("--str--\n%s", str);
+
+	printf("--str--\n%s",  "abcdeabcde");
 	printf("\n--strrchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *strrchr(str, 'c'), \
-		"string : ", strrchr(str, 'c'));
-	printf("\n--strrchr('k')--\n%s", strrchr(str, 'k'));
+		"located character : ", *strrchr( "abcdeabcde", 'c'), \
+		"string : ", strrchr( "abcdeabcdea", 'c'));
+	printf("\n--strrchr('k')--\n%s", strrchr( "abcdeabcde", 'k'));
 	printf("\n--ft_strrchr('f')--\n%s%c\n%s%s", \
-		"located character : ", *ft_strrchr(str, 'c'), \
-		"string : ", ft_strrchr(str, 'c'));
-	printf("\n--ft_strrchr('k')--\n%s", ft_strrchr(str, 'k'));
+		"located character : ", *ft_strrchr( "abcdeabcde", 'c'), \
+		"string : ", ft_strrchr( "abcdeabcdea", 'c'));
+	printf("\n--ft_strrchr('k')--\n%s", ft_strrchr( "abcdeabcde", 'k'));
 }
 */
 
