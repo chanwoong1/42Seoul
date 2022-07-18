@@ -6,6 +6,18 @@
 - 운영체제
 	- Debian
 		- 운영체제 시작 시 AppArmor 또한 구동되어야 함.
+* Debian vs CentOS
+
+	패키지와 패키지 포멧이 다름 (debian : DEB(패키지 포멧), DPKG, API(패키지) / centOS : RPM(패키지 포멧), YUM, DNF(패키지))
+
+* 커널
+
+	운영체제의 주요 구성 요소
+
+	운영체제가 수행하는 모든 것이 저장 되어 있음
+
+	하드웨어의 모든 주요 기능을 제어함
+
 - LVM을 이용한 최소 2개의 암호화된 파티션 생성
 	- LVM(Logical Volume Manager)은 하나의 디스크를 논리적으로 나누어 사용하거나, 여러개의 디스크를 논리적으로 묶어서 사용하는 등, 리눅스에서 디스크를 효율적으로 관리하기 위한 방법.
 		LVM에는 크게 PV, PE, VG, LV, LE라는 개념이 있다.
@@ -13,6 +25,7 @@
 		- VG (Volume Group) : PV를 1개 이상 묶어서 그룹화하는 것이다.
 		- LV (Logical Volume) : VG에서 논리적으로 Volume을 지정한다. VG의 용량을 초과하여 지정할 수 없다.
 		- PE(Physical Extent) 와 LE(Logical Extent)는 각각 PV와 LV를 이루는 최소 단위이고 기본 4MB로 할당되어있다.
+
 - aptitude VS apt
 
 ```
@@ -178,6 +191,32 @@ vim 설치
 ```
 sudo apt-get install vim
 ```
+
+### 사용자 그룹 설정
+
+<pre><code>
+// 그룹 추가
+groupadd [group name(user42)]
+
+// 특정 사용자 그룹 추가(그룹이 여러개일 경우 공백 없이 콤마로 구분)
+usermod -aG [group name(user42)] [user name(chanwjeo)]
+
+// primary group 설정 - 해당 사용자의 홈 디렉토리 내 파일 권한은 자동 변경, 그 외의 파일들은 직접 수정
+usermod -g [group name(user42)] [user name(chanwjeo)]
+
+// 특정 사용자 그룹에서 제거
+sudo deluser [user name] [group name]
+
+// 특정 사용자 제거
+sudo userdel -r [user name]
+</code></pre>
+
+** userdel vs deluser
+- userdel
+	- -r :홈 디렉토리 삭제
+- deluser
+	- --remove : 홈 디렉토리 삭제
+	- --remove-all-files : 홈 디렉토리 + 계정명으로 된 모든 파일 삭제
 
 ### AppArmor vs SELinux
 
