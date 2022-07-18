@@ -256,7 +256,7 @@ Of course, your root password has to comply with this policy.
 
 <pre><code>
 // 비밀번호 정책 설정을 위한 패키지 설치
-sudo apt install libpam-pwdquality
+sudo apt install libpam-pwquality
 
 sudo vi /etc/pam.d/common-password
 
@@ -264,7 +264,7 @@ sudo vi /etc/pam.d/common-password
 // 다음과 같이 수정
 password	requisite	pam_pwquality.so retry=3 minlen=10 difok=7 ucredit=-1 lcredit=-1 dcredit=-1 reject_username enforce_for_root maxrepeat=3
 
-// 강화된 비밀번호로 적용하지 위해 명령어 실행
+// 강화된 비밀번호로 적용하기 위해 명령어 실행
 passwd -e [user_name]
 
 // 설정 변경 이후 강화된 비밀번호가 적용되지 않은 root와 기존 유저에 대해 비밀번호 기간을 설정하기 위해 다음 명령어 실행
@@ -308,5 +308,27 @@ change -m 2 -M 30 -W 7 [user_name]
 * maxrepeat=3
 
 	중복 글자 제한. 최대 3글자까지 중복 가능
+
+### ssh 서버 설정
+
+<pre><code>
+// openssh 설치 확인
+apt search openssh-server
+
+// 깔려있지 않다면
+apt install openssh-server
+
+// openssh 실행 여부, 사용포트 확인
+systemctl status ssh
+
+// 4242포트 허용
+sudo ufw allow 4242
+
+// ssh설정 변경, Port 22 -> Port 4242 변경 후 주석 제거
+sudo vim /etc/ssh/sshd_config
+
+// 설정 적용
+sudo systemctl restart ssh
+</code></pre>
 
 
