@@ -181,18 +181,53 @@ sudo apt-get install vim
 
 ### AppArmor vs SELinux
 
-둘 다 관리자가 시스템 엑세스 권한을 효과적으로 제어할 수 있게 하는 security framework이다.
-소스코드가 공개되어 있는 리눅스의 보안을 강화하기 위해 만들어짐.
-SELinux는 IBM/RedHat 계열에서 선호되고 같은 계열의 CentOS와 같은 운영체제에서 사용된다. 나머지는 AppArmor사용
+둘 다 관리자가 시스템 엑세스 권한을 효과적으로 제어할 수 있게 하는 security framework이며, 소스코드가 공개되어 있는 리눅스의 보안을 강화하기 위해 만들어졌다.
+
+SELinux는 IBM/RedHat 계열에서 선호되고 같은 계열의 CentOS와 같은 운영체제에서 사용된다. 나머지는 AppArmor를 사용한다.
+
 SELinux는 policy file과 right file system을 통해 작동. AppArmor는 policy file만으로 작동. SELinux가 조금 더 복잡하고 표준화하여 설정하기 어려운 단점.
+
 데비안에서는 기본적으로 깔려 있으나 깔려 있지 않다면 "apt install apparmor apparmor-utils"을 통해 설치 가능.
+
 "aa-enabled" 명령어 통해 활성화 여부 확인 가능
+
 앱아머는 정책 파일을 통해 어떤 어플리케이션이 어떤 파일/경로에 접근 가능한지 허용해준다.
+
 enforce모드와 complain모드 두 가지 존재
+
 enforce 모드 : 허가되지 않은 파일에 접근하는 것을 거부하는 모드
-complain 모드 : 실질적으로 보안을 제공하는 것은 아님. 대신 어플리케이션이 해야 할 행동이 아닌 다른 행동을 하는 경우에 앱아머는 로그를 남겨준다(중지하지는 않음).
+
+complain 모드 : 실질적으로 보안을 제공하는 것은 아님. 대신 어플리케이션이 해야 할 행동이 아닌 다른 행동을 하는 경우에 앱아머는 
+로그를 남겨준다(중지하지는 않음).
+
 "sudo aa-status"통해 현재 상태 확인 가능(enforced, complain, unconfined)
+
 "ps auxZ | grep -v '^unconfined'" 통해 현재 앱아머에 의해 제한된 실행 파일 확인 가능
+
+### ufw 방화벽 설정
+
+<pre><code>
+// install ufw
+sudo apt install ufw
+
+// ufw 상태 확인 (Default : inactive)
+sudo ufw status verbose
+
+// 부팅 시 ufw 활성화
+sudo ufw enable
+
+// incoming deny
+sudo ufw default deny
+
+// 4242 포트 사용 시 ssh연결 허용
+sudo ufw allow 4242
+
+//정책 삭제 원하는 경우 번호 확인 후
+sudo ufw status numbered
+
+// 삭제
+sudo ufw delete [규칙번호]
+</code></pre>
 
 ### password
 
