@@ -350,6 +350,13 @@ change -m 2 -M 30 -W 7 [user_name]
 
 ### ssh 서버 설정
 
+**ssh**
+두 컴퓨터 간 통신을 할 수 있게 해주는 프로토콜(서로 다른 통신 장비 간 주고 받는 데이터의 양식과 규칙)
+
+ssh의 장점 : 암호화된 통신(client와 host의 통신이 암호화 되어 있음)
+
+모든 데이터가 암호화되어 전송되기 때문에 굉장히 안전하고, 널리 사용되는 이유다.
+
 <pre><code>
 // openssh 설치 확인
 apt search openssh-server
@@ -369,5 +376,4 @@ sudo vim /etc/ssh/sshd_config
 // 설정 적용
 sudo systemctl restart ssh
 </code></pre>
-
 
