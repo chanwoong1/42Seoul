@@ -211,7 +211,7 @@ sudo deluser [user name] [group name]
 sudo userdel -r [user name]
 </code></pre>
 
-* userdel vs deluser
+**userdel vs deluser**
 - userdel
 	- -r :홈 디렉토리 삭제
 - deluser
