@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 20:40:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/13 12:28:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:28:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	int	ret;
-	int	sign;
+	unsigned long long	ret;
+	int					sign;
 
 	ret = 0;
 	sign = 1;
@@ -30,5 +30,9 @@ int	ft_atoi(const char *str)
 		ret = ret * 10 + (*str - '0');
 		str++;
 	}
-	return (sign * ret);
+	if (ret > 9223372036854775807 && sign == 1)
+		return (-1);
+	else if (ret > 9223372036854775807 && sign == -1)
+		return (0);
+	return (sign * (int)ret);
 }

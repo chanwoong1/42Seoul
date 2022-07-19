@@ -192,32 +192,6 @@ vim 설치
 sudo apt-get install vim
 ```
 
-### 사용자 그룹 설정
-
-<pre><code>
-// 그룹 추가
-groupadd [group name(user42)]
-
-// 특정 사용자 그룹 추가(그룹이 여러개일 경우 공백 없이 콤마로 구분)
-usermod -aG [group name(user42)] [user name(chanwjeo)]
-
-// primary group 설정 - 해당 사용자의 홈 디렉토리 내 파일 권한은 자동 변경, 그 외의 파일들은 직접 수정
-usermod -g [group name(user42)] [user name(chanwjeo)]
-
-// 특정 사용자 그룹에서 제거
-sudo deluser [user name] [group name]
-
-// 특정 사용자 제거
-sudo userdel -r [user name]
-</code></pre>
-
-**userdel vs deluser**
-- userdel
-	- -r :홈 디렉토리 삭제
-- deluser
-	- --remove : 홈 디렉토리 삭제
-	- --remove-all-files : 홈 디렉토리 + 계정명으로 된 모든 파일 삭제
-
 ### AppArmor vs SELinux
 
 둘 다 관리자가 시스템 엑세스 권한을 효과적으로 제어할 수 있게 하는 security framework이며, 소스코드가 공개되어 있는 리눅스의 보안을 강화하기 위해 만들어졌다.
@@ -267,6 +241,85 @@ sudo ufw status numbered
 // 삭제
 sudo ufw delete [규칙번호]
 </code></pre>
+
+### ssh 서버 설정
+
+**ssh**
+두 컴퓨터 간 통신을 할 수 있게 해주는 프로토콜(서로 다른 통신 장비 간 주고 받는 데이터의 양식과 규칙)
+
+ssh의 장점 : 암호화된 통신(client와 host의 통신이 암호화 되어 있음)
+
+모든 데이터가 암호화되어 전송되기 때문에 굉장히 안전하고, 널리 사용되는 이유다.
+
+<pre><code>
+// openssh 설치 확인
+apt search openssh-server
+
+// 깔려있지 않다면
+apt install openssh-server
+
+// openssh 실행 여부, 사용포트 확인
+systemctl status ssh
+
+// 4242포트 허용
+sudo ufw allow 4242
+
+// ssh설정 변경, Port 22 -> Port 4242 변경 후 주석 제거
+sudo vim /etc/ssh/sshd_config
+
+// 설정 적용
+sudo systemctl restart ssh
+</code></pre>
+
+### 사용자 그룹 설정
+
+<pre><code>
+// 그룹 추가
+groupadd [group name(user42)]
+
+// 특정 사용자 그룹 추가(그룹이 여러개일 경우 공백 없이 콤마로 구분)
+usermod -aG [group name(user42)] [user name(chanwjeo)]
+
+// primary group 설정 - 해당 사용자의 홈 디렉토리 내 파일 권한은 자동 변경, 그 외의 파일들은 직접 수정
+usermod -g [group name(user42)] [user name(chanwjeo)]
+
+// 특정 사용자 그룹에서 제거
+sudo deluser [user name] [group name]
+
+// 특정 사용자 제거
+sudo userdel -r [user name]
+</code></pre>
+
+**userdel vs deluser**
+- userdel
+	- -r :홈 디렉토리 삭제
+- deluser
+	- --remove : 홈 디렉토리 삭제
+	- --remove-all-files : 홈 디렉토리 + 계정명으로 된 모든 파일 삭제
+
+### hostname
+
+<pre><code>
+// 호스트명 체크
+hostnamectl
+
+// 호스트명 변경 커멘드
+sudo hostnamectl set-hostname [바꿀 호스트명]
+</code></pre>
+
+### VM port forwarding
+<pre><code>
+sudo apt-get net-tools
+
+// enp0s3과 비슷한 이름의 inet 주소 확인
+ifconfig
+
+// 가상머신 ip확인
+hostname -I
+
+</code></pre>
+
+
 
 ### password
 
@@ -348,32 +401,70 @@ change -m 2 -M 30 -W 7 [user_name]
 
 	중복 글자 제한. 최대 3글자까지 중복 가능
 
-### ssh 서버 설정
+## Bonus
 
-**ssh**
-두 컴퓨터 간 통신을 할 수 있게 해주는 프로토콜(서로 다른 통신 장비 간 주고 받는 데이터의 양식과 규칙)
-
-ssh의 장점 : 암호화된 통신(client와 host의 통신이 암호화 되어 있음)
-
-모든 데이터가 암호화되어 전송되기 때문에 굉장히 안전하고, 널리 사용되는 이유다.
+### monitoring.sh
 
 <pre><code>
-// openssh 설치 확인
-apt search openssh-server
+apt-get -y install sysstat
 
-// 깔려있지 않다면
-apt install openssh-server
+// monitoring.sh 파일 만들고 아래 내용 입력
+vi /root/monitoring.sh
 
-// openssh 실행 여부, 사용포트 확인
-systemctl status ssh
+// monitoring.sh
+printf "#Architecture: "
+uname -a
 
-// 4242포트 허용
-sudo ufw allow 4242
+printf "#CPU physical : "
+nproc --all
 
-// ssh설정 변경, Port 22 -> Port 4242 변경 후 주석 제거
-sudo vim /etc/ssh/sshd_config
+printf "#vCPU : "
+cat /proc/cpuinfo | grep processor | wc -l
 
-// 설정 적용
-sudo systemctl restart ssh
+printf "#Memory Usage: "
+free -m | grep Mem | awk '{printf"%d/%dMB (%.2f%%)\n", $3, $2, $3/$2 * 100}'
+
+printf "#Disk Usage: "
+df -a -BM | grep /dev/map | awk '{sum+=$3}END{print sum}' | tr -d '\n'
+printf "/"
+df -a -BM | grep /dev/map | awk '{sum+=$4}END{print sum}' | tr -d '\n'
+printf "MB ("
+df -a -BM | grep /dev/map | awk '{sum1+=$3 ; sum2+=$4 }END{printf "%d", sum1 / sum2 * 100}' | tr -d '\n'
+printf "%%)\n"
+
+printf "#CPU load: "
+mpstat | grep all | awk '{printf "%.2f%%\n", 100-$13}'
+
+printf "#Last boot: "
+who -b | awk '{printf $3" "$4"\n"}'
+
+printf "#LVM use: "
+if [ "$(lsblk | grep lvm | wc -l)" -gt 0 ] ; then printf "yes\n" ; else printf "no\n" ; fi
+
+printf "#Connections TCP : "
+ss | grep -i tcp | wc -l | tr -d '\n'
+printf " ESTABLISHED\n"
+
+printf "#User log: "
+who | wc -l
+
+printf "#Network: IP "
+hostname -I | tr -d '\n'
+printf "("
+ip link show | awk '$1 == "link/ether" {print $2}' | sed '2, $d' | tr -d '\n'
+printf ")\n"
+
+printf "#Sudo : "
+journalctl _COMM=sudo | wc -l | tr -d '\n'
+printf " cmd\n"
 </code></pre>
 
+**monitoring 방법**
+```
+chmod +x monitoring.sh
+
+crontab -e
+
+// 내부 문서에 입력
+*/10 * * * * /root/monitoring.sh | wall
+```
