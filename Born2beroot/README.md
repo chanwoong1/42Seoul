@@ -322,7 +322,7 @@ host ip에 vnetbox0의 주소 입력, guest ip에 가상머신의 주소 입력,
 
 그 후 터미널에서
 ```
-ssh chanwjeo@192.168.56.1 -p 4242
+ssh chanwjeo@***.***.***.*** -p 4242
 ```
 ![Alt text](./pictures/port_forwarding1.png)
 명령어 입력해주면 접속 가능
@@ -482,3 +482,58 @@ crontab -e
 
 ![Alt text](./pictures/Bonus_part1.png)
 정확히 용량까지 맞지는 않지만
+![Alt text](./pictures/Bonus_part2.png)
+형태를 맞춰주었다.
+
+![Alt text](./pictures/Bonus_part3.png)
+워드프레스를 설치하기 위해서는 PHP를 사용할 수 있는 웹 서버와 데이터베이스 서버가 필요하다.
+
+웹 서버는 Lighttpd, 데이터베이스 서버는 Maria DB로 진행한다.
+
+**setup Lighttpd**
+<pre><code>
+sudo apt-get install lighttpd
+
+// 서버 중지
+sudo systemctl stop lighttpd.service
+
+// 서버 시작
+sudo systemctl start lighttpd.service
+
+// 부팅 시 서버 활성화
+sudo systemctl enable lighttpd.service
+</code></pre>
+
+**setup PHP**
+
+<pre><code>
+sudo apt-get install php-fpm
+
+vi /etc/php/7.4/fpm/php.ini
+
+// cgi.fix-path 검색 후
+cgi.fix_pathinfo=1 주석 제거
+
+vi /etc/lighttpd/conf-available/15-fastcig-php.conf
+// 이 문서에서 "bin-path", "socket" 주석 처리 후 아래 문장 추가
+"socket" => "/var/run/php/php7.3-fpm.sock"
+
+// 변경사항 적용 후, 재시작
+sudo lighttpd-enable-mod fastcgi 
+sudo lighttpd-enable-mod fastcgi-php
+service lighttpd force-reload 
+</code></pre>
+
+**port 방화벽 해제**
+
+```
+vi /etc/lighttpd/lighttpd.conf
+```
+들어가보면
+![Alt text](./pictures/Bonus_part3.png)
+기본 설정이 80번 포트로 되어있어서 방화벽을 해제해주어야 한다.
+
+```
+ufw allow 80
+```
+
