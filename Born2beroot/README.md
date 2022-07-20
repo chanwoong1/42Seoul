@@ -146,8 +146,8 @@ visudo
 ```
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 
-Defaults	authfail_message="Authentication attempt failed custom."
-Defaults	badpass_message="Wrong password custom."
+Defaults	authfail_message="Authentication attempt fail."
+Defaults	badpass_message="Wrong password."
 Defaults	log_input
 Defaults	log_output
 Defaults	requiretty
@@ -260,9 +260,6 @@ apt install openssh-server
 // openssh 실행 여부, 사용포트 확인
 systemctl status ssh
 
-// 4242포트 허용
-sudo ufw allow 4242
-
 // ssh설정 변경, Port 22 -> Port 4242 변경 후 주석 제거
 sudo vim /etc/ssh/sshd_config
 
@@ -287,6 +284,9 @@ sudo deluser [user name] [group name]
 
 // 특정 사용자 제거
 sudo userdel -r [user name]
+
+// 상태 확인
+id [username]
 </code></pre>
 
 **userdel vs deluser**
@@ -307,18 +307,27 @@ sudo hostnamectl set-hostname [바꿀 호스트명]
 </code></pre>
 
 ### VM port forwarding
-<pre><code>
-sudo apt-get net-tools
 
-// enp0s3과 비슷한 이름의 inet 주소 확인
-ifconfig
+가상머신에서 hostname -I로 나오는 주소 기억해둠.
 
-// 가상머신 ip확인
-hostname -I
+가상머신 종료 후, VirtualBox - Tools - Create 해서 나오는 주소 기억.
 
-</code></pre>
+다시 가상머신 클릭 후 network - advanced - port fowarding - create
 
+host ip에 vnetbox0의 주소 입력, guest ip에 가상머신의 주소 입력, 포트는 모두 4242 입력
 
+그 후, adapter2로 넘어가서
+![Alt text](./pictures/port_forwarding1.png)
+과 같이 설정
+
+그 후 터미널에서
+```
+ssh chanwjeo@192.168.56.1 -p 4242
+```
+![Alt text](./pictures/port_forwarding1.png)
+명령어 입력해주면 접속 가능
+
+root는 접속 불가로 설정
 
 ### password
 
@@ -468,3 +477,8 @@ crontab -e
 // 내부 문서에 입력
 */10 * * * * /root/monitoring.sh | wall
 ```
+
+##  Bonus Part
+
+![Alt text](./pictures/Bonus_part1.png)
+정확히 용량까지 맞지는 않지만
