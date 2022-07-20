@@ -26,7 +26,7 @@
 		- LV (Logical Volume) : VG에서 논리적으로 Volume을 지정한다. VG의 용량을 초과하여 지정할 수 없다.
 		- PE(Physical Extent) 와 LE(Logical Extent)는 각각 PV와 LV를 이루는 최소 단위이고 기본 4MB로 할당되어있다.
 
-- aptitude VS apt
+**aptitude VS apt**
 
 Apt : Advanced Packaging Tool
 소프트웨어의 설치와 제거를 처리하는 패키지 관리 툴이다. 초기에는 .deb 패키지를 관리하기 위해 만들었지만 현재는 rpm 패키지 매니저와도 호환된다.
@@ -46,6 +46,7 @@ apt-get이 패키지 설치, 업그레이드, 시스템 업그레이드, 종속�
 2. 이거는 찾아보면서 되게 재밌었던 점인데, aptitude는 'why', 'why-not' 명령어를 이용해 어떤 동작이 왜 안되고 되는지를 볼 수 있다.
 3. apt는 설치, 제거 중 충돌이 일어날 경우 종료되지만 aptitude는 해결 방법을 제시할 수 있다.
 
+**SELinux vs AppArmor**
 
 - SELinux - Security Enhanced Linux
 	- 관리자가 시스템 액세스 권한을 효과적으로 제어할 수 있게 하는 Linux 시스템용 보안 아키텍처.
@@ -68,6 +69,7 @@ MAC
 ```
 
 **MAC - 강제접근통제, Mandatory Access Control**
+
 미리 정해진 정책과 보안 등급에 의거하여 주체에게 허용된 접근 권한과 객체에게 부여된 허용 등급을 비교하여 접근을 통제하는 모델.
 
 높은 보안을 요구하는 정보는 낮은 보안 수준의 주체가 접근할 수 없으며 소유자라고 할 지라도 정책에 어긋나면 객체에 접근할 수 없으므로 강력한 보안을 제공한다.
@@ -457,6 +459,7 @@ printf " cmd\n"
 </code></pre>
 
 **monitoring 방법**
+
 ```
 chmod +x monitoring.sh
 
