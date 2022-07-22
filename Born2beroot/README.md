@@ -554,3 +554,39 @@ vi /etc/lighttpd/lighttpd.conf
 ```
 ufw allow 80
 ```
+
+## Submission and peer-evaluation
+
+평가 하기 전, 쓰일만한 명령어를 정리해보았다.
+
+```
+// user 한번에 보기
+grep /bin/bash /etc/passwd | cut -f1 -d:
+
+// 사용자 비밀번호 변경
+sudo passwd <user name>
+
+// 방화벽 포트 상태 확인
+ufw status
+
+// hostname
+hostname
+
+// 호스트명 체크
+hostnamectl
+
+// 호스트명 변경 커멘드
+sudo hostnamectl set-hostname [바꿀 호스트명]
+
+// 암호 기한 설정
+vi /etc/login.defs
+
+// 암호 체계 설정
+vi /etc/pam.d/common-password
+
+// 비밀번호 오류로 인한 지정 메세지 표시
+sudo visudo
+
+// sudo를 사용하는 명령의 입,출력을 모두 보관하는 디렉토리
+cd /var/log/sudo
+```
