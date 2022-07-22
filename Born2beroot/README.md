@@ -146,8 +146,8 @@ visudo
 ```
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 
-Defaults	authfail_message="Authentication attempt fail."
-Defaults	badpass_message="Wrong password."
+Defaults	authfail_message="Authentication attempt failed custom."
+Defaults	badpass_message="Wrong password custom."
 Defaults	log_input
 Defaults	log_output
 Defaults	requiretty
@@ -185,6 +185,22 @@ Defaults	passwd_tries=3
 * passwd_tries
 
 	sudo 실행 횟수를 지정하는 설정.(default = 3)
+
+log의 경우 sudo 명령어 실행 시 하나씩 저장되게 된다.
+
+log: sudo 실행 시 실행한 위치와 실행한 명령어의 위치 저장
+
+stderr: sudo로 실행한 명령어가 오류로 인해 실행되지 않았을 경우 출력되는 내용 저장
+
+stdin: sudo로 실행한 명령어가 표준 입력을 받은 내용 저장
+
+stdout: sudo로 실행한 명령어가 표준 출력으로 결과를 출력한 내용 저장
+
+timing: session(세션)이 실행된 시간 저장
+
+ttyin: sudo로 실행한 명령어가 TTY로 입력받은 내용 저장
+
+ttyout: sudo로 실행한 명령어가 TTY로 출력한 결과가 저장
 
 vim 설치
 ```
@@ -465,6 +481,8 @@ printf ")\n"
 printf "#Sudo : "
 journalctl _COMM=sudo | wc -l | tr -d '\n'
 printf " cmd\n"
+
+exit 0
 </code></pre>
 
 **monitoring 방법**
@@ -536,4 +554,3 @@ vi /etc/lighttpd/lighttpd.conf
 ```
 ufw allow 80
 ```
-
