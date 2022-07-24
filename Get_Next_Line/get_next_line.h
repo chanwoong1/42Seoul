@@ -17,6 +17,19 @@
 # include <stddef.h>
 # include <unistd.h>
 
+# define BUFFER_SIZE	42
+# define FAIL			-1
+# define SUCCESS		0
+
+typedef struct s_info
+{
+	int			fd;
+	int			size;
+	int			len;
+	char		buf[4096];
+	char		**buf_split;
+}				t_info;
+
 char    *get_next_line(int fd);
 
 #endif

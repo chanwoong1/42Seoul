@@ -10,18 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "get_next_line.h"
+#include "get_next_line.h"
 
-// char    *get_next_line(int fd)
-// {
-//     return (0);
-
-// }
-
-#include <stdio.h>
-
-int main()
+char	*get_next_line(int fd)
 {
-    printf("Hello, World!");
-    return (0);
+	char	*buf;
+
+	if (fd > 0)
+	{
+		buf = (char *)malloc(256);
+		if (!buf)
+			return (FAIL);
+	while (1)
+	{
+		n = read(fd, buf, BUFFER_SIZE);
+	}
 }
