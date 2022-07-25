@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:50:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/25 11:23:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:05:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,12 @@
 # include <stddef.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE	42
-# define FAIL			-1
-# define SUCCESS		0
-
-typedef struct s_info
-{
-	int			fd;
-	int			size;
-	int			len;
-	char		buf[4096];
-	char		**buf_split;
-}				t_info;
+# define FAIL			0
 
 char    *get_next_line(int fd);
+char	*ft_strchr(const char *s, int c);
+int		ft_find(char *str);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*read_buf(int fd, char *tmp);
 
 #endif
