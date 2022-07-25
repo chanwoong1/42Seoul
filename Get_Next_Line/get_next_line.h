@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 14:50:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/14 16:21:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:23:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ typedef struct s_info
 char    *get_next_line(int fd);
 
 #endif
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 12:25:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/23 12:25:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:27:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,14 @@ char	*get_next_line(int fd)
 	while (1)
 	{
 		n = read(fd, buf, BUFFER_SIZE);
+	}
+}
+
+int	main(void)
+{
+	while (1)
+	{
+		if (get_next_line(3) == FAIL)
+			return (0);
 	}
 }
