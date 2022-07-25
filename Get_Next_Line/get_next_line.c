@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 12:25:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/25 11:27:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:19:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_next_line(int fd)
 			return (FAIL);
 	while (1)
 	{
-		n = read(fd, buf, BUFFER_SIZE);
+		n = read(STDIN_FILENO, buf, BUFFER_SIZE);
 	}
 }
 
@@ -35,3 +35,15 @@ int	main(void)
 			return (0);
 	}
 }
+
+// #include <unistd.h>
+// #include <stdio.h>
+
+// int main()
+// {
+//     printf("STDIN_FILENO:%u\n",STDIN_FILENO);
+//     printf("STDOUT_FILENO:%u\n",STDOUT_FILENO);
+//     printf("STDERR_FILENO:%u\n",STDERR_FILENO);
+//     printf("FOPEN_MAX:%u\n",FOPEN_MAX);
+//     return 0;
+// }
