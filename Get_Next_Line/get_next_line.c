@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/27 07:09:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/27 07:30:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1, int size)
 	if (cp == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] && i < size)
+	while (s1[i] && i < size + 1)
 	{
 		cp[i] = s1[i];
 		i++;
@@ -47,8 +47,8 @@ char	*read_line(char **backup, char *buf)
 	}
 	else
 	{
-		ret = ft_strdup(*backup, (ft_strchr(*backup + 1)));
-		n_b_s = ft_strlen((*backup + ft_strchr(*backup) + 1));
+		ret = ft_strdup(*backup, (ft_strchr(*backup)));
+		n_b_s = ft_strlen(*backup + ft_strchr(*backup) + 1);
 		new_backup = ft_strdup((*backup + ft_strchr(*backup) + 1), n_b_s);
 		free(*backup);
 		*backup = new_backup;
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	if (BUFFER_SIZE <= 0 || read(fd, " ", 0) == -1)
+	if (BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1)
 	{
 		free(buf);
 		return (NULL);

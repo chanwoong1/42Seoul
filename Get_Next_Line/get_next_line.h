@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:05:08 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/27 07:17:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/27 07:21:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,3 @@ char	*read_line(char **backup, char *buf);
 int		ft_strlen(const char *s);
 
 #endif
-
-	read_byte = read(fd, buf, BUFFER_SIZE);
-	while (read_byte > 0)
-	{
-		buf[read_byte] = '\0';
-		new_backup = ft_strjoin(*backup, buf);
-		free(*backup);
-		*backup = new_backup;
-		idx_next = is_newline(*backup);
-		if (idx_next != -1)
-			return (split_to_line(backup, buf));
-		read_byte = read(fd, buf, BUFFER_SIZE);
-	}
