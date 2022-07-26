@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 12:25:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/26 17:48:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:51:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-char	*read_buf(int fd, char *tmp)
+char	*read_buf(int fd, char **tmp)
 {
 	ssize_t	read_size;
 	char	*buf;
@@ -43,7 +43,7 @@ char	*read_buf(int fd, char *tmp)
 	read_size = read(fd, buf, BUFFER_SIZE);
 	while ((int)ft_len_or_find(buf, 1) == -1)
 	{
-		tmp = ft_strjoin(tmp, buf);
+		*tmp = ft_strjoin(*tmp, buf);
 		free(buf);
 		buf = (char *)ft_calloc(sizeof(char) * BUFFER_SIZE + 1);
 		if (!buf)
@@ -55,7 +55,7 @@ char	*read_buf(int fd, char *tmp)
 	return (buf);
 }
 
-char	*read_line(char *buf, char *tmp)
+char	*read_line(char *buf, char **tmp)
 {
 	char	*ret;
 	int		buf_size;
@@ -66,13 +66,15 @@ char	*read_line(char *buf, char *tmp)
 		ret = (char *)ft_calloc(sizeof(char) * ((int)ft_len_or_find(buf, 1) + 1));
 		if (!ret)
 			return (0);
-		ft_strlcpy(ret, buf, (int)ft_len_or_find(buf, 1) + 1);
-		ret = ft_strjoin(tmp, ret);
-		free(tmp);
-		tmp = (char *)ft_calloc(sizeof(char) *(BUFFER_SIZE - (int)ft_len_or_find(buf, 1) + 1));
-		if (!tmp)
+		ft_strlcpy(ret, buf, (int)ft_len_or_find(buf, 1) + 2);
+		ret = ft_strjoin(*tmp, ret);
+		*tmp = (char *)ft_calloc(sizeof(char) *((int)ft_len_or_find(buf, 0) - (int)ft_len_or_find(buf, 1)));
+		if (!(*tmp))
 			return (FAIL);
-		ft_strlcpy(tmp, buf + (int)ft_len_or_find(buf, 1), BUFFER_SIZE - (int)ft_len_or_find(buf, 1));
+		printf("buf : .%s.\n", buf);
+		while ((*buf + (int)ft_len_or_find(buf, 1) + 1) && (buf + (int)ft_len_or_find(buf, 1) + 1)[0] == '\n')
+			buf++;
+		ft_strlcpy(*tmp, buf + (int)ft_len_or_find(buf, 1) + 1, (int)ft_len_or_find(buf, 0) - (int)ft_len_or_find(buf, 1));
 	}
 	return (ret);
 }
@@ -93,24 +95,8 @@ char	*get_next_line(int fd)
 			return (FAIL);
 	}
 	if ((int)ft_len_or_find(tmp, 1) == -1)
-		buf = read_buf(fd, tmp);
-	line = read_line(buf, tmp);
+		buf = read_buf(fd, &tmp);
+	line = read_line(buf, &tmp);
 	free(buf);
 	return (line);
 }
-
-// 	if ((buf_size = (int)ft_len_or_find(buf, 1)) >= 0)
-// 	{
-// 		ret = (char *)ft_calloc(sizeof(char) * ((int)ft_len_or_find(buf, 1) + 1));
-// 		if (!ret)
-// 			return (0);
-// 		ft_strlcpy(ret, buf, (int)ft_len_or_find(buf, 1) + 1);
-// 		ret = ft_strjoin(tmp, ret);
-// 		free(tmp);
-// 		tmp = (char *)ft_calloc(sizeof(char) *(BUFFER_SIZE - (int)ft_len_or_find(buf, 1) + 1));
-// 		if (!tmp)
-// 			return (FAIL);
-// 		ft_strlcpy(tmp, buf + (int)ft_len_or_find(buf, 1), BUFFER_SIZE - (int)ft_len_or_find(buf, 1));
-// 	}
-// 	return (ret);
-// }

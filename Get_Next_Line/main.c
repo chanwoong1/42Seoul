@@ -9,11 +9,12 @@ int	main(void)
 
 	fd = open("text.txt", O_RDONLY);
 	temp = get_next_line(fd);
-	// while ((temp = (get_next_line(fd)) != 0))
-	// {
-	// 	printf("%s\n", temp);
-	// 	free(temp);
-	// }
+	while (temp != 0)
+	{
+		printf("%s\n", temp);
+		free(temp);
+		temp = get_next_line(fd);
+	}
 	printf("%s\n", temp);
 	free(temp);
 	close(fd);
