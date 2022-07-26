@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/27 07:30:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/27 07:33:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*read_line(char **backup, char *buf)
 	}
 	else
 	{
-		ret = ft_strdup(*backup, (ft_strchr(*backup)));
-		n_b_s = ft_strlen(*backup + ft_strchr(*backup) + 1);
+		ret = ft_strdup(*backup, ft_strchr(*backup));
+		n_b_s = ft_strlen(*backup + ft_strchr(*backup));
 		new_backup = ft_strdup((*backup + ft_strchr(*backup) + 1), n_b_s);
 		free(*backup);
 		*backup = new_backup;
