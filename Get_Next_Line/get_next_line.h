@@ -3,30 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 14:50:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/26 18:16:19 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/27 01:05:08 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/27 07:17:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <stdlib.h>
-# include <stddef.h>
 # include <unistd.h>
+# include <stdlib.h>
 
-# define FAIL			0
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE   1024
+# endif
 
-char    *get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_len_or_find(char *str, int flag);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_strcat(char *dest, char *src);
-char	*read_buf(int fd, char **tmp);
-void	*ft_calloc(size_t size);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*read_line(char *buf, char **tmp);
+char	*get_next_line(int fd);
+int		ft_strchr(char *s);
+char	*read_buf(int fd, char **backup, char *buf);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *s1, int size);
+char	*read_line(char **backup, char *buf);
+int		ft_strlen(const char *s);
 
 #endif
+
+	read_byte = read(fd, buf, BUFFER_SIZE);
+	while (read_byte > 0)
+	{
+		buf[read_byte] = '\0';
+		new_backup = ft_strjoin(*backup, buf);
+		free(*backup);
+		*backup = new_backup;
+		idx_next = is_newline(*backup);
+		if (idx_next != -1)
+			return (split_to_line(backup, buf));
+		read_byte = read(fd, buf, BUFFER_SIZE);
+	}

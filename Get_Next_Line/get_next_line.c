@@ -3,100 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/23 12:25:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/26 19:51:15 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/27 01:05:56 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/27 07:09:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strdup(const char *s1, int size)
 {
-	int	i;
-	int	j;
+	char	*cp;
+	int		i;
 
+	cp = (char *)malloc(sizeof(char) * (size + 1));
+	if (cp == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	while (dest[i])
-		i++;
-	while (src[j])
+	while (s1[i] && i < size)
 	{
-		dest[i] = src[j];
+		cp[i] = s1[i];
 		i++;
-		j++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	cp[i] = '\0';
+	return (cp);
 }
 
-char	*read_buf(int fd, char **tmp)
-{
-	ssize_t	read_size;
-	char	*buf;
-
-	buf = (char *)ft_calloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buf)
-		return (FAIL);
-	read_size = read(fd, buf, BUFFER_SIZE);
-	while ((int)ft_len_or_find(buf, 1) == -1)
-	{
-		*tmp = ft_strjoin(*tmp, buf);
-		free(buf);
-		buf = (char *)ft_calloc(sizeof(char) * BUFFER_SIZE + 1);
-		if (!buf)
-			return (FAIL);
-		read_size = read(fd, buf, BUFFER_SIZE);
-		if (read_size <= 0)
-			break ;
-	}
-	return (buf);
-}
-
-char	*read_line(char *buf, char **tmp)
+char	*read_line(char **backup, char *buf)
 {
 	char	*ret;
-	int		buf_size;
+	char	*new_backup;
+	int		n_b_s;
 
-	ret = 0;
-	if ((buf_size = (int)ft_len_or_find(buf, 1)) >= 0)
+	ret = NULL;
+	if (ft_strchr(*backup) == -1)
 	{
-		ret = (char *)ft_calloc(sizeof(char) * ((int)ft_len_or_find(buf, 1) + 1));
-		if (!ret)
-			return (0);
-		ft_strlcpy(ret, buf, (int)ft_len_or_find(buf, 1) + 2);
-		ret = ft_strjoin(*tmp, ret);
-		*tmp = (char *)ft_calloc(sizeof(char) *((int)ft_len_or_find(buf, 0) - (int)ft_len_or_find(buf, 1)));
-		if (!(*tmp))
-			return (FAIL);
-		printf("buf : .%s.\n", buf);
-		while ((*buf + (int)ft_len_or_find(buf, 1) + 1) && (buf + (int)ft_len_or_find(buf, 1) + 1)[0] == '\n')
-			buf++;
-		ft_strlcpy(*tmp, buf + (int)ft_len_or_find(buf, 1) + 1, (int)ft_len_or_find(buf, 0) - (int)ft_len_or_find(buf, 1));
+		if (*backup[0] != '\0')
+			ret = ft_strdup(*backup, ft_strlen(*backup));
+		free(*backup);
+		*backup = NULL;
 	}
+	else
+	{
+		ret = ft_strdup(*backup, (ft_strchr(*backup + 1)));
+		n_b_s = ft_strlen((*backup + ft_strchr(*backup) + 1));
+		new_backup = ft_strdup((*backup + ft_strchr(*backup) + 1), n_b_s);
+		free(*backup);
+		*backup = new_backup;
+	}
+	free(buf);
 	return (ret);
+}
+
+char	*read_buf(int fd, char **backup, char *buf)
+{
+	ssize_t	read_size;
+	char	*new_backup;
+
+	buf[BUFFER_SIZE] = '\0';
+	read_size = read(fd, buf, BUFFER_SIZE);
+	while (read_size > 0)
+	{
+		new_backup = ft_strjoin(*backup, buf);
+		free(*backup);
+		*backup = new_backup;
+		if (ft_strchr(*backup) != -1)
+			return (read_line(backup, buf));
+		read_size = read(fd, buf, BUFFER_SIZE);
+	}
+	return (read_line(backup, buf));
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*tmp;
-	char		*line;
+	static char	*backup;
 	char		*buf;
 
-	buf = 0;
-	if (fd < 0)
-		return (FAIL);
-	if (tmp == 0)
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, " ", 0) == -1)
 	{
-		tmp = (char *)ft_calloc(1);
-		if (!tmp)
-			return (FAIL);
+		free(buf);
+		return (NULL);
 	}
-	if ((int)ft_len_or_find(tmp, 1) == -1)
-		buf = read_buf(fd, &tmp);
-	line = read_line(buf, &tmp);
-	free(buf);
-	return (line);
+	if (backup != NULL && ft_strchr(backup) != -1)
+		return (read_line(&backup, buf));
+	if (backup == NULL)
+	{
+		backup = (char *)malloc(sizeof(char));
+		if (!backup)
+			return (NULL);
+		backup[0] = 0;
+	}
+	return (read_buf(fd, &backup, buf));
 }

@@ -3,99 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/25 13:58:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/26 14:16:50 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/27 01:05:53 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/27 06:53:34 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strlen(const char *s)
 {
-	while (*s != (unsigned char)c)
-	{
-		if (*s == '\0')
-			return (0);
-		s++;
-	}
-	return ((char *)s);
+	int	n;
+
+	n = 0;
+	while (s[n])
+		n++;
+	return (n);
 }
 
-size_t	ft_len_or_find(char *str, int flag)
+int	ft_strchr(char *s)
 {
 	int	len;
 	int	idx;
 
 	len = 0;
-	while (str[len])
-		len++;
 	idx = 0;
-	if (flag == 1)
+	while (s[len])
+		len++;
+	while (idx < len)
 	{
-		while (str[idx])
-		{
-			if (str[idx] == '\n')
-				return (idx);
-			idx++;
-		}
-		return (-1);
+		if (s[idx] == '\n')
+			return (idx);
+		idx++;
 	}
-	else
-		return (len);
+	return (-1);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int		idx;
+	int		size_s1;
+	int		size_s2;
+	char	*join;
 
-	i = 0;
-	j = 0;
-	while (src[j])
-		j++;
-	if (dstsize < 1)
-		return (j);
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (j);
-}
-
-void	*ft_calloc(size_t size)
-{
-	unsigned char	*ret;
-
-	ret = (void *)malloc(size);
-	if (!ret)
-		return (0);
-	while (size--)
-		ret[size] = 0;
-	return (ret);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*copy;
-	size_t	s1_size;
-	size_t	s2_size;
-	size_t	size;
-
-	if (!s1 || !s2)
-		return (0);
-	s1_size = ft_len_or_find((char *)s1, 0);
-	s2_size = ft_len_or_find((char *)s2, 0);
-	size = s1_size + s2_size;
-	copy = malloc(sizeof(char) * (size + 1));
-	if (!copy)
-		return (0);
-	copy[0] = '\0';
-	ft_strcat(copy, (char *)s1);
-	ft_strcat(copy + s1_size, (char *)s2);
-	free((char *)s1);
-	return (copy);
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	join = (char *)malloc(sizeof(char) * (size_s1 + size_s2) + 1);
+	if (!join)
+		return (NULL);
+	idx = 0;
+	while (*s1)
+		join[idx++] = *s1++;
+	while (*s2)
+		join[idx++] = *s2++;
+	join[idx] = '\0';
+	return (join);
 }
