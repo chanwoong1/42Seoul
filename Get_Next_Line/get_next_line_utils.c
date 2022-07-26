@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 13:58:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/25 17:27:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:16:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s);
 }
 
-int	ft_find(char *str)
+size_t	ft_len_or_find(char *str, int flag)
 {
 	int	len;
 	int	idx;
@@ -32,13 +32,18 @@ int	ft_find(char *str)
 	while (str[len])
 		len++;
 	idx = 0;
-	while (str[idx])
+	if (flag == 1)
 	{
-		if (str[idx] == '\n')
-			return (idx);
-		idx++;
+		while (str[idx])
+		{
+			if (str[idx] == '\n')
+				return (idx);
+			idx++;
+		}
+		return (-1);
 	}
-	return (-1);
+	else
+		return (len);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -59,4 +64,38 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (j);
+}
+
+void	*ft_calloc(size_t size)
+{
+	unsigned char	*ret;
+
+	ret = (void *)malloc(size);
+	if (!ret)
+		return (0);
+	while (size--)
+		ret[size] = 0;
+	return (ret);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*copy;
+	size_t	s1_size;
+	size_t	s2_size;
+	size_t	size;
+
+	if (!s1 || !s2)
+		return (0);
+	s1_size = ft_len_or_find((char *)s1, 0);
+	s2_size = ft_len_or_find((char *)s2, 0);
+	size = s1_size + s2_size;
+	copy = malloc(sizeof(char) * (size + 1));
+	if (!copy)
+		return (0);
+	copy[0] = '\0';
+	ft_strcat(copy, (char *)s1);
+	ft_strcat(copy + s1_size, (char *)s2);
+	free((char *)s1);
+	return (copy);
 }
