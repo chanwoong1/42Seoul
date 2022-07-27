@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1, int size)
 	if (cp == NULL)
 		return (NULL);
 	i = 0;
-	while (s1[i] && i < size + 1)
+	while (s1[i] && i < size)
 	{
 		cp[i] = s1[i];
 		i++;
@@ -47,8 +47,8 @@ char	*read_line(char **backup, char *buf)
 	}
 	else
 	{
-		ret = ft_strdup(*backup, ft_strchr(*backup));
-		n_b_s = ft_strlen(*backup + ft_strchr(*backup));
+		ret = ft_strdup(*backup, ft_strchr(*backup) + 1);
+		n_b_s = ft_strlen(*backup + ft_strchr(*backup) + 1);
 		new_backup = ft_strdup((*backup + ft_strchr(*backup) + 1), n_b_s);
 		free(*backup);
 		*backup = new_backup;

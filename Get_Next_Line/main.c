@@ -11,11 +11,11 @@ int	main(void)
 	temp = get_next_line(fd);
 	while (temp != 0)
 	{
-		printf("%s\n", temp);
+		printf("%s", temp);
 		free(temp);
 		temp = get_next_line(fd);
 	}
-	printf("%s\n", temp);
+	printf("%s", temp);
 	free(temp);
 	close(fd);
 	return (0);
