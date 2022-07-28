@@ -22,10 +22,7 @@
 
 char	*get_next_line(int fd);
 int		ft_strchr(char *s);
-char	*read_buf(int fd, char **backup, char *buf);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s1, int size);
-char	*read_line(char **backup, char *buf);
 int		ft_strlen(const char *s);
 
 #endif

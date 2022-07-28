@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 01:58:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/28 01:59:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:42:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,17 @@
 #  define BUFFER_SIZE   1024
 # endif
 
+typedef struct s_list
+{
+	int				fd;
+	char			*backup;
+	struct s_list	*next;	
+}					t_list;
+
+
 char	*get_next_line(int fd);
 int		ft_strchr(char *s);
-char	*read_buf(int fd, char **backup, char *buf);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s1, int size);
-char	*read_line(char **backup, char *buf);
 int		ft_strlen(const char *s);
 
 #endif

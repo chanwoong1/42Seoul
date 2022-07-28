@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *s1, int size)
+static char	*ft_strdup(const char *s1, int size)
 {
 	char	*cp;
 	int		i;
@@ -30,7 +30,7 @@ char	*ft_strdup(const char *s1, int size)
 	return (cp);
 }
 
-char	*read_line(char **backup, char *buf)
+static char	*read_line(char **backup, char *buf)
 {
 	char	*ret;
 	char	*new_backup;
@@ -56,7 +56,7 @@ char	*read_line(char **backup, char *buf)
 	return (ret);
 }
 
-char	*read_buf(int fd, char **backup, char *buf)
+static char	*read_buf(int fd, char **backup, char *buf)
 {
 	ssize_t	read_size;
 	char	*new_backup;
@@ -65,6 +65,7 @@ char	*read_buf(int fd, char **backup, char *buf)
 	read_size = read(fd, buf, BUFFER_SIZE);
 	while (read_size > 0)
 	{
+		buf[read_size] = '\0';
 		new_backup = ft_strjoin(*backup, buf);
 		free(*backup);
 		*backup = new_backup;
@@ -95,7 +96,7 @@ char	*get_next_line(int fd)
 		backup = (char *)malloc(sizeof(char));
 		if (!backup)
 			return (NULL);
-		backup[0] = 0;
+		backup[0] = '\0';
 	}
 	return (read_buf(fd, &backup, buf));
 }
