@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 14:51:53 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/28 14:55:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:56:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ int	main(void)
 	temp1 = get_next_line(fd1);
 	temp2 = get_next_line(fd2);
 	temp3 = get_next_line(fd3);
-	while (temp1 != 0 && temp2 != 0 && temp3 != 0)
-	{
-		printf("%s", temp1);
-		free(temp1);
-		temp1 = get_next_line(fd1);
-		printf("%s", temp2);
-		free(temp2);
-		temp2 = get_next_line(fd2);
-		printf("%s", temp3);
-		free(temp3);
-		temp3 = get_next_line(fd3);
-	}
-	printf("%s", temp1);
+	// while (temp1 != 0 && temp2 != 0 && temp3 != 0)
+	// {
+	// 	printf("%s", temp1);
+	// 	free(temp1);
+	// 	temp1 = get_next_line(fd1);
+	// 	printf("%s", temp2);
+	// 	free(temp2);
+	// 	temp2 = get_next_line(fd2);
+	// 	printf("%s", temp3);
+	// 	free(temp3);
+	// 	temp3 = get_next_line(fd3);
+	// }
+	printf("main : %s\n", temp1);
 	free(temp1);
 	close(fd1);
-	printf("%s", temp2);
+	printf("main : %s\n", temp2);
 	free(temp2);
 	close(fd2);
-	printf("%s", temp3);
+	printf("main : %s\n", temp3);
 	free(temp3);
 	close(fd3);
 	return (0);
