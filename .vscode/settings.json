@@ -2,6 +2,7 @@
     "makefile.extensionOutputFolder": "./.vscode",
     "files.associations": {
         "sstream": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "bonus.h": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 01:56:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/28 21:44:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/29 02:29:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ static char	*read_line(t_list **fd_list, char *buf)
 	char	*new_backup;
 	int		n_b_s;
 
+	// printf("read line start\n");
 	ret = NULL;
 	if (ft_strchr((*fd_list)->backup) == -1)
 	{
+		// printf("read line 2\n");
 		if ((*fd_list)->backup[0] != '\0')
 			ret = ft_strdup((*fd_list)->backup, ft_strlen((*fd_list)->backup));
 		free((*fd_list)->backup);
@@ -49,14 +51,22 @@ static char	*read_line(t_list **fd_list, char *buf)
 	}
 	else
 	{
+		// printf("read line 3\n");
+		// printf("buf : %s.\n", buf);
 		ret = ft_strdup((*fd_list)->backup, ft_strchr((*fd_list)->backup) + 1);
+		// printf("ret : %s.\n", ret);
 		n_b_s = ft_strlen((*fd_list)->backup + ft_strchr((*fd_list)->backup) + 1);
 		new_backup = ft_strdup(((*fd_list)->backup + ft_strchr((*fd_list)->backup) + 1), n_b_s);
+		// printf("seg?\n");
 		free((*fd_list)->backup);
 		(*fd_list)->backup = new_backup;
 	}
+	// printf("here ?? \n");
 	free(buf);
-	free_buff(fd_list, (*fd_list)->fd);
+	// printf("here 2 ?? \n");
+	// printf("fd_list backup : %s", (*fd_list)->backup);
+	// printf("fd_list fd : %d", (*fd_list)->fd);
+	// free_buff(fd_list, (*fd_list)->fd);
 	return (ret);
 }
 
@@ -65,18 +75,21 @@ static char	*read_buf(int fd, t_list **fd_list, char *buf)
 	ssize_t	read_size;
 	char	*new_backup;
 
+	// printf("read_buf start\n");
 	buf[BUFFER_SIZE] = '\0';
 	read_size = read(fd, buf, BUFFER_SIZE);
 	while (read_size > 0)
 	{
+		// printf("read_buf 2\n");
 		buf[read_size] = '\0';
 		new_backup = ft_strjoin((*fd_list)->backup, buf);
-		free((*fd_list)->backup);
+		// free((*fd_list)->backup);
 		(*fd_list)->backup = new_backup;
 		if (ft_strchr((*fd_list)->backup) != -1)
 			return (read_line(fd_list, buf));
 		read_size = read(fd, buf, BUFFER_SIZE);
 	}
+	// printf("read_buf 3\n");
 	return (read_line(fd_list, buf));
 }
 
@@ -114,6 +127,7 @@ static void	free_buff(t_list **head, int fd)
 	t_list	*tmp;
 	t_list	*free_list;
 
+	// printf("free_buf\n");
 	tmp = *head;
 	if (tmp->fd == fd)
 	{
@@ -122,12 +136,14 @@ static void	free_buff(t_list **head, int fd)
 		free(tmp);
 		return ;
 	}
+	// printf("free_buf 2\n");
 	while (tmp->next->fd != fd)
 		tmp = tmp->next;
 	free_list = tmp->next;
 	tmp->next = free_list->next;
 	free(free_list->backup);
 	free(free_list);
+	// printf("free_buf 3\n");
 }
 
 char	*get_next_line(int fd)
@@ -176,32 +192,42 @@ char	*get_next_line(int fd)
 	return (read_buf(fd, &fd_list, buf));
 }
 
-int		get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static t_list	*head;
 	t_list			*lst_buf;
-	ssize_t			size;
-	int				found;
+	char			*line;
+	char			*buf;
 
-	if (BUFFER_SIZE <= 0 || (!head && !(head = new_buff(fd))) ||
+	// printf("gnl start\n");
+	if (BUFFER_SIZE <= 0 || (!head && !(head = ft_lstnew(fd))) ||
 		!(lst_buf = find_buff(head, fd)))
-		return (-1);
-	*line = 0;
-	while (!(found = find_new_line(line, lst_buf)) &&
-		((size = read(fd, lst_buf->temp_buff, BUFFER_SIZE)) > 0))
+		return (NULL);
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, buf, 0) == -1)
 	{
-		lst_buf->temp_buff[size] = '\0';
-		lst_buf->buff = gnl_strjoin(&(lst_buf->buff), lst_buf->temp_buff);
+		free(buf);
+		return (NULL);
 	}
-	if (found)
-		return (found);
-	if (size < 0)
-		return (-1);
-	*line = malloc(gnl_strlen(lst_buf->buff) + 1);
-	gnl_strlcpy(*line, lst_buf->buff, gnl_strlen(lst_buf->buff) + 1);
-	free_buff(&head, fd);
-	return (0);
+	// printf("gnl 2\n");
+	if (lst_buf->backup != NULL && ft_strchr(lst_buf->backup) != -1)
+	{
+		line = read_line(&lst_buf, buf);
+		free_buff(&head, fd);
+		return (line);
+	}
+	// printf("gnl 3\n");
+	if (lst_buf->backup == NULL)
+	{
+		lst_buf->backup = (char *)malloc(sizeof(char));
+		if (!lst_buf->backup)
+			return (NULL);
+		lst_buf->backup[0] = '\0';
+	}
+	// printf("gnl 4\n");
+	line = read_buf(fd, &lst_buf, buf);
+	// free_buff(&head, fd);
+	return (line);
 }
-
-https://github.com/meong99/42_seoul/blob/master/02_get_next_line/get_next_line.c
-

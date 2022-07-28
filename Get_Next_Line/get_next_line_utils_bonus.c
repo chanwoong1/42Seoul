@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 01:57:53 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/28 21:37:00 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/29 00:56:41 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (*s2)
 		join[idx++] = *s2++;
 	join[idx] = '\0';
+	free(s1);
 	return (join);
 }
