@@ -8,16 +8,16 @@
 
 ### Circle_0
 
-[Libft](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_0/Libft) - 125/100
+- [Libft](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_0/Libft) - 125/100
 
-2022.07.06 ~ 2022.07.14
+	2022.07.06 ~ 2022.07.14
 
-소요기간 약 1주 (+ 리트 기간 약 2주..)
+	소요기간 약 1주 (+ 리트 기간 약 2주..)
 
 ### Circle_1
 
-[Born2beroot](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_1/Born2beroot) - 125/100
+- [Born2beroot](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_1/Born2beroot) - 125/100
 
-2022.07.15 ~ 2022.07.22
+	2022.07.15 ~ 2022.07.22
 
-[Get_Next_Line](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_1/Get_Next_Line)
+- [Get_Next_Line](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_1/Get_Next_Line)
