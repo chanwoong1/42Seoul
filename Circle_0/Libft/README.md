@@ -136,4 +136,6 @@ char	*ft_strrchr(const char *s, int c)
 
 -> 수정 : c를 unsigned char 형으로 변환시켰는데, 이 부분이 char 형인 s와 unsigned char인 c를 비교하는 과정에서 오류가 발생한 것이 아닐까 싶어서 (char)c 로 수정하여 제출할 에정이다.
 
-[![HitCount](https://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_0/Libft.svg?style=flat-square)](http://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_0/Libft)
+-----------------------
+
+## 2nd try

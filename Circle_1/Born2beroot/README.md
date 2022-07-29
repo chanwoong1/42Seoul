@@ -591,4 +591,3 @@ sudo visudo
 cd /var/log/sudo
 ```
 
-[![HitCount](https://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Born2beroot.svg?style=flat-square)](http://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Born2beroot)
