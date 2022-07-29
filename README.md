@@ -21,3 +21,5 @@
 	2022.07.15 ~ 2022.07.22
 
 - [Get_Next_Line](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_1/Get_Next_Line)
+
+	2022.07.23 ~ 2022.07
