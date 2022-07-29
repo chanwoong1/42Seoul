@@ -93,3 +93,4 @@ open(2), creat(2), socket(2), accept(2) 등으로 생성한 file descriptor로�
 		
 		EISDIR : open된 fd가 directory인 경우
 
+[![HitCount](https://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Get_Next_Line.svg?style=flat-square)](http://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Get_Next_Line)

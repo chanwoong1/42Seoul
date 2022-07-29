@@ -590,3 +590,5 @@ sudo visudo
 // sudo를 사용하는 명령의 입,출력을 모두 보관하는 디렉토리
 cd /var/log/sudo
 ```
+
+[![HitCount](https://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Born2beroot.svg?style=flat-square)](http://hits.dwyl.com/Chanwoong1/Chanwoong1/42Seoul/Circle_1/Born2beroot)
