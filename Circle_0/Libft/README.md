@@ -138,4 +138,32 @@ char	*ft_strrchr(const char *s, int c)
 
 -----------------------
 
-## 2nd try
+## retry (105점)
+
+```C
+char	*ft_strrchr(const char *s, int c)
+{
+	const char	*ss;
+
+	ss = s;
+	while (*s)
+		s++;
+	while (*s != (char)c)
+	{
+		if (*s == *ss)
+			return (0);
+		s--;
+	}
+	return ((char *)s);
+}
+```
+
+또 틀렸다. 형태의 문제가 아니었다.
+
+다시 봤더니 while문 안의 if문의 조건이 잘못되었다. *를 붙이지 않아야 주소값을 비교해서 맨 처음까지 갈 수 있다. *를 붙였더니 맨 첫 주소값이 참조하는 값과 중간의 값이 같을 경우, 중간에서 while문이 끝나게 된다.
+
+-> 수정 if문 안의 * 제거
+
+------------------
+
+## 2nd retry
