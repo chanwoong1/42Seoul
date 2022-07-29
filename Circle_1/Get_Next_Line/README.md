@@ -1,5 +1,23 @@
 # Get Next Line
 
+## Contents
+
+- [Get Next Line](#Get-Next-Line)
+  - [Contents](#contents)
+  - [Chapter 1](#Chapter-1)
+	- [Goals](#Goals)
+  - [Chapter 2](#Chapter-2)
+  	- [Common Instructions](#Common-Instructions)
+  - [Chapter 3](#Chapter-3)
+  	- [Mandatory part](#Mandatory-part)
+	  - [read](#read)
+	- [진행 과정](#진행-과정)
+	- [주의 사항](#주의-사항)
+  - [Chapter 4](#Chapter-4)
+	- [Bonus part](#Bonus-part)
+
+
+
 ## Chapter 1
 
 ### Goals
@@ -15,8 +33,11 @@
 
 ## Chapter 2
 
-### Makefile
+### Common Instructions
 
+makefile은 만들 필요가 없다.
+
+메모리 누수를 신경 써야 한다. 보너스 파트를 linked-list로 할 것이라면 더더욱.
 
 ## Chapter 3
 
@@ -92,3 +113,91 @@ open(2), creat(2), socket(2), accept(2) 등으로 생성한 file descriptor로�
 		EIO : I/O 오류. background process에서 terminal에 대한 I/O를 시도했다든 지...
 		
 		EISDIR : open된 fd가 directory인 경우
+
+### 진행 과정
+
+get_next_line 함수는 fd를 인자로 받는다. 받아온 fd와 컴파일 시 입력하는 -D 옵션으로 버퍼사이즈를 설정해주어 메모리 누수 없이 한 줄씩 읽어주면 된다.
+
+기본적인 구조는 다음과 같다.
+- fd, BUFFER_SIZE 검사하기
+- buf 할당해서 read를 통해 저장하기
+- backup의 상태에 따라
+	- 백업 안에 개행문자가 있다면 개행 전까지 한 줄을 뽑아서 반환하기
+	- 백업 안에 개행문자가 없다면 한번 더 read해서 backup에 저장하기
+- 한 줄 반환, 다음 작업을 위해 백업 정리
+
+### 주의 사항
+
+메모리 누수에 민감해야한다.
+
+```C++
+char	*ft_strjoin(char *s1, char *s2)
+{
+	int		idx;
+	int		size_s1;
+	int		size_s2;
+	char	*join;
+
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	join = (char *)malloc(sizeof(char) * (size_s1 + size_s2) + 1);
+	if (!join)
+		return (NULL);
+	idx = 0;
+	while (*s1)
+		join[idx++] = *s1++;
+	while (*s2)
+		join[idx++] = *s2++;
+	join[idx] = '\0';
+	return (join);
+}
+
+
+static char	*read_buf(int fd, char **backup, char *buf)
+{
+	ssize_t	read_size;
+	char	*new_backup;
+
+	buf[BUFFER_SIZE] = '\0';
+	read_size = read(fd, buf, BUFFER_SIZE);
+	while (read_size > 0)
+	{
+		buf[read_size] = '\0';
+		new_backup = ft_strjoin(*backup, buf);
+		free(*backup);
+		*backup = new_backup;
+		if (ft_strchr(*backup) != -1)
+			return (read_line(backup, buf));
+		read_size = read(fd, buf, BUFFER_SIZE);
+	}
+	return (read_line(backup, buf));
+}
+```
+
+while 문을 보면 backup과 buf를 합쳐줄 때, strjoin을 사용했다. strjoin은 함수 내에서 새로운 문자열을 할당 후, 반환하는 것으로 
+```C++
+*backup = ft_strjoin(*backup, buf); 
+```
+과 같이 썼을 경우, 기존 backup의 주소를 잃어버리게 된다. 이런 포인터를 '댕글링 포인터'라고 하며 다음과 같은 문제를 발생하게 한다.
+
+- 메모리 접근시 예측 불가능한 동작
+- 메모리 접근 불가 시 Segmentation fault
+- 잠재적인 보안 위험 
+
+이러한 유형의 문제는 다음과 같은 동작의 결과로 발생한다.
+
+- 메모리 해제 후, 해제된 메모리에 접근
+- 함수 호출에서 자동 변수를 가리키는 포인터의 반환
+
+이런 경우에 주의하기 위해 새로운 backup을 잠시 저장하기 위한 공간을 설정한 뒤, 저장하고, 기존 backup을 해제한 뒤, 새로 저장된 backup을 기존 backup에 연결한다.
+
+또, 인덱스 계산을 잘 해서 Segmentation fault가 발생하지 않도록 주의한다.
+
+## Chapter 4
+
+### Bonus part
+
+보너스 파트는 크게 두 방법으로 진행할 수 있다. 기존 mandatory part의 코드에 배열을 추가하여 다중 fd에 대응할 수 있도록 하는 방법과, linked-list를 사용하여 대응하는 방법이 있다.
+
+linked-list를 이용하는 방법으로 과제를 해결하였는데, 자세한 설명은 생략하도록 하겠다.
+- [bonus.c]()
