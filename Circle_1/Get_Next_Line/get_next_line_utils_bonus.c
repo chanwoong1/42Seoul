@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 01:57:53 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/29 11:02:09 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/29 12:09:44 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/29 12:59:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdlib.h>
 
 size_t	ft_strlen(char *str)
 {
@@ -23,7 +22,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_node_clear(t_list **head, int fd)
+void	free_node(t_list **head, int fd)
 {
 	t_list	*temp;
 	t_list	*first_node;
@@ -31,16 +30,16 @@ void	ft_node_clear(t_list **head, int fd)
 	if ((*head)->fd_index == fd)
 	{
 		temp = *head;
-		*head = (*head)-> next;
+		*head = (*head)->next;
 		free(temp);
 	}
 	else
 	{
 		first_node = *head;
-		temp = ft_fd_find(fd, *head);
-		while ((*head)-> next -> fd_index != fd)
-			*head = (*head)-> next;
-		(*head)->next = (*head)->next -> next;
+		temp = find_fd(fd, *head);
+		while ((*head)->next->fd_index != fd)
+			*head = (*head)->next;
+		(*head)->next = (*head)->next->next;
 		free(temp);
 		*head = first_node;
 	}
@@ -56,7 +55,7 @@ char	*ft_strjoin(char *s1, char *s2, size_t s2_len)
 	i = 0;
 	k = 0;
 	if (s1 == NULL)
-		return (ft_strndup(s2, s2_len));
+		return (ft_strdup(s2, s2_len));
 	s1_len = ft_strlen(s1);
 	temp = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (temp == NULL)
@@ -71,23 +70,23 @@ char	*ft_strjoin(char *s1, char *s2, size_t s2_len)
 	return (temp);
 }
 
-int	ft_new_node(int fd, t_list **head)
+int	ft_lstnew(int fd, t_list **head)
 {
 	t_list	*new;
 
 	new = (t_list *)malloc(sizeof(t_list));
 	if (new == NULL)
 		return (0);
-	new -> fd_index = fd;
-	new -> next = NULL;
-	new -> buff = NULL;
-	new -> i_eof = 1;
-	new -> next = *head;
+	new->fd_index = fd;
+	new->next = NULL;
+	new->backup = NULL;
+	new->f_eof = 1;
+	new->next = *head;
 	*head = new;
 	return (1);
 }
 
-char	*ft_strndup(char *s1, size_t n)
+char	*ft_strdup(char *s1, size_t n)
 {
 	size_t	i;
 	char	*s2;
@@ -104,55 +103,3 @@ char	*ft_strndup(char *s1, size_t n)
 	s2[i] = '\0';
 	return (s2);
 }
-
-// #include "get_next_line_bonus.h"
-
-// int	ft_strlen(const char *s)
-// {
-// 	int	n;
-
-// 	n = 0;
-// 	while (s[n])
-// 		n++;
-// 	return (n);
-// }
-
-// int	ft_strchr(char *s)
-// {
-// 	int	len;
-// 	int	idx;
-
-// 	len = 0;
-// 	idx = 0;
-// 	while (s[len])
-// 		len++;
-// 	while (idx < len)
-// 	{
-// 		if (s[idx] == '\n')
-// 			return (idx);
-// 		idx++;
-// 	}
-// 	return (-1);
-// }
-
-// char	*ft_strjoin(char *s1, char *s2)
-// {
-// 	int		idx;
-// 	int		size_s1;
-// 	int		size_s2;
-// 	char	*join;
-
-// 	size_s1 = ft_strlen(s1);
-// 	size_s2 = ft_strlen(s2);
-// 	join = (char *)malloc(sizeof(char) * (size_s1 + size_s2) + 1);
-// 	if (!join)
-// 		return (NULL);
-// 	idx = 0;
-// 	while (*s1)
-// 		join[idx++] = *s1++;
-// 	while (*s2)
-// 		join[idx++] = *s2++;
-// 	join[idx] = '\0';
-// 	free(s1);
-// 	return (join);
-// }
