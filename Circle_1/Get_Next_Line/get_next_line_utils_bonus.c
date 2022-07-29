@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 12:09:44 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/29 16:03:23 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:09:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,29 +103,3 @@ char	*ft_strdup(char *s1, size_t n)
 	s2[i] = '\0';
 	return (s2);
 }
-
-
-// char	*ft_strjoin(char *s1, char *s2, size_t s2_len)
-// {
-// 	char	*temp;
-// 	size_t	s1_len;
-// 	size_t	i;
-// 	size_t	k;
-
-// 	i = 0;
-// 	k = 0;
-// 	if (s1 == NULL)
-// 		return (ft_strdup(s2, s2_len));
-// 	s1_len = ft_strlen(s1);
-// 	temp = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-// 	if (temp == NULL)
-// 		return (NULL);
-// 	while (i < s1_len)
-// 		temp[i++] = s1[k++];
-// 	k = 0;
-// 	while (i < s1_len + s2_len)
-// 		temp[i++] = s2[k++];
-// 	temp[i] = '\0';
-// 	free(s1);
-// 	return (temp);
-// }
