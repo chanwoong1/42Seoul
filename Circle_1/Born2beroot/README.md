@@ -1,5 +1,28 @@
 # Born2beroot
 
+## Contents
+
+- [Born2beroot](#Born2beroot)
+  - [Contents](#contents)
+  - [Mandatory part](#Mandatory-part)
+	- [Debian Setup](#Debian-Setup)
+	- [sudo setup](#sudo-setup)
+	- [AppArmor vs SELinux](#AppArmor-vs-SELinux)
+	- [ufw 방화벽 설정](#ufw-방화벽-설정)
+	- [ssh 서버 설정](#ssh-서버-설정)
+	- [사용자 그룹 설정](#사용자-그룹-설정)
+	- [hostname](#hostname)
+	- [VM port forwarding](#VM-port-forwarding)
+	- [password](#password)
+	- [monitoring.sh](#monitoring.sh)
+  - [bonus part](#bonus-part))
+	- [Partitions](#Partitions)
+	- [Setup Wordpress](#Setup-Wordpress)
+	- [Link WordPress and MariaDB](#Link-WordPress-and-MariaDB)
+  - [Submission and peer-evaluation](#Submission-and-peer-evaluation))
+  - [Try](#Try-(125점))
+  - [느낀 점](#과제를-수행하며-느낀-점)
+
 ## Mandatory part
 
 1. 서버 설정
@@ -425,8 +448,6 @@ change -m 2 -M 30 -W 7 [user_name]
 
 	중복 글자 제한. 최대 3글자까지 중복 가능
 
-## Bonus
-
 ### monitoring.sh
 
 <pre><code>
@@ -487,7 +508,7 @@ exit 0
 
 **monitoring 방법**
 
-```
+```sh
 chmod +x monitoring.sh
 
 crontab -e
@@ -498,12 +519,16 @@ crontab -e
 
 ##  Bonus Part
 
+### Partitions
 ![Alt text](./pictures/Bonus_part1.png)
 정확히 용량까지 맞지는 않지만
 ![Alt text](./pictures/Bonus_part2.png)
 형태를 맞춰주었다.
 
 ![Alt text](./pictures/Bonus_part3.png)
+
+### Setup Wordpress
+
 워드프레스를 설치하기 위해서는 PHP를 사용할 수 있는 웹 서버와 데이터베이스 서버가 필요하다.
 
 웹 서버는 Lighttpd, 데이터베이스 서버는 Maria DB로 진행한다.
@@ -555,6 +580,92 @@ vi /etc/lighttpd/lighttpd.conf
 ufw allow 80
 ```
 
+그 후, 포트포워딩을 통해 호스트의 포트 8000과 가상의 포트 80를 연결시켜준다. (워드프레스 접속 경로가 된다)
+
+**setup MariaDB**
+
+MariaDB 접속 시, Unix socket방식으로 인증/접속 (sudo) 하는 방식을 채택하고 있다.
+=> mysql의 사용자와 시스템 사용자를 일치시킨다. 이로인해, 항상 sudo를 통해 접속해야 한다.
+
+```sh
+// Setup MariaDB
+sudo apt install mariadb-server mariadb-client
+
+// DB setting
+sudo systemctl stop mysql.service
+sudo systemctl start mysql.service
+sudo systemctl enable mysql.service
+
+// DB의 root 계정 비밀번호 설정 등 필요한 사항 확인. 모두 Y로 진행해도 됨.
+sudo mysql_secure_installation
+
+// 재시작
+sudo systemctl restart mysql.service
+
+// Wordpress에 연동할 DB 생성 위해 MariaDB 진입
+sudo mysql -u root -p
+```
+
+```SQL
+// DB 생성
+CREATE DATABASE [DB NAME];
+
+// 계정 생성 및 패스워드 설정
+CREATE USER '[USER NAME]'@'localhost' IDENTIFIED BY '[PASSWORD]';
+
+// 생성한 DB에 대해 생성한 계정에 full access 부여
+GRANT ALL ON [DB NAME].* TO '[USER NAME]'@'localhost' IDENTIFIED BY '[PASSWORD]' WITH GRANT OPTION;
+
+// 설정 저장
+FLUSH PRIVILEGES;
+
+EXIT;
+```
+
+**Setup WordPress**
+
+워드프레스는 웹사이트를 누구나 쉽게 만들 수 있는 플랫폼이다.
+
+워드프레스를 설치하려면 PHP를 사용할 수 있는 웹서버와 데이터베이스 서버가 필요하다.
+
+```bash
+sudo apt-get install wget
+sudo wget -O /tmp/wordpress.tar.gz "http://wordpress.org/latest.tar.gz"
+sudo tar -xvzf /tmp/wordpress.tar.gz -C /var/www/html
+```
+
+### Link WordPress and MariaDB
+
+```
+vi /var/www/html/wordpress/wp-config-sample.php
+```
+위의 경로에서 앞서 설정한 DB NAME, USER NAME, PASSWORD로 고쳐준다.
+
+그 후, 조금 더 밑으로 내려보면,
+
+https://api.wordpress.org/secret-key/1.1/salt/
+
+8줄의 define을 입력하는 부분이 있다. 위의 링크를 통해 들어가서 옮겨 넣어준다.
+
+편집된 내용 저장 후,
+```
+mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+```
+
+여기까지 다 되었다면,
+
+http://localhost:8000/wordpress
+
+를 입력하면
+
+![Alt text](./pictures/Bonus_part5.png)
+
+이와 같은 화면이 뜬다면 정상적으로 설치 완료 된 것이다.
+
+여기 까지 세팅을 하게 되면 보너스 포함 120점을 받을 수 있다.
+
+나머지 5점은 서비스에 관한 부분인데, ftp를 추가적으로 설치하고, 가상서버를 통한 저장소 만들기를 시도해 보는것을 추천한다.
+
 ## Submission and peer-evaluation
 
 평가 하기 전, 쓰일만한 명령어를 정리해보았다.
@@ -591,3 +702,14 @@ sudo visudo
 cd /var/log/sudo
 ```
 
+## Try (125점)
+
+평가를 진행하기 전, 원할한 평가를 위해 평가 표를 한번 보았다. 100% 동료평가만으로 채점이 이루어지기 때문에, 평가표가 시키는 작업들을 무리없이 수행할 수 있도록 하는것을 목표로 하였다.
+
+또한, 리눅스 운영체제에 관한 정보나, apt, apparmor등 낯선 용어들을 평가자들에게 설명해야하므로, 개념적인 부분을 이해하는 데에 주력했다.
+
+그리고 그동안 모아왔던 정보나, 명령어들을 외워서 사용하는것이 힘들어서 명령어들만 따로 정리해서 평가자들에게 양해를 구하고, 기억나지 않는 명령어들은 찾아보며 평가를 진행했다.
+
+## 과제를 수행하며 느낀 점
+
+리눅스 운영체제에 대해 이해할 수 있는 시간이 되었고, 일주일간 코딩 없이 Born2beroot만 한다는 것이 힘들기도 했지만 끝내고 나니 후련했다. 또, ssh를 통해 가상 환경과 호스트 환경을 연결하여 맥 터미널에서 가상 환경의 명령을 수행할 수 있도록 하는것이 신기했다. 향후 과제들 중에는 서버를 사용하는 과제들이 또 있다고 들었는데, 시간을 들여 과제를 수행한 만큼 다음 과제도 열심히 할 수 있는 계기가 된 것 같다.
