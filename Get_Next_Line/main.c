@@ -31,4 +31,5 @@ int	main(void)
 	free(temp);
 	close(fd);
 	return (0);
+	system("leaks a.out");
 }
