@@ -200,4 +200,13 @@ while 문을 보면 backup과 buf를 합쳐줄 때, strjoin을 사용했다. str
 보너스 파트는 크게 두 방법으로 진행할 수 있다. 기존 mandatory part의 코드에 배열을 추가하여 다중 fd에 대응할 수 있도록 하는 방법과, linked-list를 사용하여 대응하는 방법이 있다.
 
 linked-list를 이용하는 방법으로 과제를 해결하였는데, 자세한 설명은 생략하도록 하겠다.
-- [bonus.c]()
+- [bonus.c](https://github.com/Chanwoong1/42Seoul/blob/master/Circle_1/Get_Next_Line/srcs/get_next_line_bonus.c)
+- [utils_bonus.c](https://github.com/Chanwoong1/42Seoul/blob/master/Circle_1/Get_Next_Line/srcs/get_next_line_utils_bonus.c)
+
+## 과제 수행 후 느낀 점
+
+mandatory part를 끝낸 후, 배열로 bonus part를 해결하는 것은 생각보다 쉽게 구현할 수 있어 보였다. 나는 linked-list에 대해 조금 더 공부해보고 싶었기 때문에 이걸로 구현해 보았다.
+
+처음에는 mandatory 코드를 수정하여 구현했는데, 결과는 잘 출력되지만, 메모리 누수를 잡는것이 굉장히 어려웠고, 처음부터 다시 코드를 짜게 되었다.
+
+보너스 부분을 수행하는데만 3일이 넘게 걸린것같은데 그만큼 배울것도 알아가는것도 많았던 과제였다.
