@@ -6,18 +6,17 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 20:47:48 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/30 14:38:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/07/31 11:31:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
-	if (argc <= 1)
-		return (-1);
-	if (!(is_valid_argv(argv)))	// argv가 적합한지 확인 
-		return (-1)
+	char	str = "Hello, world!";
 
+	ft_printf("Hello, world!\n");
+	ft_printf("%s\n", str);
 }
 
