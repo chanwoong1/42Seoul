@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 20:48:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/01 16:33:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:21:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ size_t	ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2, size_t n);
 int	ft_print_c(char **print, va_list *ap);
 int	ft_print_s(char **print, va_list *ap);
-int	ft_print_p(char **print, va_list *ap)
+int	ft_print_p(char **print, va_list *ap);
 
 #endif

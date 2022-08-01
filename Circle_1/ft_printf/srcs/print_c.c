@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 13:55:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/01 16:33:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:34:26 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_print_c(char **print, va_list *ap)
 	print_size = ft_strlen(*print);
 	args = va_arg(*ap, int);
 	tmp = ft_strjoin(*print, &args, 1);
-	if (!tmp)
+	if (tmp == NULL)
 		return (0);
 	free(*print);
 	*print = tmp;
