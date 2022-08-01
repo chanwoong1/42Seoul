@@ -6,53 +6,72 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 20:45:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/01 01:32:00 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:34:41 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_printf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
 
-int	is_valid_format(const char *format, va_list ap)
+int	is_specifier(const char sp)
 {
-	char	*args;
-	int		n_args;
+	char	charset[9] = "cspdiuxX%";
+	int		idx;
 
-	printf("format : %s\n", format);
-	args = va_arg(ap, char *);
-	n_args = 0;
-	while (args)
+	idx = 0;
+	while (charset[idx])
 	{
-		n_args++;
-		args = va_arg(ap, char *);
+		if (charset[idx] == sp)
+			return (idx);
+		idx++;
 	}
-	if (n_args == 0)
-		return (0);
-	return (n_args);
+	return (-1);
+}
+
+int	is_printable(char **print, const char *format, va_list *ap)
+{
+	if (is_specifier(format[1]) == 0)
+		if (!ft_print_c(print, ap))
+			return (0);
+	else if (is_specifier(format[1]) == 1)
+		if (!ft_print_s(print, ap))
+			return (0);
+	else if (is_specifier(format[1]) == 2)
+		if (!ft_print_p(print, ap))
+			return (0);
+	return (1);
 }
 
 int ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	char	*vars;
+	char	*args;
+	char	*print;
 
 	va_start(ap, format);
-	if (!is_valid_format(format, ap))
+	if (!(print = (char *)malloc(sizeof(char))))
 		return (-1);
-	va_start(ap, format);
-	vars = va_arg(ap, char *);
-	printf("format : %s\n", format);
-	while (vars)
+	print[0] = '\0';
+	args = 0;
+	while (*format)
 	{
-		printf("vars : %s\n", vars);
-		vars = va_arg(ap, char *);
+		if (*format == '%' && is_specifier(*(format + 1)) == -1)
+			return (-1);
+		else if (*format == '%' && is_specifier(*(format + 1)) >= 0)
+		{
+			if (is_printable(&print, format, &ap));
+				return (-1);
+			format++;
+		}
+		format++;
 	}
+	ft_putstr_fd(print, 1);
 	return (0);
 }
 
 int main(void)
 {
-    ft_printf("sdn%sclk%dns%sd%s", "args1", "args2", "args3", "args4", "args5", "args6");
+    ft_printf("%c%c%c%c%c%s", '1', '2', '3', '\n', '5', "aknvlaskdnlk");
 	return (0);
 }
