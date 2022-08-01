@@ -3,7 +3,6 @@
 ## Contents
 - [Chapter 1](#Chapter-1)
 	- [가변 인자 함수](#가변-인자-함수)
-	- [strarg.h](#strarg.h)
 - [Chapter 2](#Chapter-2)
 - [Chapter 3](#Chapter-3)
 - [Chapter 4](#Chapter-4)
@@ -49,8 +48,18 @@ int	ft_printf(const char *format, ...)
 
 ### Common Instructions
 
+**Makefile**
+
+이제부터 libft의 함수들을 사용할 수 있다. 사용하기 위해서는 libft의 makefile로 먼저 libft의 라이브러리를 컴파일 한 다음, printf 프로그램을 컴파일 해야 한다.
+
 ## Chapter 3
 
 ### Mandatory Part
+
+#### 1. 받아오는 인자의 유효성 검증
+
+#### 2. 서식 지정자 탐색
+
+#### 3. 
 
 ## Chapter 4
