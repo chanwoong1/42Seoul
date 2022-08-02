@@ -6,14 +6,14 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/02 13:27:29 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/02 13:34:13 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-
-SRCS = ft_printf.c print_c.c
+SRC = srcs
+SRCS = $(SRC)/ft_printf.c $(SRC)/print_c.c
 OBJS = $(SRCS:.c=.o)
 
 NAME = libftprintf.a
