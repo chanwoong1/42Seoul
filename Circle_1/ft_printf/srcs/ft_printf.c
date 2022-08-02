@@ -5,20 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 20:45:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 00:35:14 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/02 12:13:44 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/02 13:23:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
+#include "../libft/libft.h"
 #include <stdio.h>
+
+void	init_fuc_pointer(int (*fuc[256])(va_list ap), char *infuc)
+{
+	ft_memset(fuc, 0, 256);
+	ft_memset(infuc, 0, 256);
+	// fuc['d'] = print_dec_int;
+	// fuc['i'] = print_dec_int;
+	fuc['c'] = print_c;
+	// fuc['p'] = print_addr;
+	// fuc['s'] = print_str;
+	// fuc['u'] = print_unsigned_int;
+	// fuc['x'] = print_hex_lower;
+	// fuc['X'] = print_hex_upper;
+	// fuc['%'] = print_persent;
+	infuc['d'] = 1;
+	infuc['i'] = 1;
+	infuc['c'] = 1;
+	infuc['p'] = 1;
+	infuc['s'] = 1;
+	infuc['u'] = 1;
+	infuc['x'] = 1;
+	infuc['X'] = 1;
+	infuc['%'] = 1;
+}
 
 int	is_specifier(const char sp)
 {
-	char	charset[9] = "cspdiuxX%";
+	char	*charset;
 	int		idx;
 
+	charset = "cspdiuxX%";
 	idx = 0;
 	while (charset[idx])
 	{
@@ -29,60 +54,39 @@ int	is_specifier(const char sp)
 	return (-1);
 }
 
-int	is_printable(char **print, const char *format, va_list *ap)
-{
-	if (is_specifier(format[1]) == 0)
-		if (!ft_print_c(print, ap))
-			return (0);
-	if (is_specifier(format[1]) == 1)
-		if (!ft_print_s(print, ap))
-			return (0);
-	if (is_specifier(format[1]) == 2)
-		if (!ft_print_p(print, ap))
-			return (0);
-	return (1);
-}
-
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *form, ...)
 {
 	va_list	ap;
-	char	*print;
-	char	*tmp;
+	int		return_cnt;
+	int		(*fuc[256])(va_list ap);
+	char	infuc[256];
+	int		cnt;
 
-	va_start(ap, format);
-	if (!(print = (char *)malloc(sizeof(char))))
-		return (-1);
-	print[0] = '\0';
-	while (*format)
+	init_fuc_pointer(fuc, infuc);
+	va_start(ap, form);
+	return_cnt = 0;
+	while (*form)
 	{
-		if (*format == '%' && is_specifier(*(format + 1)) == -1)
-			return (-1);
-		else if (*format == '%' && is_specifier(*(format + 1)) >= 0)
-		{
-			if (!is_printable(&print, format, &ap))
-				return (-1);
-			format++;
-		}
+		if ((unsigned char)(*form) == '%' && infuc[(unsigned char)(*(++form))])
+				cnt = fuc[(unsigned char)(*form++)](ap);
 		else
-		{
-			if (!(tmp = ft_strjoin(print, (char *)format, 1)))
-				return (-1);
-			free(print);
-			print = tmp;
-		}
-		format++;
+			cnt = write(1, form++, 1);
+		if (cnt == -1)
+			break ;
+		return_cnt += cnt;
 	}
-	ft_putstr_fd(print, 1);
-	return (0);
+	va_end(ap);
+	if (cnt < 0)
+		return (-1);
+	return (return_cnt);
 }
 
 int main(void)
 {
-	char	*str=  "Hello, World!";
+	// char	*str=  "Hello, World!";
 
-	printf("ft_printf : ");
-    ft_printf("aaaa%pbbbb%ccccc%cdddd%c%c%s", str, '2', '3', '\n', '5', "aknvlaskdnlk");
-	printf("\nprintf : ");
-	printf("aaaa%pbbbb%ccccc%cdddd%c%c%s", str, '2', '3', '\n', '5', "aknvlaskdnlk");
+    ft_printf("ft_printf : aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
+	printf("\n\nprintf : ");
+	printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%s", 'a', '2', '3', '\n', '5', "aknvlaskdnlk");
 	return (0);
 }

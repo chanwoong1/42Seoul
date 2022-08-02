@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_c.c                                          :+:      :+:    :+:   */
+/*   print_d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 13:24:46 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/02 12:00:55 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/02 12:13:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-int	print_c(va_list ap)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	args;
+	long	ln;
+	char	c;
 
-	args = va_arg(ap, int);
-	ft_putchar_fd(args, 1);
-	return (1);
+	if (fd < 0)
+		return ;
+	ln = (long)n;
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		ln *= -1;
+	}
+	if (ln < 10)
+	{
+		c = ln + '0';
+		write(fd, &c, 1);
+	}
+	else
+	{
+		ft_putnbr_fd(ln / 10, fd);
+		c = ln % 10 + '0';
+		write(fd, &c, 1);
+	}	
 }
