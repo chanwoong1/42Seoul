@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 17:07:15 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:10:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 static int	print_num(long long num)
 {

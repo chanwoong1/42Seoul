@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:07:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 17:33:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:10:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 int	print_x(va_list ap)
 {

@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 17:34:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:43:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 int	print_c(va_list ap)
 {
@@ -41,28 +41,28 @@ int	print_p(va_list ap)
 	unsigned char		*args;
 	int					i;
 	unsigned long long	tmp;
-	char				pt[16];
+	char				pt[17];
 
-	args = (unsigned char *)va_arg(ap, unsigned char *);
+	args = va_arg(ap, void *);
 	tmp = (unsigned long long)args;
 	i = 0;
-	while (i++ < 15)
+	while (i < 16)
 	{
-		if (tmp < 16)
-			break ;
-		tmp /= 16;
+		pt[15 - i] = "0123456789abcdef"[tmp % 16];
+		tmp = tmp / 16;
+		i++;
 	}
-	tmp = (unsigned long long)args;
-	pt[i] = '\0';
-	while (i > 0)
-	{
-		pt[i - 1] = "0123456789abcdef"[tmp % 16];
-		tmp /= 16;
-		i--;
-	}
-	ft_putstr_fd("0x", 1);
-	ft_putstr_fd(pt, 1);
-	return (ft_strlen(pt) + 2);
+	pt[16] = '\0';
+	i = 0;
+	while (pt[i] == '0')
+		i++;
+	if (write(1, "0x", 2) < 0)
+		return (-1);
+	if (write(1, pt + i, 16 - i) < 0)
+		return (-1);
+	if (i == 16)
+		return (2 + write(1, "0", 1));
+	return (2 + 16 - i);
 }
 
 int	print_percent(va_list ap)
