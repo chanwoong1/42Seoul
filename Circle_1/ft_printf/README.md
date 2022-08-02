@@ -3,6 +3,10 @@
 ## Contents
 - [Chapter 1](#Chapter-1)
 	- [가변 인자 함수](#가변-인자-함수)
+		- [Mandatory Part](#Mandatory-Part)
+			- [1. 서식 지정자 탐색](#1.-서식-지정자-탐색)
+			- [2. 함수 포인터를 활용한 지정자 별 출력](#2.-함수-포인터를-활용한-지정자-별-출력)
+			- [3. 과정](#3.-과정)
 - [Chapter 2](#Chapter-2)
 - [Chapter 3](#Chapter-3)
 - [Chapter 4](#Chapter-4)
@@ -56,31 +60,46 @@ int	ft_printf(const char *format, ...)
 
 ### Mandatory Part
 
-#### 1. 받아오는 인자의 유효성 검증
+#### 1. 서식 지정자 탐색
 
 인자의 유효함은 미리 지정해놓은 지정자 문자열을 통해 탐색해서 지정자가 맞다면 해당하는 문자열의 인덱스를 반환하는 식으로 작성했다.
 ```C
-int	is_specifier(const char sp)
+static void	set_f_pt(int (*f[256])(va_list ap), char *val_f)
 {
-	char	charset[9] = "cspdiuxX%";
-	int		idx;
-
-	idx = 0;
-	while (charset[idx])
-	{
-		if (charset[idx] == sp)
-			return (idx);
-		idx++;
-	}
-	return (-1);
+	ft_memset(f, 0, 256);
+	ft_memset(val_f, 0, 256);
+	f['d'] = print_id;
+	f['i'] = print_id;
+	f['c'] = print_c;
+	f['p'] = print_p;
+	f['s'] = print_s;
+	f['u'] = print_u;
+	f['x'] = print_x;
+	f['X'] = print_xx;
+	f['%'] = print_percent;
+	val_f['d'] = 1;
+	val_f['i'] = 1;
+	val_f['c'] = 1;
+	val_f['p'] = 1;
+	val_f['s'] = 1;
+	val_f['u'] = 1;
+	val_f['x'] = 1;
+	val_f['X'] = 1;
+	val_f['%'] = 1;
 }
 ```
+함수 포인터와 서식 지정자 유효성을 한번에 체크해주는 함수이다. ascii 상의 범위를 배열의 크기로 지정하고, 서식 지정자인 경우만 값을 넣어주면 자연스럽게 지정자가 아닌 값은 거를 수 있게 된다.
 
-#### 2. 서식 지정자 탐색
+#### 2. 함수 포인터를 활용한 지정자 별 출력
 
-#### 3. 함수 포인터를 활용한 지정자 별 출력
+함수 포인터를 사용하여 코드의 길이를 효과적으로 줄일 수 있다. 기존 if else 문을 쓰게 되면, if를 통해 맞는 서식 지정자를 받아오고, 그에 따라 return 값이 달라지기 때문에 코드의 길이가 매우 길어지게 된다. 이 것을 함수의 포인터를 이용하여 미리 함수를 배열에 저장해놓고, 서식 지정자가 들어올 때마다 대응하는 값의 함수를 반환시켜줄 수 있다.
+```C
+if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
+				cnt = f[(unsigned char)(*form++)](ap);
+```
+그러면, 서식 지정자 별 2 ~ 3줄가량 적어주어야 할 코드의 길이가 단 2줄로 9개의 서식 지정자를 모두 포함할 수 있게 된다.
 
-#### 4. 과정
+#### 3. 과정
 
 처음엔 입력값에 오류가 있을 수도 있다는 가정 하, 한 문자씩 읽으면서 동적할당을 계속 해 주었다. 그리고, 지정자 함수를 거쳐 온 가변 인자들은 strjoin을 통해 붙여주는 식으로 구상했었는데, 매우 큰 문자열이 오게 되면 시간이 오래 걸리겠다는 생각이 들어서 받아오는 대로 출력하는 방식으로 바꾸어 보았다.
 

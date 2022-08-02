@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:24:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 14:58:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 16:19:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(ln / 10, fd);
 		c = ln % 10 + '0';
 		write(fd, &c, 1);
-	}	
+	}
 }
