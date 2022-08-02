@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:13:44 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 14:48:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:54:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_fuc_pointer(int (*fuc[256])(va_list ap), char *infuc)
 	// fuc['i'] = print_dec_int;
 	fuc['c'] = print_c;
 	// fuc['p'] = print_addr;
-	// fuc['s'] = print_str;
+	fuc['s'] = print_s;
 	// fuc['u'] = print_unsigned_int;
 	// fuc['x'] = print_hex_lower;
 	// fuc['X'] = print_hex_upper;
@@ -86,11 +86,11 @@ int main(void)
 	// char	*str=  "Hello, World!";
 	int	num;
 
-	printf("ft_printf : ");
-    num = ft_printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
-	printf("\nft_printf num : %d", num);
+	// write(1, "ft_printf : ", 12);
+    // num = ft_printf("%sbbbb\n%ccccc%cdddd%c%c%c", NULL, '2', '3', '\n', '5', 'a');
+	// printf("\nft_printf num : %d", num);
 	printf("\n\nprintf : ");
-	num = printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
+	num = printf("%sbbbb\n%ccccc%cdddd%c%c%c", NULL, '2', '3', '\n', '5', 'a');
 	printf("\nprintf num : %d", num);
 	return (0);
 }
