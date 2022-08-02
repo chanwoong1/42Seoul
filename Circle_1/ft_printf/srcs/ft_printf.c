@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:13:44 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 13:23:05 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:48:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_specifier(const char sp)
 int	ft_printf(const char *form, ...)
 {
 	va_list	ap;
-	int		return_cnt;
+	size_t	return_cnt;
 	int		(*fuc[256])(va_list ap);
 	char	infuc[256];
 	int		cnt;
@@ -71,22 +71,26 @@ int	ft_printf(const char *form, ...)
 				cnt = fuc[(unsigned char)(*form++)](ap);
 		else
 			cnt = write(1, form++, 1);
-		if (cnt == -1)
+		if (cnt == -1 || return_cnt > 2147483647)
 			break ;
 		return_cnt += cnt;
 	}
 	va_end(ap);
-	if (cnt < 0)
+	if (cnt < 0 || return_cnt > 2147483647)
 		return (-1);
-	return (return_cnt);
+	return ((int)return_cnt);
 }
 
 int main(void)
 {
 	// char	*str=  "Hello, World!";
+	int	num;
 
-    ft_printf("ft_printf : aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
+	printf("ft_printf : ");
+    num = ft_printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
+	printf("\nft_printf num : %d", num);
 	printf("\n\nprintf : ");
-	printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%s", 'a', '2', '3', '\n', '5', "aknvlaskdnlk");
+	num = printf("aaaa%cbbbb\n%ccccc%cdddd%c%c%c", 'a', '2', '3', '\n', '5', 'a');
+	printf("\nprintf num : %d", num);
 	return (0);
 }

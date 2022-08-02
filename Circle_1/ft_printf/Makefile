@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/02 13:34:13 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/02 14:38:22 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC = srcs
 SRCS = $(SRC)/ft_printf.c $(SRC)/print_c.c
 OBJS = $(SRCS:.c=.o)
 
-NAME = libftprintf.a
+NAME = printf
 
 AR = ar
 ARFLAGS = -rcs
@@ -24,20 +24,19 @@ ARFLAGS = -rcs
 RM= rm -rf
 
 %c : %o
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $< -o $@
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C ./libft all
-	cp libft/libft.a $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	make -C libft
+	$(CC) libft/libft.a $(OBJS) -o $(NAME)
 
 clean:
-	make -C ./libft clean
+	make -C libft clean
 	$(RM) $(OBJS)
 
 fclean: clean
-	make -C ./libft fclean
+	make -C libft fclean
 	$(RM) $(NAME)
 
 re:
