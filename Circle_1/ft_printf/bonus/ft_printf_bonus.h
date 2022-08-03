@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 13:19:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:58:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
-typedef struct s_list
+typedef struct s_flag
 {
-	char	type;
+	char	sp;
 	int		minus;
 	int		zero;
 	int		period;
@@ -28,7 +28,7 @@ typedef struct s_list
 	int		plus;
 	int		width;
 	int		precision;
-}			t_list;
+}			t_flag;
 
 int		ft_printf(const char *form, ...);
 int		print_c(va_list ap);
