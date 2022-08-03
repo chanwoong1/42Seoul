@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 20:20:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 23:06:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,15 @@ int	print_with_id_zero(t_flag *form_sp)
 	if (form_sp->dot == 1 && form_sp->width == 0)
 		return_cnt = 0;
 	else if (form_sp->dot == 1 && form_sp->precision == 0)
+		return_cnt = print_padding(' ', form_sp->width);
+	else if (form_sp->dot && form_sp->width > 0)
 	{
-		
+		return_cnt = print_padding(' ', form_sp->width - 1);
+		return_cnt += write(1, "0", 1);
 	}
+	else
+		return_cnt = write(1, "0", 1);
+	return (return_cnt);
 }
 
 int	print_with_id(t_flag *form_sp, va_list ap)
