@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 17:42:03 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 20:20:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,22 @@
 // 	val_f['%'] = 1;
 // }
 
+int	print_padding(char c, int n)
+{
+	int return_cnt;
+
+	return_cnt = 0;
+	while (n > 0)
+		return_cnt += write(1, &c, 1);
+	return (return_cnt);
+}
+
 void	set_info(t_flag *form_sp)
 {
 	form_sp->sp = '\0';
 	form_sp->minus = 0;
 	form_sp->zero = 0;
-	form_sp->period = 0;
+	form_sp->dot = 0;
 	form_sp->hash = 0;
 	form_sp->space = 0;
 	form_sp->width = 0;
@@ -54,10 +64,10 @@ void	fill_info(t_flag *form_sp, char *format, int idx)
 {
 	if (format[idx] == '-')
 		form_sp->minus = 1;
-	if (format[idx] == '0')
+	if (!(format[idx - 1] == '.') && format[idx] == '0')
 		form_sp->zero = 1;
 	if (format[idx] == '.')
-		form_sp->minus = 1;
+		form_sp->dot = 1;
 	if (format[idx] == '#')
 		form_sp->hash = 1;
 	if (format[idx] == ' ')
@@ -66,6 +76,8 @@ void	fill_info(t_flag *form_sp, char *format, int idx)
 		form_sp->plus = 1;
 	if (format[idx] >= '1' && format[idx] <= '9')
 		form_sp->width = format[idx] - '0';
+	if (form_sp->dot == 1 && format[idx] >= '0' && format[idx] <= '9')
+		form_sp->precision = format[idx] - '0';
 }
 
 int	print_with_percent_add(t_flag *form_sp)
@@ -76,19 +88,16 @@ int	print_with_percent_add(t_flag *form_sp)
 	if (form_sp->minus)
 	{
 		return_cnt = write(1, "%%", 1);
-		while (form_sp->width-- > 1)
-			return_cnt += write(1, " ", 1);
+		return_cnt = print_padding(' ', form_sp->width - 1);
 	}
 	else if (!(form_sp->minus) && form_sp->zero)
 	{
-		while (form_sp->width-- > 1)
-			return_cnt += write(1, "0", 1);
+		return_cnt = print_padding('0', form_sp->width - 1);
 		return_cnt += write(1, "%%", 1);
 	}
 	else
 	{
-		while (form_sp->width-- > 1)
-			return_cnt += write(1, " ", 1);
+		return_cnt = print_padding(' ', form_sp->width - 1);
 		return_cnt += write(1, "%%", 1);
 	}	
 	return (return_cnt);
@@ -107,14 +116,48 @@ int	print_with_percent(t_flag *form_sp)
 	return (return_cnt);
 }
 
+int	print_with_id_zero(t_flag *form_sp)
+{
+	int return_cnt;
+
+	if (form_sp->dot == 1 && form_sp->width == 0)
+		return_cnt = 0;
+	else if (form_sp->dot == 1 && form_sp->precision == 0)
+	{
+		
+	}
+}
+
+int	print_with_id(t_flag *form_sp, va_list ap)
+{
+	long long	args;
+	int			sign;
+	int			return_cnt;
+
+	args = va_arg(ap, int);
+	if (args == 0)
+		return_cnt = print_with_id_zero(form_sp);
+	sign = 0;
+	if (args < 0)
+	{
+		sign = 1;
+		args *= -1;
+		write(1, "-", 1);
+	}
+	if (args > 2147483648)
+		return (-1);
+	return (print_num(args) + sign);
+}
+
 int	print_form_sp(t_flag *form_sp, va_list ap)
 {
 	int	return_cnt;
 
-	ap = 0;
 	return_cnt = 0;
 	if (form_sp->sp == '%')
 		return_cnt = print_with_percent(form_sp);
+	if (form_sp->sp == 'i' || form_sp->sp == 'd')
+		return_cnt = print_with_id(form_sp, ap);
 	return (return_cnt);
 }
 
@@ -185,18 +228,36 @@ int	ft_printf(const char *form, ...)
 
 int	main(void)
 {
-	ft_printf("%% ft_printf_test");
-	ft_printf("f %%%%, [%%]\n");
-	ft_printf("f %%5%%, [%5%]\n");
-	ft_printf("f %%-5%%, [%-5%]\n");
-	ft_printf("f %%05%%, [%05%]\n");
-	ft_printf("f %%-05%%, [%-05%]\n");
-	printf("%% printf_test");
-	printf("f %%%%, [%%]\n");
-	printf("f %%5%%, [%5%]\n");
-	printf("f %%-5%%, [%-5%]\n");
-	printf("f %%05%%, [%05%]\n");
-	printf("f %%-05%%, [%-05%]\n");
+	// ft_printf("%% ft_printf_test");
+	// ft_printf("f %%%%, [%%]\n");
+	// ft_printf("f %%5%%, [%5%]\n");
+	// ft_printf("f %%-5%%, [%-5%]\n");
+	// ft_printf("f %%05%%, [%05%]\n");
+	// ft_printf("f %%-05%%, [%-05%]\n");
+	// printf("%% printf_test");
+	// printf("f %%%%, [%%]\n");
+	// printf("f %%5%%, [%5%]\n");
+	// printf("f %%-5%%, [%-5%]\n");
+	// printf("f %%05%%, [%05%]\n");
+	// printf("f %%-05%%, [%-05%]\n\n");
+	printf("id basic test n width test \n");
+	printf("f %%i = 2147483647, [%i]\n", 2147483647);
+	printf("f %%d = -2147483648, [%d]\n", (int)(-2147483648));
+	printf("f %%d = 0, [%d]\n", 0);
+	printf("f %%7i = 33,  [%7i]\n", 33);
+	printf("f %%7d = -14, [%7d]\n", -14);
+	printf("f %%3i = 0, [%3i]\n", 0);
+	printf("f %%5d = 52625, [%5d]\n", 52625);
+	printf("f %%5i = -2562, [%5i]\n", -2562);
+	printf("f %%4d = 94827, [%4d]\n", 94827);
+	printf("f %%4i = -2464, [%4i]\n", -2464);
+	printf("f %%-7d = 33,  [%-7d]\n", 33);
+	printf("f %%-7i = -14, [%-7i]\n", -14);
+	printf("f %%-5i = 52625, [%-5i]\n", 52625);
+	printf("f %%-5d = -2562, [%-5d]\n", -2562);
+	printf("f %%-4d = 94827, [%-4d]\n", 94827);
+	printf("f %%-4i = -2464, [%-4i]\n\n", -2464);
+
 	return (0);
 }
 

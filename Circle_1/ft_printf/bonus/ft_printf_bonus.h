@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 16:58:38 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 20:20:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_flag
 	char	sp;
 	int		minus;
 	int		zero;
-	int		period;
+	int		dot;
 	int		hash;
 	int		space;
 	int		plus;
@@ -41,3 +41,4 @@ int		print_xx(va_list ap);
 int		print_percent(va_list ap);
 
 #endif
+

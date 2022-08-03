@@ -18,7 +18,7 @@ printf("f %%-05%%, [%-05%]\n");
 
 printf("id basic test n width test \n");
 printf("f %%i = 2147483647, [%i]\n", 2147483647);
-printf("f %%d = -2147483648, [%d]\n", (int)(-2147483678));
+printf("f %%d = -2147483648, [%d]\n", (int)(-2147483648));
 printf("f %%d = 0, [%d]\n", 0);
 printf("f %%7i = 33,  [%7i]\n", 33);
 printf("f %%7d = -14, [%7d]\n", -14);
