@@ -6,13 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:13:44 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 20:30:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 11:01:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
 static void	set_f_pt(int (*f[256])(va_list ap), char *val_f)
 {
