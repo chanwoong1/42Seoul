@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 13:37:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:38:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,48 @@ void	set_info(t_flag *form_sp)
 	form_sp->sp = '\0';
 	form_sp->minus = 0;
 	form_sp->zero = 0;
-	form_sp->dot = 0;
+	form_sp->dot = -1;
 	form_sp->hash = 0;
 	form_sp->space = 0;
 	form_sp->width = 0;
-	form_sp->precision = -1;
+	form_sp->precision = 0;
+}
+
+void	info_get_zero(t_flag *form_sp)
+{
+	if (form_sp->dot > -1)
+		form_sp->precision = form_sp->precision * 10;
+	else if (form_sp->width)
+		form_sp->width = form_sp->width * 10;
+	else
+		form_sp->zero = 1;
 }
 
 void	fill_info(t_flag *form_sp, char *format, int idx)
 {
-	if (format[idx] == '-')
-		form_sp->minus = 1;
-	if (!(format[idx - 1] == '.') && format[idx] == '0')
-		form_sp->zero = 1;
-	if (format[idx] == '.')
-		form_sp->dot = 1;
-	if (format[idx] == '#')
-		form_sp->hash = 1;
-	if (format[idx] == ' ')
-		form_sp->space = 1;
-	if (format[idx] == '+')
-		form_sp->plus = 1;
-	if (format[idx] >= '1' && format[idx] <= '9')
-		form_sp->width = format[idx] - '0';
-	if (form_sp->dot == 1 && format[idx] >= '0' && format[idx] <= '9')
-		form_sp->precision = format[idx] - '0';
+	if (ft_strchr("0", format[idx]))
+		return (info_get_zero(form_sp));
+	if (ft_strchr("-.# +", format[idx]))
+	{
+		if (format[idx] == '-')
+			form_sp->minus = 1;
+		else if (format[idx] == '.')
+			form_sp->dot = 1;
+		else if (format[idx] == '#')
+			form_sp->hash = 1;
+		else if (format[idx] == ' ')
+			form_sp->space = 1;
+		else if (format[idx] == '+')
+			form_sp->plus = 1;
+		return ;
+	}
+	if (ft_strchr("123456789", format[idx]))
+	{
+		if (form_sp->dot > -1)
+			form_sp->precision = (form_sp->precision * 10) + (format[idx] - '0');
+		else
+			form_sp->width = (form_sp->width * 10) + (format[idx] - '0');
+	}
 }
 
 int	id_args_lens(long long args)

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 14:10:05 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:16:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,53 @@ int	id_args_zero(t_flag *form_sp)
 {
 	int return_cnt;
 
-	if (form_sp->zero)
+	// printf("form_sp->zero : %d\n", form_sp->zero);
+	// printf("form_sp->precision : %d\n", form_sp->precision);
+	// printf("form_sp->width : %d\n", form_sp->width);
+	// printf("form_sp->minus : %d\n", form_sp->minus);
+	// printf("form_sp->dot : %d\n", form_sp->dot);
+	return_cnt = 0;
+	if (form_sp->zero && !form_sp->precision)
+		return (p_p('0', form_sp->width));
+	if (!form_sp->width && form_sp->precision)
+		return (p_p('0', form_sp->precision));
+	if (form_sp->zero && form_sp->width > form_sp->precision)
 	{
-		return_cnt = p_p('0', form_sp->width);
+		printf("1");
+		if (form_sp->minus)
+		{
+			return_cnt += p_p('0', form_sp->precision);
+			return_cnt += p_p(' ', form_sp->width - form_sp->precision);
+		}
+		else
+		{
+			return_cnt += p_p(' ', form_sp->width - form_sp->precision);
+			return_cnt += p_p('0', form_sp->precision);
+		}	
 		return (return_cnt);
 	}
-	if (form_sp->dot && !form_sp->width)
+	if (form_sp->dot != -1 && !form_sp->width)
 		return_cnt = 0;
-	else if (form_sp->dot && form_sp->precision == -1)
-		return_cnt = p_p(' ', form_sp->width);
-	else if (!form_sp->dot && form_sp->width > 0)
+	else if (form_sp->dot != -1 && form_sp->precision)
 	{
+		if (form_sp->minus)
+		{
+			printf("2");
+			return_cnt += p_p('0', form_sp->precision);
+			return_cnt += p_p(' ', form_sp->width - form_sp->precision);
+		}
+		else
+		{
+			return_cnt += p_p(' ', form_sp->width - form_sp->precision);
+			return_cnt += p_p('0', form_sp->precision);
+		}
+		
+	}
+	else if (form_sp->dot != -1 && !form_sp->precision)
+		return_cnt = p_p(' ', form_sp->width);
+	else if (form_sp->dot == -1 && form_sp->width > 0)
+	{
+		printf("3");
 		return_cnt = p_p(' ', form_sp->width - 1);
 		return_cnt += write(1, "0", 1);
 	}
