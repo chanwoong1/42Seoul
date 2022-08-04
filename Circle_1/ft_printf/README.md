@@ -138,6 +138,7 @@ if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
 			- ' '(공백)이 존재하는 경우
 				- '+' 존재 여부
 			- '0'이 존재하는 경우
-			
 		- width가 존재하지 않는 경우
 	- precision이 존재하는 경우
+		- width 존재 여부
+			

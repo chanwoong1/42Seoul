@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 12:05:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 14:04:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ int		print_u(va_list ap);
 int		print_x(va_list ap);
 int		print_xx(va_list ap);
 int		print_percent(va_list ap);
+int		id_args_lens(long long args);
+int		p_p(char c, int n);
+void	set_info(t_flag *form_sp);
+void	fill_info(t_flag *form_sp, char *format, int idx);
+int		id_args_lens(long long args);
+int		print_with_percent_add(t_flag *form_sp);
+int		print_with_percent(t_flag *form_sp);
+int		id_args_zero(t_flag *form_sp);
+int		print_with_id(t_flag *form_sp, va_list ap);
+int		id_args_non_zero(t_flag *form_sp, long long args, int sign);
+int		id_args_non_precision(t_flag *form_sp, long long args, int sign);
+int		id_args_non_pre_non_minus(t_flag *form_sp, long long args, int sign);
+int		id_args_non_p_non_m_zero(t_flag *form_sp, long long args, int sign);
 
 #endif
 
