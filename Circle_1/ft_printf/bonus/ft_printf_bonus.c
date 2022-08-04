@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 23:06:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 09:16:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	print_with_percent(t_flag *form_sp)
 	return (return_cnt);
 }
 
-int	print_with_id_zero(t_flag *form_sp)
+int	id_args_zero(t_flag *form_sp)
 {
 	int return_cnt;
 
@@ -134,6 +134,13 @@ int	print_with_id_zero(t_flag *form_sp)
 	return (return_cnt);
 }
 
+int	id_args_non_zero(t_flag *form_sp, long long args)
+{
+	int	return_cnt;
+
+	if (!form_sp->precision && form_sp->precision < form_sp->width)
+}
+
 int	print_with_id(t_flag *form_sp, va_list ap)
 {
 	long long	args;
@@ -141,9 +148,9 @@ int	print_with_id(t_flag *form_sp, va_list ap)
 	int			return_cnt;
 
 	args = va_arg(ap, int);
-	if (args == 0)
-		return_cnt = print_with_id_zero(form_sp);
 	sign = 0;
+	if (args == 0)
+		return_cnt = id_args_zero(form_sp);
 	if (args < 0)
 	{
 		sign = 1;
@@ -152,6 +159,7 @@ int	print_with_id(t_flag *form_sp, va_list ap)
 	}
 	if (args > 2147483648)
 		return (-1);
+	return_cnt = id_args_non_zero(form_sp, args);
 	return (print_num(args) + sign);
 }
 
