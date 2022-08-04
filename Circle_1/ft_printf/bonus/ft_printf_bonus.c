@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 20:55:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:58:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,55 @@
 #include <stdio.h>
 #include <limits.h>
 
+int	print_u(t_flag *form_sp, va_list ap)
+{
+	int	r_t;
+	unsigned int	args;
+
+	args = va_arg(ap, unsigned int);
+	r_t = 0;
+	if (form_sp->minus)
+	{
+		r_t = print_num((long long)args);
+		r_t += p_p(' ', form_sp->width - id_args_lens(args));
+	}
+	else
+	{
+		if (form_sp->prec < id_args_lens(args))
+		{
+			r_t = p_p(' ', form_sp->width - id_args_lens(args));
+			r_t += print_num((long long)args);
+		}
+		else
+		{
+			r_t = p_p(' ', form_sp->width - form_sp->prec);
+			r_t += p_p('0', form_sp->prec - id_args_lens(args));
+			r_t += print_num((long long)args);
+		}
+	}
+	return (r_t);
+}
+
 int	print_form_sp(t_flag *form_sp, va_list ap)
 {
-	int	return_cnt;
+	int	r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	if (form_sp->sp == '%')
-		return_cnt = print_with_percent(form_sp);
+		r_c = print_with_percent(form_sp);
 	if (form_sp->sp == 'i' || form_sp->sp == 'd')
-		return_cnt = print_with_id(form_sp, ap);
-	return (return_cnt);
+		r_c = print_with_id(form_sp, ap);
+	if (form_sp->sp == 'u')
+		r_c = print_with_u(form_sp, ap);
+	return (r_c);
 }
 
 int	is_printf_flag(char *format, int *idx, va_list ap)
 {
 	t_flag	*form_sp;
-	int		return_cnt;
+	int		r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	(*idx)++;
 	form_sp = malloc(sizeof(t_flag));
 	set_info(form_sp);
@@ -44,20 +75,20 @@ int	is_printf_flag(char *format, int *idx, va_list ap)
 	if (ft_strchr("cspdiuxX%", format[*idx]))
 	{
 		form_sp->sp = format[*idx];
-		return_cnt = print_form_sp(form_sp, ap);
+		r_c = print_form_sp(form_sp, ap);
 	}
 	free(form_sp);
-	return (return_cnt);
+	return (r_c);
 }
 
 int	count_printf(char *form, va_list ap)
 {
-	size_t		return_cnt;
+	size_t		r_c;
 	int			cnt;
 	int			idx;
 	int			*idx_pt;
 
-	return_cnt = 0;
+	r_c = 0;
 	cnt = 0;
 	idx = 0;
 	idx_pt = &idx;
@@ -68,24 +99,24 @@ int	count_printf(char *form, va_list ap)
 			cnt = is_printf_flag(form, idx_pt, ap);
 			if (cnt == -1)
 				return (-1);
-			return_cnt += cnt;
+			r_c += cnt;
 		}
 		else
-			return_cnt += write(1, &form[idx], 1);
+			r_c += write(1, &form[idx], 1);
 		idx++;
 	}
-	return (return_cnt);
+	return (r_c);
 }
 
 int	ft_printf(const char *form, ...)
 {
-	va_list		ap;
-	int		return_cnt;
+	va_list	ap;
+	int		r_c;
 
 	va_start(ap, form);
-	return_cnt = count_printf((char *)form, ap);
+	r_c = count_printf((char *)form, ap);
 	va_end(ap);
-	return (return_cnt);
+	return (r_c);
 }
 
 int	main(void)
@@ -97,7 +128,7 @@ int	main(void)
 	// ft_printf("f %%5%%, [%5%]\n");
 	// ft_printf("f %%-5%%, [%-5%]\n");
 	// ft_printf("f %%05%%, [%05%]\n");
-	// ft_printf("f %%-05%%, [%-05%]\n");
+	// ft_printf("f %%-05%%, [%-05%]\n\n");
 	// printf("%% printf_test");
 	// printf("f %%%%, [%%]\n");
 	// printf("f %%5%%, [%5%]\n");
@@ -340,35 +371,49 @@ int	main(void)
 	// printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
 	// printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
 
-	// ft_printf("u - unsigned int test \n");
-	// ft_printf("ft_printf test\n");
-	// ft_printf("f %u\n", 4294967295u);
-	// ft_printf("%u\n", 42);
-	// ft_printf("Kashim a %u histoires à raconter\n", 1001);
-	// ft_printf("Il fait au moins %u\n", -8000);
-	// ft_printf("%u\n", -0);
-	// ft_printf("%u\n", 0);
-	// ft_printf("%u\n", INT_MAX);
-	// ft_printf("%u\n", INT_MIN);
-	// ft_printf("%u\n", INT_MIN - 1);
-	// ft_printf("%u\n", INT_MAX + 1);
-	// ft_printf("%%u 0000042 == |%u|\n", 0000042);
-	// ft_printf("%%u \t == |%u|\n", '\t');
-	// ft_printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
-	// ft_printf("printf_test\n");
-	// printf("f %u\n", 4294967295u);
-	// printf("%u\n", 42);
-	// printf("Kashim a %u histoires à raconter\n", 1001);
-	// printf("Il fait au moins %u\n", -8000);
-	// printf("%u\n", -0);
-	// printf("%u\n", 0);
-	// printf("%u\n", INT_MAX);
-	// printf("%u\n", INT_MIN);
-	// printf("%u\n", INT_MIN - 1);
-	// printf("%u\n", INT_MAX + 1);
-	// printf("%%u 0000042 == |%u|\n", 0000042);
-	// printf("%%u \t == |%u|\n", '\t');
-	// printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
+	ft_printf("u - unsigned int test \n");
+	ft_printf("ft_printf test\n");
+	ft_printf("f %u\n", 4294967295u);
+	ft_printf("%u\n", 42);
+	ft_printf("Kashim a %u histoires à raconter\n", 1001);
+	ft_printf("Il fait au moins %u\n", -8000);
+	ft_printf("%u\n", -0);
+	ft_printf("%u\n", 0);
+	ft_printf("%u\n", INT_MAX);
+	ft_printf("%u\n", INT_MIN);
+	ft_printf("%u\n", INT_MIN - 1);
+	ft_printf("%u\n", INT_MAX + 1);
+	ft_printf("f %%-10u = 52625, [%-10u]\n", 52625);
+	ft_printf("f %%-15u = -2562, [%-15u]\n", -2562);
+	ft_printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
+	ft_printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
+	ft_printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
+	ft_printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
+	ft_printf("%%u 0000042 == |%u|\n", 0000042);
+	ft_printf("%%u \t == |%u|\n", '\t');
+	ft_printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
+	ft_printf("printf_test\n");
+	printf("f %u\n", 4294967295u);
+	printf("%u\n", 42);
+	printf("Kashim a %u histoires à raconter\n", 1001);
+	printf("Il fait au moins %u\n", -8000);
+	printf("%u\n", -0);
+	printf("%u\n", 0);
+	printf("%u\n", INT_MAX);
+	printf("%u\n", INT_MIN);
+	printf("%u\n", INT_MIN - 1);
+	printf("%u\n", INT_MAX + 1);
+	printf("f %%-10u = 52625, [%-10u]\n", 52625);
+	printf("f %%-15u = -2562, [%-15u]\n", -2562);
+	printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
+	printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
+	printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
+	printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
+	printf("%u\n", INT_MIN - 1);
+	printf("%u\n", INT_MAX + 1);
+	printf("%%u 0000042 == |%u|\n", 0000042);
+	printf("%%u \t == |%u|\n", '\t');
+	printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
 
 	return (0);
 }

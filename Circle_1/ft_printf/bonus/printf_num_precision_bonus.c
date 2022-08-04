@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:45:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 20:09:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:28:47 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,58 +15,58 @@
 
 int	id_args_non_p_non_m_zero(t_flag *form_sp, long long args, int sign)
 {
-	int return_cnt;
+	int	r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	if (sign)
 	{
-		return_cnt += write(1, "-", 1);
-		return_cnt += p_p('0', form_sp->width - id_args_lens(args) - 1);
-		return_cnt += print_num(args);
+		r_c += write(1, "-", 1);
+		r_c += p_p('0', form_sp->width - id_args_lens(args) - 1);
+		r_c += print_num(args);
 	}
 	else
 	{
-		return_cnt += p_p('0', form_sp->width - id_args_lens(args));
-		return_cnt += print_num(args);
+		r_c += p_p('0', form_sp->width - id_args_lens(args));
+		r_c += print_num(args);
 	}
-	return (return_cnt);
+	return (r_c);
 }
 
 int	id_args_non_pre_non_minus(t_flag *form_sp, long long args, int sign)
 {
-	int return_cnt;
+	int	r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	if (form_sp->zero)
 		return (id_args_non_p_non_m_zero(form_sp, args, sign));
 	if (form_sp->space && !form_sp->plus && !sign)
-		return_cnt += p_p(' ', form_sp->space);
+		r_c += p_p(' ', form_sp->space);
 	if (form_sp->plus && !sign)
-		return_cnt += write(1, "+", 1);
-	return_cnt += p_p(' ', form_sp->width - id_args_lens(args) - sign);
+		r_c += write(1, "+", 1);
+	r_c += p_p(' ', form_sp->width - id_args_lens(args) - sign);
 	if (sign)
-		return_cnt += write(1, "-", 1);
-	return_cnt += print_num(args);
-	return (return_cnt);
+		r_c += write(1, "-", 1);
+	r_c += print_num(args);
+	return (r_c);
 }
 
 int	id_args_non_precision(t_flag *form_sp, long long args, int sign)
 {
-	int return_cnt;
+	int	r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	if (!form_sp->minus)
-		return_cnt = id_args_non_pre_non_minus(form_sp, args, sign);
+		r_c = id_args_non_pre_non_minus(form_sp, args, sign);
 	else
 	{
 		if (form_sp->plus)
-			return_cnt += write(1, "+", 1);
+			r_c += write(1, "+", 1);
 		else if (form_sp->space && !sign)
-			return_cnt += write(1, " ", 1);
+			r_c += write(1, " ", 1);
 		if (sign)
-			return_cnt += write(1, "-", 1);
-		return_cnt += print_num(args);
-		return_cnt += p_p(' ', form_sp->width - id_args_lens(args) - sign);
+			r_c += write(1, "-", 1);
+		r_c += print_num(args);
+		r_c += p_p(' ', form_sp->width - id_args_lens(args) - sign);
 	}
-	return (return_cnt);
+	return (r_c);
 }

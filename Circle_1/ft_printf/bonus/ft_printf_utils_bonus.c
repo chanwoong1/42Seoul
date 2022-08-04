@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 15:38:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 08:21:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	p_p(char c, int n)
 {
-	int return_cnt;
+	int	r_c;
 
-	return_cnt = 0;
+	r_c = 0;
 	while (n-- > 0)
-		return_cnt += write(1, &c, 1);
-	return (return_cnt);
+		r_c += write(1, &c, 1);
+	return (r_c);
 }
 
 void	set_info(t_flag *form_sp)
@@ -32,13 +32,13 @@ void	set_info(t_flag *form_sp)
 	form_sp->hash = 0;
 	form_sp->space = 0;
 	form_sp->width = 0;
-	form_sp->precision = 0;
+	form_sp->prec = 0;
 }
 
 void	info_get_zero(t_flag *form_sp)
 {
 	if (form_sp->dot > -1)
-		form_sp->precision = form_sp->precision * 10;
+		form_sp->prec = form_sp->prec * 10;
 	else if (form_sp->width)
 		form_sp->width = form_sp->width * 10;
 	else
@@ -66,7 +66,7 @@ void	fill_info(t_flag *form_sp, char *format, int idx)
 	if (ft_strchr("123456789", format[idx]))
 	{
 		if (form_sp->dot > -1)
-			form_sp->precision = (form_sp->precision * 10) + (format[idx] - '0');
+			form_sp->prec = (form_sp->prec * 10) + (format[idx] - '0');
 		else
 			form_sp->width = (form_sp->width * 10) + (format[idx] - '0');
 	}
