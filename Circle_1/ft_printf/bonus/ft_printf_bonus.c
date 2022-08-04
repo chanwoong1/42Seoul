@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 17:33:30 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:05:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ int	id_args_precision(t_flag *form_sp, long long args, int sign)
 	{
 		if (form_sp->precision < form_sp->width)
 		{
-			if (!(form_sp->minus) && (sign || (form_sp->plus && !sign)))
+			if (!(form_sp->minus) && form_sp->space && form_sp->plus && sign)
+				return_cnt += write(1, " ", 1);
+			if (!(form_sp->minus) && (sign || ((form_sp->plus || form_sp->space) && !sign)))
 				return_cnt += p_p(' ', form_sp->width - form_sp->precision - 1 - form_sp->plus - form_sp->space);
-			if (!(form_sp->minus) && form_sp->space)
+			if (!(form_sp->minus) && form_sp->space && !sign)
+				return_cnt += write(1, " ", 1);
+			if (!(form_sp->minus) && form_sp->space && form_sp->plus && sign)
 				return_cnt += write(1, " ", 1);
 			if (form_sp->plus && !sign)
 				return_cnt += write(1, "+", 1);
@@ -34,7 +38,12 @@ int	id_args_precision(t_flag *form_sp, long long args, int sign)
 			return_cnt += p_p('0', form_sp->precision - id_args_lens(args));
 			return_cnt += print_num(args);
 			if (form_sp->minus)
-				return_cnt += p_p(' ', form_sp->width - form_sp->precision - sign - form_sp->space);
+			{
+				if (form_sp->precision > id_args_lens(args))
+					return_cnt += p_p(' ', form_sp->width - form_sp->precision - sign);
+				else
+					return_cnt += p_p(' ', form_sp->width - id_args_lens(args) - sign);
+			}
 		}
 		else
 		{
@@ -66,13 +75,13 @@ int	id_args_non_zero(t_flag *form_sp, long long args, int sign)
 {
 	int	return_cnt;
 
-	// printf("form_sp->zero : %d\n", form_sp->zero);
-	// printf("form_sp->precision : %d\n", form_sp->precision);
-	// printf("form_sp->width : %d\n", form_sp->width);
-	// printf("form_sp->minus : %d\n", form_sp->minus);
-	// printf("form_sp->dot : %d\n", form_sp->dot);
-	// printf("form_sp->space : %d\n", form_sp->space);
-	// printf("form_sp->plus : %d\n", form_sp->plus);
+	printf("form_sp->zero : %d\n", form_sp->zero);
+	printf("form_sp->precision : %d\n", form_sp->precision);
+	printf("form_sp->width : %d\n", form_sp->width);
+	printf("form_sp->minus : %d\n", form_sp->minus);
+	printf("form_sp->dot : %d\n", form_sp->dot);
+	printf("form_sp->space : %d\n", form_sp->space);
+	printf("form_sp->plus : %d\n", form_sp->plus);
 	return_cnt = 0;
 	if (!form_sp->precision)
 		return_cnt = id_args_non_precision(form_sp, args, sign);
@@ -302,107 +311,107 @@ int	main(void)
 	printf("f %%03.3d = 6983,  [%03.3d]\n", 6983);
 	printf("f %%03.3i = -8462, [%03.3i]\n\n", -8462);
 
-	ft_printf("id width and precision, left-justified with zeropadding test (clear)\n");
-	ft_printf("ft_printf test\n");
-	ft_printf("f %%0-8.5i = 34, [%0-8.5i]\n", 34);
-	ft_printf("f %%0-10.5d = -216, [%0-10.5d]\n", -216);
-	ft_printf("f %%0-8.5i = 0, [%0-8.5i]\n", 0);
-	ft_printf("f %%0-8.3d = 8375,  [%0-8.3d]\n", 8375);
-	ft_printf("f %%0-8.3i = -8473, [%0-8.3i]\n", -8473);
-	ft_printf("f %%0-3.7d = 3267,  [%0-3.7d]\n", 3267);
-	ft_printf("f %%0-3.7i = -2375, [%0-3.7i]\n", -2375);
-	ft_printf("f %%0-3.3d = 6983,  [%0-3.3d]\n", 6983);
-	ft_printf("f %%0-3.3i = -8462, [%0-3.3i]\n\n", -8462);
-	ft_printf("printf test\n");
-	printf("f %%0-8.5i = 34, [%0-8.5i]\n", 34);
-	printf("f %%0-10.5d = -216, [%0-10.5d]\n", -216);
-	printf("f %%0-8.5i = 0, [%0-8.5i]\n", 0);
-	printf("f %%0-8.3d = 8375,  [%0-8.3d]\n", 8375);
-	printf("f %%0-8.3i = -8473, [%0-8.3i]\n", -8473);
-	printf("f %%0-3.7d = 3267,  [%0-3.7d]\n", 3267);
-	printf("f %%0-3.7i = -2375, [%0-3.7i]\n", -2375);
-	printf("f %%0-3.3d = 6983,  [%0-3.3d]\n", 6983);
-	printf("f %%0-3.3i = -8462, [%0-3.3i]\n\n", -8462);
+	// ft_printf("id width and precision, left-justified with zeropadding test (clear)\n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%0-8.5i = 34, [%0-8.5i]\n", 34);
+	// ft_printf("f %%0-10.5d = -216, [%0-10.5d]\n", -216);
+	// ft_printf("f %%0-8.5i = 0, [%0-8.5i]\n", 0);
+	// ft_printf("f %%0-8.3d = 8375,  [%0-8.3d]\n", 8375);
+	// ft_printf("f %%0-8.3i = -8473, [%0-8.3i]\n", -8473);
+	// ft_printf("f %%0-3.7d = 3267,  [%0-3.7d]\n", 3267);
+	// ft_printf("f %%0-3.7i = -2375, [%0-3.7i]\n", -2375);
+	// ft_printf("f %%0-3.3d = 6983,  [%0-3.3d]\n", 6983);
+	// ft_printf("f %%0-3.3i = -8462, [%0-3.3i]\n\n", -8462);
+	// ft_printf("printf test\n");
+	// printf("f %%0-8.5i = 34, [%0-8.5i]\n", 34);
+	// printf("f %%0-10.5d = -216, [%0-10.5d]\n", -216);
+	// printf("f %%0-8.5i = 0, [%0-8.5i]\n", 0);
+	// printf("f %%0-8.3d = 8375,  [%0-8.3d]\n", 8375);
+	// printf("f %%0-8.3i = -8473, [%0-8.3i]\n", -8473);
+	// printf("f %%0-3.7d = 3267,  [%0-3.7d]\n", 3267);
+	// printf("f %%0-3.7i = -2375, [%0-3.7i]\n", -2375);
+	// printf("f %%0-3.3d = 6983,  [%0-3.3d]\n", 6983);
+	// printf("f %%0-3.3i = -8462, [%0-3.3i]\n\n", -8462);
 
-	ft_printf("id zero test (clear) \n");
-	ft_printf("ft_printf\n");
-	ft_printf("f %%i = 0,   [%i]\n", 0);
-	ft_printf("f %%5i = 0,   [%5i]\n", 0);
-	ft_printf("f %%.0i = 0,   [%.0i]\n", 0);
-	ft_printf("f %%.i = 0,    [%.i]\n", 0);
-	ft_printf("f %%5.0i = 0,  [%5.0i]\n", 0);
-	ft_printf("f %%5.i = 0,   [%5.i]\n", 0);
-	ft_printf("f %%-5.0i = 0, [%-5.0i]\n", 0);
-	ft_printf("f %%-5.i = 0,  [%-5.i]\n\n", 0);
-	printf("printf\n");
-	printf("f %%i = 0,   [%i]\n", 0);
-	printf("f %%5i = 0,   [%5i]\n", 0);
-	printf("f %%.0i = 0,   [%.0i]\n", 0);
-	printf("f %%.i = 0,    [%.i]\n", 0);
-	printf("f %%5.0i = 0,  [%5.0i]\n", 0);
-	printf("f %%5.i = 0,   [%5.i]\n", 0);
-	printf("f %%-5.0i = 0, [%-5.0i]\n", 0);
-	printf("f %%-5.i = 0,  [%-5.i]\n\n", 0);
+	// ft_printf("id zero test (clear) \n");
+	// ft_printf("ft_printf\n");
+	// ft_printf("f %%i = 0,   [%i]\n", 0);
+	// ft_printf("f %%5i = 0,   [%5i]\n", 0);
+	// ft_printf("f %%.0i = 0,   [%.0i]\n", 0);
+	// ft_printf("f %%.i = 0,    [%.i]\n", 0);
+	// ft_printf("f %%5.0i = 0,  [%5.0i]\n", 0);
+	// ft_printf("f %%5.i = 0,   [%5.i]\n", 0);
+	// ft_printf("f %%-5.0i = 0, [%-5.0i]\n", 0);
+	// ft_printf("f %%-5.i = 0,  [%-5.i]\n\n", 0);
+	// printf("printf\n");
+	// printf("f %%i = 0,   [%i]\n", 0);
+	// printf("f %%5i = 0,   [%5i]\n", 0);
+	// printf("f %%.0i = 0,   [%.0i]\n", 0);
+	// printf("f %%.i = 0,    [%.i]\n", 0);
+	// printf("f %%5.0i = 0,  [%5.0i]\n", 0);
+	// printf("f %%5.i = 0,   [%5.i]\n", 0);
+	// printf("f %%-5.0i = 0, [%-5.0i]\n", 0);
+	// printf("f %%-5.i = 0,  [%-5.i]\n\n", 0);
 
-	ft_printf("id space test \n");
-	ft_printf("ft_printf test\n");
-	ft_printf("f %% i = 34, [% i]\n", 34);
-	ft_printf("f %% d = -216, [% d]\n", -216);
-	ft_printf("f %% 3.3d = 8375,  [% 3.3d]\n", 8375);
-	ft_printf("f %% 3.3i = -8473, [% 3.3i]\n", -8473);
-	ft_printf("f %% 8.3d = 8375,  [% 8.3d]\n", 8375);
-	ft_printf("f %% 8.3i = -8473, [% 8.3i]\n", -8473);
-	ft_printf("f %% 3.7d = 3267,  [% 3.7d]\n", 3267);
-	ft_printf("f %% 3.7i = -2375, [% 3.7i]\n\n", -2375);
-	ft_printf("printf test\n");
-	printf("f %% i = 34, [% i]\n", 34);
-	printf("f %% d = -216, [% d]\n", -216);
-	printf("f %% 3.3d = 8375,  [% 3.3d]\n", 8375);
-	printf("f %% 3.3i = -8473, [% 3.3i]\n", -8473);
-	printf("f %% 8.3d = 8375,  [% 8.3d]\n", 8375);
-	printf("f %% 8.3i = -8473, [% 8.3i]\n", -8473);
-	printf("f %% 3.7d = 3267,  [% 3.7d]\n", 3267);
-	printf("f %% 3.7i = -2375, [% 3.7i]\n\n", -2375);
+	// ft_printf("id space test \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %% i = 34, [% i]\n", 34);
+	// ft_printf("f %% d = -216, [% d]\n", -216);
+	// ft_printf("f %% 3.3d = 8375,  [% 3.3d]\n", 8375);
+	// ft_printf("f %% 3.3i = -8473, [% 3.3i]\n", -8473);
+	// ft_printf("f %% 8.3d = 8375,  [% 8.3d]\n", 8375);
+	// ft_printf("f %% 8.3i = -8473, [% 8.3i]\n", -8473);
+	// ft_printf("f %% 3.7d = 3267,  [% 3.7d]\n", 3267);
+	// ft_printf("f %% 3.7i = -2375, [% 3.7i]\n\n", -2375);
+	// ft_printf("printf test\n");
+	// printf("f %% i = 34, [% i]\n", 34);
+	// printf("f %% d = -216, [% d]\n", -216);
+	// printf("f %% 3.3d = 8375,  [% 3.3d]\n", 8375);
+	// printf("f %% 3.3i = -8473, [% 3.3i]\n", -8473);
+	// printf("f %% 8.3d = 8375,  [% 8.3d]\n", 8375);
+	// printf("f %% 8.3i = -8473, [% 8.3i]\n", -8473);
+	// printf("f %% 3.7d = 3267,  [% 3.7d]\n", 3267);
+	// printf("f %% 3.7i = -2375, [% 3.7i]\n\n", -2375);
 
-	ft_printf("id plus sign test \n");
-	ft_printf("ft_printf test\n");
-	ft_printf("f %%+i = 34, [%+i]\n", 34);
-	ft_printf("f %%+d = -216, [%+d]\n", -216);
-	ft_printf("f %%+3.3d = 8375,  [%+3.3d]\n", 8375);
-	ft_printf("f %%+3.3i = -8473, [%+3.3i]\n", -8473);
-	ft_printf("f %%+8.3d = 8375,  [%+8.3d]\n", 8375);
-	ft_printf("f %%+8.3i = -8473, [%+8.3i]\n", -8473);
-	ft_printf("f %%+3.7d = 3267,  [%+3.7d]\n", 3267);
-	ft_printf("f %%+3.7i = -2375, [%+3.7i]\n\n", -2375);
-	ft_printf("printf test\n");
-	printf("f %%+i = 34, [%+i]\n", 34);
-	printf("f %%+d = -216, [%+d]\n", -216);
-	printf("f %%+3.3d = 8375,  [%+3.3d]\n", 8375);
-	printf("f %%+3.3i = -8473, [%+3.3i]\n", -8473);
-	printf("f %%+8.3d = 8375,  [%+8.3d]\n", 8375);
-	printf("f %%+8.3i = -8473, [%+8.3i]\n", -8473);
-	printf("f %%+3.7d = 3267,  [%+3.7d]\n", 3267);
-	printf("f %%+3.7i = -2375, [%+3.7i]\n\n", -2375);
+	// ft_printf("id plus sign test \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%+i = 34, [%+i]\n", 34);
+	// ft_printf("f %%+d = -216, [%+d]\n", -216);
+	// ft_printf("f %%+3.3d = 8375,  [%+3.3d]\n", 8375);
+	// ft_printf("f %%+3.3i = -8473, [%+3.3i]\n", -8473);
+	// ft_printf("f %%+8.3d = 8375,  [%+8.3d]\n", 8375);
+	// ft_printf("f %%+8.3i = -8473, [%+8.3i]\n", -8473);
+	// ft_printf("f %%+3.7d = 3267,  [%+3.7d]\n", 3267);
+	// ft_printf("f %%+3.7i = -2375, [%+3.7i]\n\n", -2375);
+	// ft_printf("printf test\n");
+	// printf("f %%+i = 34, [%+i]\n", 34);
+	// printf("f %%+d = -216, [%+d]\n", -216);
+	// printf("f %%+3.3d = 8375,  [%+3.3d]\n", 8375);
+	// printf("f %%+3.3i = -8473, [%+3.3i]\n", -8473);
+	// printf("f %%+8.3d = 8375,  [%+8.3d]\n", 8375);
+	// printf("f %%+8.3i = -8473, [%+8.3i]\n", -8473);
+	// printf("f %%+3.7d = 3267,  [%+3.7d]\n", 3267);
+	// printf("f %%+3.7i = -2375, [%+3.7i]\n\n", -2375);
 
-	ft_printf("id space with plus sign test \n");
-	ft_printf("ft_printf test\n");
-	ft_printf("f %%+ i = 34, [%+ i]\n", 34);
-	ft_printf("f %%+ d = -216, [%+ d]\n", -216);
-	ft_printf("f %%+ 3.3d = 8375,  [%+ 3.3d]\n", 8375);
-	ft_printf("f %%+ 3.3i = -8473, [%+ 3.3i]\n", -8473);
-	ft_printf("f %%+ 8.3d = 8375,  [%+ 8.3d]\n", 8375);
-	ft_printf("f %%+ 8.3i = -8473, [%+ 8.3i]\n", -8473);
-	ft_printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
-	ft_printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
-	ft_printf("printf test\n");
-	printf("f %%+ i = 34, [%+ i]\n", 34);
-	printf("f %%+ d = -216, [%+ d]\n", -216);
-	printf("f %%+ 3.3d = 8375,  [%+ 3.3d]\n", 8375);
-	printf("f %%+ 3.3i = -8473, [%+ 3.3i]\n", -8473);
-	printf("f %%+ 8.3d = 8375,  [%+ 8.3d]\n", 8375);
-	printf("f %%+ 8.3i = -8473, [%+ 8.3i]\n", -8473);
-	printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
-	printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
+	// ft_printf("id space with plus sign test \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%+ i = 34, [%+ i]\n", 34);
+	// ft_printf("f %%+ d = -216, [%+ d]\n", -216);
+	// ft_printf("f %%+ 3.3d = 8375,  [%+ 3.3d]\n", 8375);
+	// ft_printf("f %%+ 3.3i = -8473, [%+ 3.3i]\n", -8473);
+	// ft_printf("f %%+ 8.3d = 8375,  [%+ 8.3d]\n", 8375);
+	// ft_printf("f %%+ 8.3i = -8473, [%+ 8.3i]\n", -8473);
+	// ft_printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
+	// ft_printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
+	// ft_printf("printf test\n");
+	// printf("f %%+ i = 34, [%+ i]\n", 34);
+	// printf("f %%+ d = -216, [%+ d]\n", -216);
+	// printf("f %%+ 3.3d = 8375,  [%+ 3.3d]\n", 8375);
+	// printf("f %%+ 3.3i = -8473, [%+ 3.3i]\n", -8473);
+	// printf("f %%+ 8.3d = 8375,  [%+ 8.3d]\n", 8375);
+	// printf("f %%+ 8.3i = -8473, [%+ 8.3i]\n", -8473);
+	// printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
+	// printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
 
 	return (0);
 }
