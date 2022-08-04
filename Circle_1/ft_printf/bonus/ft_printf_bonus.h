@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/04 15:57:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 20:22:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int		id_args_non_zero(t_flag *form_sp, long long args, int sign);
 int		id_args_non_precision(t_flag *form_sp, long long args, int sign);
 int		id_args_non_pre_non_minus(t_flag *form_sp, long long args, int sign);
 int		id_args_non_p_non_m_zero(t_flag *form_sp, long long args, int sign);
+int		id_args_prec_width_minus2(t_flag *form_sp, long long args, int sign);
+int		id_args_prec_width_minus(t_flag *form_sp, long long args, int sign);
+int		id_args_prec_width(t_flag *form_sp, long long args, int sign);
+int		id_args_prec(t_flag *form_sp, long long args, int sign);
+int		id_args_non_zero(t_flag *form_sp, long long args, int sign);
 
 #endif
 
