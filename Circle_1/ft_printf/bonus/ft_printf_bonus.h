@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/03 20:20:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 12:05:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_flag
 }			t_flag;
 
 int		ft_printf(const char *form, ...);
+int		print_num(long long num);
 int		print_c(va_list ap);
 int		print_s(va_list ap);
 int		print_p(va_list ap);
