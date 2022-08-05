@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:21:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:08:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	print_p(t_flag *form_sp, char *pt)
 	return (r_c);
 }
 
-int	print_with_p(t_flag *form_sp, va_list ap)
+int	print_with_p(t_flag *form_sp, va_list *ap)
 {
 	unsigned char		*args;
 	int					i;
@@ -41,7 +41,7 @@ int	print_with_p(t_flag *form_sp, va_list ap)
 	int					r_c;
 
 	r_c = 0;
-	args = va_arg(ap, void *);
+	args = va_arg(*ap, void *);
 	tmp = (unsigned long long)args;
 	i = 0;
 	while (i < 16)

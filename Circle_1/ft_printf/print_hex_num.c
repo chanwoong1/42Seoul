@@ -6,21 +6,21 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:07:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/02 20:10:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:13:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	print_x(va_list ap)
+int	print_x(va_list *ap)
 {
 	unsigned int	args;
 	unsigned int	tmp;
 	char			pt[11];
 	int				i;
 
-	args = va_arg(ap, unsigned int);
+	args = va_arg(*ap, unsigned int);
 	tmp = args;
 	i = 0;
 	while (i++ < 15)
@@ -40,14 +40,14 @@ int	print_x(va_list ap)
 	return (ft_strlen(pt));
 }
 
-int	print_xx(va_list ap)
+int	print_xx(va_list *ap)
 {
 	unsigned int	args;
 	unsigned int	tmp;
 	char			pt[11];
 	int				i;
 
-	args = va_arg(ap, unsigned int);
+	args = va_arg(*ap, unsigned int);
 	tmp = args;
 	i = 0;
 	while (i++ < 15)

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:33:51 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 13:59:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:08:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	print_with_percent(t_flag *form_sp)
 	return (r_c);
 }
 
-int	print_percent(va_list ap)
+int	print_percent(va_list *ap)
 {
 	void	*tmp;
 
-	tmp = ap;
+	tmp = *ap;
 	write(1, "%%", 1);
 	return (1);
 }

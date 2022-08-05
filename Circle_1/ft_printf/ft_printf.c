@@ -6,14 +6,14 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:13:44 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 10:10:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:15:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static void	set_f_pt(int (*f[256])(va_list ap), char *val_f)
+static void	set_f_pt(int (*f[256])(va_list *ap), char *val_f)
 {
 	ft_memset(f, 0, 256);
 	ft_memset(val_f, 0, 256);
@@ -41,7 +41,7 @@ int	ft_printf(const char *form, ...)
 {
 	va_list		ap;
 	size_t		return_cnt;
-	int			(*f[256])(va_list ap);
+	int			(*f[256])(va_list *ap);
 	char		val_f[256];
 	long long	cnt;
 
@@ -51,7 +51,7 @@ int	ft_printf(const char *form, ...)
 	while (*form)
 	{
 		if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
-				cnt = f[(unsigned char)(*form++)](ap);
+				cnt = f[(unsigned char)(*form++)](&ap);
 		else
 			cnt = write(1, form++, 1);
 		if (cnt == -1 || return_cnt > 2147483647)
