@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 10:55:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:47:00 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	print_form_sp(t_flag *form_sp, va_list ap)
 		r_c = print_with_x(form_sp, ap);
 	if (form_sp->sp == 'p')
 		r_c = print_with_p(form_sp, ap);
+	if (form_sp->sp == 'c')
+		r_c = print_c(ap);
 	return (r_c);
 }
 
@@ -460,31 +462,55 @@ int	main(void)
 	// printf("f %%-8.0x Lydie == |%-8.0x|\n", 'L'+'y'+'d'+'i'+'e');
 	// printf("f %%#-8.0x Lydie == |%#-8.0x|\n\n", 'L'+'y'+'d'+'i'+'e');
 
-	ft_printf("p - pointer test \n");
+	// ft_printf("p - pointer test (clear) \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%p NULL == [%p]\n", NULL);
+	// ft_printf("f %%5p NULL == [%5p]\n", NULL);
+	// ft_printf("f %%2p 1234 == [%2p]\n", 1234);
+	// ft_printf("f %%5p 0 == [%5p]\n\n", 0);
+	// ft_printf("printf test\n");
+	// printf("f %%p NULL == [%p]\n", NULL);
+	// printf("f %%5p NULL == [%5p]\n", NULL);
+	// printf("f %%2p 1234 == [%2p]\n", 1234);
+	// printf("f %%5p 0 == [%5p]\n\n", 0);
+
+	ft_printf("c - char test \n");
 	ft_printf("ft_printf test\n");
-	ft_printf("f %%p NULL == [%p]\n", NULL);
-	ft_printf("f %%5p NULL == [%5p]\n", NULL);
-	ft_printf("f %%2p NULL == [%2p]\n", NULL);
-	ft_printf("f %%.p NULL == [%.p]\n", NULL);
-	ft_printf("f %%5.p NULL == [%5.p]\n", NULL);
-	ft_printf("f %%2.p NULL == [%2.p]\n", NULL);;
-	ft_printf("f %%9.2p 1234 == [%9.2p]\n", 1234);
-	ft_printf("f %%2.9p 1234 == [%2.9p]\n", 1234);
-	ft_printf("f %%.5p 0 == [%.5p]\n", 0);
-	ft_printf("f %%.0p 0 == [%.0p]\n", 0);
-	ft_printf("f %%5p 0 == [%5p]\n\n", 0);
+	ft_printf("%%c 42 == [%c]\n", 42);
+	ft_printf("[Kashim a [%c] histoires à raconter]\n", 1001);
+	ft_printf("[Il fait au moins [%c]]\n", -8000);
+	ft_printf("%%c -0 == [%c]\n", -0);
+	ft_printf("%%c 0 == [%c]\n", 0);
+	ft_printf("%%c INT_MAX == [%c]\n", INT_MAX);
+	ft_printf("%%4c 'c' == [%4c]\n", 'c');
+	ft_printf("%%-2c '\\n' == [%-2c]\n", '\n');
+	ft_printf("%%04c 'l' == [%04c]\n", 'l');
+	ft_printf("%% c 'y' == [% c]\n", 'y');
+	ft_printf("%%c ' ' == [%c]\n", ' ');
+	ft_printf("%%#c 'e' == [%#c]\n", 'e');
+	ft_printf("%%+c 's' == [%+c]\n", 's');
+	ft_printf("%%.2c 't' == [%.2c]\n", 't');
+	ft_printf("%%c 'f' == [%c]\n", 'f');
+	ft_printf("%%c '\\r' == [%c]\n", '\r');
+	ft_printf("%%c '\\t' == [%c]\n\n", '\t');
 	ft_printf("printf test\n");
-	printf("f %%p NULL == [%p]\n", NULL);
-	printf("f %%5p NULL == [%5p]\n", NULL);
-	printf("f %%2p NULL == [%2p]\n", NULL);
-	printf("f %%.p NULL == [%.p]\n", NULL);
-	printf("f %%5.p NULL == [%5.p]\n", NULL);
-	printf("f %%2.p NULL == [%2.p]\n", NULL);;
-	printf("f %%9.2p 1234 == [%9.2p]\n", 1234);
-	printf("f %%2.9p 1234 == [%2.9p]\n", 1234);
-	printf("f %%.5p 0 == [%.5p]\n", 0);
-	printf("f %%.0p 0 == [%.0p]\n", 0);
-	printf("f %%5p 0 == [%5p]\n\n", 0);
+	printf("%%c 42 == [%c]\n", 42);
+	printf("[Kashim a [%c] histoires à raconter]\n", 1001);
+	printf("[Il fait au moins [%c]]\n", -8000);
+	printf("%%c -0 == [%c]\n", -0);
+	printf("%%c 0 == [%c]\n", 0);
+	printf("%%c INT_MAX == [%c]\n", INT_MAX);
+	printf("%%4c 'c' == [%4c]\n", 'c');
+	printf("%%-2c '\\n' == [%-2c]\n", '\n');
+	printf("%%04c 'l' == [%04c]\n", 'l');
+	printf("%% c 'y' == [% c]\n", 'y');
+	printf("%%c ' ' == [%c]\n", ' ');
+	printf("%%#c 'e' == [%#c]\n", 'e');
+	printf("%%+c 's' == [%+c]\n", 's');
+	printf("%%.2c 't' == [%.2c]\n", 't');
+	printf("%%c 'f' == [%c]\n", 'f');
+	printf("%%c '\\r' == [%c]\n", '\r');
+	printf("%%c '\\t' == [%c]\n\n", '\t');
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:21:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 11:43:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:38:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
-// int	print_with_p(t_flag *form_sp, va_list ap)
-// {
-// 	unsigned long long	args;
-// 	int				r_t;
-// 	int				hashtag;
+int	print_p(t_flag *form_sp, char *pt)
+{
+	int	i;
+	int	r_c;
 
-// 	r_t = 0;
-// 	args = (unsigned long long)va_arg(ap, void *);
-// 	if (args == 0)
-// 		return (id_args_zero(form_sp));
-// 	if (form_sp->hash)
-// 		hashtag = 2;
-// 	if (!form_sp->minus)
-// 		r_t += p_p(' ', form_sp->width - hashtag - id_hex_lens(args));
-// 	r_t += write(1, "0x", 2);
-// 	r_t += print_x(args);
-// 	if (form_sp->minus)
-// 		r_t += p_p(' ', form_sp->width - hashtag - id_hex_lens(args));
-// 	return (0);
-// }
+	i = 0;
+	r_c = 0;
+	while (pt[i] == '0')
+		i++;
+	if (16 - i < form_sp->width)
+		r_c += p_p(' ', form_sp->width - i + 13);
+	r_c += write(1, "0x", 2);
+	if (i == 16)
+		i -= 1;
+	r_c += write(1, pt + i, 16 - i);
+	return (r_c);
+}
 
 int	print_with_p(t_flag *form_sp, va_list ap)
 {
@@ -54,22 +51,6 @@ int	print_with_p(t_flag *form_sp, va_list ap)
 		i++;
 	}
 	pt[16] = '\0';
-	printf("pt = %s\n", pt);
-	i = 0;
-	while (pt[i] == '0')
-		i++;
-	if (i - 13 < form_sp->width)
-	{
-		r_c += p_p(' ', form_sp->width - i + 13);
-		r_c += write(1, "0x", 2);
-		if (!(form_sp->dot && !form_sp->prec))
-			r_c += write(1, pt + i, 16 - i);
-	}
-	else
-	{
-		r_c += write(1, "0x", 2);
-		r_c += write(1, pt + i, 16 - i);
-	}
+	r_c = print_p(form_sp, pt);
 	return (r_c);
 }
-// 
