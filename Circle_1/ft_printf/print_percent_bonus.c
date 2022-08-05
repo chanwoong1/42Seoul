@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_percent_bonus.c                             :+:      :+:    :+:   */
+/*   print_percent_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:33:51 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:28:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:59:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 int	print_with_percent_add(t_flag *form_sp)
 {
@@ -21,7 +21,7 @@ int	print_with_percent_add(t_flag *form_sp)
 	if (form_sp->minus)
 	{
 		r_c = write(1, "%%", 1);
-		r_c = p_p(' ', form_sp->width - 1);
+		r_c += p_p(' ', form_sp->width - 1);
 	}
 	else if (!(form_sp->minus) && form_sp->zero)
 	{

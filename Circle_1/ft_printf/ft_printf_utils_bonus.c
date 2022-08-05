@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:21:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 int	p_p(char c, int n)
 {

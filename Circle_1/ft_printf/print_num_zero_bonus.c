@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:22:43 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:28:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 
 int	id_args_zero_2(t_flag *form_sp)
 {

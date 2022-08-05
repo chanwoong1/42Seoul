@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:21:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 12:38:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
 
 int	print_p(t_flag *form_sp, char *pt)
