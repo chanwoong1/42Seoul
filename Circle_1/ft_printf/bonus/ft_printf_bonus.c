@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:58:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:55:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,6 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 #include <limits.h>
-
-int	print_u(t_flag *form_sp, va_list ap)
-{
-	int	r_t;
-	unsigned int	args;
-
-	args = va_arg(ap, unsigned int);
-	r_t = 0;
-	if (form_sp->minus)
-	{
-		r_t = print_num((long long)args);
-		r_t += p_p(' ', form_sp->width - id_args_lens(args));
-	}
-	else
-	{
-		if (form_sp->prec < id_args_lens(args))
-		{
-			r_t = p_p(' ', form_sp->width - id_args_lens(args));
-			r_t += print_num((long long)args);
-		}
-		else
-		{
-			r_t = p_p(' ', form_sp->width - form_sp->prec);
-			r_t += p_p('0', form_sp->prec - id_args_lens(args));
-			r_t += print_num((long long)args);
-		}
-	}
-	return (r_t);
-}
 
 int	print_form_sp(t_flag *form_sp, va_list ap)
 {
@@ -54,7 +25,11 @@ int	print_form_sp(t_flag *form_sp, va_list ap)
 	if (form_sp->sp == 'i' || form_sp->sp == 'd')
 		r_c = print_with_id(form_sp, ap);
 	if (form_sp->sp == 'u')
-		r_c = print_with_u(form_sp, ap);
+		r_c = print_u(form_sp, ap);
+	if (form_sp->sp == 'x' || form_sp->sp == 'X')
+		r_c = print_with_x(form_sp, ap);
+	if (form_sp->sp == 'p')
+		r_c = print_with_p(form_sp, ap);
 	return (r_c);
 }
 
@@ -371,49 +346,145 @@ int	main(void)
 	// printf("f %%+ 3.7d = 3267,  [%+ 3.7d]\n", 3267);
 	// printf("f %%+ 3.7i = -2375, [%+ 3.7i]\n\n", -2375);
 
-	ft_printf("u - unsigned int test \n");
+	// ft_printf("u - unsigned int test (clear) \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %u\n", 4294967295u);
+	// ft_printf("%u\n", 42);
+	// ft_printf("Kashim a %u histoires à raconter\n", 1001);
+	// ft_printf("Il fait au moins %u\n", -8000);
+	// ft_printf("%u\n", -0);
+	// ft_printf("%u\n", 0);
+	// ft_printf("%u\n", INT_MAX);
+	// ft_printf("%u\n", INT_MIN);
+	// ft_printf("%u\n", INT_MIN - 1);
+	// ft_printf("%u\n", INT_MAX + 1);
+	// ft_printf("f %%-10u = 52625, [%-10u]\n", 52625);
+	// ft_printf("f %%-15u = -2562, [%-15u]\n", -2562);
+	// ft_printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
+	// ft_printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
+	// ft_printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
+	// ft_printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
+	// ft_printf("%%u 0000042 == |%u|\n", 0000042);
+	// ft_printf("%%u \t == |%u|\n", '\t');
+	// ft_printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
+	// ft_printf("printf_test\n");
+	// printf("f %u\n", 4294967295u);
+	// printf("%u\n", 42);
+	// printf("Kashim a %u histoires à raconter\n", 1001);
+	// printf("Il fait au moins %u\n", -8000);
+	// printf("%u\n", -0);
+	// printf("%u\n", 0);
+	// printf("%u\n", INT_MAX);
+	// printf("%u\n", INT_MIN);
+	// printf("%u\n", INT_MIN - 1);
+	// printf("%u\n", INT_MAX + 1);
+	// printf("f %%-10u = 52625, [%-10u]\n", 52625);
+	// printf("f %%-15u = -2562, [%-15u]\n", -2562);
+	// printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
+	// printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
+	// printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
+	// printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
+	// printf("%u\n", INT_MIN - 1);
+	// printf("%u\n", INT_MAX + 1);
+	// printf("%%u 0000042 == |%u|\n", 0000042);
+	// printf("%%u \t == |%u|\n", '\t');
+	// printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
+
+	// ft_printf("X - unsigned hexadecimal test (clear) \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%X 4294967295u = [%X]\n", 4294967295u);
+	// ft_printf("f %%-X 42 = [%-X]\n", 42);
+	// ft_printf("f Kashim a [%X] histoires à raconter\n", 1001);
+	// ft_printf("f Il fait au moins [%X]\n", -8000);
+	// ft_printf("f %%08X -0 = [%08X]\n", -0);
+	// ft_printf("f %%.8X 0 = [%.8X]\n", 0);
+	// ft_printf("f %%#X INT_MAX = [%#X]\n", INT_MAX);
+	// ft_printf("f %%8.0X INT_MAX = [%8.0X]\n", INT_MIN);
+	// ft_printf("f %%0.8X INT_MAX - 1= [%0.8X]\n", INT_MIN - 1);
+	// ft_printf("f %%8X INT_MAX + 1= [%8X]\n", INT_MAX + 1);
+	// ft_printf("f %%8X 0000042 == |%8X|\n", 0000042);
+	// ft_printf("f %%#8X 0000042 == |%#8X|\n", 0000042);
+	// ft_printf("f %%-8X (tab) \t == |%-8X]\n", '\t');
+	// ft_printf("f %%-8.0X Lydie == |%-8.0X|\n", 'L'+'y'+'d'+'i'+'e');
+	// ft_printf("f %%#-8.0X Lydie == |%#-8.0X|\n\n", 'L'+'y'+'d'+'i'+'e');
+	// ft_printf("printf test\n");
+	// printf("f %%X 4294967295u = [%X]\n", 4294967295u);
+	// printf("f %%-X 42 = [%-X]\n", 42);
+	// printf("f Kashim a [%X] histoires à raconter\n", 1001);
+	// printf("f Il fait au moins [%X]\n", -8000);
+	// printf("f %%08X -0 = [%08X]\n", -0);
+	// printf("f %%.8X 0 = [%.8X]\n", 0);
+	// printf("f %%#X INT_MAX = [%#X]\n", INT_MAX);
+	// printf("f %%8.0X INT_MAX = [%8.0X]\n", INT_MIN);
+	// printf("f %%0.8X INT_MAX - 1= [%0.8X]\n", INT_MIN - 1);
+	// printf("f %%8X INT_MAX + 1= [%8X]\n", INT_MAX + 1);
+	// printf("f %%8X 0000042 == |%8X|\n", 0000042);
+	// printf("f %%#8X 0000042 == |%#8X|\n", 0000042);
+	// printf("f %%-8X (tab) \t == |%-8X]\n", '\t');
+	// printf("f %%-8.0X Lydie == |%-8.0X|\n", 'L'+'y'+'d'+'i'+'e');
+	// printf("f %%#-8.0X Lydie == |%#-8.0X|\n\n", 'L'+'y'+'d'+'i'+'e');
+
+	// ft_printf("x - unsigned hexadecimal test (clear) \n");
+	// ft_printf("ft_printf test\n");
+	// ft_printf("f %%x 4294967295u = [%x]\n", 4294967295u);
+	// ft_printf("f %%-x 42 = [%-x]\n", 42);
+	// ft_printf("f %%-x -42 = [%-x]\n", -42);
+	// ft_printf("f Kashim a [%x] histoires à raconter\n", 1001);
+	// ft_printf("f Il fait au moins [%x]\n", -8000);
+	// ft_printf("f %%08x -0 = [%08x]\n", -0);
+	// ft_printf("f %%.8x 0 = [%.8x]\n", 0);
+	// ft_printf("f %%#x INT_MAX = [%#x]\n", INT_MAX);
+	// ft_printf("f %%8.0x INT_MAX = [%8.0x]\n", INT_MIN);
+	// ft_printf("f %%0.8x INT_MAX - 1= [%0.8x]\n", INT_MIN - 1);
+	// ft_printf("f %%8x INT_MAX + 1= [%8x]\n", INT_MAX + 1);
+	// ft_printf("f %%8x 0000042 == |%8x|\n", 0000042);
+	// ft_printf("f %%#8x 0000042 == |%#8x|\n", 0000042);
+	// ft_printf("f %%-8x (tab) \t == |%-8x|\n", '\t');
+	// ft_printf("f %%-8.0x Lydie == |%-8.0x|\n", 'L'+'y'+'d'+'i'+'e');
+	// ft_printf("f %%#-8.0x Lydie == |%#-8.0x|\n\n", 'L'+'y'+'d'+'i'+'e');
+	// ft_printf("printf test \n");
+	// printf("f %%x 4294967295u = [%x]\n", 4294967295u);
+	// printf("f %%-x 42 = [%-x]\n", 42);
+	// printf("f %%-x -42 = [%-x]\n", -42);
+	// printf("f Kashim a [%x] histoires à raconter\n", 1001);
+	// printf("f Il fait au moins [%x]\n", -8000);
+	// printf("f %%08x -0 = [%08x]\n", -0);
+	// printf("f %%.8x 0 = [%.8x]\n", 0);
+	// printf("f %%#x INT_MAX = [%#x]\n", INT_MAX);
+	// printf("f %%8.0x INT_MAX = [%8.0x]\n", INT_MIN);
+	// printf("f %%0.8x INT_MAX - 1= [%0.8x]\n", INT_MIN - 1);
+	// printf("f %%8x INT_MAX + 1= [%8x]\n", INT_MAX + 1);
+	// printf("f %%8x 0000042 == |%8x|\n", 0000042);
+	// printf("f %%#8x 0000042 == |%#8x|\n", 0000042);
+	// printf("f %%-8x (tab) \t == |%-8x|\n", '\t');
+	// printf("f %%-8.0x Lydie == |%-8.0x|\n", 'L'+'y'+'d'+'i'+'e');
+	// printf("f %%#-8.0x Lydie == |%#-8.0x|\n\n", 'L'+'y'+'d'+'i'+'e');
+
+	ft_printf("p - pointer test \n");
 	ft_printf("ft_printf test\n");
-	ft_printf("f %u\n", 4294967295u);
-	ft_printf("%u\n", 42);
-	ft_printf("Kashim a %u histoires à raconter\n", 1001);
-	ft_printf("Il fait au moins %u\n", -8000);
-	ft_printf("%u\n", -0);
-	ft_printf("%u\n", 0);
-	ft_printf("%u\n", INT_MAX);
-	ft_printf("%u\n", INT_MIN);
-	ft_printf("%u\n", INT_MIN - 1);
-	ft_printf("%u\n", INT_MAX + 1);
-	ft_printf("f %%-10u = 52625, [%-10u]\n", 52625);
-	ft_printf("f %%-15u = -2562, [%-15u]\n", -2562);
-	ft_printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
-	ft_printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
-	ft_printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
-	ft_printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
-	ft_printf("%%u 0000042 == |%u|\n", 0000042);
-	ft_printf("%%u \t == |%u|\n", '\t');
-	ft_printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
-	ft_printf("printf_test\n");
-	printf("f %u\n", 4294967295u);
-	printf("%u\n", 42);
-	printf("Kashim a %u histoires à raconter\n", 1001);
-	printf("Il fait au moins %u\n", -8000);
-	printf("%u\n", -0);
-	printf("%u\n", 0);
-	printf("%u\n", INT_MAX);
-	printf("%u\n", INT_MIN);
-	printf("%u\n", INT_MIN - 1);
-	printf("%u\n", INT_MAX + 1);
-	printf("f %%-10u = 52625, [%-10u]\n", 52625);
-	printf("f %%-15u = -2562, [%-15u]\n", -2562);
-	printf("f %%-10.7u = 52625, [%-10u]\n", 52625);
-	printf("f %%15.12u = 2562, [%15.12u]\n", 2562);
-	printf("f %%10.7u = 94827, [%10.7u]\n", 94827);
-	printf("f %%15.5u = -2464, [%15.5u]\n", -2464);
-	printf("%u\n", INT_MIN - 1);
-	printf("%u\n", INT_MAX + 1);
-	printf("%%u 0000042 == |%u|\n", 0000042);
-	printf("%%u \t == |%u|\n", '\t');
-	printf("%%u Lydie == |%u|\n\n", 'L'+'y'+'d'+'i'+'e');
+	ft_printf("f %%p NULL == [%p]\n", NULL);
+	ft_printf("f %%5p NULL == [%5p]\n", NULL);
+	ft_printf("f %%2p NULL == [%2p]\n", NULL);
+	ft_printf("f %%.p NULL == [%.p]\n", NULL);
+	ft_printf("f %%5.p NULL == [%5.p]\n", NULL);
+	ft_printf("f %%2.p NULL == [%2.p]\n", NULL);;
+	ft_printf("f %%9.2p 1234 == [%9.2p]\n", 1234);
+	ft_printf("f %%2.9p 1234 == [%2.9p]\n", 1234);
+	ft_printf("f %%.5p 0 == [%.5p]\n", 0);
+	ft_printf("f %%.0p 0 == [%.0p]\n", 0);
+	ft_printf("f %%5p 0 == [%5p]\n\n", 0);
+	ft_printf("printf test\n");
+	printf("f %%p NULL == [%p]\n", NULL);
+	printf("f %%5p NULL == [%5p]\n", NULL);
+	printf("f %%2p NULL == [%2p]\n", NULL);
+	printf("f %%.p NULL == [%.p]\n", NULL);
+	printf("f %%5.p NULL == [%5.p]\n", NULL);
+	printf("f %%2.p NULL == [%2.p]\n", NULL);;
+	printf("f %%9.2p 1234 == [%9.2p]\n", 1234);
+	printf("f %%2.9p 1234 == [%2.9p]\n", 1234);
+	printf("f %%.5p 0 == [%.5p]\n", 0);
+	printf("f %%.0p 0 == [%.0p]\n", 0);
+	printf("f %%5p 0 == [%5p]\n\n", 0);
 
 	return (0);
 }

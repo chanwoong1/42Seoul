@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 08:56:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 11:03:49 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,35 @@ int	print_id(va_list ap)
 	if (args > 2147483648)
 		return (-1);
 	return (print_num(args) + sign);
+}
+
+int	print_u(t_flag *form_sp, va_list ap)
+{
+	int				r_c;
+	unsigned int	args;
+
+	args = va_arg(ap, unsigned int);
+	r_c = 0;
+	if (form_sp->minus)
+	{
+		r_c = print_num((long long)args);
+		r_c += p_p(' ', form_sp->width - id_args_lens(args));
+	}
+	else
+	{
+		if (form_sp->prec < id_args_lens(args))
+		{
+			r_c = p_p(' ', form_sp->width - id_args_lens(args));
+			r_c += print_num((long long)args);
+		}
+		else
+		{
+			r_c = p_p(' ', form_sp->width - form_sp->prec);
+			r_c += p_p('0', form_sp->prec - id_args_lens(args));
+			r_c += print_num((long long)args);
+		}
+	}
+	return (r_c);
 }
 
 int	print_with_id(t_flag *form_sp, va_list ap)
