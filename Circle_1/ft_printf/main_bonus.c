@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:17:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 14:52:32 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 15:24:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -616,10 +616,12 @@ int	main(void)
 	// printf("printf num : %d\n", num);
 	// num = printf("[%s] everywhere\n", null_str);
 	// printf("printf num : %d\n", num);
-	num = ft_printf("%5s|\n", "goes over");
+	ft_printf("ft_printf : ");
+	num = ft_printf("%1c, %1c, %1c", '5', 'x', '\n');
 	printf("num : %d\n", num);
 	printf("\n");
-	num = printf("%5s|\n", "goes over");
+	ft_printf("printf : ");
+	num = printf("%1c, %1c, %1c", '5', 'x', '\n');
 	printf("num : %d\n", num);
 	return (0);
 }
