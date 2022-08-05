@@ -6,11 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:10:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 10:11:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:17:47 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.a"
+#include "ft_printf.h"
+#include "libft/libft.h"
 #include <stdio.h>
 
 int main(void)
