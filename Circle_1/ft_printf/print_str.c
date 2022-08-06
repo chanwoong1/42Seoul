@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 15:13:49 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/06 12:45:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ int	print_p(va_list *ap)
 
 int	print_percent(va_list *ap)
 {
-	void	*tmp;
-
-	tmp = *ap;
+	(void)*ap;
 	write(1, "%%", 1);
 	return (1);
 }
