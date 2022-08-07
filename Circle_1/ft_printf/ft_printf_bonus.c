@@ -6,36 +6,36 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 15:06:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/07 14:33:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft/libft.h"
 
-int	print_form_sp(t_flag *form_sp, va_list *ap)
+int	print_form_sp(t_flag *form_sp, va_list ap)
 {
 	int	r_c;
 
 	r_c = 0;
 	if (form_sp->sp == '%')
 		r_c = print_with_percent(form_sp);
-	if (form_sp->sp == 'i' || form_sp->sp == 'd')
+	else if (form_sp->sp == 'i' || form_sp->sp == 'd')
 		r_c = print_with_id(form_sp, ap);
-	if (form_sp->sp == 'u')
+	else if (form_sp->sp == 'u')
 		r_c = print_u(form_sp, ap);
-	if (form_sp->sp == 'x' || form_sp->sp == 'X')
+	else if (form_sp->sp == 'x' || form_sp->sp == 'X')
 		r_c = print_with_x(form_sp, ap);
-	if (form_sp->sp == 'p')
+	else if (form_sp->sp == 'p')
 		r_c = print_with_p(form_sp, ap);
-	if (form_sp->sp == 'c')
+	else if (form_sp->sp == 'c')
 		r_c = print_with_c(form_sp, ap);
-	if (form_sp->sp == 's')
+	else if (form_sp->sp == 's')
 		r_c = print_with_s(form_sp, ap);
 	return (r_c);
 }
 
-int	is_printf_flag(char *format, int *idx, va_list *ap)
+int	is_printf_flag(char *format, int *idx, va_list ap)
 {
 	t_flag	*form_sp;
 	int		r_c;
@@ -58,7 +58,7 @@ int	is_printf_flag(char *format, int *idx, va_list *ap)
 	return (r_c);
 }
 
-int	count_printf(char *form, va_list *ap)
+int	count_printf(char *form, va_list ap)
 {
 	size_t		r_c;
 	int			cnt;
@@ -91,7 +91,7 @@ int	ft_printf(const char *form, ...)
 	int		r_c;
 
 	va_start(ap, form);
-	r_c = count_printf((char *)form, &ap);
+	r_c = count_printf((char *)form, ap);
 	va_end(ap);
 	return (r_c);
 }

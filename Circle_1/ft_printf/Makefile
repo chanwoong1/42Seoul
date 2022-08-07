@@ -6,12 +6,12 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/05 14:41:23 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/06 12:50:22 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
-LIBFT		= libft
+LIBFT		= ./libft
 LIBFT_LIB	= libft.a
 
 SRCS					= ft_printf.c print_str.c print_num.c print_hex_num.c
@@ -47,7 +47,7 @@ endif
 all	:	$(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	make all -C $(LIBFT)/
+	make all -C $(LIBFT)
 	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
 	$(LIBC) $(NAME) $(OBJ_FILES)
 
@@ -69,6 +69,8 @@ fclean	:	clean
 re	:	fclean all
 
 .PHONY	:	all clean fclean re bonus
+
+
 # CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 # SRCS = ft_printf.c print_str.c print_num.c print_hex_num.c
