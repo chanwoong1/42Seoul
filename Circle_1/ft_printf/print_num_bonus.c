@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 15:07:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/07 14:35:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	print_num(long long num)
 	return (ft_strlen(pt));
 }
 
-int	print_id(va_list *ap)
+int	print_id(va_list ap)
 {
 	long long	args;
 	int			sign;
 
-	args = va_arg(*ap, int);
+	args = va_arg(ap, int);
 	sign = 0;
 	if (args < 0)
 	{
@@ -48,12 +48,12 @@ int	print_id(va_list *ap)
 	return (print_num(args) + sign);
 }
 
-int	print_u(t_flag *form_sp, va_list *ap)
+int	print_u(t_flag *form_sp, va_list ap)
 {
 	int				r_c;
 	unsigned int	args;
 
-	args = va_arg(*ap, unsigned int);
+	args = va_arg(ap, unsigned int);
 	r_c = 0;
 	if (form_sp->minus)
 	{
@@ -77,13 +77,13 @@ int	print_u(t_flag *form_sp, va_list *ap)
 	return (r_c);
 }
 
-int	print_with_id(t_flag *form_sp, va_list *ap)
+int	print_with_id(t_flag *form_sp, va_list ap)
 {
 	long long	args;
 	int			sign;
 	int			r_c;
 
-	args = va_arg(*ap, int);
+	args = va_arg(ap, int);
 	sign = 0;
 	r_c = 0;
 	if (args == 0)
