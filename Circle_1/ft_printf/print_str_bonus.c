@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/07 14:36:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/07 14:59:51 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,15 @@ int	print_s(char *args, int size)
 	int	count;
 
 	count = 0;
-	if (args == NULL)
-		return (0);
 	while (size > count)
 	{
 		write(1, args, 1);
 		args++;
 		count++;
 	}
-	return (count - 1);
+	return (size);
 }
+#include<stdio.h>
 
 int	print_with_s(t_flag *form_sp, va_list ap)
 {
