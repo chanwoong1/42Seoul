@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:21:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	print_u(t_flag *form_sp, va_list *ap)
 	unsigned int	args;
 
 	args = va_arg(*ap, unsigned int);
+	if (args == 0)
+		return (id_args_zero(form_sp));
 	r_c = 0;
 	if (form_sp->minus)
 	{

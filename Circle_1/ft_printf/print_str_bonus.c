@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:56:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:02:00 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	print_s(char *args, int size)
 	}
 	return (count);
 }
-
-#include <stdio.h>
 
 int	print_with_s(t_flag *form_sp, va_list *ap)
 {

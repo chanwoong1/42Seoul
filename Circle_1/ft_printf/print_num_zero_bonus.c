@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:22:43 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:14:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ int	id_args_zero(t_flag *form_sp)
 		r_c = p_p(' ', form_sp->width);
 	else if (form_sp->dot == -1 && form_sp->width > 0)
 	{
-		r_c = p_p(' ', form_sp->width - 1);
+		if (!form_sp->minus)
+			r_c += p_p(' ', form_sp->width - 1);
 		r_c += write(1, "0", 1);
+		if (form_sp->minus)
+			r_c += p_p(' ', form_sp->width - 1);
 	}
 	else
 		r_c = write(1, "0", 1);
