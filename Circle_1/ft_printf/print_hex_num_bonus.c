@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:07:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/07 14:35:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	id_hex_lens(long long args)
 	return (i);
 }
 
-int	print_with_x(t_flag *form_sp, va_list ap)
+int	print_with_x(t_flag *form_sp, va_list *ap)
 {
 	unsigned int	args;
 	int				r_c;
@@ -87,7 +87,7 @@ int	print_with_x(t_flag *form_sp, va_list ap)
 
 	r_c = 0;
 	hashtag = 0;
-	args = va_arg(ap, unsigned int);
+	args = va_arg(*ap, unsigned int);
 	if (args == 0)
 		return (id_args_zero(form_sp));
 	if (form_sp->hash)

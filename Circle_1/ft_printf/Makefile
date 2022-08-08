@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/06 12:50:22 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/08 11:14:19 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ SRCS					= ft_printf.c print_str.c print_num.c print_hex_num.c
 # 					  ft_printf_xX_util_bonus.c \
 # 					  ft_printf_s_bonus.c
 
-BNS_SRCS = ft_printf_bonus.c ft_printf_utils_bonus.c \
-			print_hex_num_bonus.c print_num_bonus.c print_num_precision_bonus.c \
-			print_num_zero_bonus.c print_num_precision_2_bonus.c print_pointer_bonus.c \
-			print_percent_bonus.c print_str_bonus.c
+BNS_SRCS 				= ft_printf_bonus.c ft_printf_utils_bonus.c \
+							print_hex_num_bonus.c print_num_bonus.c print_num_precision_bonus.c \
+							print_num_zero_bonus.c print_num_precision_2_bonus.c print_pointer_bonus.c \
+							print_percent_bonus.c print_str_bonus.c
 
 OBJS					= $(SRCS:%.c=%.o)
 
@@ -39,7 +39,7 @@ LIBC		= ar rc
 FLAGS					= -Wall -Wextra -Werror
 
 ifdef WITH_BONUS
-	OBJ_FILES = $(OBJS) $(BNS_OBJS)
+	OBJ_FILES = $(BNS_OBJS)
 else
 	OBJ_FILES = $(OBJS)
 endif

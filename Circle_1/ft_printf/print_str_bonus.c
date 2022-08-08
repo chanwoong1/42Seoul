@@ -6,23 +6,23 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:42:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/07 14:59:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:56:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft/libft.h"
 
-int	print_c(va_list ap)
+int	print_c(va_list *ap)
 {
 	unsigned char	args;
 
-	args = va_arg(ap, int);
+	args = va_arg(*ap, int);
 	write(1, &args, 1);
 	return (1);
 }
 
-int	print_with_c(t_flag *form_sp, va_list ap)
+int	print_with_c(t_flag *form_sp, va_list *ap)
 {
 	int	r_c;
 
@@ -46,23 +46,48 @@ int	print_s(char *args, int size)
 		args++;
 		count++;
 	}
-	return (size);
+	return (count);
 }
-#include<stdio.h>
 
-int	print_with_s(t_flag *form_sp, va_list ap)
+#include <stdio.h>
+
+int	print_with_s(t_flag *form_sp, va_list *ap)
 {
 	int		r_c;
 	char	*args;
+	int		len_args;
 
 	r_c = 0;
-	args = va_arg(ap, char *);
+	args = va_arg(*ap, char *);
 	if (!args)
 		args = "(null)";
-	if (!form_sp->minus)
-		r_c += p_p(' ', form_sp->width - ft_strlen(args));
-	r_c += print_s(args, ft_strlen(args));
-	if (form_sp->minus)
-		r_c += p_p(' ', form_sp->width - ft_strlen(args));
+	len_args = ft_strlen(args);
+	if (form_sp->dot != -1)
+	{
+		if (form_sp->prec > len_args)
+		{
+			if (!form_sp->minus)
+				r_c += p_p(' ', form_sp->width - len_args);
+			r_c += print_s(args, len_args);
+			if (form_sp->minus)
+				r_c += p_p(' ', form_sp->width - len_args);
+		}
+		else
+		{
+			if (!form_sp->minus)
+				r_c += p_p(' ', form_sp->width - form_sp->prec);
+			r_c += print_s(args, form_sp->prec);
+			if (form_sp->minus)
+				r_c += p_p(' ', form_sp->width - form_sp->prec);
+		}
+	}
+	else
+	{
+		if (!form_sp->minus)
+			r_c += p_p(' ', form_sp->width - len_args);
+		r_c += print_s(args, len_args);
+		if (form_sp->minus)
+			r_c += p_p(' ', form_sp->width - len_args);
+	}
 	return (r_c);
 }

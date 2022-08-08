@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/07 14:36:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:37:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ typedef struct s_flag
 
 int		ft_printf(const char *form, ...);
 int		print_num(long long num);
-int		print_c(va_list ap);
-int		print_with_c(t_flag *form_sp, va_list ap);
+int		print_c(va_list *ap);
+int		print_with_c(t_flag *form_sp, va_list *ap);
 int		print_s(char *args, int size);
-int		print_with_s(t_flag *form_sp, va_list ap);
+int		print_with_s(t_flag *form_sp, va_list *ap);
 int		print_p(t_flag *form_sp, char *pt);
-int		print_with_p(t_flag *form_sp, va_list ap);
-int		print_id(va_list ap);
-int		print_u(t_flag *form_sp, va_list ap);
+int		print_with_p(t_flag *form_sp, va_list *ap);
+int		print_id(va_list *ap);
+int		print_u(t_flag *form_sp, va_list *ap);
 int		print_x(unsigned int args);
 int		print_xx(unsigned int args);
-int		print_with_x(t_flag *form_sp, va_list ap);
-int		print_percent(va_list ap);
+int		print_with_x(t_flag *form_sp, va_list *ap);
+int		print_percent(va_list *ap);
 int		id_args_lens(long long args);
 int		p_p(char c, int n);
 void	set_info(t_flag *form_sp);
@@ -54,7 +54,7 @@ int		print_with_percent_add(t_flag *form_sp);
 int		print_with_percent(t_flag *form_sp);
 int		id_args_zero(t_flag *form_sp);
 int		id_args_zero_2(t_flag *form_sp);
-int		print_with_id(t_flag *form_sp, va_list ap);
+int		print_with_id(t_flag *form_sp, va_list *ap);
 int		id_args_non_zero(t_flag *form_sp, long long args, int sign);
 int		id_args_non_precision(t_flag *form_sp, long long args, int sign);
 int		id_args_non_pre_non_minus(t_flag *form_sp, long long args, int sign);

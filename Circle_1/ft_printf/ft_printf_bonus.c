@@ -6,14 +6,14 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/07 14:33:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft/libft.h"
 
-int	print_form_sp(t_flag *form_sp, va_list ap)
+int	print_form_sp(t_flag *form_sp, va_list *ap)
 {
 	int	r_c;
 
@@ -35,7 +35,7 @@ int	print_form_sp(t_flag *form_sp, va_list ap)
 	return (r_c);
 }
 
-int	is_printf_flag(char *format, int *idx, va_list ap)
+int	is_printf_flag(char *format, int *idx, va_list *ap)
 {
 	t_flag	*form_sp;
 	int		r_c;
@@ -58,7 +58,7 @@ int	is_printf_flag(char *format, int *idx, va_list ap)
 	return (r_c);
 }
 
-int	count_printf(char *form, va_list ap)
+int	count_printf(char *form, va_list *ap)
 {
 	size_t		r_c;
 	int			cnt;
@@ -91,7 +91,7 @@ int	ft_printf(const char *form, ...)
 	int		r_c;
 
 	va_start(ap, form);
-	r_c = count_printf((char *)form, ap);
+	r_c = count_printf((char *)form, &ap);
 	va_end(ap);
 	return (r_c);
 }
