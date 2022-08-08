@@ -6,17 +6,23 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:50:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft/libft.h"
-
+#include <stdio.h>
 int	print_form_sp(t_flag *form_sp, va_list *ap)
 {
 	int	r_c;
 
+	// printf("form_sp->zero : %d\n", form_sp->zero);
+	// printf("form_sp->prec : %d\n", form_sp->prec);
+	// printf("form_sp->width : %d\n", form_sp->width);
+	// printf("form_sp->hash : %d\n", form_sp->hash);
+	// printf("form_sp->minus : %d\n", form_sp->minus);
+	// printf("form_sp->dot : %d\n", form_sp->dot);
 	r_c = 0;
 	if (form_sp->sp == '%')
 		r_c = print_with_percent(form_sp);

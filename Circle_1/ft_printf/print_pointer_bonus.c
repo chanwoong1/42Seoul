@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:21:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:31:09 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int	print_p(t_flag *form_sp, char *pt)
 	r_c = 0;
 	while (pt[i] == '0')
 		i++;
-	if (16 - i < form_sp->width)
-		r_c += p_p(' ', form_sp->width - i + 13);
-	r_c += write(1, "0x", 2);
 	if (i == 16)
 		i -= 1;
+	if (!form_sp->minus)
+		r_c += p_p(' ', form_sp->width - (16 - i) - 2);
+	r_c += write(1, "0x", 2);
 	r_c += write(1, pt + i, 16 - i);
+	if (form_sp->minus)
+		r_c += p_p(' ', form_sp->width - (16 - i) - 2);
 	return (r_c);
 }
 

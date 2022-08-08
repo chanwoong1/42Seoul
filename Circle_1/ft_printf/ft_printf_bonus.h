@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:37:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:51:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		print_s(char *args, int size);
 int		print_with_s(t_flag *form_sp, va_list *ap);
 int		print_p(t_flag *form_sp, char *pt);
 int		print_with_p(t_flag *form_sp, va_list *ap);
-int		print_id(va_list *ap);
 int		print_u(t_flag *form_sp, va_list *ap);
 int		print_x(unsigned int args);
 int		print_xx(unsigned int args);

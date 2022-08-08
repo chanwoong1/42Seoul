@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 13:21:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 13:48:47 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,6 @@ int	print_num(long long num)
 	return (ft_strlen(pt));
 }
 
-int	print_id(va_list *ap)
-{
-	long long	args;
-	int			sign;
-
-	args = va_arg(*ap, int);
-	sign = 0;
-	if (args < 0)
-	{
-		sign = 1;
-		args *= -1;
-		write(1, "-", 1);
-	}
-	if (args > 2147483648)
-		return (-1);
-	return (print_num(args) + sign);
-}
-
 int	print_u(t_flag *form_sp, va_list *ap)
 {
 	int				r_c;
@@ -56,26 +38,7 @@ int	print_u(t_flag *form_sp, va_list *ap)
 	args = va_arg(*ap, unsigned int);
 	if (args == 0)
 		return (id_args_zero(form_sp));
-	r_c = 0;
-	if (form_sp->minus)
-	{
-		r_c = print_num((long long)args);
-		r_c += p_p(' ', form_sp->width - id_args_lens(args));
-	}
-	else
-	{
-		if (form_sp->prec < id_args_lens(args))
-		{
-			r_c = p_p(' ', form_sp->width - id_args_lens(args));
-			r_c += print_num((long long)args);
-		}
-		else
-		{
-			r_c = p_p(' ', form_sp->width - form_sp->prec);
-			r_c += p_p('0', form_sp->prec - id_args_lens(args));
-			r_c += print_num((long long)args);
-		}
-	}
+	r_c = id_args_non_zero(form_sp, args, 0);
 	return (r_c);
 }
 

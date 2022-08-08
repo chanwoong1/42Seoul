@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:22:43 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 13:14:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:41:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ int	id_args_zero(t_flag *form_sp)
 	int	r_c;
 
 	r_c = 0;
-	if (form_sp->zero && !form_sp->prec)
+	if (form_sp->space)
+		r_c += p_p(' ', 1);
+	if (form_sp->zero && form_sp->dot == -1)
+	{
+		if (!(form_sp->width) || (form_sp->sp == 'x' || form_sp->sp == 'X'))
+			return (p_p('0', 1));
 		return (p_p('0', form_sp->width));
-	if (!form_sp->width && form_sp->prec)
+	}
+	if (!form_sp->width && form_sp->dot != -1)
 		return (p_p('0', form_sp->prec));
 	if (form_sp->zero && form_sp->width > form_sp->prec)
 		return (id_args_zero_2(form_sp));
