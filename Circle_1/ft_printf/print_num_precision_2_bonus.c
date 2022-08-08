@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:11:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 17:33:42 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:18:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	id_args_prec_width_minus2(t_flag *form_sp, long long args, int sign)
 	int	r_c;
 
 	r_c = 0;
-	if (form_sp->plus && sign)
-		r_c += write(1, " ", 1);
+	if (form_sp->plus)
+		sign = 0;
 	if (form_sp->prec > id_args_lens(args))
 		r_c += p_p(' ', form_sp->width - form_sp->prec - sign - form_sp->plus);
 	else
@@ -75,7 +75,7 @@ int	id_args_prec(t_flag *form_sp, long long args, int sign)
 		r_c = id_args_prec_width(form_sp, args, sign);
 	else
 	{
-		if (form_sp->space && form_sp->plus)
+		if ((form_sp->space || form_sp->plus) && !sign)
 			r_c += write(1, "+", 1);
 		else if (form_sp->space && !sign)
 			r_c += write(1, " ", 1);

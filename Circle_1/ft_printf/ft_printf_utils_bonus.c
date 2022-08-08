@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 13:30:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:05:27 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	set_info(t_flag *form_sp)
 	form_sp->space = 0;
 	form_sp->width = 0;
 	form_sp->prec = 0;
+	form_sp->plus = 0;
 }
 
 void	info_get_zero(t_flag *form_sp)

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:17:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 17:41:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:29:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -666,20 +666,30 @@ int	main(void)
 // printf("[%#10.5x]\n", 0x1234);
 // ft_printf("[%0x]\n", 0);
 // printf("[%0x]\n", 0);
-// printf(" [% d] \n", 0);
-// ft_printf(" [% d] \n", 0);
-// printf(" [% d] \n", LONG_MIN);
-// ft_printf(" [% d] \n", LONG_MIN);
+printf(" [% d] \n", 0);
+ft_printf(" [% d] \n", 0);
+printf(" [% d] \n", LONG_MIN);
+ft_printf(" [% d] \n", LONG_MIN);
 // ft_printf("[%-100.100u]\n", 5);
 // printf("[%-100.100u]\n", 5);
 // printf("%1d, %1d, %1d, %1d, %1d, %1d, %1d, %1d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 // ft_printf("%1d, %1d, %1d, %1d, %1d, %1d, %1d, %1d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 // printf("32 This is an int : %0d\n\n", 0);
 // ft_printf("32 This is an int : %0d\n\n", 0);
+// printf("32 This is an int : %0i\n\n", 0);
+// ft_printf("32 This is an int : %0i\n\n", 0);
+// printf("32 This is an int : %0u\n\n", 0);
+// ft_printf("32 This is an int : %0u\n\n", 0);
 // printf("%20.5d\n", -1024);
 // ft_printf("%20.5d\n", -1024);
-printf("%5.u\n", 1);
-ft_printf("%5.u\n", 1);
+// printf("%5.u\n", 1);
+// ft_printf("%5.u\n", 1);
+// printf("%100d, %100d, %100d, %100d, %100d, %100d, %100d, %100d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+// ft_printf("%100d, %100d, %100d, %100d, %100d, %100d, %100d, %100d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+// printf("[%24c]\n", (char)0);
+// ft_printf("[%24c]", (char)0);
+
+
 
 	return (0);
 }
