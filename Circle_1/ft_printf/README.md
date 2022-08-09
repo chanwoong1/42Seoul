@@ -117,28 +117,35 @@ if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
 
 **%**
 
-- '%' 단독 사용의 경우
-- width의 존재
-	- '-'인 경우
-	- '-'가 없는 경우
-- '0'이 있는경우
-	- '-'인 경우
-	- '-'가 없는 경우
+- flag : '-', '0', ' '
+- width
 
-**i, d**
+**i, d, u**
 
-- 인자가 0인 경우
-	- '.'이 존재하고 width가 없는 경우
-	- '.'이 존재하고 precision이 없는 경우
-	- '.'이 존재하지 않고 width가 0보다 큰 경우
-	- 그 외의 경우
-- 인자가 0이 아닌 경우
-	- precision이 존재하지 않는 경우
-		- width가 존재하는 경우
-			- ' '(공백)이 존재하는 경우
-				- '+' 존재 여부
-			- '0'이 존재하는 경우
-		- width가 존재하지 않는 경우
-	- precision이 존재하는 경우
-		- width 존재 여부
-			
+- flag : '-', '0', ' ', '+'
+- width
+- precision
+
+**c**
+
+- flag : '-'
+- width : O
+- precision : X
+
+**s**
+
+- flag : '-'
+- width : O
+- precision : O
+
+**p**
+
+- flag : '-'
+- width : O
+- precision : X
+
+**x, X**
+
+- flag : '-' '0' '#'
+- width : O
+- precision : O
