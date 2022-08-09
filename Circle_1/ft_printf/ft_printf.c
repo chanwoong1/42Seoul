@@ -6,55 +6,55 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:23:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	print_form_sp(t_flag *form_sp, va_list *ap)
+int	print_opt(t_flag *opt, va_list *ap)
 {
 	int	r_c;
 
 	r_c = 0;
-	if (form_sp->sp == '%')
-		r_c = print_with_percent(form_sp);
-	else if (form_sp->sp == 'i' || form_sp->sp == 'd')
-		r_c = print_with_id(form_sp, ap);
-	else if (form_sp->sp == 'u')
-		r_c = print_u(form_sp, ap);
-	else if (form_sp->sp == 'x' || form_sp->sp == 'X')
-		r_c = print_with_x(form_sp, ap);
-	else if (form_sp->sp == 'p')
-		r_c = print_with_p(form_sp, ap);
-	else if (form_sp->sp == 'c')
-		r_c = print_with_c(form_sp, ap);
-	else if (form_sp->sp == 's')
-		r_c = print_with_s(form_sp, ap);
+	if (opt->sp == '%')
+		r_c = print_with_percent(opt);
+	else if (opt->sp == 'i' || opt->sp == 'd')
+		r_c = print_with_id(opt, ap);
+	else if (opt->sp == 'u')
+		r_c = print_u(opt, ap);
+	else if (opt->sp == 'x' || opt->sp == 'X')
+		r_c = print_with_x(opt, ap);
+	else if (opt->sp == 'p')
+		r_c = print_with_p(opt, ap);
+	else if (opt->sp == 'c')
+		r_c = print_with_c(opt, ap);
+	else if (opt->sp == 's')
+		r_c = print_with_s(opt, ap);
 	return (r_c);
 }
 
 int	is_printf_flag(char *format, int *idx, va_list *ap)
 {
-	t_flag	*form_sp;
+	t_flag	*opt;
 	int		r_c;
 
 	r_c = 0;
 	(*idx)++;
-	form_sp = malloc(sizeof(t_flag));
-	set_info(form_sp);
+	opt = malloc(sizeof(t_flag));
+	set_info(opt);
 	while (ft_strchr("-0.# +123456789", format[*idx]))
 	{
-		fill_info(form_sp, format, *idx);
+		fill_info(opt, format, *idx);
 		(*idx)++;
 	}
 	if (ft_strchr("cspdiuxX%", format[*idx]))
 	{
-		form_sp->sp = format[*idx];
-		r_c = print_form_sp(form_sp, ap);
+		opt->sp = format[*idx];
+		r_c = print_opt(opt, ap);
 	}
-	free(form_sp);
+	free(opt);
 	return (r_c);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_num_bonus.c                                  :+:      :+:    :+:   */
+/*   print_num.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:23:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ int	print_num(long long num)
 	return (ft_strlen(pt));
 }
 
-int	print_u(t_flag *form_sp, va_list *ap)
+int	print_u(t_flag *opt, va_list *ap)
 {
 	int				r_c;
 	unsigned int	args;
 
 	args = va_arg(*ap, unsigned int);
 	if (args == 0)
-		return (id_args_zero(form_sp));
-	r_c = id_args_non_zero(form_sp, args, 0);
+		return (id_args_zero(opt));
+	r_c = id_args_non_zero(opt, args, 0);
 	return (r_c);
 }
 
-int	print_with_id(t_flag *form_sp, va_list *ap)
+int	print_with_id(t_flag *opt, va_list *ap)
 {
 	long long	args;
 	int			sign;
@@ -52,7 +52,7 @@ int	print_with_id(t_flag *form_sp, va_list *ap)
 	sign = 0;
 	r_c = 0;
 	if (args == 0)
-		return (id_args_zero(form_sp));
+		return (id_args_zero(opt));
 	if (args < 0)
 	{
 		sign = 1;
@@ -60,6 +60,6 @@ int	print_with_id(t_flag *form_sp, va_list *ap)
 	}
 	if (args > 2147483648)
 		return (-1);
-	r_c = id_args_non_zero(form_sp, args, sign);
+	r_c = id_args_non_zero(opt, args, sign);
 	return (r_c);
 }

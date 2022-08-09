@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 10:21:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:23:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-int	print_p(t_flag *form_sp, char *pt)
+int	print_p(t_flag *opt, char *pt)
 {
 	int	i;
 	int	r_c;
@@ -25,16 +25,16 @@ int	print_p(t_flag *form_sp, char *pt)
 		i++;
 	if (i == 16)
 		i -= 1;
-	if (!form_sp->minus)
-		r_c += p_p(' ', form_sp->width - (16 - i) - 2);
+	if (!opt->minus)
+		r_c += p_p(' ', opt->width - (16 - i) - 2);
 	r_c += write(1, "0x", 2);
 	r_c += write(1, pt + i, 16 - i);
-	if (form_sp->minus)
-		r_c += p_p(' ', form_sp->width - (16 - i) - 2);
+	if (opt->minus)
+		r_c += p_p(' ', opt->width - (16 - i) - 2);
 	return (r_c);
 }
 
-int	print_with_p(t_flag *form_sp, va_list *ap)
+int	print_with_p(t_flag *opt, va_list *ap)
 {
 	unsigned char		*args;
 	int					i;
@@ -53,6 +53,6 @@ int	print_with_p(t_flag *form_sp, va_list *ap)
 		i++;
 	}
 	pt[16] = '\0';
-	r_c = print_p(form_sp, pt);
+	r_c = print_p(opt, pt);
 	return (r_c);
 }

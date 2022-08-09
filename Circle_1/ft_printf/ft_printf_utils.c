@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:25:05 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:48:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,53 +23,53 @@ int	p_p(char c, int n)
 	return (r_c);
 }
 
-void	set_info(t_flag *form_sp)
+void	set_info(t_flag *opt)
 {
-	form_sp->sp = '\0';
-	form_sp->minus = 0;
-	form_sp->zero = 0;
-	form_sp->dot = -1;
-	form_sp->hash = 0;
-	form_sp->space = 0;
-	form_sp->width = 0;
-	form_sp->prec = 0;
-	form_sp->plus = 0;
+	opt->sp = '\0';
+	opt->minus = 0;
+	opt->zero = 0;
+	opt->dot = -1;
+	opt->hash = 0;
+	opt->space = 0;
+	opt->width = 0;
+	opt->prec = 0;
+	opt->plus = 0;
 }
 
-void	info_get_zero(t_flag *form_sp)
+void	info_get_zero(t_flag *opt)
 {
-	if (form_sp->dot > -1)
-		form_sp->prec = form_sp->prec * 10;
-	else if (form_sp->width)
-		form_sp->width = form_sp->width * 10;
+	if (opt->dot > -1)
+		opt->prec = opt->prec * 10;
+	else if (opt->width)
+		opt->width = opt->width * 10;
 	else
-		form_sp->zero = 1;
+		opt->zero = 1;
 }
 
-void	fill_info(t_flag *form_sp, char *format, int idx)
+void	fill_info(t_flag *opt, char *format, int idx)
 {
 	if (ft_strchr("0", format[idx]))
-		return (info_get_zero(form_sp));
+		return (info_get_zero(opt));
 	if (ft_strchr("-.# +", format[idx]))
 	{
 		if (format[idx] == '-')
-			form_sp->minus = 1;
+			opt->minus = 1;
 		else if (format[idx] == '.')
-			form_sp->dot = 1;
+			opt->dot = 1;
 		else if (format[idx] == '#')
-			form_sp->hash = 1;
+			opt->hash = 1;
 		else if (format[idx] == ' ')
-			form_sp->space = 1;
+			opt->space = 1;
 		else if (format[idx] == '+')
-			form_sp->plus = 1;
+			opt->plus = 1;
 		return ;
 	}
 	if (ft_strchr("123456789", format[idx]))
 	{
-		if (form_sp->dot > -1)
-			form_sp->prec = (form_sp->prec * 10) + (format[idx] - '0');
+		if (opt->dot > -1)
+			opt->prec = (opt->prec * 10) + (format[idx] - '0');
 		else
-			form_sp->width = (form_sp->width * 10) + (format[idx] - '0');
+			opt->width = (opt->width * 10) + (format[idx] - '0');
 	}
 }
 

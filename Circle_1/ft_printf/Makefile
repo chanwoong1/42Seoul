@@ -6,17 +6,18 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/09 13:24:47 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/09 14:38:22 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS = ft_printf.c ft_printf_utils_bonus.c \
-		print_hex_num_bonus.c print_num_bonus.c print_num_precision_bonus.c \
-		print_num_zero_bonus.c print_num_precision_2_bonus.c print_pointer_bonus.c \
-		print_percent_bonus.c print_str_bonus.c
+OBJS = ft_printf.c ft_printf_utils.c \
+		print_hex_num.c print_hex_num_2.c \
+		print_num.c print_num_precision.c print_num_precision_2.c \
+		print_zero.c print_zero_2.c\
+		print_pointer.c print_percent.c print_str.c
 
 OBJS_FILES	= $(OBJS:c=o)
 
@@ -55,4 +56,3 @@ re :
 	make all
 
 .PHONY: all clean fclean re
-
