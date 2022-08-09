@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_mand.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 12:14:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/05 15:12:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:25:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_MAND_H
+# define FT_PRINTF_MAND_H
 
 # include <unistd.h>
 # include <stdlib.h>

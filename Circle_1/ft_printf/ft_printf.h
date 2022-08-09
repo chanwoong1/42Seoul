@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:19:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 14:51:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:23:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_BONUS_H
-# define FT_PRINTF_BONUS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdlib.h>

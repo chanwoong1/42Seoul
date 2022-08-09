@@ -6,11 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:11:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:13:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:34:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 
 int	id_args_prec_width_minus2(t_flag *form_sp, long long args, int sign)
@@ -49,8 +49,6 @@ int	id_args_prec_width_minus(t_flag *form_sp, long long args, int sign)
 	r_c += print_num(args);
 	if (form_sp->minus)
 		r_c += id_args_prec_width_minus2(form_sp, args, sign);
-	if (form_sp->minus && form_sp->space && !sign && id_args_lens(args) >= form_sp->width)
-		r_c += write(1, " ", 1);
 	return (r_c);
 }
 

@@ -6,11 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:31:36 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:05:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:25:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 
 int	p_p(char c, int n)

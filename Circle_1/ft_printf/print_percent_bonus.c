@@ -6,11 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:33:51 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 12:36:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:26:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 
 int	print_with_percent_add(t_flag *form_sp)

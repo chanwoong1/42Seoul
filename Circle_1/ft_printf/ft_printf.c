@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 12:33:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:23:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 
 int	print_form_sp(t_flag *form_sp, va_list *ap)

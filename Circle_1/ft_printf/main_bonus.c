@@ -6,11 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:17:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 13:05:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:28:40 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 #include <stdio.h>
 #include <limits.h>
@@ -698,12 +698,14 @@ int	main(void)
 // ft_printf(" [%-+5d] \n", 5);
 // printf(" [%- 5.d] \n", 5);
 // ft_printf(" [%- 5.d] \n", 5);
-printf("[%0+-8.5d]\n", 0);
-ft_printf("[%0+-8.5d]\n", 0);
-printf("[% +05d]\n", 432);
-ft_printf("[% +05d]\n", 432);
-printf("[% +010d]\n", 432);
-ft_printf("[% +010d]\n", 432);
+// printf("[%0+-8.5d]\n", 0);
+// ft_printf("[%0+-8.5d]\n", 0);
+// printf("[% +05d]\n", 432);
+// ft_printf("[% +05d]\n", 432);
+// printf("[% +010d]\n", 432);
+// ft_printf("[% +010d]\n", 432);
+printf("\\!/%- 7.2d\\!/\n", 912230000);
+ft_printf("\\!/%- 7.2d\\!/\n", 912230000);
 
 
 

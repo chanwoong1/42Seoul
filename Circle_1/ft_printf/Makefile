@@ -6,19 +6,19 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 13:25:55 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/09 13:17:23 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/09 13:24:47 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS = ft_printf_bonus.c ft_printf_utils_bonus.c \
+OBJS = ft_printf.c ft_printf_utils_bonus.c \
 		print_hex_num_bonus.c print_num_bonus.c print_num_precision_bonus.c \
 		print_num_zero_bonus.c print_num_precision_2_bonus.c print_pointer_bonus.c \
 		print_percent_bonus.c print_str_bonus.c
 
-OBJS_FILES	= $(BONUS:c=o)
+OBJS_FILES	= $(OBJS:c=o)
 
 NAME = libftprintf.a
 LIBFTDIR	= ./libft
@@ -33,9 +33,9 @@ RM= rm -rf
 	$(CC) $(CFLAGS) -c $< -I.
 
 $(NAME) : $(OBJS_FILES)
-	make -C $(LIBFTDIR)cp $(LIBFTDIR)/$(LIBFTFILE) $(NAME)
-	
-	$(AR) $(ARFLAGS) $@ $(OBJS_FILES)
+	make -C $(LIBFTDIR)
+	cp $(LIBFTDIR)/$(LIBFTFILE) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS_FILES)
 
 all : $(NAME)
 
@@ -55,3 +55,4 @@ re :
 	make all
 
 .PHONY: all clean fclean re
+
