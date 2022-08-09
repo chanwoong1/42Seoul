@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:17:18 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 18:29:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:23:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -666,10 +666,10 @@ int	main(void)
 // printf("[%#10.5x]\n", 0x1234);
 // ft_printf("[%0x]\n", 0);
 // printf("[%0x]\n", 0);
-printf(" [% d] \n", 0);
-ft_printf(" [% d] \n", 0);
-printf(" [% d] \n", LONG_MIN);
-ft_printf(" [% d] \n", LONG_MIN);
+// printf(" [% d] \n", 0);
+// ft_printf(" [% d] \n", 0);
+// printf(" [% d] \n", LONG_MIN);
+// ft_printf(" [% d] \n", LONG_MIN);
 // ft_printf("[%-100.100u]\n", 5);
 // printf("[%-100.100u]\n", 5);
 // printf("%1d, %1d, %1d, %1d, %1d, %1d, %1d, %1d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
@@ -688,7 +688,20 @@ ft_printf(" [% d] \n", LONG_MIN);
 // ft_printf("%100d, %100d, %100d, %100d, %100d, %100d, %100d, %100d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
 // printf("[%24c]\n", (char)0);
 // ft_printf("[%24c]", (char)0);
+// printf(" [% .d] \n", 5);
+// ft_printf(" [% .d] \n", 5);
+// printf(" [% .5d] \n", 0);
+// ft_printf(" [% .5d] \n", 0);
+// printf(" [%0+.d] \n", 0);
+// ft_printf(" [%0+.d] \n", 0);
+// printf(" [%-+5d] \n", 5);
+// ft_printf(" [%-+5d] \n", 5);
+printf(" [%- 5.d] \n", 5);
+ft_printf(" [%- 5.d] \n", 5);
 
+
+// ">------------<%26c>------------<" and arg: (char)0 -> got: 31 expected 54
+// bad return value for format "\\!/%52c\\!/" and arg: (char)0 -> got: 11 expected 60
 
 
 	return (0);

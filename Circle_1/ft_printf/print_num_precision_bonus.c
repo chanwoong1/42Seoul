@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:45:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/08 19:26:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:10:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ int	id_args_non_p_non_m_zero(t_flag *form_sp, long long args, int sign)
 	}
 	else
 	{
-		r_c += p_p('0', form_sp->width - id_args_lens(args));
+		if (form_sp->space)
+			r_c += write(1, " ", 1);
+		if (form_sp->plus)
+			r_c += write(1, "+", 1);
+		r_c += p_p('0', form_sp->width - id_args_lens(args) - form_sp->plus - form_sp->space);
 		r_c += print_num(args);
 	}
 	return (r_c);
@@ -66,14 +70,16 @@ int	id_args_non_precision(t_flag *form_sp, long long args, int sign)
 		r_c = id_args_non_pre_non_minus(form_sp, args, sign);
 	else
 	{
-		if (form_sp->plus)
+		if (form_sp->plus && !sign)
 			r_c += write(1, "+", 1);
 		else if (form_sp->space && !sign)
 			r_c += write(1, " ", 1);
 		if (sign)
 			r_c += write(1, "-", 1);
+		if (sign && (form_sp->plus || form_sp->space))
+			sign = 0;
 		r_c += print_num(args);
-		r_c += p_p(' ', form_sp->width - id_args_lens(args) - sign);
+		r_c += p_p(' ', form_sp->width - form_sp->space - id_args_lens(args) - sign - form_sp->plus);
 	}
 	return (r_c);
 }
