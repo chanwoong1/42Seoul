@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:45:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 10:10:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:11:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ int	id_args_non_p_non_m_zero(t_flag *form_sp, long long args, int sign)
 	}
 	else
 	{
-		if (form_sp->space)
+		if (form_sp->space && !(form_sp->zero && form_sp->space && form_sp->plus) && !form_sp->minus)
 			r_c += write(1, " ", 1);
 		if (form_sp->plus)
 			r_c += write(1, "+", 1);
+		if (form_sp->zero && form_sp->space && form_sp->plus)
+			r_c += write(1, "0", 1);
 		r_c += p_p('0', form_sp->width - id_args_lens(args) - form_sp->plus - form_sp->space);
 		r_c += print_num(args);
 	}

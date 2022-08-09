@@ -17,9 +17,9 @@
 git clone https://github.com/gavinfielder/pft.git
 cd pft
 make
-./enable-test bonus 
-./disable-test “*star*” 
-./test 0 1300
+./enable-test bonus
+./disable-test "*star*"
+./test 0 1236
 mv results.txt ../results.txt
 cd ..
 

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 08:22:43 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 11:02:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:58:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	id_plus_and_zero(t_flag *form_sp)
 	int	r_c;
 	
 	r_c = 0;
-	if (form_sp->width > 0 && form_sp->dot != -1)
+	if (!form_sp->minus && form_sp->width > 0 && form_sp->dot != -1)
 		r_c += p_p(' ', form_sp->width - 1 - form_sp->prec);
 	r_c += write(1, "+", 1);
 	if (!(form_sp->width > 0 && form_sp->dot != -1))
@@ -117,6 +117,8 @@ int	id_plus_and_zero(t_flag *form_sp)
 	r_c += p_p('0', form_sp->prec);
 	if (form_sp->dot == -1)
 		r_c += write(1, "0", 1);
+	if (form_sp->minus && form_sp->width > 0 && form_sp->dot != -1)
+		r_c += p_p(' ', form_sp->width - 1 - form_sp->prec);
 	return (r_c);
 }
 

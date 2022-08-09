@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:11:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 10:44:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:13:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	id_args_prec_width_minus(t_flag *form_sp, long long args, int sign)
 	int	r_c;
 
 	r_c = 0;
-	if (form_sp->space && !sign && id_args_lens(args) >= form_sp->width)
+	if (!form_sp->minus && form_sp->space && !sign && id_args_lens(args) >= form_sp->width)
 		r_c += write(1, " ", 1);
-	else if (form_sp->minus && form_sp->space && !sign && form_sp->dot != -1)
+	else if (form_sp->minus && form_sp->space && !sign && form_sp->dot != -1 && !form_sp->plus)
 	{
 		r_c += write(1, " ", 1);
 		form_sp->width -= 1;
@@ -49,6 +49,8 @@ int	id_args_prec_width_minus(t_flag *form_sp, long long args, int sign)
 	r_c += print_num(args);
 	if (form_sp->minus)
 		r_c += id_args_prec_width_minus2(form_sp, args, sign);
+	if (form_sp->minus && form_sp->space && !sign && id_args_lens(args) >= form_sp->width)
+		r_c += write(1, " ", 1);
 	return (r_c);
 }
 

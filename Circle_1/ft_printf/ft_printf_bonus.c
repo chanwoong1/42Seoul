@@ -6,13 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 10:18:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/09 11:08:30 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:33:14 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft/libft.h"
-#include <stdio.h>
+
 int	print_form_sp(t_flag *form_sp, va_list *ap)
 {
 	int	r_c;
