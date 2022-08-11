@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/11 17:16:42 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:29:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct
 }			t_linked_stack;
 
 int		main(int ac, char **av);
-void	val_av(int ac, char **av, t_linked_stack *a);
+void	stacking(int ac, char **av, t_linked_stack *a);
 void	init(t_linked_stack *s);
 int		is_empty(t_linked_stack *s);
 void	push(t_linked_stack *s, int item);
