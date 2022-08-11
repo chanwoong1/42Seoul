@@ -10,6 +10,10 @@
 		- [2. 함수 포인터를 활용한 지정자 별 출력](#2.-함수-포인터를-활용한-지정자-별-출력)
 		- [3. 과정](#3.-과정)
 - [Chapter 4](#Chapter-4)
+	- [Bonus Part](#Bonus-Part)
+		- [1. 과정](#1.-과정)
+- [Chapter 5](#Chapter-5)
+	- 
 
 ## Chapter 1
 
@@ -107,7 +111,7 @@ if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
 
 ## Chapter 4
 
-### Bonus part
+### Bonus Part
 
 보너스 부분은 printf함수의 부가적인 기능들을 수행할 수 있도록 해야한다.
 
@@ -129,23 +133,37 @@ if ((unsigned char)(*form) == '%' && val_f[(unsigned char)(*(++form))])
 **c**
 
 - flag : '-'
-- width : O
-- precision : X
+- width
 
 **s**
 
 - flag : '-'
-- width : O
-- precision : O
+- width
+- precision
 
 **p**
 
 - flag : '-'
-- width : O
-- precision : X
+- width
 
 **x, X**
 
 - flag : '-' '0' '#'
-- width : O
-- precision : O
+- width
+- precision
+
+플래그들과 너비, 정밀도를 정리한 후, 구현을 시작했다. 구현이 거의 다 끝날 때 부터 printf tester들을 사용하기 시작했다. 플래그 조합들을 제대로 정리하지 않으면 막바지에 수정하는 작업이 상상 이상으로 길어지므로 최대한 깔끔하게 정리한 뒤 코드를 짜는 것을 추천한다.
+
+#### 1. 과정
+
+bonus part의 플래그들을 제대로 사용하기 위해서는 구조체가 필요하다. 구조체를 통해 각각의 플래그들을 담아주고, 서식 지정자 별 플래그를 적용시켜 출력시키면 된다. 말은 간단한데 코드는 간단하지 않다 ... 웬만하면 보너스 코드는 보지 않길 바람 ...
+
+## Chapter 5
+
+### 느낀 점
+
+mandatory part만 구현하는 것은 생각보다 시간이 오래 걸리지 않고 할 만 했다. 대략 2일정도 걸린것 같고, 바로 bonus part를 시작했다. subject에 나와있듯이 bonus를 구현하려면 mandatory를 구현하는 것 부터 신경을 써야한다. 나는 그걸 간과하고 코드를 짜서, mandatory를 구현한 코드를 엄청 많이 수정해야 했다.
+
+bonus part는 구현하는 데 7일정도 걸린 것 같다. 생각보다 완성은 빨랐으나, 수정 사항이 굉장히 많았고, 작업 또한 굉장히 오래걸렸다. 자칫 잘못해서 플래그가 꼬이기 시작하면, 하나를 고치면 다른 하나가 터지는 불상사가 발생하기도 한다.
+
+다음 과제부터는 과제 파악과 이해를 조금 더 깊게 한 뒤 과제를 수행하고, 의사코드를 짜는 연습을 해서 코드 작성 중 뒤엎는 일을 최소화 할 수 있도록 해야겠다.

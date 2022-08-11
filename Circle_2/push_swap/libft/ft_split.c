@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/17 14:15:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/11 09:44:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_size_check(char const *str, char c)
+static int	ft_size_check(char const *str, char c)
 {
 	int	size;
 	int	i;
@@ -31,7 +31,7 @@ int	ft_size_check(char const *str, char c)
 	return (size);
 }
 
-int	ft_str_check(char const *str, char c)
+static int	ft_str_check(char const *str, char c)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ int	ft_str_check(char const *str, char c)
 	return (i);
 }
 
-void	free_arr(char **arr, int i)
+static void	free_arr(char **arr, int i)
 {
 	while (i > 0)
 	{
