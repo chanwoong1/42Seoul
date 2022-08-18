@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/11 19:32:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:31:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,143 +14,74 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-void	free_node(t_linked_stack *head)
+void	ps_error(void)
 {
-	while (!is_empty(head))
-		pop(head);
+	write(1, "error\n", 6);
+	exit(1);
 }
 
-void	stacking(int ac, char **av, t_linked_stack *a)
+void	sa(t_var *stacks)
 {
-	int	idx;
-	int	s_idx;
+	t_node	*tmp1;
+	t_node	*tmp2;
 
-	idx = 1;
-	while (idx < ac)
-	{
-		s_idx = 0;
-		while (av[idx][s_idx])
-		{
-			if (ft_strchr("-0123456789", av[idx][s_idx]) == 0)
-			{
-				free_node(a);
-				return ;
-			}
-			s_idx++;
-		}
-		push(a, ft_atoi(av[idx]));
-		idx++;
-	}
+	tmp1 = pop_top(stacks->stack_a);
+	tmp2 = pop_top(stacks->stack_a);
+	push_top(stacks->stack_a, tmp1);
+	push_top(stacks->stack_a, tmp2);
 }
 
-void free_arr(char **arr)
+void	sb(t_var *stacks)
 {
-	int	arr_size;
+	t_node	*tmp1;
+	t_node	*tmp2;
 
-	arr_size = 0;
-	while (arr[arr_size] != 0)
-		arr_size++;
-	while (arr_size > 0)
-	{
-		free(arr[arr_size - 1]);
-		arr_size--;
-	}
-	free(arr);
+	tmp1 = pop_top(stacks->stack_b);
+	tmp2 = pop_top(stacks->stack_b);
+	push_top(stacks->stack_b, tmp1);
+	push_top(stacks->stack_b, tmp2);
 }
 
-int	ps_arrlen(char **arr)
+void	ss(t_var *stacks)
 {
-	int	size;
-
-	size = 0;
-	while (arr[size] != 0)
-		size++;
-	return (size);
+	sa(stacks);
+	sb(stacks);
 }
 
-void	ps_arrcat(char ***dest, char **src)
+void	pa(t_var *stacks)
 {
-	int	idx;
-	int	s_idx;
-	int	ss_idx;
-
-	idx = 0;
-	s_idx = 0;
-	while (*dest[idx] != 0)
-		idx++;
-	while (src[s_idx] != 0)
-	{
-		if (!(*dest[idx] = (char *)malloc(sizeof(ft_strlen(src[s_idx] + 1)))))
-		{
-			*dest[0] = 0;
-			return ;
-		}
-		ss_idx = -1;
-		while (src[s_idx][++ss_idx])
-			*dest[idx][ss_idx] = src[s_idx][ss_idx];
-		*dest[idx][ss_idx] = '\0';
-		s_idx++;
-		idx++;
-	}
-	*dest[idx] = 0;
+	push_top(stacks->stack_a, pop_top(stacks->stack_b));
 }
 
-char	**ps_arrjoin(char **arr1, char **arr2)
+void	pb(t_var *stacks)
 {
-	char	**copy;
-	int		arr1_size;
-	int		arr2_size;
-
-	arr1_size = ps_arrlen(arr1);
-	arr2_size = ps_arrlen(arr2);
-	copy = (char **)malloc(sizeof(char *) * (arr1_size + arr2_size + 1));
-	if (!copy)
-		return (0);
-	copy[0] = 0;
-	ps_arrcat(&copy, arr1);
-	if (copy[0] == 0)
-		return (0);
-	ps_arrcat(&copy, arr2);
-	return (copy);
+	push_top(stacks->stack_b, pop_top(stacks->stack_a));
 }
 
-char	**val_av(int ac, char **av)
+void	ra(t_var *stacks)
 {
-	int		idx;
-	char	**tmp;
-	char	**ret_av;
-	char	**tmp_av;
+	t_node	*tmp;
 
-	idx = 1;
-	if (!(ret_av = (char **)malloc(sizeof(char *))))
-		return (NULL);
-	ret_av[0] = 0;
-	while (idx < ac)
-	{
-		tmp = ft_split(av[idx], ' ');
-		if (tmp[0] == 0)
-			return (NULL);
-		if (!(tmp_av = ps_arrjoin(ret_av, tmp)))
-			return (NULL);
-		free_arr(ret_av);
-		ret_av = tmp_av;
-		idx++;
-	}
-	return (ret_av);
+	tmp = pop_top(stacks->stack_a);
+	push_bottom(stacks->stack_a, tmp);
 }
 
 int	main(int ac, char **av)
 {
-	t_linked_stack	a;
-	char			**v_av;
+	t_var	stacks;
+	t_node	*tmp;
 
-	if (ac <= 1)
-		return (FAIL);
-	init(&a);
-	v_av = val_av(ac, av);
-	stacking(ac, av, &a);
-	printf("%d\n", pop(&a));
-	printf("%d\n", pop(&a));
-	printf("%d\n", pop(&a));
-	printf("%d\n", is_empty(&a));
+	if (ac >= 2)
+	{
+		init_stack(&stacks);
+		valid_stacking_args(ac, av, &stacks);
+	}
+	sa(&stacks);
+	tmp = pop_top((&stacks)->stack_a);
+	while (tmp)
+	{
+		printf("%d\n", tmp->val);
+		tmp = pop_top((&stacks)->stack_a);
+	}
+	return (0);
 }
