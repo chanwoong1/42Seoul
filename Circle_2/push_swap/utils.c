@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 20:32:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:53:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ps_error(void)
 {
-	write(1, "error\n", 6);
+	write(1, "Error\n", 6);
 	exit(1);
 }
 

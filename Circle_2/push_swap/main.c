@@ -6,13 +6,18 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 20:32:49 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:59:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdio.h>
+
+void	operating(t_var *stacks);
+{
+	
+}
 
 int	main(int ac, char **av)
 {
@@ -25,6 +30,7 @@ int	main(int ac, char **av)
 		valid_stacking_args(ac, av, &stacks);
 		check_sort(&stacks);
 		indexing(&stacks);
+		operating(&stacks);
 	}
 	// rra(&stacks);
 	tmp = pop_top((&stacks)->stack_a);
