@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:52:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 19:51:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:26:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	overlap_checker(t_var *stacks, int check)
 	stacks->list = new_tmp;
 }
 
-void	valid_stacking_args(int ac, char **av, t_var *stacks)
+void	validate_args(int ac, char **av, t_var *stacks)
 {
 	int		idx;
 	int		tmp_idx;
@@ -110,7 +110,7 @@ void	valid_stacking_args(int ac, char **av, t_var *stacks)
 	while (idx < ac)
 	{
 		tmp_size = ps_size_check(av[idx], ' ');
-		if (tmp == 0)
+		if (tmp_size == 0)
 			ps_error();
 		tmp = ft_split(av[idx], ' ');
 		tmp_idx = 0;
@@ -120,7 +120,6 @@ void	valid_stacking_args(int ac, char **av, t_var *stacks)
 				ps_error();
 			new_node = get_new_node(ps_atoi(tmp[tmp_idx]));
 			overlap_checker(stacks, new_node->val);
-			push_top(stacks->stack_a, new_node);
 			tmp_idx++;
 		}
 		idx++;

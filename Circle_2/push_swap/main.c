@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 20:59:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:32:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-void	operating(t_var *stacks);
+void	operating(t_var *stacks)
 {
 	
+}
+
+void	stacking(t_var *stacks)
+{
+	t_node	*new_node;
+	int		idx;
+
+	idx = 0;
+	while (idx < stacks->list_size)
+	{
+		new_node = get_new_node(stacks->list[idx]);
+		push_top(stacks->stack_a, new_node);
+		idx++;
+	}
+	stacks->a_size = stacks->list_size;
 }
 
 int	main(int ac, char **av)
@@ -27,9 +42,10 @@ int	main(int ac, char **av)
 	if (ac >= 2)
 	{
 		init_stack(&stacks);
-		valid_stacking_args(ac, av, &stacks);
+		validate_args(ac, av, &stacks);
 		check_sort(&stacks);
 		indexing(&stacks);
+		stacking(&stacks);
 		operating(&stacks);
 	}
 	// rra(&stacks);

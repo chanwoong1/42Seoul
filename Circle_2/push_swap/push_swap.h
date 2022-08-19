@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 20:33:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 00:26:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		find_list_max(t_var *stacks);
 void	indexing(t_var	*stacks);
 
 /* stacking.c */
-void	valid_stacking_args(int ac, char **av, t_var *stacks);
+void	validate_args(int ac, char **av, t_var *stacks);
 
 /* stack.c */
 void	init_stack(t_var *var);
