@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/18 19:53:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:21:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,44 @@ typedef struct s_var
 	int					*pivot_arr;
 	struct s_stack		*stack_a;
 	struct s_stack		*stack_b;
-	char				**list;
+	int					*list;
 	int					list_size;
 	int					a_size;
 	int					b_size;
 }	t_var;
 
-
+/* main.c */
 int		main(int ac, char **av);
-void	stacking(int ac, char **av, t_var *stacks);
-void	valid_stacking_args(int ac, char **av, t_var *stacks);
 void	ps_error(void);
+
+/* stacking.c */
+void	valid_stacking_args(int ac, char **av, t_var *stacks);
+
+/* stack.c */
+void	init_stack(t_var *var);
+void	push_top(t_stack *stack, t_node *new_node);
+void	push_bottom(t_stack *stack, t_node *new_node);
+
+/* stack2.c */
 t_node	*pop_top(t_stack *stack);
 t_node	*pop_bottom(t_stack *stack);
 t_node	*get_new_node(int num);
-void	init_stack(t_var *var);
-void	push_bottom(t_stack *stack, t_node *new_node);
-void	push_top(t_stack *stack, t_node *new_node);
+
+/* operations.c */
+void	sa(t_var *stacks);
+void	sb(t_var *stacks);
+void	ss(t_var *stacks);
+void	pa(t_var *stacks);
+void	pb(t_var *stacks);
+
+/* operations2.c */
+void	ra(t_var *stacks);
+void	rb(t_var *stacks);
+void	rr(t_var *stacks);
+
+/* operations3.c */
+void	rra(t_var *stacks);
+void	rrb(t_var *stacks);
+void	rrr(t_var *stacks);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:52:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/18 20:10:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 15:22:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,48 +72,26 @@ static int	ps_valid_atoi(char *str)
 	return (1);
 }
 
-static void	free_arr(char **arr, int i)
+static void	overlap_checker(t_var *stacks, int check)
 {
-	while (i > 0)
-	{
-		free(arr[i]);
-		i--;
-	}
-	free(arr);
-}
-
-void	overlap_checker(t_var *stacks, char *check)
-{
-	char	**overlap_list;
-	char	**tmp_list;
-	char	**new_tmp;
-	int		list_size;
+	int		*new_tmp;
 	int		idx;
 
-	overlap_list = stacks->list;
-	list_size = stacks->list_size;
 	idx = 0;
-	while (idx < list_size)
+	while (idx < stacks->list_size)
 	{
-		if (ft_strncmp(overlap_list[idx], check, ft_strlen(check)))
+		if (stacks->list[idx] - check == 0)
 			ps_error();
 		idx++;
 	}
-	list_size++;
-	new_tmp = (char **)malloc(sizeof(char));
-	new_tmp[0] = 0;
-	idx = 0;
-	while (overlap_list[idx])
-	{
-		tmp_list = ft_strjoin(new_tmp, overlap_list[idx]);
-		free_arr(new_tmp, idx);
-		new_tmp = tmp_list;
-		idx++;
-	}
-	tmp_list = ft_strjoin(new_tmp, check);
-	free_arr(new_tmp, idx);
-	free_arr(stacks->list);
-	stacks->list = tmp_list;
+	stacks->list_size++;
+	new_tmp = (int *)malloc(sizeof(int) * stacks->list_size);
+	idx = -1;
+	while (++idx < stacks->list_size)
+		new_tmp[idx] = stacks->list[idx];
+	new_tmp[idx] = check;
+	free(stacks->list);
+	stacks->list = new_tmp;
 }
 
 void	valid_stacking_args(int ac, char **av, t_var *stacks)
@@ -127,7 +105,8 @@ void	valid_stacking_args(int ac, char **av, t_var *stacks)
 	idx = 1;
 	while (idx < ac)
 	{
-		if ((tmp_size = ps_size_check(av[idx], ' ')) == 0)
+		tmp_size = ps_size_check(av[idx], ' ');
+		if (tmp == 0)
 			ps_error();
 		tmp = ft_split(av[idx], ' ');
 		tmp_idx = 0;
@@ -136,7 +115,7 @@ void	valid_stacking_args(int ac, char **av, t_var *stacks)
 			if (!ps_valid_atoi(tmp[tmp_idx]))
 				ps_error();
 			new_node = get_new_node(ps_atoi(tmp[tmp_idx]));
-			overlab_checker(stacks, tmp[tmp_idx]);
+			overlap_checker(stacks, new_node->val);
 			push_top(stacks->stack_a, new_node);
 			tmp_idx++;
 		}

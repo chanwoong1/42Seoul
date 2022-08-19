@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 15:16:34 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/19 15:16:22 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/19 15:17:40 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
-void	ps_error(void)
+void	ra(t_var *stacks)
 {
-	write(1, "error\n", 6);
-	exit(1);
-}
-
-int	main(int ac, char **av)
-{
-	t_var	stacks;
 	t_node	*tmp;
 
-	if (ac >= 2)
-	{
-		init_stack(&stacks);
-		valid_stacking_args(ac, av, &stacks);
-	}
-	sa(&stacks);
-	tmp = pop_top((&stacks)->stack_a);
-	while (tmp)
-	{
-		printf("%d\n", tmp->val);
-		tmp = pop_top((&stacks)->stack_a);
-	}
-	return (0);
+	tmp = pop_top(stacks->stack_a);
+	push_bottom(stacks->stack_a, tmp);
+}
+
+void	rb(t_var *stacks)
+{
+	t_node	*tmp;
+
+	tmp = pop_top(stacks->stack_b);
+	push_bottom(stacks->stack_b, tmp);
+}
+
+void	rr(t_var *stacks)
+{
+	ra(stacks);
+	rb(stacks);
 }
