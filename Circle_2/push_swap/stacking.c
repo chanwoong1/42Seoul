@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:52:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 15:22:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 19:51:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static int	ps_atoi(const char *str)
 {
-	int	ret;
-	int	sign;
+	long long	ret;
+	int			sign;
 
 	ret = 0;
 	sign = 1;
@@ -27,15 +27,14 @@ static int	ps_atoi(const char *str)
 	if (*str == '+' || *str == '-')
 		str++;
 	if (!(*str >= '0' && *str <= '9'))
-	{
 		ps_error();
-		return (0);
-	}
 	while (*str >= '0' && *str <= '9')
 	{
 		ret = ret * 10 + (*str - '0');
 		str++;
 	}
+	if (ret * sign > 2147483647 || ret * sign < -2147483648)
+		ps_error();
 	return (sign * ret);
 }
 
@@ -86,10 +85,15 @@ static void	overlap_checker(t_var *stacks, int check)
 	}
 	stacks->list_size++;
 	new_tmp = (int *)malloc(sizeof(int) * stacks->list_size);
-	idx = -1;
-	while (++idx < stacks->list_size)
-		new_tmp[idx] = stacks->list[idx];
-	new_tmp[idx] = check;
+	if (stacks->list_size == 1)
+		new_tmp[0] = check;
+	else
+	{
+		idx = -1;
+		while (++idx < stacks->list_size - 1)
+			new_tmp[idx] = stacks->list[idx];
+		new_tmp[idx] = check;
+	}
 	free(stacks->list);
 	stacks->list = new_tmp;
 }

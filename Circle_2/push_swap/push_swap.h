@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 15:21:29 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:33:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ typedef struct s_var
 
 /* main.c */
 int		main(int ac, char **av);
+
+/* utils.c */
 void	ps_error(void);
+void	check_sort(t_var *stacks);
+int		find_list_max(t_var *stacks);
+void	indexing(t_var	*stacks);
 
 /* stacking.c */
 void	valid_stacking_args(int ac, char **av, t_var *stacks);
