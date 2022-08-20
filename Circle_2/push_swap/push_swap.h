@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/20 00:26:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:16:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int		main(int ac, char **av);
 void	ps_error(void);
 void	check_sort(t_var *stacks);
 int		find_list_max(t_var *stacks);
-void	indexing(t_var	*stacks);
+void	indexing(t_var *stacks);
+void	stacking(t_var *stacks);
 
-/* stacking.c */
+/* validate.c */
 void	validate_args(int ac, char **av, t_var *stacks);
 
 /* stack.c */
@@ -85,5 +86,11 @@ void	rr(t_var *stacks);
 void	rra(t_var *stacks);
 void	rrb(t_var *stacks);
 void	rrr(t_var *stacks);
+
+/* sort_two_three_args.c */
+void	sort_two_args(t_var *stacks);
+void	sort_three_args(t_var *stacks);
+void	sort_three_args_add_on(t_var *stacks, t_node *tmp);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 20:53:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 12:31:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	find_list_max(t_var *stacks)
 	return (-1);
 }
 
-void	indexing(t_var	*stacks)
+void	indexing(t_var *stacks)
 {
 	int	*idx_list;
 	int	idx;
@@ -78,4 +78,20 @@ void	indexing(t_var	*stacks)
 	}
 	free(stacks->list);
 	stacks->list = idx_list;
+}
+
+void	stacking(t_var *stacks)
+{
+	t_node	*new_node;
+	int		idx;
+
+	idx = 0;
+	while (idx < stacks->list_size)
+	{
+		new_node = get_new_node(stacks->list[idx]);
+		push_top(stacks->stack_a, new_node);
+		idx++;
+	}
+	stacks->a_size = stacks->list_size;
+	stacks->max_size = stacks->list_size;
 }
