@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_two_three_args.c                              :+:      :+:    :+:   */
+/*   sort_234_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 14:16:08 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/20 14:17:00 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:40:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,31 @@ void	sort_three_args(t_var *stacks)
 		return ;
 	}
 	push_top(stacks->stack_a, tmp);
+}
+
+void	sort_four_args(t_var *stacks)
+{
+	t_node	*tmp;
+
+	while (1)
+	{
+		tmp = pop_top(stacks->stack_a);
+		if (tmp->val == 3)
+		{
+			push_top(stacks->stack_a, tmp);
+			pb(stacks);
+			write(1, "pb\n", 3);
+			stacks->list_size--;
+			sort_three_args(stacks);
+			pa(stacks);
+			write(1, "pa\n", 3);
+			stacks->list_size++;
+			ra(stacks);
+			write(1, "ra\n", 3);
+			break ;
+		}
+		push_top(stacks->stack_a, tmp);
+		ra(stacks);
+		write(1, "ra\n", 3);
+	}
 }

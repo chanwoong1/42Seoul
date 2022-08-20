@@ -6,18 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/20 14:29:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:40:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdio.h>
-
-void	sort_four_args(t_var *stacks)
-{
-	
-}
 
 void	operating(t_var *stacks)
 {
@@ -44,7 +39,6 @@ int	main(int ac, char **av)
 		stacking(&stacks);
 		operating(&stacks);
 	}
-	// sa(&stacks);
 	idx = 0;
 	while (idx < (&stacks)->list_size)
 	{
