@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:16:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 15:17:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/21 13:12:26 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ra(t_var *stacks)
 
 	tmp = pop_top(stacks->stack_a);
 	push_bottom(stacks->stack_a, tmp);
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_var *stacks)
@@ -27,10 +28,12 @@ void	rb(t_var *stacks)
 
 	tmp = pop_top(stacks->stack_b);
 	push_bottom(stacks->stack_b, tmp);
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_var *stacks)
 {
 	ra(stacks);
 	rb(stacks);
+	write(1, "rr\n", 3);
 }

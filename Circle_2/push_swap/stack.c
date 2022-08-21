@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:12:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/19 15:11:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:00:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_stack(t_var *var)
 	var->stack_b->bottom->left = var->stack_b->top;
 	var->list = (int *)malloc(sizeof(int));
 	var->list_size = 0;
+	var->a_size = 0;
+	var->b_size = 0;
 }
 
 void	push_top(t_stack *stack, t_node *new_node)
