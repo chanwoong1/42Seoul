@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:20:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/21 13:12:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
 void	rra(t_var *stacks)
 {

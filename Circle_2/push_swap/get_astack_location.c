@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 00:51:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 01:06:17 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
 int	set_a_location_min(t_var *stacks)
 {
@@ -23,7 +22,7 @@ int	set_a_location_min(t_var *stacks)
 	ret = 0;
 	tmp = 0;
 	stack_a = stacks->stack_a->top->right;
-	index = get_stack_min(stacks->stack_a->top->right);
+	index = get_stack_min(stacks);
 	while (stack_a)
 	{
 		tmp = stack_a->val;
@@ -47,7 +46,7 @@ int	set_a_location_max(t_var *stacks)
 	ret = 0;
 	tmp = 0;
 	stack_a = stacks->stack_a->top->right;
-	index = get_stack_max(stacks->stack_a->top->right);
+	index = get_stack_max(stacks);
 	while (stack_a)
 	{
 		tmp = stack_a->val;
@@ -85,9 +84,9 @@ int	set_a_location(int num, t_var *stacks)
 {
 	int	ret;
 
-	if (num < get_stack_min(stacks->stack_a->top->right))
+	if (num < get_stack_min(stacks))
 		ret = set_a_location_min(stacks);
-	else if (num > get_stack_max(stacks->stack_a->top->right))
+	else if (num > get_stack_max(stacks))
 		ret = set_a_location_max(stacks);
 	else
 		ret = set_a_location_mid(num, stacks);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/11 09:44:20 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/22 10:58:39 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/22 11:37:26 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 static int	ft_size_check(char const *str, char c)
 {
@@ -55,7 +55,7 @@ static void	free_arr(char **arr, int i)
 	free(arr);
 }
 
-char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
+static char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
 {
 	int	len;
 	int	j;

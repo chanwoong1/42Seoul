@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 01:15:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:36:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_var
 int		main(int ac, char **av);
 int		ft_get_bigger(int a, int b, int a_loc, int b_loc);
 void	ft_sort_big_last(t_var *stacks);
-void	print_stack(t_var *stacks);
+char	*ft_strchr(const char *s, int c);
 
 /* utils.c */
 void	ps_error(void);
@@ -59,6 +59,9 @@ void	check_sort(t_var *stacks);
 int		find_list_max(t_var *stacks);
 void	indexing(t_var *stacks);
 void	stacking(t_var *stacks);
+
+/* split.c */
+char	**ft_split(char const *s, char c);
 
 /* validate.c */
 void	validate_args(int ac, char **av, t_var *stacks);
@@ -98,9 +101,16 @@ void	sort_four_args(t_var *stacks);
 /* sort.c */
 void	divide_pivot(t_var *stacks);
 void	sort_args_for_astack(t_var *stacks);
-int		get_stack_min(t_node *stack);
-int		get_stack_max(t_node *stack);
+int		get_stack_min(t_var *stacks);
+int		get_stack_max(t_var *stacks);
 void	ft_rotate_same(t_var *stacks, int *a, int *b);
+
+/* sort2.c */
+void	ft_sort_big_last(t_var *stacks);
+int		ft_get_bigger(int a, int b, int a_loc, int b_loc);
+void	ft_rotate_a(t_var *stacks, int a);
+void	ft_rotate_b(t_var *stacks, int b);
+void	sort_args(t_var *stacks);
 
 /* get_astack_location.c */
 void	get_min_rotate(t_var *stacks, int *a, int *b);

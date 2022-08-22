@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_234_args.c                                    :+:      :+:    :+:   */
+/*   sort_34_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 14:16:08 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/21 13:28:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
 void	sort_three_args_add_on(t_var *stacks, t_node *tmp)
 {

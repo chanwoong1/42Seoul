@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 23:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 01:07:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:37:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
 void	divide_pivot(t_var *stacks)
 {
@@ -26,11 +25,11 @@ void	divide_pivot(t_var *stacks)
 	while (times < stacks->max_size)
 	{
 		tmp = pop_top(stacks->stack_a);
-		if (tmp->val <= p2)
+		if (tmp->val < p2)
 		{
 			push_top(stacks->stack_a, tmp);
 			pb(stacks);
-			if (tmp->val <= p1)
+			if (tmp->val < p1)
 				rb(stacks);
 		}
 		else
@@ -69,30 +68,40 @@ void	sort_args_for_astack(t_var *stacks)
 		rra(stacks);
 }
 
-int	get_stack_min(t_node *stack)
+int	get_stack_min(t_var *stacks)
 {
-	int	ret;
+	int		ret;
+	int		times;
+	t_node	*stack;
 
+	stack = stacks->stack_a->top->right;
 	ret = stack->val;
-	while (stack->right)
+	times = 0;
+	while (times < stacks->a_size - 1)
 	{
 		if (ret > stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;
+		times++;
 	}
 	return (ret);
 }
 
-int	get_stack_max(t_node *stack)
+int	get_stack_max(t_var *stacks)
 {
-	int	ret;
+	int		ret;
+	int		times;
+	t_node	*stack;
 
+	stack = stacks->stack_a->top->right;
 	ret = stack->val;
-	while (stack->right)
+	times = 0;
+	while (times < stacks->a_size - 1)
 	{
 		if (ret < stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;
+		times++;
 	}
 	return (ret);
 }
