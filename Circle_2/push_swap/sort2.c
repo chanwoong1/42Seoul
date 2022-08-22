@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:35:41 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 11:36:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:10:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	sort_args(t_var *stacks)
 		if (stacks->stack_a->top->right->val > \
 			stacks->stack_a->top->right->right->val)
 			sa(stacks);
-		pa(stacks);
 	}
-	sort_args_for_astack(stacks);
+	if (stacks->a_size == 3)
+		sort_args_for_astack(stacks);
 	while (stacks->b_size)
 	{
 		a = 0;

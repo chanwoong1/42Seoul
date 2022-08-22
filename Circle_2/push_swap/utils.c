@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:16:41 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	stacking(t_var *stacks)
 	while (idx < stacks->list_size)
 	{
 		new_node = get_new_node(stacks->list[idx]);
-		push_top(stacks->stack_a, new_node);
+		push_bottom(stacks->stack_a, new_node);
 		idx++;
 	}
 	stacks->a_size = stacks->list_size;

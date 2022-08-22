@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 11:36:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:21:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		main(int ac, char **av);
 int		ft_get_bigger(int a, int b, int a_loc, int b_loc);
 void	ft_sort_big_last(t_var *stacks);
 char	*ft_strchr(const char *s, int c);
+// void	print_stack(t_var *stacks);
 
 /* utils.c */
 void	ps_error(void);
