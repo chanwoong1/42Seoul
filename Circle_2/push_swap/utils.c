@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 16:16:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:53:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_sort(t_var *stacks)
 	check = 0;
 	while (idx > 1)
 	{
-		if (stacks->list[idx - 1] - stacks->list[idx - 2] < 0)
+		if (stacks->list[idx - 1] - stacks->list[idx - 2] > 0)
 			check++;
 		idx--;
 	}
@@ -87,7 +87,7 @@ void	stacking(t_var *stacks)
 	idx = 0;
 	while (idx < stacks->list_size)
 	{
-		new_node = get_new_node(stacks->list[idx]);
+		new_node = get_new_node(stacks->list[idx] + 1);
 		push_bottom(stacks->stack_a, new_node);
 		idx++;
 	}
