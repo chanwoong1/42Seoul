@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 00:51:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 18:39:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 01:11:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,17 @@ int	set_a_location_mid(int num, t_var *stacks)
 	t_node		*stack_a;
 	int			ret;
 	int			idx;
+	// int			first;
 
 	stack_a = stacks->stack_a->top->right;
+	// first = stack_a->val;
 	ret = 1;
 	idx = 0;
 	// printf("stacks->a_size : %d\n", stacks->a_size);
 	while (idx < stacks->a_size)
 	{
+		if (stack_a->right->val == 0)
+			return (0);
 		if (num > stack_a->val && num < stack_a->right->val)
 			break ;
 		ret++;
@@ -111,7 +115,7 @@ void	get_min_rotate(t_var *stacks, int *a, int *b)
 
 	idx = 0;
 	b_node = stacks->stack_b->top->right;
-	printf("b_node : %d\n", b_node->val);
+	// printf("b_node : %d\n", b_node->val);
 	while (idx < stacks->b_size)
 	{
 		num = b_node->val;
@@ -125,7 +129,7 @@ void	get_min_rotate(t_var *stacks, int *a, int *b)
 			*a = a_location;
 			*b = b_location;
 		}
-		printf("num, *a, *b : %d, %d, %d\n", num, *a, *b);
+		// printf("num, *a, *b : %d, %d, %d\n", num, *a, *b);
 		b_node = b_node->right;
 		idx++;
 	}
