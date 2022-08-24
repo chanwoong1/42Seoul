@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 00:51:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 21:32:36 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:09:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ int	set_a_location_mid(int num, t_var *stacks)
 	t_node		*stack_a;
 	int			ret;
 	int			idx;
+	// int			first;
 
 	stack_a = stacks->stack_a->top->right;
+	// first = stack_a->val;
 	ret = 1;
 	idx = 0;
 	// printf("stacks->a_size : %d\n", stacks->a_size);
