@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:35:41 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 18:38:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:13:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	sort_args(t_var *stacks)
 		sort_args_for_astack(stacks);
 	while (stacks->b_size)
 	{
-		printf("stacks->b_size : %d\n", stacks->b_size);
+		// printf("stacks->b_size : %d\n", stacks->b_size);
 		a = 0;
 		b = 0;
 		get_min_rotate(stacks, &a, &b);

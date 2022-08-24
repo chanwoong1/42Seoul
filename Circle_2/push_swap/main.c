@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 18:36:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:30:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,31 @@ void	operating(t_var *stacks)
 		sort_args(stacks);
 }
 
+void	print_a_stack(t_var *stacks)
+{
+	int	idx;
+	t_node	*a;
+
+	ra(stacks);
+	idx = 0;
+	a = stacks->stack_a->top;
+	while (idx < stacks->a_size + 2)
+	{
+		printf("%d\n",a->val);
+		a = a->right;
+		idx++;
+	}
+	printf("\n\n");
+	idx = 0;
+	a = stacks->stack_a->bottom->left;
+	while (idx < stacks->a_size + 1)
+	{
+		printf("%d\n",a->val);
+		a = a->left;
+		idx++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_var	stacks;
@@ -47,6 +72,7 @@ int	main(int ac, char **av)
 		check_sort(&stacks);
 		indexing(&stacks);
 		stacking(&stacks);
+		print_a_stack(&stacks);
 		operating(&stacks);
 		// print_stack(&stacks);
 		exit(0);
