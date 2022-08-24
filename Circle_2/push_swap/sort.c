@@ -6,11 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 23:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/23 11:40:58 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:32:59 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	divide_pivot(t_var *stacks)
 {
@@ -79,6 +80,8 @@ int	get_stack_min(t_var *stacks)
 	times = 0;
 	while (times < stacks->a_size - 1)
 	{
+		// if (stack->val == 0)
+		// 	printf("min\n");
 		if (ret > stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;
@@ -98,6 +101,8 @@ int	get_stack_max(t_var *stacks)
 	times = 0;
 	while (times < stacks->a_size - 1)
 	{
+		// if (stack->val == 0)
+		// 	printf("max\n");
 		if (ret < stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;

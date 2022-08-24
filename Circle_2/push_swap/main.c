@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 00:29:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:36:01 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 		indexing(&stacks);
 		stacking(&stacks);
 		operating(&stacks);
-		print_stack(&stacks);
+		// print_stack(&stacks);
 		exit(0);
 	}
 	ps_error();
@@ -63,22 +63,22 @@ void	print_stack(t_var *stacks)
 	int		idx2;
 
 	printf("\n\nstacks\n| ----- |\n");
-	idx = -1;
+	idx = 0;
 	if (stacks->a_size < stacks->b_size)
-		while (++idx < stacks->list_size - stacks->b_size)
+		while (++idx < stacks->list_size - stacks->b_size + 1)
 			printf("|       | %d\n", idx);
 	else
 	while (++idx < stacks->list_size - stacks->a_size)
 		printf("|       | %d\n", idx);
 	if (stacks->a_size < stacks->b_size)
-		while (idx < stacks->list_size - stacks->a_size)
+		while (idx < stacks->list_size - stacks->a_size + 1)
 		{
 			tmpb = pop_top(stacks->stack_b);
 			printf("|     %d | %d\n", tmpb->val, idx);
 			idx++;
 		}
 	else
-		while (idx < stacks->list_size - stacks->b_size)
+		while (idx < stacks->list_size - stacks->b_size + 1)
 		{
 			tmpa = pop_top(stacks->stack_a);
 			printf("| %d     | %d\n", tmpa->val, idx);
@@ -90,7 +90,7 @@ void	print_stack(t_var *stacks)
 		{
 			tmpa = pop_top(stacks->stack_a);
 			tmpb = pop_top(stacks->stack_b);
-			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
+			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx + 1);
 			idx2++;
 		}
 	else
@@ -98,7 +98,7 @@ void	print_stack(t_var *stacks)
 		{
 			tmpa = pop_top(stacks->stack_a);
 			tmpb = pop_top(stacks->stack_b);
-			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
+			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx + 1);
 			idx2++;
 		}
 	printf("| ----- |\n| A   B | idx\n");

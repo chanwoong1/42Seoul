@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 00:51:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 16:27:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:39:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	set_a_location_min(t_var *stacks)
 	int			tmp;
 	t_node		*stack_a;
 
-	// printf("min\n");
 	ret = 0;
 	tmp = 0;
 	stack_a = stacks->stack_a->top->right;
@@ -45,12 +44,10 @@ int	set_a_location_max(t_var *stacks)
 	int			tmp;
 	t_node		*stack_a;
 
-	// printf("max\n");
 	ret = 0;
 	tmp = 0;
 	stack_a = stacks->stack_a->top->right;
 	index = get_stack_max(stacks);
-	// printf("stack_a, index : %d, %d\n", stack_a->val, index);
 	while (ret < stacks->a_size)
 	{
 		tmp = stack_a->val;
@@ -62,7 +59,6 @@ int	set_a_location_max(t_var *stacks)
 	ret++;
 	if (ret >= (stacks->a_size + 1) / 2)
 		ret = (stacks->a_size - ret) * -1;
-	// printf("ret : %d\n", ret);
 	return (ret);
 }
 
@@ -72,11 +68,10 @@ int	set_a_location_mid(int num, t_var *stacks)
 	int			ret;
 	int			idx;
 
-	// printf("mid\n");
 	stack_a = stacks->stack_a->top->right;
-	// printf("mid->val : %d\n", stack_a->val);
 	ret = 1;
 	idx = 0;
+	// printf("stacks->a_size : %d\n", stacks->a_size);
 	while (idx < stacks->a_size)
 	{
 		if (num > stack_a->val && num < stack_a->right->val)
@@ -94,12 +89,15 @@ int	set_a_location(int num, t_var *stacks)
 {
 	int	ret;
 
+	// if (num == 6)
+	// printf("num, stacks->a_size : %d, %d\n", num, stacks->a_size);
 	if (num < get_stack_min(stacks))
 		ret = set_a_location_min(stacks);
 	else if (num > get_stack_max(stacks))
 		ret = set_a_location_max(stacks);
 	else
 		ret = set_a_location_mid(num, stacks);
+	// printf("ret : %d\n", ret);
 	return (ret);
 }
 
@@ -113,7 +111,7 @@ void	get_min_rotate(t_var *stacks, int *a, int *b)
 
 	idx = 0;
 	b_node = stacks->stack_b->top->right;
-	printf("num : %d\n", b_node->val);
+	printf("b_node : %d\n", b_node->val);
 	while (idx < stacks->b_size)
 	{
 		num = b_node->val;
@@ -127,8 +125,9 @@ void	get_min_rotate(t_var *stacks, int *a, int *b)
 			*a = a_location;
 			*b = b_location;
 		}
+		printf("num, *a, *b : %d, %d, %d\n", num, *a, *b);
 		b_node = b_node->right;
 		idx++;
 	}
-	printf("a, b : %d, %d\n", *a, *b);
+	// printf("clear\n");
 }

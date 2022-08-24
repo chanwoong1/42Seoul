@@ -6,11 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:35:41 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 15:10:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:38:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	ft_sort_big_last(t_var *stacks)
 {
@@ -100,12 +101,17 @@ void	sort_args(t_var *stacks)
 		sort_args_for_astack(stacks);
 	while (stacks->b_size)
 	{
+		printf("stacks->b_size : %d\n", stacks->b_size);
 		a = 0;
 		b = 0;
 		get_min_rotate(stacks, &a, &b);
+		// printf("get_min_rotate clear\n");
 		ft_rotate_same(stacks, &a, &b);
+		// printf("ft_rotate_same clear\n");
 		ft_rotate_a(stacks, a);
+		// printf("ft_rotate_a clear\n");
 		ft_rotate_b(stacks, b);
+		// printf("ft_rotate_b clear\n");
 		pa(stacks);
 	}
 	ft_sort_big_last(stacks);

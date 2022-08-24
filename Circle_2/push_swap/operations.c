@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:13:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:41:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,22 @@ void	ss(t_var *stacks)
 
 void	pa(t_var *stacks)
 {
-	push_top(stacks->stack_a, pop_top(stacks->stack_b));
-	stacks->a_size++;
-	stacks->b_size--;
-	write(1, "pa\n", 3);
+	if (stacks->stack_b->top->right->val != 0)
+	{
+		push_top(stacks->stack_a, pop_top(stacks->stack_b));
+		stacks->a_size++;
+		stacks->b_size--;
+		write(1, "pa\n", 3);
+	}
 }
 
 void	pb(t_var *stacks)
 {
-	push_top(stacks->stack_b, pop_top(stacks->stack_a));
-	stacks->a_size--;
-	stacks->b_size++;
-	write(1, "pb\n", 3);
+	if (stacks->stack_a->top->right->val != 0)
+	{
+		push_top(stacks->stack_b, pop_top(stacks->stack_a));
+		stacks->a_size--;
+		stacks->b_size++;
+		write(1, "pb\n", 3);
+	}
 }
