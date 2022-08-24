@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/23 11:52:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:29:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,58 +48,58 @@ int	main(int ac, char **av)
 		indexing(&stacks);
 		stacking(&stacks);
 		operating(&stacks);
-		// print_stack(&stacks);
+		print_stack(&stacks);
 		exit(0);
 	}
 	ps_error();
 	return (0);
 }
 
-// void	print_stack(t_var *stacks)
-// {
-// 	t_node	*tmpa;
-// 	t_node	*tmpb;
-// 	int		idx;
-// 	int		idx2;
+void	print_stack(t_var *stacks)
+{
+	t_node	*tmpa;
+	t_node	*tmpb;
+	int		idx;
+	int		idx2;
 
-// 	printf("\n\nstacks\n| ----- |\n");
-// 	idx = -1;
-// 	if (stacks->a_size < stacks->b_size)
-// 		while (++idx < stacks->list_size - stacks->b_size)
-// 			printf("|       | %d\n", idx);
-// 	else
-// 	while (++idx < stacks->list_size - stacks->a_size)
-// 		printf("|       | %d\n", idx);
-// 	if (stacks->a_size < stacks->b_size)
-// 		while (idx < stacks->list_size - stacks->a_size)
-// 		{
-// 			tmpb = pop_top(stacks->stack_b);
-// 			printf("|     %d | %d\n", tmpb->val, idx);
-// 			idx++;
-// 		}
-// 	else
-// 		while (idx < stacks->list_size - stacks->b_size)
-// 		{
-// 			tmpa = pop_top(stacks->stack_a);
-// 			printf("| %d     | %d\n", tmpa->val, idx);
-// 			idx++;
-// 		}
-// 	idx2 = 0;
-// 	if (stacks->a_size < stacks->b_size)
-// 		while (idx2 < stacks->a_size)
-// 		{
-// 			tmpa = pop_top(stacks->stack_a);
-// 			tmpb = pop_top(stacks->stack_b);
-// 			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
-// 			idx2++;
-// 		}
-// 	else
-// 		while (idx2 < stacks->b_size)
-// 		{
-// 			tmpa = pop_top(stacks->stack_a);
-// 			tmpb = pop_top(stacks->stack_b);
-// 			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
-// 			idx2++;
-// 		}
-// 	printf("| ----- |\n| A   B | idx\n");
-// }
+	printf("\n\nstacks\n| ----- |\n");
+	idx = -1;
+	if (stacks->a_size < stacks->b_size)
+		while (++idx < stacks->list_size - stacks->b_size)
+			printf("|       | %d\n", idx);
+	else
+	while (++idx < stacks->list_size - stacks->a_size)
+		printf("|       | %d\n", idx);
+	if (stacks->a_size < stacks->b_size)
+		while (idx < stacks->list_size - stacks->a_size)
+		{
+			tmpb = pop_top(stacks->stack_b);
+			printf("|     %d | %d\n", tmpb->val, idx);
+			idx++;
+		}
+	else
+		while (idx < stacks->list_size - stacks->b_size)
+		{
+			tmpa = pop_top(stacks->stack_a);
+			printf("| %d     | %d\n", tmpa->val, idx);
+			idx++;
+		}
+	idx2 = 0;
+	if (stacks->a_size < stacks->b_size)
+		while (idx2 < stacks->a_size)
+		{
+			tmpa = pop_top(stacks->stack_a);
+			tmpb = pop_top(stacks->stack_b);
+			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
+			idx2++;
+		}
+	else
+		while (idx2 < stacks->b_size)
+		{
+			tmpa = pop_top(stacks->stack_a);
+			tmpb = pop_top(stacks->stack_b);
+			printf("| %d   %d | %d\n", tmpa->val, tmpb->val, idx2 + idx);
+			idx2++;
+		}
+	printf("| ----- |\n| A   B | idx\n");
+}
