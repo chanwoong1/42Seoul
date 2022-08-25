@@ -6,16 +6,21 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/23 11:53:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 10:41:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_error(void)
+char	*ft_strchr(const char *s, int c)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	while (*s != (unsigned char)c)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }
 
 void	check_sort(t_var *stacks)

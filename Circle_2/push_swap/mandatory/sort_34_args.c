@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 14:16:08 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 10:30:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,31 @@ void	sort_four_args(t_var *stacks)
 		push_top(stacks->stack_a, tmp);
 		ra(stacks);
 	}
+}
+
+void	sort_args_for_astack(t_var *stacks)
+{
+	int	top;
+	int	mid;
+	int	bot;
+
+	top = stacks->stack_a->top->right->val;
+	mid = stacks->stack_a->top->right->right->val;
+	bot = stacks->stack_a->top->right->right->right->val;
+	if (top > mid && mid > bot && top > bot)
+	{
+		sa(stacks);
+		rra(stacks);
+	}
+	else if (top > mid && bot > mid && top > bot)
+		ra(stacks);
+	else if (mid > top && mid > bot && bot > top)
+	{
+		sa(stacks);
+		ra(stacks);
+	}
+	else if (top > mid && bot > mid && bot > top)
+		sa(stacks);
+	else if (mid > top && mid > bot && top > bot)
+		rra(stacks);
 }

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 15:56:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 10:40:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,10 @@ typedef struct s_var
 
 /* main.c */
 int		main(int ac, char **av);
-int		ft_get_bigger(int a, int b, int a_loc, int b_loc);
-void	ft_sort_big_last(t_var *stacks);
-char	*ft_strchr(const char *s, int c);
-void	print_stack(t_var *stacks);
+void	ps_error(void);
 
 /* utils.c */
-void	ps_error(void);
+char	*ft_strchr(const char *s, int c);
 void	check_sort(t_var *stacks);
 int		find_list_max(t_var *stacks);
 void	indexing(t_var *stacks);
@@ -98,26 +95,29 @@ void	rrr(t_var *stacks);
 void	sort_three_args(t_var *stacks);
 void	sort_three_args_add_on(t_var *stacks, t_node *tmp);
 void	sort_four_args(t_var *stacks);
+void	sort_args_for_astack(t_var *stacks);
 
 /* sort.c */
+void	operating(t_var *stacks);
+void	sort_args(t_var *stacks);
+void	sort_big_last(t_var *stacks);
+
+/* sort_rotate.c */
+void	get_min_rotate(t_var *stacks, int *a, int *b);
+void	rotate_a(t_var *stacks, int a);
+void	rotate_b(t_var *stacks, int b);
+void	rotate_same(t_var *stacks, int *a, int *b);
+
+/* sort_utils.c */
 void	divide_pivot(t_var *stacks);
-void	sort_args_for_astack(t_var *stacks);
+int		get_bigger(int a, int b, int a_loc, int b_loc);
 int		get_stack_min(t_var *stacks);
 int		get_stack_max(t_var *stacks);
-void	ft_rotate_same(t_var *stacks, int *a, int *b);
 
-/* sort2.c */
-void	ft_sort_big_last(t_var *stacks);
-int		ft_get_bigger(int a, int b, int a_loc, int b_loc);
-void	ft_rotate_a(t_var *stacks, int a);
-void	ft_rotate_b(t_var *stacks, int b);
-void	sort_args(t_var *stacks);
-
-/* get_astack_location.c */
-void	get_min_rotate(t_var *stacks, int *a, int *b);
-int		set_a_location(int num, t_var *stacks);
-int		set_a_location_min(t_var *stacks);
-int		set_a_location_max(t_var *stacks);
-int		set_a_location_mid(int num, t_var *stacks);
+/* set_location.c */
+int		find_a_location(int num, t_var *stacks);
+int		find_a_min(t_var *stacks);
+int		find_a_max(t_var *stacks);
+int		find_a_mid(int num, t_var *stacks);
 
 #endif

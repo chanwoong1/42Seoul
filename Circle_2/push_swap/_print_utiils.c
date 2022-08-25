@@ -1,85 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   _print_utiils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 08:09:55 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/25 09:15:27 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/25 09:18:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* 제출 파일 아님 */
+
 #include "push_swap.h"
 #include <stdio.h>
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != (unsigned char)c)
-	{
-		if (*s == '\0')
-			return (0);
-		s++;
-	}
-	return ((char *)s);
-}
-
-void	operating(t_var *stacks)
-{
-	if (stacks->list_size == 2)
-		sa(stacks);
-	else if (stacks->list_size == 3)
-		sort_three_args(stacks);
-	else if (stacks->list_size == 4)
-		sort_four_args(stacks);
-	else
-		sort_args(stacks);
-}
-
-void	print_a_stack(t_var *stacks)
-{
-	int	idx;
-	t_node	*a;
-
-	ra(stacks);
-	idx = 0;
-	a = stacks->stack_a->top;
-	while (idx < stacks->a_size + 2)
-	{
-		printf("%d\n",a->val);
-		a = a->right;
-		idx++;
-	}
-	printf("\n\n");
-	idx = 0;
-	a = stacks->stack_a->bottom->left;
-	while (idx < stacks->a_size + 1)
-	{
-		printf("%d\n",a->val);
-		a = a->left;
-		idx++;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	t_var	stacks;
-
-	if (ac >= 2)
-	{
-		init_stack(&stacks);
-		validate_args(ac, av, &stacks);
-		check_sort(&stacks);
-		indexing(&stacks);
-		stacking(&stacks);
-		print_a_stack(&stacks);
-		operating(&stacks);
-		// print_stack(&stacks);
-		exit(0);
-	}
-	ps_error();
-	return (0);
-}
 
 void	print_stack(t_var *stacks)
 {
@@ -128,4 +62,55 @@ void	print_stack(t_var *stacks)
 			idx2++;
 		}
 	printf("| ----- |\n| A   B | idx\n");
+}
+
+void	print_a_stack(t_var *stacks)
+{
+	int	idx;
+	t_node	*a;
+
+	ra(stacks);
+	idx = 0;
+	a = stacks->stack_a->top;
+	while (idx < stacks->a_size + 2)
+	{
+		printf("%d\n",a->val);
+		a = a->right;
+		idx++;
+	}
+	printf("\n\n");
+	idx = 0;
+	a = stacks->stack_a->bottom->left;
+	while (idx < stacks->a_size + 1)
+	{
+		printf("%d\n",a->val);
+		a = a->left;
+		idx++;
+	}
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	ln;
+	char	c;
+
+	if (fd < 0)
+		return ;
+	ln = (long)n;
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		ln *= -1;
+	}
+	if (ln < 10)
+	{
+		c = ln + '0';
+		write(fd, &c, 1);
+	}
+	else
+	{
+		ft_putnbr_fd(ln / 10, fd);
+		c = ln % 10 + '0';
+		write(fd, &c, 1);
+	}	
 }

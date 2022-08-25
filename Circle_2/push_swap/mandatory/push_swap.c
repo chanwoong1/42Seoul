@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations2.c                                      :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 15:16:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/25 10:41:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_var *stacks)
+void	ps_error(void)
 {
-	t_node	*tmp;
-
-	tmp = pop_top(stacks->stack_a);
-	push_bottom(stacks->stack_a, tmp);
-	write(1, "ra\n", 3);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
-void	rb(t_var *stacks)
+int	main(int ac, char **av)
 {
-	t_node	*tmp;
+	t_var	stacks;
 
-	tmp = pop_top(stacks->stack_b);
-	push_bottom(stacks->stack_b, tmp);
-	write(1, "rb\n", 3);
-}
-
-void	rr(t_var *stacks)
-{
-	ra(stacks);
-	rb(stacks);
-	write(1, "rr\n", 3);
+	if (ac >= 2)
+	{
+		init_stack(&stacks);
+		validate_args(ac, av, &stacks);
+		check_sort(&stacks);
+		indexing(&stacks);
+		stacking(&stacks);
+		operating(&stacks);
+		exit(0);
+	}
+	ps_error();
+	return (0);
 }

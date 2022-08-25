@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 23:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/24 17:32:59 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/22 00:51:52 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/25 10:44:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	divide_pivot(t_var *stacks)
 {
@@ -42,31 +41,20 @@ void	divide_pivot(t_var *stacks)
 	}
 }
 
-void	sort_args_for_astack(t_var *stacks)
+int	get_bigger(int a, int b, int a_loc, int b_loc)
 {
-	int	top;
-	int	mid;
-	int	bot;
-
-	top = stacks->stack_a->top->right->val;
-	mid = stacks->stack_a->top->right->right->val;
-	bot = stacks->stack_a->top->right->right->right->val;
-	if (top > mid && mid > bot && top > bot)
-	{
-		sa(stacks);
-		rra(stacks);
-	}
-	else if (top > mid && bot > mid && top > bot)
-		ra(stacks);
-	else if (mid > top && mid > bot && bot > top)
-	{
-		sa(stacks);
-		ra(stacks);
-	}
-	else if (top > mid && bot > mid && bot > top)
-		sa(stacks);
-	else if (mid > top && mid > bot && top > bot)
-		rra(stacks);
+	if (a < 0)
+		a = a * -1;
+	if (b < 0)
+		b = b * -1;
+	if (a_loc < 0)
+		a_loc = a_loc * -1;
+	if (b_loc < 0)
+		b_loc = b_loc * -1;
+	if (a + b > a_loc + b_loc)
+		return (1);
+	else
+		return (0);
 }
 
 int	get_stack_min(t_var *stacks)
@@ -80,8 +68,6 @@ int	get_stack_min(t_var *stacks)
 	times = 0;
 	while (times < stacks->a_size - 1)
 	{
-		// if (stack->val == 0)
-		// 	printf("min\n");
 		if (ret > stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;
@@ -101,28 +87,10 @@ int	get_stack_max(t_var *stacks)
 	times = 0;
 	while (times < stacks->a_size - 1)
 	{
-		// if (stack->val == 0)
-		// 	printf("max\n");
 		if (ret < stack->right->val)
 			ret = stack->right->val;
 		stack = stack->right;
 		times++;
 	}
 	return (ret);
-}
-
-void	ft_rotate_same(t_var *stacks, int *a, int *b)
-{
-	while (*a && *b && (*a > 0 && *b > 0))
-	{
-		rr(stacks);
-		*a = *a - 1;
-		*b = *b - 1;
-	}
-	while (*a && *b && (*a < 0 && *b < 0))
-	{
-		rrr(stacks);
-		*a = *a + 1;
-		*b = *b + 1;
-	}
 }
