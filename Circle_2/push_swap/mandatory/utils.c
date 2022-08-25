@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 10:41:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:03:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	check_sort(t_var *stacks)
 		idx--;
 	}
 	if (check == stacks->list_size - 1)
-		ps_error();
+		exit(0);
 }
 
 int	find_list_max(t_var *stacks)

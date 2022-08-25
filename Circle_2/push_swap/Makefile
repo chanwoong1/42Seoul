@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:38:32 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/25 15:10:48 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/25 15:19:10 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,13 @@ OBJS = push_swap.c utils.c split.c validate.c stack.c stack2.c \
 		operations.c operations2.c operations3.c set_location.c \
 		sort.c sort_rotate.c sort_utils.c
 
-OBJS_FILES = $(OBJS:c=o)
+OBJS_CHECKER = checker.c checker_utils.c checker_utils2.c \
+				validate_checker.c split.c stack.c stack2.c \
+				operations.c operations2.c operations3.c \
+				get_next_line.c get_next_line_utils.c
+
+SRCS			= 	$(addprefix mandatory/, $(OBJS))
+SRCS_FILES = $(SRCS:c=o)
 
 NAME = push_swap
 RM = rm -rf
@@ -25,13 +31,13 @@ RM = rm -rf
 %.o : %c
 	$(CC) $(CFLAGS) -c $< -I.
 
-$(NAME) : $(OBJS_FILES)
+$(NAME) : $(SRCS_FILES)
 	$(CC) $(CFLAGS) -o $@ $^
 
 all : $(NAME)
 
 clean :
-	$(RM) $(OBJS_FILES)
+	$(RM) $(SRCS_FILES)
 
 fclean : clean
 	$(RM) $(NAME)

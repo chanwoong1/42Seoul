@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 10:41:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:03:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	main(int ac, char **av)
 		operating(&stacks);
 		exit(0);
 	}
-	ps_error();
+	// ps_error();
 	return (0);
 }

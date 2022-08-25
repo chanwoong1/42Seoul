@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 10:40:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:08:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,11 @@ void	rra(t_var *stacks);
 void	rrb(t_var *stacks);
 void	rrr(t_var *stacks);
 
-/* sort_34_args.c */
-void	sort_three_args(t_var *stacks);
-void	sort_three_args_add_on(t_var *stacks, t_node *tmp);
-void	sort_four_args(t_var *stacks);
-void	sort_args_for_astack(t_var *stacks);
-
 /* sort.c */
 void	operating(t_var *stacks);
 void	sort_args(t_var *stacks);
 void	sort_big_last(t_var *stacks);
+void	sort_three_args(t_var *stacks);
 
 /* sort_rotate.c */
 void	get_min_rotate(t_var *stacks, int *a, int *b);
