@@ -6,15 +6,15 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/25 14:33:12 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/25 14:35:38 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/25 14:47:22 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS = checker.c checker_utils.c validate_checker.c \
-		split.c stack.c stack2.c \
+OBJS = checker.c checker_utils.c checker_utils2.c \
+		validate_checker.c split.c stack.c stack2.c \
 		operations.c operations2.c operations3.c \
 		get_next_line.c get_next_line_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:51:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 14:38:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/25 14:48:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,19 @@ typedef struct s_var
 	int					b_size;
 }	t_var;
 
-/* checker.c */
-void	ps_error(void);
-void	checker(t_var *stacks);
-void	print_stack(t_var *stacks);
-void	print_a_stack(t_var *stacks);
-
 /* checker_utils.c */
 char	*ft_strchr(const char *s, int c);
 void	check_sort(t_var *stacks);
 int		find_list_max(t_var *stacks);
 void	indexing(t_var *stacks);
 void	stacking(t_var *stacks);
+
+/* checker_utils2.c */
+void	ps_error(void);
+void	checker(t_var *stacks);
+int		ft_strcmp(char *s1, char *s2);
+void	operation(char *op, t_var *stacks);
+void	operating(t_var *stacks);
 
 /* validate_checker.c */
 void	validate_args(int ac, char **av, t_var *stacks);
