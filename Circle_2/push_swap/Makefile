@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:38:32 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/25 15:35:23 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/26 11:51:09 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,14 @@ OBJS_CHECKER = checker.c checker_utils.c checker_utils2.c \
 SRCS = $(addprefix mandatory/, $(OBJS))
 SRCS_BONUS = $(addprefix bonus/, $(OBJS_CHECKER))
 SRCS_FILES = $(SRCS:c=o)
+SRCS_BONUS_FILES = $(SRCS_BONUS:c=o)
+
+MAND_DIR = mandatory
+BONUS_DIR = bonus
 
 NAME = push_swap
+BONUS = checker
 RM = rm -rf
-
-ifdef BONUS=1
-	make -C ./bonus/ all
-else
-endif
 
 %.o : %c
 	$(CC) $(CFLAGS) -c $< -I.
@@ -40,16 +40,20 @@ endif
 $(NAME) : $(SRCS_FILES)
 	$(CC) $(CFLAGS) -o $@ $^
 
+$(BONUS) : $(SRCS_BONUS_FILES)
+	$(CC) $(CFLAGS) -o $@ $^
+
 all : $(NAME)
 
-bonus :
-	make BONUS=1
+bonus : $(BONUS)
 
 clean :
 	$(RM) $(SRCS_FILES)
+	$(RM) $(SRCS_BONUS_FILES)
 
 fclean : clean
 	$(RM) $(NAME)
+	$(RM) $(BONUS)
 
 re :
 	make fclean

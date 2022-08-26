@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 09:49:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 14:46:03 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/26 11:59:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int	main(int ac, char **av)
 	{
 		init_stack(&stacks);
 		validate_args(ac, av, &stacks);
-		check_sort(&stacks);
 		indexing(&stacks);
 		stacking(&stacks);
 		operating(&stacks);
 		checker(&stacks);
 		exit(0);
 	}
-	ps_error();
 	return (0);
 }

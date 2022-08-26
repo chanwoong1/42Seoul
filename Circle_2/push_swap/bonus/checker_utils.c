@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 11:06:29 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 11:12:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/26 11:59:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,6 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	}
 	return ((char *)s);
-}
-
-void	check_sort(t_var *stacks)
-{
-	int	idx;
-	int	check;
-
-	idx = stacks->list_size;
-	check = 0;
-	while (idx > 1)
-	{
-		if (stacks->list[idx - 1] - stacks->list[idx - 2] > 0)
-			check++;
-		idx--;
-	}
-	if (check == stacks->list_size - 1)
-		ps_error();
 }
 
 int	find_list_max(t_var *stacks)
