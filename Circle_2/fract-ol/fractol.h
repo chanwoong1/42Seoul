@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/10 21:03:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/27 14:01:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,14 @@
 #include <string.h>
 #include <math.h>
 #include <mlx.h>
+
+typedef struct s_image
+{
+	char	*addr;
+	int		size;
+	int		bits;
+	int		endian;
+}	t_image;
+
 
 #endif
