@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:10:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 15:08:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:47:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ typedef struct s_stack
 	struct s_node	*top;
 	struct s_node	*bottom;
 }	t_stack;
-
-typedef struct s_lists
-{
-	struct s_node	*top;
-}	t_lists;
 
 typedef struct s_var
 {
@@ -58,8 +53,13 @@ int		find_list_max(t_var *stacks);
 void	indexing(t_var *stacks);
 void	stacking(t_var *stacks);
 
+/* utils2.c */
+int		ft_strlen(char *s);
+char	*ps_all_join(int ac, char **av);
+
 /* split.c */
 char	**ft_split(char const *s, char c);
+void	free_arr(char **arr, int i);
 
 /* validate.c */
 void	validate_args(int ac, char **av, t_var *stacks);

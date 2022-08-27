@@ -6,18 +6,18 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:38:32 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/26 11:51:09 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/27 12:50:32 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS = push_swap.c utils.c split.c validate.c stack.c stack2.c \
+OBJS = push_swap.c utils.c utils2.c split.c validate.c stack.c stack2.c \
 		operations.c operations2.c operations3.c set_location.c \
 		sort.c sort_rotate.c sort_utils.c
 
-OBJS_CHECKER = checker.c checker_utils.c checker_utils2.c \
+OBJS_CHECKER = checker.c checker_utils.c checker_utils2.c checker_utils3.c\
 				validate_checker.c split.c stack.c stack2.c \
 				operations.c operations2.c operations3.c \
 				get_next_line.c get_next_line_utils.c

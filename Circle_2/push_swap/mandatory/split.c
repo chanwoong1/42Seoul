@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:58:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 11:37:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:42:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_str_check(char const *str, char c)
 	return (i);
 }
 
-static void	free_arr(char **arr, int i)
+void	free_arr(char **arr, int i)
 {
 	while (i > 0)
 	{

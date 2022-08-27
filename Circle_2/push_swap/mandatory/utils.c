@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:31:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/25 15:03:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:12:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	indexing(t_var *stacks)
 	int	max_idx;
 
 	idx_list = (int *)malloc(sizeof(int) * stacks->list_size);
+	if (!idx_list)
+		ps_error();
 	idx = stacks->list_size - 1;
 	while (idx >= 0)
 	{

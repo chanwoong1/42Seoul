@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:52:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/22 10:56:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:49:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static void	overlap_checker(t_var *stacks, int check)
 	}
 	stacks->list_size++;
 	new_tmp = (int *)malloc(sizeof(int) * stacks->list_size);
+	if (!new_tmp)
+		ps_error();
 	if (stacks->list_size == 1)
 		new_tmp[0] = check;
 	else
@@ -99,28 +101,26 @@ static void	overlap_checker(t_var *stacks, int check)
 
 void	validate_args(int ac, char **av, t_var *stacks)
 {
-	int		idx;
 	int		tmp_idx;
 	int		tmp_size;
+	char	*args;
 	char	**tmp;
 	t_node	*new_node;
 
-	idx = 1;
-	while (idx < ac)
+	args = ps_all_join(ac, av);
+	tmp_size = ps_size_check(args, ' ');
+	tmp = ft_split(args, ' ');
+	free(args);
+	tmp_idx = 0;
+	while (tmp_idx < tmp_size)
 	{
-		tmp_size = ps_size_check(av[idx], ' ');
-		if (tmp_size == 0)
+		if (!ps_valid_atoi(tmp[tmp_idx]))
 			ps_error();
-		tmp = ft_split(av[idx], ' ');
-		tmp_idx = 0;
-		while (tmp_idx < tmp_size)
-		{
-			if (!ps_valid_atoi(tmp[tmp_idx]))
-				ps_error();
-			new_node = get_new_node(ps_atoi(tmp[tmp_idx]));
-			overlap_checker(stacks, new_node->val);
-			tmp_idx++;
-		}
-		idx++;
+		new_node = get_new_node(ps_atoi(tmp[tmp_idx]));
+		free(tmp[tmp_idx]);
+		overlap_checker(stacks, new_node->val);
+		tmp_idx++;
+		free(new_node);
 	}
+	free(tmp);
 }
