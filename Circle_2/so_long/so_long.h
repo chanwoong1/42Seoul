@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/27 14:49:31 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/08/28 22:36:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int main(void)
-{
-	void 	*mlx_ptr;
-	void 	*win_ptr;
-	void	*mlx_img;
-	t_image	img;
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "./mlx/mlx.h"
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "fractol");
-	mlx_img = mlx_new_image(mlx_ptr, 1920, 1080);
-	mlx_loop(mlx_ptr);
-	img.addr = mlx_get_data_addr(mlx_img, &img.bits, &img.size, &img.endian);
-}
+# define X_EVENT_KEY_PRESS			2
+# define X_EVENT_KEY_RELEASE		3
+
+# define KEY_ESC		53
+# define KEY_W			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
+
+typedef struct s_param{
+	int		x;
+	int		y;
+}				t_param;
+
+#endif
