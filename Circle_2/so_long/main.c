@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/28 22:15:58 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:46:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	param_init(t_param *param)
 
 int	key_press(int keycode, t_param *param)
 {
-	static int a = 0;
-
 	if (keycode == KEY_W)
 		param->y++;
 	else if (keycode == KEY_S)
@@ -58,8 +56,8 @@ int main()
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 500, 500, "so_long");
-	img = mlx_xpm_file_to_image(mlx, "./images/land.xpm", &img_width, &img_height);
-	img2 = mlx_xpm_file_to_image(mlx, "./images/wall.xpm", &img_width, &img_height);
+	img = mlx_xpm_file_to_image(mlx, "./images/grass.xpm", &img_width, &img_height);
+	img2 = mlx_xpm_file_to_image(mlx, "./images/tree.xpm", &img_width, &img_height);
 	img3 = mlx_xpm_file_to_image(mlx, "./images/item.xpm", &img_width, &img_height);
 	img4 = mlx_xpm_file_to_image(mlx, "./images/closed_door.xpm", &img_width, &img_height);
 	img5 = mlx_xpm_file_to_image(mlx, "./images/opened_door.xpm", &img_width, &img_height);
