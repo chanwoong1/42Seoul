@@ -6,18 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/29 23:33:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/08/30 13:12:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_err(char *message)
-{
-	write(2, "Error\n", 6);
-	write(2, message, ft_strlen(message));
-	exit(1);
-}
 
 void	param_init(t_param *param)
 {
@@ -41,104 +34,89 @@ int	key_press(int keycode, t_param *param)
 	return (0);
 }
 
-int	first_or_last_line_checker(char *line)
+void	obj_init(t_obj_data *obj, void **mlx)
 {
-	int	col;
+	int	width;
+	int	height;
 
-	printf("line : %s\n", line);
-	col = 0;
-	while (line[col])
-	{
-		if (line[col] != 1)
-			return (-1);
-		col++;
-	}
-	printf("col : %d\n", col);
-	return (col);
+	obj->land = mlx_xpm_file_to_image(*mlx, "./img/land.xpm", &width, &height);
+	obj->tree = mlx_xpm_file_to_image(*mlx, "./img/tree.xpm", &width, &height);
+	obj->item = mlx_xpm_file_to_image(*mlx, "./img/item.xpm", &width, &height);
+	obj->c_d = mlx_xpm_file_to_image(*mlx, "./img/c_d.xpm", &width, &height);
+	obj->o_d = mlx_xpm_file_to_image(*mlx, "./img/o_d.xpm", &width, &height);
+	obj->cha1 = mlx_xpm_file_to_image(*mlx, "./img/character.xpm", &width, &height);
+	obj->cha2 = mlx_xpm_file_to_image(*mlx, "./img/character_walk1.xpm", &width, &height);
+	obj->cha3 = mlx_xpm_file_to_image(*mlx, "./img/character_walk2.xpm", &width, &height);
+	obj->cha4 = mlx_xpm_file_to_image(*mlx, "./img/character_walk3.xpm", &width, &height);
+	obj->cha5 = mlx_xpm_file_to_image(*mlx, "./img/character_walk4.xpm", &width, &height);
+	obj->cha6 = mlx_xpm_file_to_image(*mlx, "./img/character_walk5.xpm", &width, &height);
+	obj->cha7 = mlx_xpm_file_to_image(*mlx, "./img/character_walk6.xpm", &width, &height);
 }
 
-void	middle_line_checker(char *line, int col)
-{
-	int	line_idx;
+// void	setting_img()
+// {
+// 	int		hei;
+// 	int		wid;
 
-	line_idx = ft_strlen(line);
-	if (line_idx != col)
-		print_err("map error\n");
-	if (line[0] != 1 || line[col - 1] != 1)
-		print_err("map error\n");
-}
-
-void	map_checker()
-{
-	int		fd;
-	int		col;
-	char	*line;
-
-	fd = open("./map.ber", O_RDONLY);
-	line = get_next_line(fd);
-	if ((col = first_or_last_line_checker(line)) == -1)
-		print_err("map error\n");
-	free(line);
-	line = get_next_line(fd);
-	while (first_or_last_line_checker(line) == -1)
-	{
-		middle_line_checker(line, col);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	if ((line = get_next_line(fd)) != NULL)
-		print_err("map error\n");
-}
+// 	hei = 0;
+// 	while (hei < game.height)
+// 	{
+// 		wid = 0;
+// 		while (wid < game.width)
+// 		{
+// 			if (game.str_line[hei * game.width + wid] == '1')
+// 			{
+// 				mlx_put_image_to_window(game.mlx, game.win, game.img.wall, wid * 64, hei * 64);
+// 			}
+// 			else if (game.str_line[hei * game.width + wid] == 'C')
+// 			{
+// 				mlx_put_image_to_window(game.mlx, game.win, game.img.chest, wid * 64, hei * 64);
+// 			}
+// 			else if (game.str_line[hei * game.width + wid] == 'P')
+// 			{
+// 				mlx_put_image_to_window(game.mlx, game.win, game.img.chara, wid * 64, hei * 64);
+// 			}
+// 			else if (game.str_line[hei * game.width + wid] == 'E')
+// 			{
+// 				mlx_put_image_to_window(game.mlx, game.win, game.img.rune, wid * 64, hei * 64);
+// 			}
+// 			else
+// 			{
+// 				mlx_put_image_to_window(game.mlx, game.win, game.img.land, wid * 64, hei * 64);
+// 			}
+// 			wid++;
+// 		}
+// 		hei++;
+// 	}
+// }
 
 int main()
 {
-	void *mlx;
-	void *win;
-	void *img;
-	void *img2;
-	void *img3;
-	void *img4;
-	void *img5;
-	void *img6;
-	void *img7;
-	void *img8;
-	void *img9;
-	void *img10;
-	void *img11;
-	void *img12;
-	int img_width;
-	int img_height;
+	void 		*mlx;
+	void 		*win;
+	t_map		map;
 	t_param		param;
+	t_obj_data	obj;
 
-	map_checker();
-	// mlx = mlx_init();
-	// win = mlx_new_window(mlx, 500, 500, "so_long");
-	// img = mlx_xpm_file_to_image(mlx, "./images/grass.xpm", &img_width, &img_height);
-	// img2 = mlx_xpm_file_to_image(mlx, "./images/tree.xpm", &img_width, &img_height);
-	// img3 = mlx_xpm_file_to_image(mlx, "./images/item.xpm", &img_width, &img_height);
-	// img4 = mlx_xpm_file_to_image(mlx, "./images/closed_door.xpm", &img_width, &img_height);
-	// img5 = mlx_xpm_file_to_image(mlx, "./images/opened_door.xpm", &img_width, &img_height);
-	// img6 = mlx_xpm_file_to_image(mlx, "./images/character.xpm", &img_width, &img_height);
-	// img7 = mlx_xpm_file_to_image(mlx, "./images/character_walk1.xpm", &img_width, &img_height);
-	// img8 = mlx_xpm_file_to_image(mlx, "./images/character_walk2.xpm", &img_width, &img_height);
-	// img9 = mlx_xpm_file_to_image(mlx, "./images/character_walk3.xpm", &img_width, &img_height);
-	// img10 = mlx_xpm_file_to_image(mlx, "./images/character_walk4.xpm", &img_width, &img_height);
-	// img11 = mlx_xpm_file_to_image(mlx, "./images/character_walk5.xpm", &img_width, &img_height);
-	// img12 = mlx_xpm_file_to_image(mlx, "./images/character_walk6.xpm", &img_width, &img_height);
-	// mlx_put_image_to_window(mlx, win, img, 0, 0);
-	// mlx_put_image_to_window(mlx, win, img2, 64, 0);
-	// mlx_put_image_to_window(mlx, win, img3, 128, 0);
-	// mlx_put_image_to_window(mlx, win, img4, 192, 0);
-	// mlx_put_image_to_window(mlx, win, img5, 256, 0);
-	// mlx_put_image_to_window(mlx, win, img6, 320, 0);
-	// mlx_put_image_to_window(mlx, win, img7, 0, 64);
-	// mlx_put_image_to_window(mlx, win, img8, 64, 64);
-	// mlx_put_image_to_window(mlx, win, img9, 128, 64);
-	// mlx_put_image_to_window(mlx, win, img10, 192, 64);
-	// mlx_put_image_to_window(mlx, win, img11, 256, 64);
-	// mlx_put_image_to_window(mlx, win, img12, 320, 64);
-	// mlx_hook(win, X_EVENT_KEY_RELEASE, 0, &key_press, &param);
-	// mlx_loop(mlx);
+	map_checker(&map);
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 500, 500, "so_long");
+	obj_init(&obj, &mlx);
+	printf("map->row, map->col : %d, %d\n", (&map)->row, (&map)->col);
+	printf("map->map_line : %s\n", (&map)->map_line);
+	mlx_put_image_to_window(mlx, win, obj.land, 0, 0);
+	mlx_put_image_to_window(mlx, win, obj.tree, 64, 0);
+	mlx_put_image_to_window(mlx, win, obj.item, 128, 0);
+	mlx_put_image_to_window(mlx, win, obj.c_d, 192, 0);
+	mlx_put_image_to_window(mlx, win, obj.o_d, 256, 0);
+	mlx_put_image_to_window(mlx, win, obj.cha1, 320, 0);
+	mlx_put_image_to_window(mlx, win, obj.cha2, 0, 64);
+	mlx_put_image_to_window(mlx, win, obj.cha3, 64, 64);
+	mlx_put_image_to_window(mlx, win, obj.cha4, 128, 64);
+	mlx_put_image_to_window(mlx, win, obj.cha5, 192, 64);
+	mlx_put_image_to_window(mlx, win, obj.cha6, 256, 64);
+	mlx_put_image_to_window(mlx, win, obj.cha7, 320, 64);
+	mlx_hook(win, X_EVENT_KEY_RELEASE, 0, &key_press, &param);
+	mlx_loop(mlx);
 	return (0);
 }

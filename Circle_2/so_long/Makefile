@@ -6,13 +6,13 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 14:43:29 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/08/29 08:55:48 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/08/30 12:17:44 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
-SRCS		= main.c
+SRCS		= main.c get_next_line.c get_next_line_utils.c map_checker.c utils.c
 
 
 
