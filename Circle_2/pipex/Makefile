@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/01 15:51:07 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/02 08:18:25 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ RM= rm -rf
 	$(CC) $(CFLAGS) -c $< -I.
 
 $(NAME) : $(OBJS_FILES)
-	make all -C $(LIBFTDIR)/
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS_FILES) -Llibft
+	@make all -C $(LIBFTDIR)/
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS_FILES) -L ./libft -lft
 
 all : $(NAME)
 

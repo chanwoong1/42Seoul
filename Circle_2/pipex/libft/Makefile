@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/11 20:57:50 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/01 15:56:53 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/02 08:12:04 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
-HEADER 		= libft.h
+# HEADER 		= libft.h
 
 SRCS 		= ft_memset.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 			  ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c ft_atoi.c \
@@ -42,7 +42,8 @@ NAME		= libft.a
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@ 
+# -I $(HEADER)
 
 $(NAME): $(ALLOBJ)
 	ar rcs $@ $(ALLOBJ)

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/01 22:18:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/02 08:15:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	exit_perror(char *msg, int code)
 	exit(code);
 }
 
-int set_cmd(t_env *info, t_cmd *ps)
+int	set_cmd(t_env *info, t_cmd *ps)
 {
     int	i;
     char *temp_path;
@@ -50,7 +50,7 @@ int set_cmd(t_env *info, t_cmd *ps)
     return (ERROR);
 }
 
-void check_commands(t_env *info)
+void	check_commands(t_env *info)
 {
     int i;
 
@@ -68,22 +68,21 @@ void check_commands(t_env *info)
     }
 }
 
-int check_parse(t_env *info)
+void	check_parse(t_env *info)
 {
     info->infile_fd = open(info->infile, O_RDWR);
     if (info->infile_fd < 0)
-        exit_perror("not valid infile!");
+        exit_perror("not valid infile!", 1);
     info->outfile_fd = open(info->outfile, O_RDWR | O_CREAT | O_TRUNC, 0644);
     if (info->outfile_fd < 0)
 	{
 		close(info->infile_fd);
-        exit_perror("not valid outfile!");
+        exit_perror("not valid outfile!", 1);
 	}
     check_commands(info);
-    return (SUCCESS);
 }
 
-static char *find_path(char **envp)
+char	*find_path(char **envp)
 {
     int		i;
     char	*ret_path;
@@ -101,7 +100,7 @@ static char *find_path(char **envp)
     return (NULL);
 }
 
-void check_slash(t_cmd *ps, const char *temp)
+void	check_slash(t_cmd *ps, const char *temp)
 {
     if (ft_strncmp(temp, "/", 1) == 0
         || ft_strncmp(temp, "./", 2) == 0 || ft_strncmp(temp, "../", 3) == 0)
@@ -112,6 +111,7 @@ void	parse_cmd(t_env *info, char **argv, char **envp)
 {
     char	*temp_path;
 
+	info->result = 1;
     info->infile = ft_strdup(argv[1]);
 	info->ps = (t_cmd *)malloc(sizeof(t_cmd) * 2);
 	if (!info->ps)
@@ -120,64 +120,64 @@ void	parse_cmd(t_env *info, char **argv, char **envp)
     check_slash(&info->ps[0], argv[2]);
     info->ps[1].cmd = ft_split(argv[3], ' ');
     check_slash(&info->ps[1], argv[3]);
+	if (info->ps[0].cmd[0] == 0 || info->ps[1].cmd[0] == 0)
+		exit_perror("command not found", 127);
     info->outfile = ft_strdup(argv[4]);
     temp_path = find_path(envp);
     if (temp_path == NULL && (info->ps[0].slash == FALSE || info->ps[1].slash == FALSE))
-        exit_err("wrong path!\n");
+        exit_perror("wrong path!", 127);
     info->path = ft_split(temp_path, ':');
     free(temp_path);
 }
 
-void	print_info(t_env *info)
+void	control_fds(int closed, int std_in, int std_out)
 {
-	int	i = -1;
+	close(closed);
+	if (dup2(std_in, STDIN_FILENO) == -1)
+		exit_perror("dup2 fail", 1);
+	if (dup2(std_out, STDOUT_FILENO) == -1)
+		exit_perror("dup2 fail", 1);
+	close(std_in);
+	close(std_out);
+}
 
-	while (++i < 10)
-		printf("info->envp[%d] : %s\n", i, info->envp[i]);
-	printf("info->infile : %s\n", info->infile);
-	printf("info->outfile : %s\n", info->outfile);
-	printf("info->infile_fd : %d\n", info->infile_fd);
-	printf("info->outfile_fd : %d\n", info->outfile_fd);
-	printf("info->path[0] : %s\n", info->path[0]);
-	printf("info->path[1] : %s\n", info->path[1]);
-	printf("info->path[2] : %s\n", info->path[2]);
-	printf("info->ps[0].cmd[0] : %s\n", info->ps[0].cmd[0]);
-	printf("info->ps[0].cmd[1] : %s\n", info->ps[0].cmd[1]);
-	printf("info->ps[0].cmd[2] : %s\n", info->ps[0].cmd[2]);
-	printf("info->ps[1].cmd[0] : %s\n", info->ps[1].cmd[0]);
-	printf("info->ps[1].cmd[1] : %s\n", info->ps[1].cmd[1]);
-	printf("info->ps[1].cmd[2] : %s\n", info->ps[1].cmd[2]);
+void	pipex(t_env *info, char **envp)
+{
+	if (info->pid == -1)
+		exit_err("pid error");
+	if (info->pid == 0)
+	{
+		control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
+		if (execve(info->ps[0].path, info->ps[0].cmd, envp) == -1)
+			exit_perror("execve fail", info->result);
+	}
+	else
+	{
+		control_fds(info->pipe_fd[1], info->pipe_fd[1], info->outfile_fd);
+		waitpid(info->pid, NULL, WNOHANG);
+		if (execve(info->ps[1].path, info->ps[1].cmd, envp) == -1)
+			exit_perror("execve fail", info->result);
+	}
+}
+
+void	init_info(t_env *info, char **envp)
+{
+	ft_memset(info, 0, sizeof(t_env));
+	info->pid = fork();
+	if (pipe(info->pipe_fd) == -1)
+		exit_err("pipe error");
+	info->envp = envp;
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	info;
 
-	if (argc == 5)
-	{
-		if (pipe(info.pipe_fd) == -1)
-			exit_err("pipe error");
-		info.pid = fork();
-		ft_memset(&info, 0, sizeof(t_env));
-		info.envp = envp;
-		parse_cmd(&info, argv, envp);
-		if (info.pid == -1)
-			exit_err("pid error");
-		if (info.pid == 0)
-		{
-			control_fds(info.pipe_fd[0], info.infile, info.pipe_fd[1]);
-			if (execve(info.ps[0].path, info.ps[0].cmd, envp) == -1)
-				exit_perror("execve fail", result);
-		}
-		else
-		{
-			control_fds(info.pipe_fd[1], info.pipe_fd[1], info.outfile);
-			waitpid(info.pid, NULL, WNOHANG);
-			if (execve(info.ps[1].path, info.ps[1].cmd, envp) == -1)
-				exit_perror("execve fail", result);
-		}
-	}
-	else
+	if (argc != 5)
 		exit_err("wrong command count!");
+	init_info(&info, envp);
+	parse_cmd(&info, argv, envp);
+	check_parse(&info);
+	pipex(&info, envp);
 	return (0);
 }
