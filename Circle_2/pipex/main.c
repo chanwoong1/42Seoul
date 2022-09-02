@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/02 08:15:38 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:31:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	pipex(t_env *info, char **envp)
 	}
 	else
 	{
-		control_fds(info->pipe_fd[1], info->pipe_fd[1], info->outfile_fd);
+		control_fds(info->pipe_fd[1], info->pipe_fd[0], info->outfile_fd);
 		waitpid(info->pid, NULL, WNOHANG);
 		if (execve(info->ps[1].path, info->ps[1].cmd, envp) == -1)
 			exit_perror("execve fail", info->result);
