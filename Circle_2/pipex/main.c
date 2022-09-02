@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/02 13:54:57 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/02 23:12:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,28 +141,26 @@ void	control_fds(int closed, int std_in, int std_out)
 	close(std_out);
 }
 
-void	pipex(t_env *info, char **envp)
+void	pipex(t_env *info)
 {
-	printf("in pipex\n");
 	if (info->pid == -1)
 		exit_err("pid error");
 	if (info->pid == 0)
 	{
-		printf("info->ps[0].path : %s\n", info->ps[0].path);
-		printf("info->ps[0].cmd[0] : %s\n", info->ps[0].cmd[0]);
-		printf("info->ps[0].cmd[1] : %s\n", info->ps[0].cmd[1]);
+		printf("infile_fd : %d\n", info->infile_fd);
+		printf("pipe_fd[1] : %d\n", info->pipe_fd[0]);
 		control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
-		if (execve(info->ps[0].path, info->ps[0].cmd, envp) == -1)
+		if (execve(info->ps[0].path, info->ps[0].cmd, info->envp) == -1)
 			exit_perror("execve fail", info->result);
 	}
 	else
 	{
-		printf("info->ps[1].path : %s\n", info->ps[1].path);
-		printf("info->ps[1].cmd[0] : %s\n", info->ps[1].cmd[0]);
-		printf("info->ps[1].cmd[1] : %s\n", info->ps[1].cmd[1]);
+		printf("outfile_fd : %d\n", info->outfile_fd);
+		printf("pipe_fd[1] : %d\n", info->pipe_fd[1]);
 		control_fds(info->pipe_fd[1], info->pipe_fd[0], info->outfile_fd);
-		waitpid(info->pid, NULL, WNOHANG);
-		if (execve(info->ps[1].path, info->ps[1].cmd, envp) == -1)
+        waitpid(info->pid, NULL, WNOHANG);
+        write(1, "?!", 2);
+		if (execve(info->ps[1].path, info->ps[1].cmd, info->envp) == -1)
 			exit_perror("execve fail", info->result);
 	}
 }
@@ -185,6 +183,6 @@ int	main(int argc, char **argv, char **envp)
 	init_info(&info, envp);
 	parse_cmd(&info, argv, envp);
 	check_parse(&info);
-	pipex(&info, envp);
+	pipex(&info);
 	return (0);
 }

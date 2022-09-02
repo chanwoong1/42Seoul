@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/02 08:15:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/02 22:14:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_cmd
 	char	*path;
     int		slash;
 }				t_cmd;
+
 typedef struct  s_env
 {
 	char			**envp;
