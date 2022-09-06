@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yje <yje@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/06 17:57:58 by yje              ###   ########.fr       */
+/*   Updated: 2022/09/07 01:13:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,9 @@ void	parse_cmd(t_env *info, char **argv)
 		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
 	info->path = ft_split(temp_path, ':');
+	int i = -1;
+	while (++i < 20)
+		printf("info->path[%d] : %s\n", i, info->path[i]);
 	check_cmd(info, argv);
 	free(temp_path);
 }
@@ -243,6 +246,7 @@ void	pipex(t_env *info)
 
 void	init_info(t_env *info, char **envp)
 {
+
 	ft_memset(info, 0, sizeof(t_env));
 	if (pipe(info->pipe_fd) == -1)
 		exit_perror("pipe error", 1);
@@ -253,6 +257,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_env	info;
 
+	int i = -1;
+	while (envp[++i])
+		printf("envp[%d] : %s\n", i, envp[i]);
 	if (argc != 5)
 		exit_perror("wrong command count!", 1);
 	init_info(&info, envp);
