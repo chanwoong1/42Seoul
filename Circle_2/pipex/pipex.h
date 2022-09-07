@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 01:13:32 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/07 09:01:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@
 # define SUCCESS	1
 # define ERROR		2
 
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	char	**cmd;
 	char	*path;
-	int		slash;
 }				t_cmd;
 
-typedef struct		s_env
+typedef struct s_env
 {
 	char			**envp;
 	int				infile_fd;
@@ -43,5 +42,16 @@ typedef struct		s_env
 	pid_t			pid;
 	struct s_cmd	*cmd;
 }				t_env;
+
+/* parse.c */
+void	parse_cmd(t_env *info, char **argv);
+void	check_cmd(t_env *info, char **argv);
+void	find_awk_sed(char **argv, int i, t_env *info);
+char	*get_cmd_argv(char **path, char *cmd);
+char	*find_path(char **envp);
+
+/* utils.c */
+void	exit_perror(char *msg, int code);
+void	split_free(char **to_free);
 
 #endif
