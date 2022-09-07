@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 20:51:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/08 01:41:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,50 @@ static void	control_fds(int closed, int std_in, int std_out)
 
 static void	pipex(t_env *info)
 {
-	info->pid = fork();
-	if (info->pid == -1)
-		exit_perror("pid error", 1);
-	else if (info->pid == 0)
+	int		i;
+	pid_t	pid;
+	int		status;
+
+	i = -1;
+	while (++i < 2)
 	{
-		if (info->infile_fd != -1)
+		info->pid[i] = fork();
+		if (info->pid[i] == -1)
+			exit_perror("pid error", 1);
+		if (pid == 0)
 		{
-			control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
-			if (execve(info->cmd[0].path, info->cmd[0].cmd, info->envp) == -1)
-				exit_perror("execve fail", info->result);
+			if (i == 0)
+			{
+				control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
+				if (info->cmd[0].path != NULL)
+					execve(info->cmd[0].path, info->cmd[0].cmd, info->envp);
+				exit_perror(info->cmd[0].path, info->result);
+			}
+			else
+				control_fds(info->pipe_fd[1], info->pipe_fd[0], info->outfile_fd);
+				if (info->cmd[1].path != NULL)
+					execve(info->cmd[1].path, info->cmd[1].cmd, info->envp);
+				exit_perror(info->cmd[1].path, info->result);
 		}
 	}
-	else
-	{
-		if (info->outfile_fd != -1)
-		{
-			control_fds(info->pipe_fd[1], info->pipe_fd[0], info->outfile_fd);
-			waitpid(info->pid, NULL, WNOHANG);
-			if (execve(info->cmd[1].path, info->cmd[1].cmd, info->envp) == -1)
-				exit_perror("execve fail", info->result);
-		}
-	}
+	close(info->pipe_fd[0]);
+	close(info->pipe_fd[1]);
+	waitpid(info->pid[0], &status, 0);
+	if (0 == (status & 0xff))
+		return (status >> 8);
+	return (status);
 }
 
 static void	init_info(t_env *info, int argc, char **envp)
 {
 	ft_memset(info, 0, sizeof(t_env));
-	info->pipe_fd = (int *[2])malloc(sizeof(int [2]) * )
+	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * 2);
+	if (!info->cmd)
+		exit_perror("malloc error", 1);
 	if (pipe(info->pipe_fd) == -1)
 		exit_perror("pipe error", 1);
+	info->pid[0] = 1;
+	info->pid[1] = 1;
 	info->envp = envp;
 }
 

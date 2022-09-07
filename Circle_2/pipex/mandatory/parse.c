@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 08:56:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/08 00:37:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	parse_cmd(t_env *info, char **argv)
 	info->outfile_fd = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (info->outfile_fd < 0)
 		exit_perror("not valid outfile", 1);
-	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * 2);
-	if (!info->cmd)
-		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
 	info->path = ft_split(temp_path, ':');
 	check_cmd(info, argv);
