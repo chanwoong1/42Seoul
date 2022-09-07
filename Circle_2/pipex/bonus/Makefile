@@ -6,14 +6,14 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/07 09:01:50 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/07 15:10:39 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS = main.c utils.c parse.c
+OBJS = main_bonus.c utils_bonus.c parse_bonus.c heredoc_bonus.c
 
 OBJS_FILES	= $(OBJS:c=o)
 

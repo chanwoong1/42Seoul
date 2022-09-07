@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   heredoc_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 08:59:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 09:01:04 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/07 13:56:03 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/07 15:11:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include "libft/libft.h"
 
-void	exit_perror(char *msg, int code)
+void	here_doc_parse(t_env *info)
 {
-	perror(msg);
-	exit(code);
-}
-
-void	split_free(char **to_free)
-{
-	free(*to_free);
-	*to_free = NULL;
+	info = 0;
 }

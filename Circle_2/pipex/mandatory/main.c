@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 09:01:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/07 20:51:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ static void	pipex(t_env *info)
 	}
 }
 
-static void	init_info(t_env *info, char **envp)
+static void	init_info(t_env *info, int argc, char **envp)
 {
 	ft_memset(info, 0, sizeof(t_env));
+	info->pipe_fd = (int *[2])malloc(sizeof(int [2]) * )
 	if (pipe(info->pipe_fd) == -1)
 		exit_perror("pipe error", 1);
 	info->envp = envp;
@@ -64,7 +65,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		exit_perror("wrong command count!", 1);
-	init_info(&info, envp);
+	init_info(&info, argc, envp);
 	parse_cmd(&info, argv);
 	pipex(&info);
 	return (0);
