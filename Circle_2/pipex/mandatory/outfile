@@ -1,15 +1,16 @@
-total 72
--rw-r--r-- 1 chanwoong chanwoong  1396 Sep  7 09:01 Makefile
--rw-r--r-- 1 chanwoong chanwoong   781 Sep  5 11:46 deepthought.txt
--rw-r--r-- 1 chanwoong chanwoong    68 Sep  3 12:40 infile
-drwxr-xr-x 2 chanwoong chanwoong  4096 Sep  7 09:01 libft
--rw-r--r-- 1 chanwoong chanwoong  2204 Sep  7 09:01 main.c
--rw-r--r-- 1 chanwoong chanwoong  3576 Sep  7 09:01 main.o
--rw-r--r-- 1 chanwoong chanwoong     0 Sep  7 09:02 outfile
--rw-r--r-- 1 chanwoong chanwoong  3457 Sep  7 08:56 parse.c
--rw-r--r-- 1 chanwoong chanwoong  5576 Sep  7 09:01 parse.o
--rwxr-xr-x 1 chanwoong chanwoong 22336 Sep  7 09:01 pipex
--rw-r--r-- 1 chanwoong chanwoong  1680 Sep  7 09:01 pipex.h
--rw-r--r-- 1 chanwoong chanwoong     0 Sep  5 23:56 test-xx.txt
--rw-r--r-- 1 chanwoong chanwoong  1078 Sep  7 09:01 utils.c
--rw-r--r-- 1 chanwoong chanwoong  1808 Sep  7 09:01 utils.o
+total 192
+-rw-r--r--   1 chanwjeo  2022_seoul   1396 Sep  7 13:29 Makefile
+-rw-r--r--   1 chanwjeo  2022_seoul    781 Sep  7 13:29 deepthought.txt
+-rw-r--r--   1 chanwjeo  2022_seoul   2091 Sep  7 20:31 f1
+-rw-r--r--   1 chanwjeo  2022_seoul     68 Sep  7 13:29 infile
+drwxr-xr-x@ 82 chanwjeo  2022_seoul   2788 Sep  8 13:33 libft
+-rw-r--r--   1 chanwjeo  2022_seoul   2527 Sep  8 13:33 main.c
+-rw-r--r--   1 chanwjeo  2022_seoul   2476 Sep  8 13:33 main.o
+-rw-r--r--   1 chanwjeo  2022_seoul      0 Sep  8 13:33 outfile
+-rw-r--r--   1 chanwjeo  2022_seoul   3357 Sep  8 13:27 parse.c
+-rw-r--r--   1 chanwjeo  2022_seoul   3604 Sep  8 13:33 parse.o
+-rwxr-xr-x   1 chanwjeo  2022_seoul  50864 Sep  8 13:33 pipex
+-rw-r--r--   1 chanwjeo  2022_seoul   1699 Sep  8 13:29 pipex.h
+-rw-r--r--   1 chanwjeo  2022_seoul      0 Sep  7 13:29 test-xx.txt
+-rw-r--r--   1 chanwjeo  2022_seoul   1078 Sep  7 13:29 utils.c
+-rw-r--r--   1 chanwjeo  2022_seoul    872 Sep  8 13:33 utils.o

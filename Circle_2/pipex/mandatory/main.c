@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/08 01:41:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:33:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	control_fds(int closed, int std_in, int std_out)
 static void	pipex(t_env *info)
 {
 	int		i;
-	pid_t	pid;
 	int		status;
 
 	i = -1;
@@ -36,10 +35,11 @@ static void	pipex(t_env *info)
 		info->pid[i] = fork();
 		if (info->pid[i] == -1)
 			exit_perror("pid error", 1);
-		if (pid == 0)
+		if (info->pid[i] == 0)
 		{
 			if (i == 0)
 			{
+				printf("info->cmd[0].path : %s\n", info->cmd[0].path);
 				control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
 				if (info->cmd[0].path != NULL)
 					execve(info->cmd[0].path, info->cmd[0].cmd, info->envp);
@@ -55,12 +55,9 @@ static void	pipex(t_env *info)
 	close(info->pipe_fd[0]);
 	close(info->pipe_fd[1]);
 	waitpid(info->pid[0], &status, 0);
-	if (0 == (status & 0xff))
-		return (status >> 8);
-	return (status);
 }
 
-static void	init_info(t_env *info, int argc, char **envp)
+static void	init_info(t_env *info, char **envp)
 {
 	ft_memset(info, 0, sizeof(t_env));
 	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * 2);
@@ -79,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		exit_perror("wrong command count!", 1);
-	init_info(&info, argc, envp);
+	init_info(&info, envp);
 	parse_cmd(&info, argv);
 	pipex(&info);
 	return (0);
