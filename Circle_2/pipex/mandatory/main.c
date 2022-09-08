@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/08 13:33:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/08 23:36:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ static void	pipex(t_env *info)
 	while (++i < 2)
 	{
 		info->pid[i] = fork();
+		// printf("i : %d, pid : [%d][%d]\n", i, info->pid[0], info->pid[1]);
 		if (info->pid[i] == -1)
 			exit_perror("pid error", 1);
 		if (info->pid[i] == 0)
 		{
 			if (i == 0)
 			{
-				printf("info->cmd[0].path : %s\n", info->cmd[0].path);
 				control_fds(info->pipe_fd[0], info->infile_fd, info->pipe_fd[1]);
-				if (info->cmd[0].path != NULL)
-					execve(info->cmd[0].path, info->cmd[0].cmd, info->envp);
-				exit_perror(info->cmd[0].path, info->result);
+				if (execve(info->cmd[0].path, info->cmd[0].cmd, info->envp) == -1)
+					exit_perror("execve fail", info->result);
 			}
 			else
+			{
 				control_fds(info->pipe_fd[1], info->pipe_fd[0], info->outfile_fd);
-				if (info->cmd[1].path != NULL)
-					execve(info->cmd[1].path, info->cmd[1].cmd, info->envp);
-				exit_perror(info->cmd[1].path, info->result);
+				if (execve(info->cmd[1].path, info->cmd[1].cmd, info->envp) == -1)
+					exit_perror("execve fail", info->result);
+			}
 		}
 	}
 	close(info->pipe_fd[0]);

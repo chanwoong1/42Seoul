@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 21:27:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:23:56 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,27 @@ static void	pipex(t_env *info)
 			if (info->result == -1)
 				exit_perror("execve fail", info->result);
 		}
+		i = 0;
+		while (i < px->cmd_num - 1)
+		{
+			if (i != idx && i != idx - 1)
+			{
+				close(px->pipefd[i][0]);
+				close(px->pipefd[i][1]);
+			}
+			i++;
+		}
+		close(px->pipefd[idx - 1][1]);
+		close(px->pipefd[idx][0]);
+		if (dup2(px->pipefd[idx - 1][0], 0) == -1)
+			print_error(2, NULL);
+		close(px->pipefd[idx - 1][0]);
+		if (dup2(px->pipefd[idx][1], 1) == -1)
+			print_error(2, NULL);
+		close(px->pipefd[idx][1]);
+		if (node->cmd_path[0] != NULL)
+			execve(node->cmd_path[0], node->cmd, px->ev);
+		print_error(1, node->cmd[0]);
 	}
 	else
 	{
