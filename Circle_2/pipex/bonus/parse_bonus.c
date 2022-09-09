@@ -6,29 +6,29 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/07 20:51:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:08:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 #include "libft/libft.h"
 
-void	parse_cmd(t_env *info, char **argv)
+void	parse_cmd(t_env *info, int argc, char **argv)
 {
 	char	*temp_path;
 
 	info->result = 1;
-	here_doc_parse(info);
-	info->i_fd = open(argv[info->here_doc + 1], O_RDONLY);
+	// here_doc_parse(info);
+	info->i_fd = open(argv[1], O_RDONLY);
 	if (info->i_fd < 0)
 		perror("not valid infile");
 	if (info->here_doc)
-		info->o_fd = open(argv[info->argc - 1], O_RDWR | O_APPEND | O_CREAT, 0644);
+		info->o_fd = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT, 0644);
 	else
-		info->o_fd = open(argv[info->argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+		info->o_fd = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (info->o_fd < 0)
 		exit_perror("not valid outfile", 1);
-	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * (info->argc - info->here_doc - 3));
+	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * (argc - 3));
 	if (!info->cmd)
 		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
@@ -42,7 +42,7 @@ void	check_cmd(t_env *info, char **argv)
 	int	i;
 
 	i = -1 + info->here_doc;
-	while (++i < info->argc - info->here_doc - 3)
+	while (++i < info->argc - 3)
 	{
 		while (*(argv[i + 2]) == ' ')
 			argv[i + 2]++;
@@ -57,9 +57,9 @@ void	check_cmd(t_env *info, char **argv)
 	}
 	if (info->result == 127)
 		perror("command not found");
-	printf("malloc size : %d\n", info->argc - info->here_doc - 3);
+	printf("malloc size : %d\n", info->argc - 3);
 	i = -1;
-	while (++i < info->argc - info->here_doc - 3)
+	while (++i < info->argc - 3)
 		printf("info->cmd[%d].path, cmd[0], cmd[1] : %s, %s, %s\n", i, info->cmd[i].path, info->cmd[i].cmd[0], info->cmd[i].cmd[1]);
 }
 
@@ -70,7 +70,7 @@ void	find_awk_sed(char **argv, int i, t_env *info)
 	char	**tmp_info;
 
 	j = 0;
-	info->cmd[i].cmd = ft_split(argv[i + info->here_doc + 2], ' ');
+	info->cmd[i].cmd = ft_split(argv[i + 2], ' ');
 	while (ft_strncmp(info->cmd[i].cmd[j], "\'", 1) != 0 && \
 		ft_strncmp(info->cmd[i].cmd[j], "\"", 1) != 0 && info->cmd[i].cmd[j])
 		j++;
@@ -80,9 +80,9 @@ void	find_awk_sed(char **argv, int i, t_env *info)
 	while (info->cmd[i].cmd[j])
 		split_free(&(info->cmd[i].cmd[++j]));
 	if (ft_strncmp(info->cmd[i].cmd[tmp], "\'", 1) == 0)
-		tmp_info = ft_split(argv[i + info->here_doc + 2], '\'');
+		tmp_info = ft_split(argv[i + 2], '\'');
 	else
-		tmp_info = ft_split(argv[i + info->here_doc + 2], '\"');
+		tmp_info = ft_split(argv[i + 2], '\"');
 	split_free(&(info->cmd[i].cmd[tmp]));
 	info->cmd[i].cmd[tmp] = ft_strdup(tmp_info[1]);
 	info->cmd[i].cmd[tmp + 1] = NULL;

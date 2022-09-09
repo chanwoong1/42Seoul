@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/08 23:36:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:33:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	pipex(t_env *info)
 	while (++i < 2)
 	{
 		info->pid[i] = fork();
-		// printf("i : %d, pid : [%d][%d]\n", i, info->pid[0], info->pid[1]);
 		if (info->pid[i] == -1)
 			exit_perror("pid error", 1);
 		if (info->pid[i] == 0)

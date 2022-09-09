@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/08 13:28:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:08:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_env
 }				t_env;
 
 /* parse_bonus.c */
-void	parse_cmd(t_env *info, char **argv);
+void	parse_cmd(t_env *info, int argc, char **argv);
 void	check_cmd(t_env *info, char **argv);
 void	find_awk_sed(char **argv, int i, t_env *info);
 char	*get_cmd_argv(char **path, char *cmd);
@@ -56,8 +56,9 @@ char	*find_path(char **envp);
 /* utils_bonus.c */
 void	exit_perror(char *msg, int code);
 void	split_free(char **to_free);
+void	free_fd_arr(int	**arr, int i);
 
 /* heredoc_bonus.c */
-void	here_doc_parse(t_env *info);
+// void	here_doc_parse(t_env *info);
 
 #endif
