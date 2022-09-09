@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/09 09:24:15 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:31:40 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	pipex(t_env *info)
 			exit_perror("pid error", 1);
 		if (info->pid[i] == 0)
 		{
+			printf("i : %d\n", i);
 			if (i == 0)
 				control_fds(info->pipe_fd[i][0], info->i_fd, info->pipe_fd[i][1]);
 			else if (i == info->argc - 4)

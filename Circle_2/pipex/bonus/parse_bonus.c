@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/09 09:08:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:31:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ void	check_cmd(t_env *info, char **argv)
 	}
 	if (info->result == 127)
 		perror("command not found");
-	printf("malloc size : %d\n", info->argc - 3);
-	i = -1;
-	while (++i < info->argc - 3)
-		printf("info->cmd[%d].path, cmd[0], cmd[1] : %s, %s, %s\n", i, info->cmd[i].path, info->cmd[i].cmd[0], info->cmd[i].cmd[1]);
 }
 
 void	find_awk_sed(char **argv, int i, t_env *info)
