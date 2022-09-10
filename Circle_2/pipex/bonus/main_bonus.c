@@ -6,12 +6,14 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/10 15:51:29 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/11 08:56:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 #include "libft/libft.h"
+
+//https://github.com/gabcollet/pipex/blob/master/srcs/pipex_bonus.c
 
 static void	control_fds(int closed, int std_in, int std_out)
 {
