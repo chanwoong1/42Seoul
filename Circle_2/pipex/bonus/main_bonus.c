@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/09 15:31:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:51:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ static void	pipex(t_env *info)
 	int	status;
 
 	i = -1;
-	info->pid = (pid_t *)malloc(sizeof(pid_t) * (info->argc - 3));
-	printf("info->argc = %d\n", info->argc);
-	if (!info->pid)
-		exit_perror("malloc error", 1);
 	while (++i < info->argc - 3)
 	{
-		info->pid[i] = fork();
-		if (info->pid[i] == -1)
+		info->pid = fork();
+		if (info->pid == -1)
 			exit_perror("pid error", 1);
-		if (info->pid[i] == 0)
+		if (info->pid == 0)
 		{
-			printf("i : %d\n", i);
 			if (i == 0)
 				control_fds(info->pipe_fd[i][0], info->i_fd, info->pipe_fd[i][1]);
 			else if (i == info->argc - 4)
@@ -51,10 +46,16 @@ static void	pipex(t_env *info)
 			if (execve(info->cmd[i].path, info->cmd[i].cmd, info->envp) == -1)
 				exit_perror("execve fail", info->result);
 		}
+		else
+		{
+			if (i < info->argc - 4)
+				control_fds(info->pipe_fd[i][1], info->pipe_fd[i][0], info->pipe_fd[i + 1][1]);
+			waitpid(info->pid, NULL, 0);
+		}
 		if (info->here_doc && i == 0)
-			waitpid(info->pid[0], &status, 0);
+			waitpid(info->pid, &status, 0);
 	}
-	waitpid(info->pid[i], &status, WNOHANG);
+	waitpid(info->pid, &status, WNOHANG);
 	exit(info->result);
 }
 

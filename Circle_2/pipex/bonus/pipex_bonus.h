@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/09 09:08:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/10 15:30:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_env
 	int				**pipe_fd;
 	int				result;
 	char			**path;
-	pid_t			*pid;
+	pid_t			pid;
 	struct s_cmd	*cmd;
 }				t_env;
 
