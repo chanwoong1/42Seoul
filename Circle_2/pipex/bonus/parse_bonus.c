@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/09 15:31:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 00:35:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	parse_cmd(t_env *info, int argc, char **argv)
 {
 	char	*temp_path;
 
-	info->result = 1;
-	// here_doc_parse(info);
 	info->i_fd = open(argv[1], O_RDONLY);
 	if (info->i_fd < 0)
 		perror("not valid infile");
@@ -42,7 +40,7 @@ void	check_cmd(t_env *info, char **argv)
 	int	i;
 
 	i = -1 + info->here_doc;
-	while (++i < info->argc - 3)
+	while (++i < info->n_cmd)
 	{
 		while (*(argv[i + 2]) == ' ')
 			argv[i + 2]++;

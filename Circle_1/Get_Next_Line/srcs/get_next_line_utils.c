@@ -22,7 +22,7 @@ int	ft_strlen(const char *s)
 	return (n);
 }
 
-int	gnl_strchr(char *s)
+int	ft_strchr(char *s)
 {
 	int	len;
 	int	idx;

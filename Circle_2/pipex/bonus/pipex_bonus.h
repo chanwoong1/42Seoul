@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/11 17:40:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:51:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 # define FAIL		0
 # define SUCCESS	1
 # define ERROR		2
+# define ERR_INFILE "Infile"
+# define ERR_OUTFILE "Outfile"
+# define ERR_INPUT "Invalid number of arguments.\n"
+# define ERR_PIPE "Pipe"
+# define ERR_ENVP "Environment"
+# define ERR_CMD "Command not found: "
+# define ERR_HEREDOC "here_doc"
 
 typedef struct s_cmd
 {
@@ -34,12 +41,12 @@ typedef struct s_cmd
 typedef struct s_env
 {
 	char			**envp;
-	int				argc;
+	int				n_cmd;
 	int				here_doc;
 	char			**hd_cmd;
 	int				i_fd;
 	int				o_fd;
-	int				**pipe_fd;
+	int				*pipe_fd;
 	int				result;
 	char			**path;
 	pid_t			pid;
@@ -60,7 +67,8 @@ void	free_fd_arr(int	**arr, int i);
 void	usage(void);
 int		open_file(char *argv, int i);
 
-void	error(void);
+/* heredoc_bonus.c */
+int		args_in(char *arg);
 
 /* gnl_bonus.c */
 char	*get_next_line(int fd);
