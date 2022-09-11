@@ -6,14 +6,18 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/11 08:56:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:40:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 #include "libft/libft.h"
 
-//https://github.com/gabcollet/pipex/blob/master/srcs/pipex_bonus.c
+void	error(void)
+{
+	perror("\033[31mError");
+	exit(EXIT_FAILURE);
+}
 
 static void	control_fds(int closed, int std_in, int std_out)
 {

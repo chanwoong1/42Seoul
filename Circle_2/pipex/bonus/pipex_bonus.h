@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/10 15:30:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:40:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,17 @@ char	*find_path(char **envp);
 void	exit_perror(char *msg, int code);
 void	split_free(char **to_free);
 void	free_fd_arr(int	**arr, int i);
+void	usage(void);
+int		open_file(char *argv, int i);
 
-/* heredoc_bonus.c */
-// void	here_doc_parse(t_env *info);
+void	error(void);
+
+/* gnl_bonus.c */
+char	*get_next_line(int fd);
+
+/* gnl_utils_bonus.c */
+int		gnl_strlen(const char *s);
+int		gnl_strchr(char *s);
+char	*gnl_strjoin(char *s1, char *s2);
 
 #endif
