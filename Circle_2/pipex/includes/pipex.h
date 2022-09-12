@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:37:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:58:07 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define ERR_INPUT		"Invalid number of arguments.\n"
 # define ERR_PIPE		"Pipe"
 # define ERR_ENVP		"Environment"
-# define ERR_CMD		"Command not found: "
+# define ERR_CMD		"Command not found"
 # define ERR_HEREDOC	"here_doc"
 
 typedef struct s_cmd

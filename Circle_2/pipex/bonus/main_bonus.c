@@ -6,7 +6,11 @@
 /*   By: yje <yje@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/12 18:35:45 by yje              ###   ########.fr       */
+=======
+/*   Updated: 2022/09/12 21:44:21 by chanwjeo         ###   ########.fr       */
+>>>>>>> 0e1fe6bc4a711b5ae81ae35f68b8872f86c0460b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +21,7 @@ static void	init_info(t_env *info, int argc, char **argv, char **envp)
 	int	i;
 
 	ft_memset(info, 0, sizeof(t_env));
-	info->result = 1;
+	info->result = 0;
 	info->envp = envp;
 	get_fd(info, argc, argv);
 	info->n_cmd = argc - 3 - info->here_doc;
@@ -53,12 +57,8 @@ void	child(t_env p)
 		else
 			sub_dup2(p.pipe_fd[2 * p.idx - 2], p.pipe_fd[2 * p.idx + 1]);
 		close_pipes(&p);
-		if (!p.cmd->path)
-		{
-			perror(p.cmd->cmd[0]);
-			exit(1);
-		}
-		execve(p.cmd[p.idx].path, p.cmd[p.idx].cmd, p.envp);
+		if (execve(p.cmd[p.idx].path, p.cmd[p.idx].cmd, p.envp) < 0)
+			exit_perror(ERR_CMD, p.result);
 	}
 }
 
@@ -76,5 +76,5 @@ int	main(int argc, char **argv, char **envp)
 	close_pipes(&info);
 	waitpid(-1, NULL, 0);
 	parent_free(&info);
-	return (0);
+	return (info.result);
 }
