@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 18:26:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:42:08 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	parse_cmd(t_env *info, int argc, char **argv)
 	if (!info->cmd)
 		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
+	if (!temp_path)
+		exit(0);
 	info->path = ft_split(temp_path, ':');
 	check_cmd(info, argv);
 	free(temp_path);
@@ -72,8 +74,7 @@ void	find_awk_sed(char **argv, int i, t_env *info)
 	while (tmp_info[tmp])
 		split_free(&tmp_info[tmp++]);
 	free(tmp_info);
-	if (ft_strncmp(info->cmd[i].cmd[1], "\"", 1) == 0 && \
-		ft_strncmp(info->cmd[i].cmd[1], "\'", 1) == 0)
+	if (ft_strncmp(info->cmd[i].cmd[1], "\'{", 2) == 0)
 		info->result = 2;
 }
 

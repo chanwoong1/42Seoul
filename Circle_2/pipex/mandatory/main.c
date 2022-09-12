@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 18:27:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:35:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	child(t_env p)
 			sub_dup2(p.pipe_fd[0], p.o_fd);
 		close_pipes(&p);
 		if (execve(p.cmd[p.idx].path, p.cmd[p.idx].cmd, p.envp) < 0)
-			exit_perror(ERR_CMD, EXIT_FAILURE);
+			exit_perror(ERR_CMD, p.result);
 	}
 }
 

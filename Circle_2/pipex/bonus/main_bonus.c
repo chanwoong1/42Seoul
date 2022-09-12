@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 18:15:58 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:44:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_info(t_env *info, int argc, char **argv, char **envp)
 	int	i;
 
 	ft_memset(info, 0, sizeof(t_env));
-	info->result = 1;
+	info->result = 0;
 	info->envp = envp;
 	get_fd(info, argc, argv);
 	info->n_cmd = argc - 3 - info->here_doc;
@@ -54,7 +54,7 @@ void	child(t_env p)
 			sub_dup2(p.pipe_fd[2 * p.idx - 2], p.pipe_fd[2 * p.idx + 1]);
 		close_pipes(&p);
 		if (execve(p.cmd[p.idx].path, p.cmd[p.idx].cmd, p.envp) < 0)
-			exit_perror(ERR_CMD, EXIT_FAILURE);
+			exit_perror(ERR_CMD, p.result);
 	}
 }
 
@@ -72,5 +72,5 @@ int	main(int argc, char **argv, char **envp)
 	close_pipes(&info);
 	waitpid(-1, NULL, 0);
 	parent_free(&info);
-	return (0);
+	return (info.result);
 }
