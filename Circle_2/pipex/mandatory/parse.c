@@ -6,24 +6,19 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/08 00:37:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:38:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
-#include "libft/libft.h"
+#include "../includes/pipex.h"
 
-void	parse_cmd(t_env *info, char **argv)
+void	parse_cmd(t_env *info, int argc, char **argv)
 {
 	char	*temp_path;
 
-	info->result = 1;
-	info->infile_fd = open(argv[1], O_RDONLY);
-	if (info->infile_fd < 0)
-		perror("not valid infile");
-	info->outfile_fd = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (info->outfile_fd < 0)
-		exit_perror("not valid outfile", 1);
+	info->cmd = (t_cmd *)malloc(sizeof(t_cmd) * (argc - 3));
+	if (!info->cmd)
+		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
 	info->path = ft_split(temp_path, ':');
 	check_cmd(info, argv);
@@ -34,8 +29,8 @@ void	check_cmd(t_env *info, char **argv)
 {
 	int	i;
 
-	i = 0;
-	while (i < 2)
+	i = -1;
+	while (++i < 2)
 	{
 		while (*(argv[i + 2]) == ' ')
 			argv[i + 2]++;
@@ -43,18 +38,13 @@ void	check_cmd(t_env *info, char **argv)
 			!ft_strncmp(argv[i + 2], "sed ", 4))
 			find_awk_sed(argv, i, info);
 		else
-		{
 			info->cmd[i].cmd = ft_split(argv[i + 2], ' ');
-		}
-		i++;
+		info->cmd[i].path = get_cmd_argv(info->path, info->cmd[i].cmd[0]);
+		if (info->cmd[i].path == NULL)
+			info->result = 127;
 	}
-	info->cmd[0].path = get_cmd_argv(info->path, info->cmd[0].cmd[0]);
-	info->cmd[1].path = get_cmd_argv(info->path, info->cmd[1].cmd[0]);
-	if (info->cmd[0].path == NULL || info->cmd[1].path == NULL)
-	{
-		info->result = 127;
+	if (info->result == 127)
 		perror("command not found");
-	}
 }
 
 void	find_awk_sed(char **argv, int i, t_env *info)

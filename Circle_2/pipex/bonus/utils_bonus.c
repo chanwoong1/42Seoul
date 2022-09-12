@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:59:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 11:19:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:03:01 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,23 @@ void	split_free(char **to_free)
 	*to_free = NULL;
 }
 
-void	free_fd_arr(int	**arr, int i)
-{
-	while (i > 0)
-	{
-		free(arr[i - 1]);
-		i--;
-	}
-	free(arr);
-}
-
 void	usage(void)
 {
 	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
 	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	ft_putstr_fd("    ./pipex \"here_doc\" ", 1);
+	ft_putstr_fd("<LIMITER> <cmd1> <cmd2> <...> <file>\n", 1);
 	exit(EXIT_SUCCESS);
+}
+
+void	close_pipes(t_env *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < 2 * (info->n_cmd - 1))
+	{
+		close(info->pipe_fd[i]);
+		i++;
+	}
 }

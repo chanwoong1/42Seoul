@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 11:19:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:17:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_cmd(t_env *info, char **argv)
 {
 	int	i;
 
-	i = -1 + info->here_doc;
+	i = -1;
 	while (++i < info->n_cmd)
 	{
 		while (*(argv[i + 2]) == ' ')

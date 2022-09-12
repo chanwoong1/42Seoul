@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/12 11:26:17 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/12 15:27:30 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,12 @@ HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	pipex.c childs.c error.c free.c
+MPATH_SRCS	=	main.c utils.c fd.c parse.c
 MPATH_DIR	=	mandatory/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 
-BPATH_SRCS	=	main_bonus.c utils_bonus.c heredoc_bonus.c\
-				parse_bonus.c
+BPATH_SRCS	=	main_bonus.c utils_bonus.c fd_bonus.c parse_bonus.c
 BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)
