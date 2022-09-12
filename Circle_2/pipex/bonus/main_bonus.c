@@ -6,56 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 11:19:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:49:25 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-
-void	error(void)
-{
-	perror("\033[31mError");
-	exit(EXIT_FAILURE);
-}
-
-// static void	control_fds(int closed, int std_in, int std_out)
-// {
-// 	close(closed);
-// 	if (dup2(std_in, STDIN_FILENO) == -1)
-// 		exit_perror("dup2 stdin fail", 1);
-// 	if (dup2(std_out, STDOUT_FILENO) == -1)
-// 		exit_perror("dup2 stdout fail", 1);
-// 	close(std_in);
-// 	close(std_out);
-// }
-
-// static void	pipex(t_env *info)
-// {
-// 	int	i;
-// 	int	status;
-
-// 	i = -1;
-// 	while (++i < info->n_cmd)
-// 	{
-// 		info->pid = fork();
-// 		if (info->pid == -1)
-// 			exit_perror("pid error", 1);
-// 		if (info->pid == 0)
-// 		{
-// 			if (i == 0)
-// 				control_fds(info->pipe_fd[0], info->i_fd, info->pipe_fd[1]);
-// 			else if (i == info->n_cmd - 1)
-// 				control_fds(info->pipe_fd[2 * i], info->pipe_fd[2 * i - 2], info->o_fd);
-// 			else
-// 				control_fds(info->pipe_fd[2 * i], info->pipe_fd[2 * i - 2], info->pipe_fd[2 * i + 1]);
-// 			if (execve(info->cmd[i].path, info->cmd[i].cmd, info->envp) == -1)
-// 				exit_perror("execve fail", info->result);
-// 		}
-// 		if (info->here_doc && i == 0)
-// 			waitpid(info->pid, &status, 0);
-// 	}
-// 	waitpid(info->pid, &status, WNOHANG);
-// }
 
 static void	get_fd(t_env *info, int argc, char **argv)
 {
@@ -116,35 +71,12 @@ void	close_pipes(t_env *info)
 	}
 }
 
-// void	child_free(t_env *info)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (info->cmd[i].path)
-// 	{
-// 		free(info->cmd[i].cmd);
-// 		i++;
-// 	}
-// 	free(pipex->cmd_args);
-// 	free(pipex->cmd);
-// }
-
 void	parent_free(t_env *info)
 {
-	// int	i;
-
-	// i = 0;
 	close(info->i_fd);
 	close(info->o_fd);
 	if (info->here_doc)
 		unlink(".heredoc_tmp");
-	// while (info->cmd_paths[i])
-	// {
-	// 	free(pipex->cmd_paths[i]);
-	// 	i++;
-	// }
-	// free(pipex->cmd_paths);
 	free(info->pipe_fd);
 }
 
@@ -163,7 +95,6 @@ void	child(t_env p)
 		if (!p.cmd->path)
 		{
 			perror(p.cmd->cmd[0]);
-			// child_free(&p);
 			exit(1);
 		}
 		execve(p.cmd[p.idx].path, p.cmd[p.idx].cmd, p.envp);

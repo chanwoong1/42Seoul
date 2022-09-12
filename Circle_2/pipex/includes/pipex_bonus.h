@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 11:18:00 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:49:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
+
 /* to libft */
 # include "../libft/libft.h"
+
 /* to gnl */
 # include "../gnl/get_next_line.h"
 
