@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: yje <yje@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:34:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:35:45 by yje              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_info(t_env *info, int argc, char **argv, char **envp)
 	if (!info->pipe_fd)
 		exit_perror("malloc error", 1);
 	i = -1;
-	while (++i < info->n_cmd)
+	while (++i < info->n_cmd - 1)
 	{
 		if (pipe(info->pipe_fd + 2 * i) < 0)
 		{
