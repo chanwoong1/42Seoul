@@ -20,9 +20,12 @@
 #  define BUFFER_SIZE   42
 # endif
 
+/* get_next_line.c */
 char	*get_next_line(int fd);
-int		ft_strchr(char *s);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(const char *s);
+
+/* get_next_line_utils.c */
+int		gnl_strlen(const char *s);
+int		gnl_strchr(char *s);
+char	*gnl_strjoin(char *s1, char *s2);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:56:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 09:52:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:19:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-#include "libft/libft.h"
+#include "../includes/pipex_bonus.h"
 
 int	args_in(char *arg)
 {

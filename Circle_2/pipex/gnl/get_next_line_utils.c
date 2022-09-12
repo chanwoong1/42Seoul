@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "get_next_line.h"
 
 int	gnl_strlen(const char *s)
 {

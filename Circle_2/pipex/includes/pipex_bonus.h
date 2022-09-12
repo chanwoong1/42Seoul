@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 09:55:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:18:00 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
+/* to libft */
+# include "../libft/libft.h"
+/* to gnl */
+# include "../gnl/get_next_line.h"
 
 # define FALSE		0
 # define TRUE		1
@@ -72,13 +76,5 @@ int		open_file(char *argv, int i);
 /* heredoc_bonus.c */
 int		args_in(char *arg);
 void	here_doc(char *argv, t_env *info);
-
-/* gnl_bonus.c */
-char	*get_next_line(int fd);
-
-/* gnl_utils_bonus.c */
-int		gnl_strlen(const char *s);
-int		gnl_strchr(char *s);
-char	*gnl_strjoin(char *s1, char *s2);
 
 #endif

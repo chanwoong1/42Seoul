@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 10:02:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:19:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-#include "libft/libft.h"
+#include "../includes/pipex_bonus.h"
 
 void	error(void)
 {
@@ -176,7 +175,7 @@ int	main(int argc, char **argv, char **envp)
 	t_env	info;
 
 	if (argc < args_in(argv[1]))
-		exit_perror("wrong command count!", 1);
+		usage();
 	init_info(&info, argc, argv, envp);
 	parse_cmd(&info, argc - (&info)->here_doc, argv + (&info)->here_doc);
 	info.idx = -1;

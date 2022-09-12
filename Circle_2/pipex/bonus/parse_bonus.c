@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 09:36:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:19:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
-#include "libft/libft.h"
+#include "../includes/pipex_bonus.h"
 
 void	parse_cmd(t_env *info, int argc, char **argv)
 {

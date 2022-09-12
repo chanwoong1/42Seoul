@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "get_next_line.h"
 
 static char	*ft_strdup(const char *s1, int size)
 {
