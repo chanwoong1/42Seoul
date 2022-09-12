@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:17:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:00:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	check_cmd(t_env *info, char **argv)
 		if (info->cmd[i].path == NULL)
 			info->result = 127;
 	}
-	if (info->result == 127)
-		perror("command not found");
 }
 
 void	find_awk_sed(char **argv, int i, t_env *info)

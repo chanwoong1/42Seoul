@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:59:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:03:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:02:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	usage(void)
 	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
 	ft_putstr_fd("    ./pipex \"here_doc\" ", 1);
 	ft_putstr_fd("<LIMITER> <cmd1> <cmd2> <...> <file>\n", 1);
-	exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
 }
 
 void	close_pipes(t_env *info)

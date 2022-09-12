@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:56:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:41:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:44:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	here_doc(char *argv, t_env *info)
 		line = get_next_line(0);
 		if (!line)
 			exit(info->result);
-		if (!ft_strncmp(argv, line, ft_strlen(argv) + 1))
+		if (!ft_strncmp(argv, line, ft_strlen(argv)) \
+			&& ft_strlen(argv) == (ft_strlen(line) - 1))
 			break ;
 		write(file, line, ft_strlen(line));
 		write(file, "\n", 1);
