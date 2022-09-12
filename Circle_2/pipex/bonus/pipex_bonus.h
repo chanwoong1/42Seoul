@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/11 23:51:23 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:55:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FAIL		0
 # define SUCCESS	1
 # define ERROR		2
+# define BUFFER_SIZE 42
 # define ERR_INFILE "Infile"
 # define ERR_OUTFILE "Outfile"
 # define ERR_INPUT "Invalid number of arguments.\n"
@@ -44,6 +45,7 @@ typedef struct s_env
 	int				n_cmd;
 	int				here_doc;
 	char			**hd_cmd;
+	int				idx;
 	int				i_fd;
 	int				o_fd;
 	int				*pipe_fd;
@@ -69,6 +71,7 @@ int		open_file(char *argv, int i);
 
 /* heredoc_bonus.c */
 int		args_in(char *arg);
+void	here_doc(char *argv, t_env *info);
 
 /* gnl_bonus.c */
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:56:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 00:31:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:52:27 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	here_doc(char *argv, t_env *info)
 	int		file;
 	char	*line;
 
+	info->here_doc = 1;
 	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file < 0)
 		exit_perror(ERR_HEREDOC, info->result);
@@ -33,7 +34,7 @@ void	here_doc(char *argv, t_env *info)
 	{
 		write(1, "heredoc> ", 9);
 		line = get_next_line(0);
-		if (line < 0)
+		if (!line)
 			exit(info->result);
 		if (!ft_strncmp(argv, line, ft_strlen(argv) + 1))
 			break ;

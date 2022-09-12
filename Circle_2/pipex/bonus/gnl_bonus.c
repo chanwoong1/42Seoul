@@ -37,18 +37,18 @@ static char	*read_line(char **backup, char *buf)
 	int		n_b_s;
 
 	ret = NULL;
-	if (ft_strchr(*backup) == -1)
+	if (gnl_strchr(*backup) == -1)
 	{
 		if (*backup[0] != '\0')
-			ret = ft_strdup(*backup, ft_strlen(*backup));
+			ret = ft_strdup(*backup, gnl_strlen(*backup));
 		free(*backup);
 		*backup = NULL;
 	}
 	else
 	{
-		ret = ft_strdup(*backup, ft_strchr(*backup) + 1);
-		n_b_s = ft_strlen(*backup + ft_strchr(*backup) + 1);
-		new_backup = ft_strdup((*backup + ft_strchr(*backup) + 1), n_b_s);
+		ret = ft_strdup(*backup, gnl_strchr(*backup) + 1);
+		n_b_s = gnl_strlen(*backup + gnl_strchr(*backup) + 1);
+		new_backup = ft_strdup((*backup + gnl_strchr(*backup) + 1), n_b_s);
 		free(*backup);
 		*backup = new_backup;
 	}
@@ -66,10 +66,10 @@ static char	*read_buf(int fd, char **backup, char *buf)
 	while (read_size > 0)
 	{
 		buf[read_size] = '\0';
-		new_backup = ft_strjoin(*backup, buf);
+		new_backup = gnl_strjoin(*backup, buf);
 		free(*backup);
 		*backup = new_backup;
-		if (ft_strchr(*backup) != -1)
+		if (gnl_strchr(*backup) != -1)
 			return (read_line(backup, buf));
 		read_size = read(fd, buf, BUFFER_SIZE);
 	}
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 		free(buf);
 		return (NULL);
 	}
-	if (backup != NULL && ft_strchr(backup) != -1)
+	if (backup != NULL && gnl_strchr(backup) != -1)
 		return (read_line(&backup, buf));
 	if (backup == NULL)
 	{
