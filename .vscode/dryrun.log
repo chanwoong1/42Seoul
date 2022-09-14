@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/yein/chanwoonggit/42seoul'
+make: Leaving directory `/Users/yein/chanwoonggit/42seoul'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
