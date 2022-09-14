@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/12 15:27:30 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/14 16:05:51 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME):		$(OBJ_F) $(OBJ_M)
 
 all:			$(NAME)
 
-bonus:			$(OBJ_F) $(OBJ_B)
+bonus:			fclean $(OBJ_F) $(OBJ_B)
 				@$(CC) $(OBJ_F) $(OBJ_B) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 

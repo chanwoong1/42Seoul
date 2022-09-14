@@ -6,11 +6,17 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:17:09 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/30 13:12:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 19:13:03 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
+
+void	exit_game(t_map *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
+}
 
 void	print_err(char *message)
 {

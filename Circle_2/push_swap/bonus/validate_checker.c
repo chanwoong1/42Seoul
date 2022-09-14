@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 13:52:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/27 12:50:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:01:51 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	validate_args(int ac, char **av, t_var *stacks)
 	char	**tmp;
 	t_node	*new_node;
 
-	args = ft_all_join(ac, av);
+	args = ps_all_join(ac, av);
 	tmp_size = ps_size_check(args, ' ');
 	tmp = ft_split(args, ' ');
 	free(args);

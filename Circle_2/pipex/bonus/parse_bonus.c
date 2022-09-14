@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:51:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 21:42:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:59:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_cmd(t_env *info, int argc, char **argv)
 		exit_perror("malloc error", 1);
 	temp_path = find_path(info->envp);
 	if (!temp_path)
-		exit(0);
+		exit_perror(ERR_ENVP, 0);
 	info->path = ft_split(temp_path, ':');
 	check_cmd(info, argv);
 	free(temp_path);
@@ -68,12 +68,17 @@ void	find_awk_sed(char **argv, int i, t_env *info)
 	else
 		tmp_info = ft_split(argv[i + 2], '\"');
 	split_free(&(info->cmd[i].cmd[tmp]));
-	info->cmd[i].cmd[tmp] = ft_strdup(tmp_info[1]);
-	info->cmd[i].cmd[tmp + 1] = NULL;
+	find_awk_sed2(info, tmp_info, i, tmp);
 	tmp = 0;
 	while (tmp_info[tmp])
 		split_free(&tmp_info[tmp++]);
 	free(tmp_info);
+}
+
+void	find_awk_sed2(t_env *info, char **tmp_info, int i, int tmp)
+{
+	info->cmd[i].cmd[tmp] = ft_strdup(tmp_info[1]);
+	info->cmd[i].cmd[tmp + 1] = NULL;
 	if (ft_strncmp(info->cmd[i].cmd[1], "\'{", 2) == 0)
 		info->result = 2;
 }
@@ -104,23 +109,5 @@ char	*get_cmd_argv(char **path, char *cmd)
 		i++;
 	}
 	free(path_cmd);
-	return (NULL);
-}
-
-char	*find_path(char **envp)
-{
-	int		i;
-	char	*ret_path;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if (ft_strncmp("PATH=", envp[i], 5) == 0)
-		{
-			ret_path = ft_strdup(envp[i] + 5);
-			return (ret_path);
-		}
-		i++;
-	}
 	return (NULL);
 }

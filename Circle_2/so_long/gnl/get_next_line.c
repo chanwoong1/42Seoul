@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 01:05:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/27 07:33:20 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/11 17:19:46 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/11 17:19:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "get_next_line.h"
 
 static char	*ft_strdup(const char *s1, int size)
 {
@@ -40,14 +40,14 @@ static char	*read_line(char **backup, char *buf)
 	if (gnl_strchr(*backup) == -1)
 	{
 		if (*backup[0] != '\0')
-			ret = ft_strdup(*backup, ft_strlen(*backup));
+			ret = ft_strdup(*backup, gnl_strlen(*backup));
 		free(*backup);
 		*backup = NULL;
 	}
 	else
 	{
 		ret = ft_strdup(*backup, gnl_strchr(*backup) + 1);
-		n_b_s = ft_strlen(*backup + gnl_strchr(*backup) + 1);
+		n_b_s = gnl_strlen(*backup + gnl_strchr(*backup) + 1);
 		new_backup = ft_strdup((*backup + gnl_strchr(*backup) + 1), n_b_s);
 		free(*backup);
 		*backup = new_backup;
@@ -66,7 +66,7 @@ static char	*read_buf(int fd, char **backup, char *buf)
 	while (read_size > 0)
 	{
 		buf[read_size] = '\0';
-		new_backup = ft_strjoin(*backup, buf);
+		new_backup = gnl_strjoin(*backup, buf);
 		free(*backup);
 		*backup = new_backup;
 		if (gnl_strchr(*backup) != -1)

@@ -6,11 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:04:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/08/30 13:11:17 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:57:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	first_line_checker(char *line, t_map *map)
 {
@@ -27,7 +27,7 @@ int	first_line_checker(char *line, t_map *map)
 	}
 	if (line[col] == '\n')
 	{
-		map->col = col + 1;
+		map->col = col;
 		map->map_line = ft_strdup_without_newline(line);
 		return (col + 1);
 	}

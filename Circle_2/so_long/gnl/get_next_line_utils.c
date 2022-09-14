@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gnl_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 01:05:53 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/27 06:53:34 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/11 17:19:35 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/11 17:19:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+int	gnl_strlen(const char *s)
 {
 	int	n;
 
@@ -40,15 +40,15 @@ int	gnl_strchr(char *s)
 	return (-1);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	int		idx;
 	int		size_s1;
 	int		size_s2;
 	char	*join;
 
-	size_s1 = ft_strlen(s1);
-	size_s2 = ft_strlen(s2);
+	size_s1 = gnl_strlen(s1);
+	size_s2 = gnl_strlen(s2);
 	join = (char *)malloc(sizeof(char) * (size_s1 + size_s2) + 1);
 	if (!join)
 		return (NULL);

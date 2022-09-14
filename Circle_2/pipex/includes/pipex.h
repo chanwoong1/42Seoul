@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 15:58:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:41:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,16 @@ typedef struct s_env
 void	parse_cmd(t_env *info, int argc, char **argv);
 void	check_cmd(t_env *info, char **argv);
 void	find_awk_sed(char **argv, int i, t_env *info);
+void	find_awk_sed2(t_env *info, char **tmp_info, int i, int tmp);
 char	*get_cmd_argv(char **path, char *cmd);
-char	*find_path(char **envp);
+
 
 /* utils.c */
 void	exit_perror(char *msg, int code);
 void	split_free(char **to_free);
 void	usage(void);
 void	close_pipes(t_env *info);
+char	*find_path(char **envp);
 
 /* fd.c */
 void	get_fd(t_env *info, int argc, char **argv);

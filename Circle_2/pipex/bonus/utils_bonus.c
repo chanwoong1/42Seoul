@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 08:59:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 16:02:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:32:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ void	close_pipes(t_env *info)
 		close(info->pipe_fd[i]);
 		i++;
 	}
+}
+
+char	*find_path(char **envp)
+{
+	int		i;
+	char	*ret_path;
+
+	i = 0;
+	while (envp[i] != NULL)
+	{
+		if (ft_strncmp("PATH=", envp[i], 5) == 0)
+		{
+			ret_path = ft_strdup(envp[i] + 5);
+			return (ret_path);
+		}
+		i++;
+	}
+	return (NULL);
 }

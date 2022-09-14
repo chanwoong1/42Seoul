@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 10:58:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/14 16:02:19 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/07/11 15:25:00 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/07/17 14:15:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "libft.h"
 
-static int	ft_size_check(char const *str, char c)
+int	ft_size_check(char const *str, char c)
 {
 	int	size;
 	int	i;
@@ -31,7 +31,7 @@ static int	ft_size_check(char const *str, char c)
 	return (size);
 }
 
-static int	ft_str_check(char const *str, char c)
+int	ft_str_check(char const *str, char c)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ void	free_arr(char **arr, int i)
 	free(arr);
 }
 
-static char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
+char	**ft_too_many_lines(char **arr, char const *str, char c, int i)
 {
 	int	len;
 	int	j;
