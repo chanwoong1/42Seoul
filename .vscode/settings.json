@@ -1,9 +1,0 @@
-{
-    "makefile.extensionOutputFolder": "./.vscode",
-    "files.associations": {
-        "sstream": "c",
-        "ctype.h": "c",
-        "bonus.h": "c",
-        "get_next_line_bonus.h": "c"
-    }
-}
