@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 16:05:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:08:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 #include <fcntl.h>
 #include <stdlib.h>
@@ -46,10 +46,34 @@ typedef struct s_obj
 	void	*d1;
 	void	*d2;
 	void	*s1;
+	void	*s2;
+	void	*s3;
 	void	*s4;
+	void	*s5;
+	void	*s6;
 	void	*s7;
+	void	*s8;
+	void	*s9;
 	void	*s10;
+	void	*s11;
+	void	*s12;
 }				t_obj;
+
+typedef struct s_enm
+{
+	void	*t1;
+	void	*t2;
+	void	*t3;
+	void	*t4;
+	void	*t5;
+	void	*t6;
+	void	*t7;
+	void	*t8;
+	void	*t9;
+	void	*t10;
+	void	*t11;
+	void	*t12;
+}				t_enm;
 
 typedef struct		s_map
 {
@@ -64,48 +88,55 @@ typedef struct		s_map
 	void			*mlx;
 	void			*win;
 	struct s_obj	*obj;
+	struct s_enm	*enm;
 }					t_map;
-/* main.c */
+/* main_bonus.c */
+int		create_trgb(int t, int r, int g, int b);
 int		press_key(int key_code, t_map *map);
 
-/* init.c */
+/* init_bonus.c */
 void	obj_init(t_map *map);
+void	obj_init_2(t_map *map);
 
-/* utils.c */
+/* utils_bonus.c */
 int		exit_game(t_map *game);
 void	print_err(char *message);
 char	*ft_strdup_without_newline(char *s);
 int		ft_strlcpy_without_newline(char *dst, char *src, int len);
 char	*ft_strjoin_without_newline(char *s1, char *s2);
 
-/* mlx_utils.c */
+/* mlx_utils_bonus.c */
 void	setting_img(t_map *map);
 void	setting_img_2(t_map *map, int hei, int wid);
 void	put_img(t_map *map, void *w, int x, int y);
 void	put_img_c(t_map *map, int w64, int h64);
 void	put_img_char(t_map *map, void *ch, int w64, int h64);
 
-/* map_checker.c */
+/* map_checker_bonus.c */
 int		first_line_checker(char *line, t_map *map);
 void	middle_line_checker(char *line, int col, t_map *map);
 int		last_line_checker(char *line, int col, t_map *map);
 int		map_size_checker(int fd, t_map *map);
 void	map_checker(t_map *map, char *av);
 
-/* move_w.c */
+/* move_w_bonus.c */
 void	move_w(t_map *map);
 void	setting_img_w(t_map *map);
 
-/* move_a.c */
+/* move_a_bonus.c */
 void	move_a(t_map *map);
 void	setting_img_a(t_map *map);
 
-/* move_s.c */
+/* move_s_bonus.c */
 void	move_s(t_map *map);
 void	setting_img_s(t_map *map);
 
-/* move_d.c */
+/* move_d_bonus.c */
 void	move_d(t_map *map);
 void	setting_img_d(t_map *map);
+
+/* move_enemy_bonus.c */
+void	move_enemy(t_map *map);
+void	move_enemy2(t_map *map, int i, int direction);
 
 #endif

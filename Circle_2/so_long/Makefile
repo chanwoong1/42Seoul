@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/14 20:14:45 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/15 17:12:08 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,17 +23,20 @@ HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	main.c map_checker.c utils.c init.c move.c
+MPATH_SRCS	=	main.c map_checker.c utils.c mlx_utils.c init.c \
+				move_w.c move_a.c move_s.c move_d.c
 MPATH_DIR	=	mandatory/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 
-BPATH_SRCS	=	main_bonus.c utils_bonus.c fd_bonus.c parse_bonus.c
+BPATH_SRCS	=	main_bonus.c map_checker_bonus.c utils_bonus.c mlx_utils_bonus.c init_bonus.c \
+				move_w_bonus.c move_a_bonus.c move_s_bonus.c move_d_bonus.c move_enemy_bonus.c
 BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)
 
-FUNC_SRCS	=	ft_strncmp.c ft_strdup.c ft_split.c ft_strjoin.c ft_memset.c ft_strlen.c ft_putstr_fd.c
+FUNC_SRCS	=	ft_strncmp.c ft_strdup.c ft_split.c ft_strjoin.c ft_memset.c \
+				ft_strlen.c ft_strchr.c ft_putstr_fd.c ft_putnbr_fd.c ft_itoa.c
 FUNC_DIR	=	libft/
 FUNC 		=	$(addprefix $(FUNC_DIR), $(FUNC_SRCS))\
 				gnl/get_next_line.c gnl/get_next_line_utils.c
