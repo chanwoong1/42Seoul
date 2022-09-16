@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 17:08:15 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:15:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_obj
 {
 	void	*ld;
 	void	*tr;
+	void	*tr1;
 	void	*it;
 	void	*d1;
 	void	*d2;
@@ -93,6 +94,7 @@ typedef struct		s_map
 /* main_bonus.c */
 int		create_trgb(int t, int r, int g, int b);
 int		press_key(int key_code, t_map *map);
+void	put_img_tree(t_map *map, void *ch, int w64, int h64);
 
 /* init_bonus.c */
 void	obj_init(t_map *map);

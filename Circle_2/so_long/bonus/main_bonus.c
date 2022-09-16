@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 16:37:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:14:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,36 @@ static void	valid_args(char *av)
 		print_err("not valid extension\n");
 }
 
+void	put_img_tree(t_map *map, void *ch, int w64, int h64)
+{
+	put_img(map, map->obj->ld, w64, h64);
+	put_img(map, ch, w64, h64);
+}
+
+// int	ft_sprite(t_map *map)
+// {
+// 	int i;
+	
+// 	i = 0;
+// 	while (i < 10000)
+// 	{
+// 		if ((i / 20) % 2 == 0)
+// 			put_img_tree(map, map->obj->tr1, 0, 0);
+// 		else
+// 			put_img_tree(map, map->obj->tr, 0, 0);
+// 		i++;
+// 	}
+// 	// sleep(1);
+// 	// draw_map(map);
+// 	// draw_collect(map);
+// 	// event_checker(map);
+// 	// enemy_script(map);
+// 	// draw_sprites(map);
+// 	// draw_step_count(map);
+// 	// frame_cunt(map);
+// 	return (0);
+// }
+
 int	main(int ac, char **av)
 {
 	t_map		map;
@@ -85,6 +115,7 @@ int	main(int ac, char **av)
 	setting_img(&map);
 	mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);
 	mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_game, &map);
+	// mlx_loop_hook(map.mlx, &ft_sprite, &map);
 	mlx_loop(map.mlx);
 	return (0);
 }
