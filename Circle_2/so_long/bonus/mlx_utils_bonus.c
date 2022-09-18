@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:39:29 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/16 15:16:44 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 08:40:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	setting_img(t_map *map)
 	int		wid;
 
 	hei = 0;
+	map->char_col = 16;
+	map->char_row = 16;
+	map->enm_col = 16;
+	map->enm_row = 16;
 	while (hei < map->row)
 	{
 		wid = 0;
@@ -44,9 +48,9 @@ void	setting_img_2(t_map *map, int hei, int wid)
 	else if (map->map_line[hei * map->col + wid] == 'C')
 		put_img_c(map, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'P')
-		put_img_char(map, map->obj->s1, w64, h64);
+		put_img_char(map, map->obj->ss[0].pt, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'T')
-		put_img_char(map, map->enm->t1, w64, h64);
+		put_img_char(map, map->obj->tt[0].pt, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'E')
 	{
 		put_img(map, map->obj->ld, w64, h64);

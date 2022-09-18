@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fd_bonus.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yje <yje@student.42seoul.kr>               +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 13:56:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/12 21:48:04 by yje              ###   ########.fr       */
+/*   Updated: 2022/09/17 21:11:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	here_doc(char *argv, t_env *info)
 			&& ft_strlen(argv) == (ft_strlen(line) - 1))
 			break ;
 		write(file, line, ft_strlen(line));
-		write(file, "\n", 1);
 		free(line);
 	}
 	free(line);

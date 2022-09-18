@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:24:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 17:13:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 10:29:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,48 @@
 
 void	move_d(t_map *map)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i++ < ft_strlen(map->map_line))
-	{
+	while (i++ < map->map_size)
 		if (map->map_line[i] == 'P')
 			break ;
-	}
 	if (map->map_line[i + 1] == 'C')
 		map->item_cnt++;
 	if (map->map_line[i + 1] == 'T' || \
 		(map->map_line[i + 1] == 'E' && map->all_item == map->item_cnt))
 		exit_game(map);
-	else if (map->map_line[i + 1] != '1' && map->map_line[i + 1] != 'E')
+	else if (map->map_line[i + 1] != '1' && \
+			map->map_line[i + 1] != 'E')
 	{
-		map->map_line[i] = '0';
+		move_d3(map, i);
+		move_d2(map);
+	}
+	else if (map->map_line[i + 1] == '1' && \
+			map->map_line[i + 1] != 'E')
+	{
+		if (map->char_col == 0)
+			return ;
+		move_d2(map);
+	}
+}
+
+void	move_d2(t_map *map)
+{
+	map->walk_cnt++;
+	move_enemy(map);
+	setting_img_d(map);
+	if (!ft_strchr(map->map_line, 'P'))
+		exit_game(map);
+}
+
+void	move_d3(t_map *map, int i)
+{
+	if (map->char_row == 64)
+	{
 		map->map_line[i + 1] = 'P';
-		map->walk_cnt++;
-		move_enemy(map);
-		setting_img_d(map);
-		if (!ft_strchr(map->map_line, 'P'))
-			exit_game(map);
+		map->map_line[i] = '0';
+		map->char_row = 0;
 	}
 }
 
@@ -47,13 +67,16 @@ static void	setting_img_d2(t_map *map, int hei, int wid)
 	h64 = hei * 64;
 	w64 = wid * 64;
 	if (map->map_line[hei * map->col + wid] == '1')
-		put_img(map, map->obj->tr, w64, h64);
+		put_img(map, map->obj->tr1, w64, h64);
+	else if (map->map_line[hei * map->col + wid] == '0' && \
+			!(map->map_line[hei * map->col + wid - 1] == 'P'))
+		put_img(map, map->obj->ld, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'C')
 		put_img_c(map, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'P')
-		put_img_char(map, map->obj->s7, w64, h64);
+		put_img_char_d(map, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'T')
-		put_img_char(map, map->enm->t1, w64, h64);
+		put_img_enm(map, w64, h64);
 	else if (map->map_line[hei * map->col + wid] == 'E')
 	{
 		put_img(map, map->obj->ld, w64, h64);
@@ -62,8 +85,6 @@ static void	setting_img_d2(t_map *map, int hei, int wid)
 		else
 			put_img(map, map->obj->d1, w64 + 16, h64 + 16);
 	}
-	else
-		put_img(map, map->obj->ld, w64, h64);
 }
 
 void	setting_img_d(t_map *map)

@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/15 17:12:08 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/18 09:32:28 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 
 BPATH_SRCS	=	main_bonus.c map_checker_bonus.c utils_bonus.c mlx_utils_bonus.c init_bonus.c \
-				move_w_bonus.c move_a_bonus.c move_s_bonus.c move_d_bonus.c move_enemy_bonus.c
+				move_w_bonus.c move_a_bonus.c move_s_bonus.c move_d_bonus.c move_enemy_bonus.c \
+				put_char_sprite_img_bonus.c put_enm_sprite_img_bonus.c
 BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)

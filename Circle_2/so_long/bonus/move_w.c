@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   move_w.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/17 16:20:55 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/18 11:04:46 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/18 11:08:56 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../includes/so_long_bonus.h"
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <pthread.h>
-
-# define SUCCESS	1
-# define FAIL		0
-
-typedef struct	s_ph
+void	move_w(t_map *map)
 {
-	pthread_t	*philo;
-	int			args[5];
-}				t_ph;
+	int	i;
 
-#endif
+	i = 0;
+	while (i++ < map->map_size)
+		if (map->map_line[i] == 'P')
+			break ;
+	
+}

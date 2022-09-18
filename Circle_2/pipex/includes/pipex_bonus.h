@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:50:12 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/14 15:41:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:27:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	check_cmd(t_env *info, char **argv);
 void	find_awk_sed(char **argv, int i, t_env *info);
 void	find_awk_sed2(t_env *info, char **tmp_info, int i, int tmp);
 char	*get_cmd_argv(char **path, char *cmd);
-
 
 /* utils_bonus.c */
 void	exit_perror(char *msg, int code);

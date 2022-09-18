@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:04:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 14:31:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:41:41 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	map_size_checker(int fd, t_map *map)
 	int		size;
 	char	*line;
 
+	if (fd < 0)
+		print_err("map error : not valid file descriptor, check your map!\n");
 	size = 0;
 	while (1)
 	{
