@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:04:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/17 17:41:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 00:57:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	last_line_checker(char *line, int col, t_map *map)
 
 	size = ft_strlen(line);
 	idx = 0;
-	if (col - 1 != size)
+	if (col != size)
 		print_err("map error\n");
-	while (idx < size)
+	while (idx < size - 1)
 	{
 		if (line[idx] != '1')
 			return (-1);
@@ -92,8 +92,8 @@ int	map_size_checker(int fd, t_map *map)
 	}
 	size++;
 	free(line);
-	map->row = size;
-	return (size - 2);
+	map->row = size - 1;
+	return (size - 3);
 }
 
 void	map_checker(t_map *map, char *av)

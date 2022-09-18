@@ -29,6 +29,8 @@ int	gnl_strchr(char *s)
 
 	len = 0;
 	idx = 0;
+	if (!s)
+		return (-1);
 	while (s[len])
 		len++;
 	while (idx < len)

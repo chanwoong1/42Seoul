@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/18 22:58:37 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/19 01:03:32 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,12 @@ RM			=	rm -rf
 MLX			=	-L./mlx -lmlx -framework OpenGL -framework AppKit
 
 # HEADER
-HEADER_SRCS	=	so_long.h
+HEADER_SRCS	=	so_long.h so_long_bonus.h
 HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
+
+LFT_DIR = ./libft
+LFT_FLAG = -L$(LFT_DIR) -lft -I$(LFT_DIR)
 
 # FILES
 MPATH_SRCS	=	main.c map_checker.c utils.c mlx_utils.c init.c \
@@ -36,11 +39,7 @@ BPATH_DIR	=	bonus/
 BPATH		=	$(addprefix $(BPATH_DIR), $(BPATH_SRCS))
 OBJ_B		=	$(BPATH:.c=.o)
 
-FUNC_SRCS	=	ft_strncmp.c ft_strdup.c ft_split.c ft_strjoin.c ft_memset.c \
-				ft_strlen.c ft_strchr.c ft_putstr_fd.c ft_putnbr_fd.c ft_itoa.c
-FUNC_DIR	=	libft/
-FUNC 		=	$(addprefix $(FUNC_DIR), $(FUNC_SRCS))\
-				gnl/get_next_line.c gnl/get_next_line_utils.c
+FUNC 		=	gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJ_F		=	$(FUNC:.c=.o)
 
 #COMMANDS
@@ -48,22 +47,26 @@ OBJ_F		=	$(FUNC:.c=.o)
 				@${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):		$(OBJ_F) $(OBJ_M)
-				@$(CC) $(OBJ_F) $(OBJ_M) $(MLX) -o $(NAME)
+				@make -s -C $(LFT_DIR) bonus
+				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_M) $(MLX) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)
 
 bonus:			fclean $(OBJ_F) $(OBJ_B)
-				@$(CC) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
+				@make -s -C $(LFT_DIR) bonus
+				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
+				@make -s -C $(LFT_DIR) clean
 				@$(RM) $(OBJ_M)
 				@$(RM) $(OBJ_F)
 				@$(RM) $(OBJ_B)
 				@echo -e "$(YELLOW)object files deleted!$(DEFAULT)"
 
 fclean:			clean
+				@make -s -C $(LFT_DIR) fclean
 				@$(RM) $(NAME)
 				@echo -e "$(RED)all deleted!$(DEFAULT)"
 
