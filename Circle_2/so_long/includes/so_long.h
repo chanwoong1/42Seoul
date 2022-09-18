@@ -6,27 +6,27 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/15 16:05:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:01:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <unistd.h>
 
 /* to mlx */
-#include "../mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 /* to get_next_line */
-#include "../gnl/get_next_line.h"
+# include "../gnl/get_next_line.h"
 
 /* to libft */
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
@@ -51,7 +51,7 @@ typedef struct s_obj
 	void	*s10;
 }				t_obj;
 
-typedef struct		s_map
+typedef struct s_map
 {
 	int				x;
 	int				y;

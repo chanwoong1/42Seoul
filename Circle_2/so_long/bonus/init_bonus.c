@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:09:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 20:54:15 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 22:41:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	obj_init(t_map *map)
 	map->x = 3;
 	map->y = 4;
 	map->obj = (t_obj *)malloc(sizeof(t_obj));
-	map->enm = (t_enm *)malloc(sizeof(t_enm));
-	if (!map->obj || !map->enm)
+	if (!map->obj)
 		print_err("malloc fail\n");
 	init_img(map, map->obj->land, 0, "./img/ld.xpm");
 	init_img(map, map->obj->land, 1, "./img/ld1.xpm");

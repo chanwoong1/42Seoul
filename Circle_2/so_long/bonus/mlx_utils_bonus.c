@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 12:39:29 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 20:54:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 22:45:51 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@ void	setting_img(t_map *map)
 {
 	int		hei;
 	int		wid;
+	char	*walk_cnt;
 
 	hei = 0;
 	map->char_col = 16;
 	map->char_row = 16;
 	map->enm_walk = 16;
+	walk_cnt = ft_itoa(map->walk_cnt);
 	while (hei < map->row)
 	{
 		wid = 0;
 		while (wid < map->col)
 		{
 			setting_img_2(map, hei, wid);
-			mlx_string_put (map->mlx, map->win, map->col * 64 - 32, 8, \
-					create_trgb(0, 255, 255, 255), ft_itoa(map->walk_cnt));
 			wid++;
 		}
 		hei++;
 	}
+	mlx_string_put (map->mlx, map->win, map->col * 64 - 32, 8, \
+					create_trgb(0, 255, 255, 255), walk_cnt);
+	free(walk_cnt);
 }
 
 void	setting_img_2(t_map *map, int hei, int wid)

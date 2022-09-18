@@ -6,27 +6,27 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 20:52:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:01:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <unistd.h>
 
 /* to mlx */
-#include "../mlx/mlx.h"
+# include "../mlx/mlx.h"
 
 /* to get_next_line */
-#include "../gnl/get_next_line.h"
+# include "../gnl/get_next_line.h"
 
 /* to libft */
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
@@ -38,41 +38,25 @@
 # define KEY_S						1
 # define KEY_D						2
 
-typedef struct	s_img
+typedef struct s_img
 {
-	void	*pt;
+	void		*pt;
 }				t_img;
 
-typedef struct	s_obj
+typedef struct s_obj
 {
-	t_img	item[1];
-	t_img	land[4];
-	t_img	tree[4];
-	t_img	door[2];
-	t_img	sw[3];
-	t_img	ss[3];
-	t_img	sa[3];
-	t_img	sd[3];
-	t_img	tt[12];
+	t_img		item[1];
+	t_img		land[4];
+	t_img		tree[4];
+	t_img		door[2];
+	t_img		sw[3];
+	t_img		ss[3];
+	t_img		sa[3];
+	t_img		sd[3];
+	t_img		tt[12];
 }				t_obj;
 
-typedef struct s_enm
-{
-	void	*t1;
-	void	*t2;
-	void	*t3;
-	void	*t4;
-	void	*t5;
-	void	*t6;
-	void	*t7;
-	void	*t8;
-	void	*t9;
-	void	*t10;
-	void	*t11;
-	void	*t12;
-}				t_enm;
-
-typedef struct		s_map
+typedef struct s_map
 {
 	int				x;
 	int				y;
@@ -106,6 +90,11 @@ void	print_err(char *message);
 char	*ft_strdup_without_newline(char *s);
 int		ft_strlcpy_without_newline(char *dst, char *src, int len);
 char	*ft_strjoin_without_newline(char *s1, char *s2);
+
+/* valid_utils_bonus.c */
+void	valid_num_of_objs(t_map *map);
+void	valid_args(char *av);
+void	valid_map(t_map *map);
 
 /* mlx_utils_bonus.c */
 void	setting_img(t_map *map);

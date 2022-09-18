@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   valid_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 22:36:15 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/18 22:55:59 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/18 22:58:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
-int	press_key(int key_code, t_map *map)
-{
-	if (key_code == KEY_ESC)
-		exit_game(map);
-	if (key_code == KEY_W)
-		move_w(map);
-	if (key_code == KEY_A)
-		move_a(map);
-	if (key_code == KEY_S)
-		move_s(map);
-	if (key_code == KEY_D)
-		move_d(map);
-	return (0);
-}
-
-static void	valid_num_of_objs(t_map *map)
+void	valid_num_of_objs(t_map *map)
 {
 	int	idx;
 	int	e_cnt;
@@ -50,7 +35,7 @@ static void	valid_num_of_objs(t_map *map)
 		print_err("map error\n");
 }
 
-static void	valid_args(char *av)
+void	valid_args(char *av)
 {
 	int		i;
 
@@ -61,7 +46,7 @@ static void	valid_args(char *av)
 		print_err("not valid extension\n");
 }
 
-static void	valid_map(t_map *map)
+void	valid_map(t_map *map)
 {
 	size_t	i;
 
@@ -74,25 +59,5 @@ static void	valid_map(t_map *map)
 			print_err("map error\n");
 		i++;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	t_map		map;
-
-	if (ac != 2)
-		print_err("argument error: ./so_long <map_name>.ber\n");
-	ft_memset(&map, 0, sizeof(t_map));
-	valid_args(av[1]);
-	map_checker(&map, av[1]);
-	valid_map(&map);
-	valid_num_of_objs(&map);
-	map.mlx = mlx_init();
-	map.win = mlx_new_window(map.mlx, map.col * 64, map.row * 64, "so_long");
-	obj_init(&map);
-	setting_img(&map);
-	mlx_hook(map.win, X_EVENT_KEY_RELEASE, 0, &press_key, &map);
-	mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_game, &map);
-	mlx_loop(map.mlx);
-	return (0);
+	map->map_size = ft_strlen(map->map_line);
 }
