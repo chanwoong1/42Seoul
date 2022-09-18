@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:58:23 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 10:26:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:52:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ typedef struct	s_img
 
 typedef struct	s_obj
 {
-	void	*ld;
-	void	*tr;
-	void	*tr1;
-	void	*it;
-	void	*d1;
-	void	*d2;
+	t_img	item[1];
+	t_img	land[4];
+	t_img	tree[4];
+	t_img	door[2];
 	t_img	sw[3];
 	t_img	ss[3];
 	t_img	sa[3];
@@ -82,8 +80,7 @@ typedef struct		s_map
 	int				col;
 	int				char_row;
 	int				char_col;
-	int				enm_row;
-	int				enm_col;
+	int				enm_walk;
 	int				all_item;
 	int				item_cnt;
 	int				walk_cnt;
@@ -98,7 +95,6 @@ typedef struct		s_map
 /* main_bonus.c */
 int		create_trgb(int t, int r, int g, int b);
 int		press_key(int key_code, t_map *map);
-void	put_img_tree(t_map *map, void *ch, int w64, int h64);
 
 /* init_bonus.c */
 void	obj_init(t_map *map);
@@ -127,34 +123,28 @@ void	map_checker(t_map *map, char *av);
 
 /* move_w_bonus.c */
 void	move_w(t_map *map);
-void	move_w2(t_map *map);
-void	move_w3(t_map *map, int i);
 void	setting_img_w(t_map *map);
 
 /* move_a_bonus.c */
 void	move_a(t_map *map);
-void	move_a2(t_map *map);
-void	move_a3(t_map *map, int i);
 void	setting_img_a(t_map *map);
 
 /* move_s_bonus.c */
 void	move_s(t_map *map);
-void	move_s2(t_map *map);
-void	move_s3(t_map *map, int i);
 void	setting_img_s(t_map *map);
 
 /* move_d_bonus.c */
 void	move_d(t_map *map);
-void	move_d2(t_map *map);
-void	move_d3(t_map *map, int i);
 void	setting_img_d(t_map *map);
 
 /* move_enemy_bonus.c */
 void	create_enemy(t_map *map);
 void	move_enemy(t_map *map);
 void	move_enemy2(t_map *map, int i, int direction);
-void	move_enemy_w(t_map *map, int i, int direction);
-void	move_enemy_s(t_map *map, int i, int direction);
+
+/* put_obj_img_bonus.c */
+void	put_img_tree(t_map *map, int w64, int h64);
+void	put_img_land(t_map *map, int w64, int h64);
 
 /* put_char_sprite_img.c */
 void	put_img_char_w(t_map *map, int w64, int h64);

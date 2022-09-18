@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 20:57:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 10:42:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:00:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,6 @@ static void	valid_args(char *av)
 		print_err("not valid extension\n");
 }
 
-void	put_img_tree(t_map *map, void *ch, int w64, int h64)
-{
-	put_img(map, map->obj->ld, w64, h64);
-	put_img(map, ch, w64, h64);
-}
-
 static void	valid_map(t_map *map)
 {
 	size_t	i;
@@ -102,7 +96,7 @@ int	main(int ac, char **av)
 	map.mlx = mlx_init();
 	map.win = mlx_new_window(map.mlx, map.col * 64, map.row * 64, "so_long");
 	obj_init(&map);
-	// create_enemy(&map);
+	create_enemy(&map);
 	setting_img(&map);
 	mlx_hook(map.win, X_EVENT_KEY_PRESS, 0, &press_key, &map);
 	mlx_hook(map.win, X_EVENT_KEY_EXIT, 0, &exit_game, &map);

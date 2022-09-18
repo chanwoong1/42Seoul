@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_w.c                                           :+:      :+:    :+:   */
+/*   put_obj_img_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 11:04:46 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 11:08:56 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/09/18 19:01:37 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/09/18 20:18:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-void	move_w(t_map *map)
+void	put_img_tree(t_map *map, int w64, int h64)
 {
 	int	i;
 
-	i = 0;
-	while (i++ < map->map_size)
-		if (map->map_line[i] == 'P')
-			break ;
-	
+	i = (map->char_row + map->char_col) % 3;
+	put_img(map, map->obj->tree[i + 1].pt, w64, h64);
+}
+
+void	put_img_land(t_map *map, int w64, int h64)
+{
+	int	i;
+
+	i = (map->char_row + map->char_col) % 3;
+	put_img(map, map->obj->land[i + 1].pt, w64, h64);
 }

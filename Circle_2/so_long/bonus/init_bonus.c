@@ -6,59 +6,66 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:09:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 10:02:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:54:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-void	obj_init(t_map *map)
+void	init_img(t_map *map, t_img *a, int i, char *xpm)
 {
 	int	wd;
 	int	hg;
 
+	a[i].pt = mlx_xpm_file_to_image(map->mlx, xpm, &wd, &hg);
+}
+
+void	obj_init(t_map *map)
+{
 	map->x = 3;
 	map->y = 4;
 	map->obj = (t_obj *)malloc(sizeof(t_obj));
 	map->enm = (t_enm *)malloc(sizeof(t_enm));
 	if (!map->obj || !map->enm)
 		print_err("malloc fail\n");
-	map->obj->ld = mlx_xpm_file_to_image(map->mlx, "./img/ld.xpm", &wd, &hg);
-	map->obj->tr = mlx_xpm_file_to_image(map->mlx, "./img/tr.xpm", &wd, &hg);
-	map->obj->tr1 = mlx_xpm_file_to_image(map->mlx, "./img/tr1.xpm", &wd, &hg);
-	map->obj->it = mlx_xpm_file_to_image(map->mlx, "./img/it.xpm", &wd, &hg);
-	map->obj->d1 = mlx_xpm_file_to_image(map->mlx, "./img/d1.xpm", &wd, &hg);
-	map->obj->d2 = mlx_xpm_file_to_image(map->mlx, "./img/d2.xpm", &wd, &hg);
-	map->obj->ss[0].pt = mlx_xpm_file_to_image(map->mlx, "./img/s1.xpm", &wd, &hg);
-	map->obj->ss[1].pt = mlx_xpm_file_to_image(map->mlx, "./img/s2.xpm", &wd, &hg);
-	map->obj->ss[2].pt = mlx_xpm_file_to_image(map->mlx, "./img/s3.xpm", &wd, &hg);
-	map->obj->sa[0].pt = mlx_xpm_file_to_image(map->mlx, "./img/s4.xpm", &wd, &hg);
-	map->obj->sa[1].pt = mlx_xpm_file_to_image(map->mlx, "./img/s5.xpm", &wd, &hg);
-	map->obj->sa[2].pt = mlx_xpm_file_to_image(map->mlx, "./img/s6.xpm", &wd, &hg);
+	init_img(map, map->obj->land, 0, "./img/ld.xpm");
+	init_img(map, map->obj->land, 1, "./img/ld1.xpm");
+	init_img(map, map->obj->land, 2, "./img/ld2.xpm");
+	init_img(map, map->obj->land, 3, "./img/ld3.xpm");
+	init_img(map, map->obj->tree, 0, "./img/tr1.xpm");
+	init_img(map, map->obj->tree, 1, "./img/tr2.xpm");
+	init_img(map, map->obj->tree, 2, "./img/tr3.xpm");
+	init_img(map, map->obj->tree, 3, "./img/tr4.xpm");
+	init_img(map, map->obj->item, 0, "./img/it.xpm");
+	init_img(map, map->obj->door, 0, "./img/d1.xpm");
+	init_img(map, map->obj->door, 1, "./img/d2.xpm");
+	init_img(map, map->obj->ss, 0, "./img/s1.xpm");
+	init_img(map, map->obj->ss, 1, "./img/s2.xpm");
+	init_img(map, map->obj->ss, 2, "./img/s3.xpm");
+	init_img(map, map->obj->sa, 0, "./img/s4.xpm");
+	init_img(map, map->obj->sa, 1, "./img/s5.xpm");
+	init_img(map, map->obj->sa, 2, "./img/s6.xpm");
 	obj_init_2(map);
 }
 
 void	obj_init_2(t_map *map)
 {
-	int	wd;
-	int	hg;
-
-	map->obj->sd[0].pt = mlx_xpm_file_to_image(map->mlx, "./img/s7.xpm", &wd, &hg);
-	map->obj->sd[1].pt = mlx_xpm_file_to_image(map->mlx, "./img/s8.xpm", &wd, &hg);
-	map->obj->sd[2].pt = mlx_xpm_file_to_image(map->mlx, "./img/s9.xpm", &wd, &hg);
-	map->obj->sw[0].pt = mlx_xpm_file_to_image(map->mlx, "./img/s10.xpm", &wd, &hg);
-	map->obj->sw[1].pt = mlx_xpm_file_to_image(map->mlx, "./img/s11.xpm", &wd, &hg);
-	map->obj->sw[2].pt = mlx_xpm_file_to_image(map->mlx, "./img/s12.xpm", &wd, &hg);
-	map->obj->tt[0].pt = mlx_xpm_file_to_image(map->mlx, "./img/t1.xpm", &wd, &hg);
-	map->obj->tt[1].pt = mlx_xpm_file_to_image(map->mlx, "./img/t2.xpm", &wd, &hg);
-	map->obj->tt[2].pt = mlx_xpm_file_to_image(map->mlx, "./img/t3.xpm", &wd, &hg);
-	map->obj->tt[3].pt = mlx_xpm_file_to_image(map->mlx, "./img/t4.xpm", &wd, &hg);
-	map->obj->tt[4].pt = mlx_xpm_file_to_image(map->mlx, "./img/t5.xpm", &wd, &hg);
-	map->obj->tt[5].pt = mlx_xpm_file_to_image(map->mlx, "./img/t6.xpm", &wd, &hg);
-	map->obj->tt[6].pt = mlx_xpm_file_to_image(map->mlx, "./img/t7.xpm", &wd, &hg);
-	map->obj->tt[7].pt = mlx_xpm_file_to_image(map->mlx, "./img/t8.xpm", &wd, &hg);
-	map->obj->tt[8].pt = mlx_xpm_file_to_image(map->mlx, "./img/t9.xpm", &wd, &hg);
-	map->obj->tt[9].pt = mlx_xpm_file_to_image(map->mlx, "./img/t10.xpm", &wd, &hg);
-	map->obj->tt[10].pt = mlx_xpm_file_to_image(map->mlx, "./img/t11.xpm", &wd, &hg);
-	map->obj->tt[11].pt = mlx_xpm_file_to_image(map->mlx, "./img/t12.xpm", &wd, &hg);
+	init_img(map, map->obj->sd, 0, "./img/s7.xpm");
+	init_img(map, map->obj->sd, 1, "./img/s8.xpm");
+	init_img(map, map->obj->sd, 2, "./img/s9.xpm");
+	init_img(map, map->obj->sw, 0, "./img/s10.xpm");
+	init_img(map, map->obj->sw, 1, "./img/s11.xpm");
+	init_img(map, map->obj->sw, 2, "./img/s12.xpm");
+	init_img(map, map->obj->tt, 0, "./img/t1.xpm");
+	init_img(map, map->obj->tt, 1, "./img/t2.xpm");
+	init_img(map, map->obj->tt, 2, "./img/t3.xpm");
+	init_img(map, map->obj->tt, 3, "./img/t4.xpm");
+	init_img(map, map->obj->tt, 4, "./img/t5.xpm");
+	init_img(map, map->obj->tt, 5, "./img/t6.xpm");
+	init_img(map, map->obj->tt, 6, "./img/t7.xpm");
+	init_img(map, map->obj->tt, 7, "./img/t8.xpm");
+	init_img(map, map->obj->tt, 8, "./img/t9.xpm");
+	init_img(map, map->obj->tt, 9, "./img/t10.xpm");
+	init_img(map, map->obj->tt, 10, "./img/t11.xpm");
+	init_img(map, map->obj->tt, 11, "./img/t12.xpm");
 }
