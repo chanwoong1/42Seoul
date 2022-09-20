@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:01:37 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 20:18:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:36:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,5 @@ void	put_img_tree(t_map *map, int w64, int h64)
 
 void	put_img_land(t_map *map, int w64, int h64)
 {
-	int	i;
-
-	i = (map->char_row + map->char_col) % 3;
-	put_img(map, map->obj->land[i + 1].pt, w64, h64);
+	put_img(map, map->obj->land[0].pt, w64, h64);
 }

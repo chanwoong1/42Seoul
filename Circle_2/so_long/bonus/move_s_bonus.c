@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:28:28 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/18 22:59:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:30:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	setting_img_s(t_map *map)
 
 	hei = 0;
 	walk_cnt = ft_itoa(map->walk_cnt);
+	if (!walk_cnt)
+		return ;
 	while (hei < map->row)
 	{
 		wid = 0;
