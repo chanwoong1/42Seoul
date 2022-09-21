@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:04:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/21 09:36:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:33:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	middle_line_checker(char *line, int col, t_map *map)
 
 	line_idx = ft_strlen(line);
 	if (line_idx != col || (line[0] != '1' || line[col - 2] != '1'))
-		print_err("map error\n");
+		print_err("map error : not valid your map, check middle line!\n");
 	idx = -1;
 	while (++idx < col - 1)
 	{
@@ -51,9 +51,9 @@ void	middle_line_checker(char *line, int col, t_map *map)
 			break ;
 	}
 	if (idx == col - 1)
-		print_err("map error\n");
+		print_err("map error : not valid your map, check middle line!\n");
 	if (first_line_checker(line, map) != -1)
-		print_err("map error\n");
+		print_err("map error : not valid your map, check middle line!\n");
 	map->map_line = ft_strjoin_without_newline(map->map_line, line);
 }
 
@@ -65,7 +65,7 @@ int	last_line_checker(char *line, int col, t_map *map)
 	size = ft_strlen(line);
 	idx = 0;
 	if (col != size)
-		print_err("map error\n");
+		print_err("map error : not valid your map, check last line!\n");
 	while (idx < size - 1)
 	{
 		if (line[idx] != '1')
@@ -114,7 +114,7 @@ void	map_checker(t_map *map, char *av)
 	line = get_next_line(fd);
 	col = first_line_checker(line, map);
 	if (col == -1)
-		print_err("map error\n");
+		print_err("map error : not valid your map, check first line!\n");
 	free(line);
 	while (map_size--)
 	{
@@ -124,7 +124,7 @@ void	map_checker(t_map *map, char *av)
 	}
 	line = get_next_line(fd);
 	if (last_line_checker(line, col, map) == -1)
-		print_err("map error\n");
+		print_err("map error : not valid your map, check last line!\n");
 	free(line);
 	close(fd);
 }

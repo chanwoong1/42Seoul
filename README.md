@@ -38,6 +38,12 @@
 
 	2022.08.31 ~ 2022.09.17
 
-- [so_long](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_2/push_swap)
+- [so_long](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_2/so_long) - 125/100
 
-	2022.09.10 ~
+	2022.09.10 ~ 2022.09.21
+
+### Circle_3
+
+- [philosophers](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_3/philosophers)
+
+	2022.09.22 ~

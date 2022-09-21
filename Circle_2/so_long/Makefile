@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/19 01:03:32 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/21 12:35:52 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,14 @@ OBJ_F		=	$(FUNC:.c=.o)
 				@${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):		$(OBJ_F) $(OBJ_M)
-				@make -s -C $(LFT_DIR) bonus
+				@make -s -C $(LFT_DIR)
 				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_M) $(MLX) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)
 
 bonus:			fclean $(OBJ_F) $(OBJ_B)
-				@make -s -C $(LFT_DIR) bonus
+				@make -s -C $(LFT_DIR)
 				@$(CC) $(LFT_FLAG) $(OBJ_F) $(OBJ_B) $(MLX) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
