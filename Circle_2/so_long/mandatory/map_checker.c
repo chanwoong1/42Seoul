@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:04:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/19 00:57:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/21 09:36:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	first_line_checker(char *line, t_map *map)
 	int	size;
 
 	size = ft_strlen(line);
+	if (size <= 3)
+		print_err("map error : not valid your map, check column!\n");
 	col = 0;
 	while (col < size - 1)
 	{
@@ -93,6 +95,8 @@ int	map_size_checker(int fd, t_map *map)
 	size++;
 	free(line);
 	map->row = size - 1;
+	if (map->row <= 2)
+		print_err("map error : not valid your map size, check your map!\n");
 	return (size - 3);
 }
 
