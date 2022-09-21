@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/19 01:36:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:18:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,29 @@
 # define SUCCESS	1
 # define FAIL		0
 
-typedef struct	s_ph
+typedef struct s_philo
 {
-	pthread_t	*philo;
-	int			args[5];
-}				t_ph;
+	struct s_arg	*arg;
+	pthread_t		thread;
+	int				id;
+	int				left;
+	int				right;
+	long long		last_eat_time;
+	int				eat_count;
+}				t_philo;
+
+typedef struct s_arg
+{
+	int				philo_num;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				eat_times;
+	int				finish;
+	int				finished_eat;
+	long long		start_time;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+}				t_arg;
 
 #endif

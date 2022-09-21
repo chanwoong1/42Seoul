@@ -6,12 +6,12 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/17 15:23:45 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/21 16:30:30 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # SETUP
-NAME		=	philosophers
+NAME		=	philo
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 THREAD		=	-pthread

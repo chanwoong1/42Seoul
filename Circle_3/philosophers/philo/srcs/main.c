@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/19 05:49:30 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:18:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *str)
 	return (sign * ret);
 }
 
-void	valid_arg(t_ph *ph, char *av, int i)
+void	valid_arg(t_arg *args, char *av, int i)
 {
 	int	idx;
 
@@ -42,92 +42,53 @@ void	valid_arg(t_ph *ph, char *av, int i)
 	{
 		if (!(av[idx] >= '0' && av[idx] <= '9'))
 		{
-			ph->args[i] = -1;
+			args->args[i] = -1;
 			return ;
 		}
 		idx++;
 	}
-	ph->args[i] = ft_atoi(av);
+	args->args[i] = ft_atoi(av);
 }
 
-int valid_args(t_ph *ph, int ac, char **av)
+int valid_args(t_arg *arg, int ac, char **av)
 {
 	int	i;
 
 	i = 0;
 	while (i < 5 + ac)
 	{
-		valid_arg(ph, av[i], i);
-		if (ph->args[i] < 0)
+		valid_arg(arg, av[i], i);
+		if (arg->args[i] < 0)
 			return (FAIL);
 		i++;
 	}
 	if (i == 4)
-		ph->args[i] = 0;
+		arg->args[i] = 0;
 	return (SUCCESS);
 }
 
-void	print_index_loop(char *str, int max)
+int	main(int argc, char *argv[])
 {
-	int i;
+	t_arg	arg;
+	t_philo	*philo;
+	int		errno;
 
-	i = 0;
-	while (i < max)
-	{
-		printf("[%s]i is %d\n", str, i);
-		usleep(1000 * 100);
-		++i;
-	}
-}
-
-void	*thread_routine(void *arg)
-{
-	print_index_loop("thread", 5);
-	return (NULL);
-}
-
-int 	main()
-{
-	pthread_t	tid;
-	int			create_res;
-	int			detach_res;
-	int			join_res;
-
-	// [ 1. create new thread in this process ]
-	// args:	1.thread(ID)
-	//			2.attr(info of new thread, generally filled with NULL)
-	//			3.function ptr
-	//			4.function's argument
-	//			success -> return: 0	// fail -> return: errno
-	create_res = pthread_create(&tid, NULL, thread_routine, NULL);
-	if (create_res != 0)
-		return (1);
-	print_index_loop("main", 3);
-
-	// [ 2. detach thread from main thread ]
-	// 			success -> return: 0	// fail -> return: errno
-	detach_res = pthread_detach(tid);
-	printf("detaced result: %d\n", detach_res);
-
-
-	// [ 3. (join)wait for thread ]
-	// args:	1. thread(ID)
-	//			2.thread function's return value
-	join_res = pthread_join(tid, NULL);
-	printf("join result: %d\n", join_res);
-	return (0);
-}
-
-int	main(int ac, char **av)
-{
-	t_ph	ph;
-
-	if (!(ac >= 5 && ac <= 6))
+	if (argc != 5 && argc != 6)
 		return (FAIL);
-	memset(&ph, 0, sizeof(t_ph));
-	if (valid_args(&ph, ac - 6, av + 1) == FAIL)
+	memset(&arg, 0, sizeof(t_arg));
+	if (valid_args(&args, ac - 6, av + 1) == FAIL)
 		return (FAIL);
-	create_philo(&ph);
-	system("leaks philosophers");
+
+// argv를 구조체에 저장하고 필요한 변수들을 할당하고 초기화해준다
+	
+	errno = ft_philo_init(&philo, &arg);
+	if (errno)
+		return (print_error("error philo init", errno));
+// 철학자별로 들어갈 변수들을 초기화한다.
+
+	errno = ft_philo_start(&arg, philo);
+	if (errno)
+		return (print_error("error philo start", errno));
+// 철학자를 시작하고 종료될때까지 동작한다
 	return (0);
 }
