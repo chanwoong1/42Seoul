@@ -6,16 +6,22 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/21 20:18:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:52:14 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+int	print_error(char *msg, int err)
+{
+	printf("%s : %d\n", msg, err);
+	return (err);
+}
+
 int	ft_atoi(const char *str)
 {
-	int	ret;
-	int	sign;
+	long long	ret;
+	int			sign;
 
 	ret = 0;
 	sign = 1;
@@ -30,65 +36,79 @@ int	ft_atoi(const char *str)
 		ret = ret * 10 + (*str - '0');
 		str++;
 	}
+	if (ret > 9223372036854775807 && sign == -1)
+		return (-1);
+	else if (ret > 9223372036854775807)
+		return (-1);
 	return (sign * ret);
 }
 
-void	valid_arg(t_arg *args, char *av, int i)
+long long	ft_get_time(void)
 {
-	int	idx;
+	struct timeval	mytime;
 
-	idx = 0;
-	while (av[idx])
+	if (gettimeofday(&mytime, NULL) == -1)
+		return (-1);
+	return ((mytime.tv_sec * 1000) + (mytime.tv_usec / 1000));
+}
+
+void	ft_pass_time(long long wait_time, t_arg *arg)
+{
+	long long	start;
+	long long	now;
+
+	start = ft_get_time();
+	while (!(arg->finish))
 	{
-		if (!(av[idx] >= '0' && av[idx] <= '9'))
+		now = ft_get_time();
+		if ((now - start) >= wait_time)
+			break ;
+		usleep(10);
+	}
+}
+
+void	*ft_thread(void *argv)
+{
+	t_arg		*arg;
+	t_philo		*philo;
+
+	philo = argv;
+	arg = philo->arg;
+	if (philo->id % 2)
+		usleep(1000);
+	while (!arg->finish)
+	{
+		ft_philo_action(arg, philo);
+		if (arg->eat_times == philo->eat_count)
 		{
-			args->args[i] = -1;
-			return ;
+			arg->finished_eat++;
+			break ;
 		}
-		idx++;
+		ft_philo_printf(arg, philo->id, "is sleeping");
+		ft_pass_time((long long)arg->time_to_sleep, arg);
+		ft_philo_printf(arg, philo->id, "is thinking");
 	}
-	args->args[i] = ft_atoi(av);
+	return (0);
 }
 
-int valid_args(t_arg *arg, int ac, char **av)
-{
-	int	i;
-
-	i = 0;
-	while (i < 5 + ac)
-	{
-		valid_arg(arg, av[i], i);
-		if (arg->args[i] < 0)
-			return (FAIL);
-		i++;
-	}
-	if (i == 4)
-		arg->args[i] = 0;
-	return (SUCCESS);
-}
-
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	t_arg	arg;
 	t_philo	*philo;
-	int		errno;
+	int		err;
 
 	if (argc != 5 && argc != 6)
 		return (FAIL);
 	memset(&arg, 0, sizeof(t_arg));
-	if (valid_args(&args, ac - 6, av + 1) == FAIL)
-		return (FAIL);
-
-// argv를 구조체에 저장하고 필요한 변수들을 할당하고 초기화해준다
-	
-	errno = ft_philo_init(&philo, &arg);
-	if (errno)
-		return (print_error("error philo init", errno));
-// 철학자별로 들어갈 변수들을 초기화한다.
-
-	errno = ft_philo_start(&arg, philo);
-	if (errno)
-		return (print_error("error philo start", errno));
-// 철학자를 시작하고 종료될때까지 동작한다
+	err = ft_arg_init(&arg, argc, argv);
+	if (err)
+		return (print_error("error arg init", err));
+	err = ft_philo_init(&philo, &arg);
+	if (err)
+		return (print_error("error philo init", err));
+	err = ft_philo_start(&arg, philo);
+	if (err)
+		return (print_error("error philo start", err));
+	system("leaks philo");
 	return (0);
 }
