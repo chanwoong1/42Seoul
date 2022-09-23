@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 09:54:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:52:14 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,30 @@ void	ft_pass_time(long long wait_time, t_arg *arg)
 			break ;
 		usleep(10);
 	}
+}
+
+void	*ft_thread(void *argv)
+{
+	t_arg		*arg;
+	t_philo		*philo;
+
+	philo = argv;
+	arg = philo->arg;
+	if (philo->id % 2)
+		usleep(1000);
+	while (!arg->finish)
+	{
+		ft_philo_action(arg, philo);
+		if (arg->eat_times == philo->eat_count)
+		{
+			arg->finished_eat++;
+			break ;
+		}
+		ft_philo_printf(arg, philo->id, "is sleeping");
+		ft_pass_time((long long)arg->time_to_sleep, arg);
+		ft_philo_printf(arg, philo->id, "is thinking");
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)

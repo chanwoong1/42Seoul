@@ -6,25 +6,24 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/16 23:28:45 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/23 09:40:36 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # SETUP
-NAME		=	philosophers
+NAME		=	philo_bonus
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -rf
 
 # HEADER
-HEADER_SRCS	=	so_long.h
+HEADER_SRCS	=	philo_bonus.h
 HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	main.c map_checker.c utils.c mlx_utils.c init.c \
-				move_w.c move_a.c move_s.c move_d.c
-MPATH_DIR	=	mandatory/
+MPATH_SRCS	=	main_bonus.c init_bonus.c philo_bonus.c 
+MPATH_DIR	=	srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 

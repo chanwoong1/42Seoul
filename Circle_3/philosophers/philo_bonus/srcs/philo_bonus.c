@@ -6,48 +6,27 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 10:48:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/22 12:53:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			i;
-	unsigned char	*us1;
-	unsigned char	*us2;
-
-	i = 0;
-	us1 = (unsigned char *)s1;
-	us2 = (unsigned char *)s2;
-	while (us1[i] && i < n)
-	{
-		if (us1[i] != us2[i])
-			return (us1[i] - us2[i]);
-		i++;
-	}
-	if (us1[i] == '\0' && i < n)
-		return (us1[i] - us2[i]);
-	return (0);
-}
-
 int	ft_philo_printf(t_arg *arg, int id, char *msg)
 {
 	long long	now;
 
-	pthread_mutex_lock(&(arg->print));
 	now = ft_get_time();
 	if (now == -1)
 	{
 		return (-1);
 	}
+	pthread_mutex_lock(&(arg->print));
 	if (!(arg->finish))
 	{
 		printf("%lld %d %s \n", now - arg->start_time, id + 1, msg);
 	}
-	if (ft_strncmp(msg, "died", 4) != 0)
-		pthread_mutex_unlock(&(arg->print));
+	pthread_mutex_unlock(&(arg->print));
 	return (0);
 }
 
@@ -66,31 +45,9 @@ int	ft_philo_start(t_arg *arg, t_philo *philo)
 	ft_philo_check_finish(arg, philo);
 	i = 0;
 	while (i < arg->philo_num)
-		pthread_detach(philo[i++].thread);
-	return (0);
-}
-
-void	*ft_thread(void *argv)
-{
-	t_arg		*arg;
-	t_philo		*philo;
-
-	philo = argv;
-	arg = philo->arg;
-	if (philo->id % 2)
-		usleep(1000);
-	while (!arg->finish)
-	{
-		ft_philo_action(arg, philo);
-		if (arg->eat_times == philo->eat_count)
-		{
-			arg->finished_eat++;
-			break ;
-		}
-		ft_philo_printf(arg, philo->id, "is sleeping");
-		ft_pass_time((long long)arg->time_to_sleep, arg);
-		ft_philo_printf(arg, philo->id, "is thinking");
-	}
+		pthread_join(philo[i++].thread, NULL);
+// 조인을 안하면 프로그램이 먼저 종료되서 쓰레드가 진행되지 않는다.
+	// ft_free_thread(arg, philo);
 	return (0);
 }
 

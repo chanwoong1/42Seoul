@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 09:54:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:23:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_arg
 int			print_error(char *msg, int err);
 int			ft_atoi(const char *str);
 long long	ft_get_time(void);
+void		*ft_thread(void *argv);
 void		ft_pass_time(long long wait_time, t_arg *arg);
 
 /* init.c */
@@ -65,6 +66,5 @@ int			ft_philo_printf(t_arg *arg, int id, char *msg);
 int			ft_philo_action(t_arg *arg, t_philo *philo);
 void		ft_philo_check_finish(t_arg *arg, t_philo *philo);
 int			ft_philo_start(t_arg *arg, t_philo *philo);
-void		*ft_thread(void *argv);
 
 #endif
