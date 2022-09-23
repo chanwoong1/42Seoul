@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 09:54:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/23 13:38:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int	main(int argc, char **argv)
 	err = ft_philo_start(&arg, philo);
 	if (err)
 		return (print_error("error philo start", err));
-	system("leaks philo");
+	// system("leaks philo");
 	return (0);
 }

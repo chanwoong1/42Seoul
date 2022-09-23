@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 10:48:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/23 13:41:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	*ft_thread(void *argv)
 	philo = argv;
 	arg = philo->arg;
 	if (philo->id % 2)
-		usleep(1000);
+		usleep(500);
 	while (!arg->finish)
 	{
 		ft_philo_action(arg, philo);
