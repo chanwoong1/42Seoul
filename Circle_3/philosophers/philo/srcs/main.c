@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 17:39:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/24 19:33:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_pass_time(long long wait_time, t_arg *arg)
 		now = ft_get_time();
 		if ((now - start) >= wait_time)
 			break ;
-		usleep(1);
+		usleep(100);
 	}
 }
 

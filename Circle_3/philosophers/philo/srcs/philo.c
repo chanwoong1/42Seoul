@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/23 19:41:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/24 20:54:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_philo_printf(t_arg *arg, int id, char *msg)
 		return (-1);
 	if (!(arg->finish))
 	{
-		printf("%lld %d %s \n", now - arg->start_time, id + 1, msg);
+		printf("%lld %d %s\n", now - arg->start_time, id + 1, msg);
 	}
 	// if (ft_strncmp(msg, "died", 4) != 0)
 	pthread_mutex_unlock(&(arg->print));
@@ -71,22 +71,13 @@ int	ft_philo_start(t_arg *arg, t_philo *philo)
 {
 	int		i;
 
-	i = 1;
-	while (i < arg->philo_num)
-	{	
-		philo[i].last_eat_time = ft_get_time();
-		if (pthread_create(&(philo[i].thread), NULL, ft_thread, &(philo[i])))
-			return (1);
-		i += 2;
-	}
-	sleep_until_even_eat(arg);
 	i = 0;
 	while (i < arg->philo_num)
 	{	
 		philo[i].last_eat_time = ft_get_time();
 		if (pthread_create(&(philo[i].thread), NULL, ft_thread, &(philo[i])))
 			return (1);
-		i += 2;
+		i++;
 	}
 	ft_philo_check_finish(arg, philo);
 	i = 0;
@@ -102,8 +93,12 @@ void	*ft_thread(void *argv)
 
 	philo = argv;
 	arg = philo->arg;
+	if (philo->id % 2 == 0)
+		sleep_until_even_eat(arg);
 	while (!arg->finish)
 	{
+		if (arg->philo_num - 1 == philo->id && philo->eat_count == 0)
+			usleep(1);
 		ft_philo_action(arg, philo);
 		if (arg->eat_times == philo->eat_count)
 		{
