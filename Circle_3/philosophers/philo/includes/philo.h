@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 13:18:23 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:59:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_arg
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;
+	pthread_mutex_t	time;
 }				t_arg;
 
 /* utils.c */
@@ -57,15 +58,15 @@ long long	get_time(void);
 void		spend_time(long long wait_time, t_arg *arg);
 
 /* init.c */
-int			ft_arg_init_mutex(t_arg *arg);
+int			init_mutex(t_arg *arg);
 int			init_args(t_arg *arg, int argc, char **argv);
 int			init_philo(t_philo **philo, t_arg *arg);
 
 /* philo.c */
-int			ft_philo_printf(t_arg *arg, int id, char *msg);
-int			ft_philo_action(t_arg *arg, t_philo *philo);
-void		ft_philo_check_finish(t_arg *arg, t_philo *philo);
-int			philo_start(t_arg *arg, t_philo *philo);
-void		*ft_thread(void *argv);
+int			ph_stat_printf(t_arg *arg, int id, char *msg);
+int			ph_action(t_arg *arg, t_philo *philo);
+void		ph_check_finish(t_arg *arg, t_philo *philo);
+int			ph_start(t_arg *arg, t_philo *philo);
+void		*ph_thread(void *argv);
 
 #endif

@@ -1,75 +1,104 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/22 12:53:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:15:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
-int	ft_philo_printf(t_arg *arg, int id, char *msg)
+int	ph_stat_printf(t_arg *arg, int id, char *msg)
 {
 	long long	now;
 
-	now = ft_get_time();
+	sem_wait(arg->print);
+	now = get_time();
 	if (now == -1)
-	{
 		return (-1);
-	}
-	pthread_mutex_lock(&(arg->print));
 	if (!(arg->finish))
-	{
-		printf("%lld %d %s \n", now - arg->start_time, id + 1, msg);
-	}
-	pthread_mutex_unlock(&(arg->print));
+		printf("%lld %d %s\n", now - arg->start_time, id + 1, msg);
+	if (ft_strncmp(msg, "died", 4) == 0)
+		return (0);
+	sem_post(arg->print);
 	return (0);
 }
 
-int	ft_philo_start(t_arg *arg, t_philo *philo)
+int	ph_start(t_arg *arg, t_philo *philo)
 {
 	int		i;
 
 	i = 0;
 	while (i < arg->philo_num)
-	{	
-		philo[i].last_eat_time = ft_get_time();
-		if (pthread_create(&(philo[i].thread), NULL, ft_thread, &(philo[i])))
-			return (1);
+	{
+		philo[i].pid = fork();
+		if (philo[i].pid == 0)
+		{
+			philo[i].last_eat_time = get_time();
+			if (pthread_create(&(philo[i].thread), NULL, ph_thread, &(philo[i])))
+				return (1);
+		}
 		i++;
 	}
-	ft_philo_check_finish(arg, philo);
+	ph_check_finish(arg, philo);
 	i = 0;
 	while (i < arg->philo_num)
 		pthread_join(philo[i++].thread, NULL);
-// 조인을 안하면 프로그램이 먼저 종료되서 쓰레드가 진행되지 않는다.
-	// ft_free_thread(arg, philo);
+	waitpid(-1, NULL, 0);
 	return (0);
 }
 
-int	ft_philo_action(t_arg *arg, t_philo *philo)
+void	*ph_thread(void *argv)
 {
-	pthread_mutex_lock(&(arg->forks[philo->left]));
-	ft_philo_printf(arg, philo->id, "has taken a fork");
+	t_arg		*arg;
+	t_philo		*philo;
+
+	philo = argv;
+	arg = philo->arg;
+	if (philo->id % 2 == 0)
+		sleep_until_even_eat(arg);
+	while (!arg->finish)
+	{
+		if (arg->philo_num - 1 == philo->id && philo->eat_count == 0)
+			usleep(1);
+		ph_action(arg, philo);
+		if (arg->philo_num == 1)
+			spend_time((long long)arg->time_to_sleep, arg);
+		if (arg->eat_times == philo->eat_count)
+		{
+			arg->finished_eat++;
+			break ;
+		}
+		ph_stat_printf(arg, philo->id, "is sleeping");
+		spend_time((long long)arg->time_to_sleep, arg);
+		ph_stat_printf(arg, philo->id, "is thinking");
+	}
+	return (0);
+}
+
+int	ph_action(t_arg *arg, t_philo *philo)
+{
+	sem_wait(arg->forks);
+	ph_stat_printf(arg, philo->id, "has taken a fork");
 	if (arg->philo_num != 1)
 	{
-		pthread_mutex_lock(&(arg->forks[philo->right]));
-		ft_philo_printf(arg, philo->id, "has taken a fork");
-		ft_philo_printf(arg, philo->id, "is eating");
-		philo->last_eat_time = ft_get_time();
+		sem_wait(arg->forks);
+		ph_stat_printf(arg, philo->id, "has taken a fork");
+		ph_stat_printf(arg, philo->id, "is eating");
+		philo->last_eat_time = get_time();
 		philo->eat_count = philo->eat_count + 1;
-		ft_pass_time((long long)arg->time_to_eat, arg);
-		pthread_mutex_unlock(&(arg->forks[philo->right]));
+		spend_time((long long)arg->time_to_eat, arg);
+		sem_post(arg->forks);
 	}
-	pthread_mutex_unlock(&(arg->forks[philo->left]));
+	sem_post(arg->forks);
 	return (0);
 }
 
-void	ft_philo_check_finish(t_arg *arg, t_philo *philo)
+void	ph_check_finish(t_arg *arg, t_philo *philo)
 {
 	int			i;
 	long long	now;
@@ -84,11 +113,12 @@ void	ft_philo_check_finish(t_arg *arg, t_philo *philo)
 		i = 0;
 		while (i < arg->philo_num)
 		{
-			now = ft_get_time();
+			now = get_time();
 			if ((now - philo[i].last_eat_time) >= arg->time_to_die)
 			{
-				ft_philo_printf(arg, i, "died");
+				ph_stat_printf(arg, i, "died");
 				arg->finish = 1;
+				sem_post(arg->print);
 				break ;
 			}
 			i++;

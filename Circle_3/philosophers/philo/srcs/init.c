@@ -6,17 +6,19 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:22:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 13:14:22 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:59:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	ft_arg_init_mutex(t_arg *arg)
+int	init_mutex(t_arg *arg)
 {
 	int	i;
 
 	if (pthread_mutex_init(&(arg->print), NULL))
+		return (1);
+	if (pthread_mutex_init(&(arg->time), NULL))
 		return (1);
 	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->philo_num);
 	if (!(arg->forks))
@@ -49,7 +51,7 @@ int	init_args(t_arg *arg, int argc, char **argv)
 		if (arg->philo_num == 1)
 			arg->eat_times = 0;
 	}
-	if (ft_arg_init_mutex(arg))
+	if (init_mutex(arg))
 		return (1);
 	return (0);
 }

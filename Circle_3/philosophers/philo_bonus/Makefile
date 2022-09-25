@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/23 09:40:36 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/25 13:46:28 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 NAME		=	philo_bonus
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
+THREAD		=	-pthread
 RM			=	rm -rf
 
 # HEADER
@@ -22,7 +23,7 @@ HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # FILES
-MPATH_SRCS	=	main_bonus.c init_bonus.c philo_bonus.c 
+MPATH_SRCS	=	main_bonus.c utils_bonus.c init_bonus.c philo_bonus.c
 MPATH_DIR	=	srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
@@ -32,7 +33,7 @@ OBJ_M		=	$(MPATH:.c=.o)
 				@${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):		$(OBJ_M)
-				@$(CC) $(OBJ_M) -o $(NAME)
+				@$(CC) $(OBJ_M) $(THREAD) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)

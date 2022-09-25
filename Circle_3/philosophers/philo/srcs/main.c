@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 14:44:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 13:17:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 13:39:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		return (print_error("args init fail"));
 	if (init_philo(&philo, &arg))
 		return (print_error("philo init fail"));
-	if (philo_start(&arg, philo))
+	if (ph_start(&arg, philo))
 		return (print_error("philo start fail"));
 	return (SUCCESS);
 }
