@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 21:04:05 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/26 01:08:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ph_start(t_arg *arg, t_philo *philo)
 		{
 			philo[i].last_eat_time = get_time();
 			ph_thread(&philo[i]);	// 상태값 받아주고, 그걸로 죽는지 체크해야한다.
+			ph_monitoring(arg, &philo[i]);
 			return (0);
 		}
 		i++;
