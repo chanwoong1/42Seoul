@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 15:15:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 21:04:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ph_stat_printf(t_arg *arg, int id, char *msg)
 	now = get_time();
 	if (now == -1)
 		return (-1);
+	// if (arg->finish)
+	// 	exit(0);
 	if (!(arg->finish))
 		printf("%lld %d %s\n", now - arg->start_time, id + 1, msg);
 	if (ft_strncmp(msg, "died", 4) == 0)
@@ -39,15 +41,18 @@ int	ph_start(t_arg *arg, t_philo *philo)
 		if (philo[i].pid == 0)
 		{
 			philo[i].last_eat_time = get_time();
-			if (pthread_create(&(philo[i].thread), NULL, ph_thread, &(philo[i])))
-				return (1);
+			ph_thread(&philo[i]);	// 상태값 받아주고, 그걸로 죽는지 체크해야한다.
+			return (0);
 		}
 		i++;
 	}
 	ph_check_finish(arg, philo);
+	// printf("clear\n");
 	i = 0;
 	while (i < arg->philo_num)
-		pthread_join(philo[i++].thread, NULL);
+		kill(philo[i++].pid, -1);
+		// pthread_join(philo[i++].thread, NULL);
+	exit(0);
 	waitpid(-1, NULL, 0);
 	return (0);
 }
@@ -59,8 +64,6 @@ void	*ph_thread(void *argv)
 
 	philo = argv;
 	arg = philo->arg;
-	if (philo->id % 2 == 0)
-		sleep_until_even_eat(arg);
 	while (!arg->finish)
 	{
 		if (arg->philo_num - 1 == philo->id && philo->eat_count == 0)

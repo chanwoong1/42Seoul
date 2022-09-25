@@ -6,14 +6,16 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:22:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 15:05:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:41:25 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/philo_bonus.h"
+
 int	init_sem(t_arg *arg)
 {
+	sem_unlink("fork");
+	sem_unlink("print");
 	arg->forks = sem_open("fork", O_CREAT, 644, arg->philo_num);
 	if (!(arg->forks))
 		return (1);

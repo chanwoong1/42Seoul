@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 15:05:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:20:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <pthread.h>
 # include <sys/errno.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # define SUCCESS	0
 # define FAIL		1
