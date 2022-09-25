@@ -6,75 +6,36 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/24 20:54:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/25 13:17:42 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-// static int	ft_strncmp(const char *s1, const char *s2, size_t n)
-// {
-// 	size_t			i;
-// 	unsigned char	*us1;
-// 	unsigned char	*us2;
-
-// 	i = 0;
-// 	us1 = (unsigned char *)s1;
-// 	us2 = (unsigned char *)s2;
-// 	while (us1[i] && i < n)
-// 	{
-// 		if (us1[i] != us2[i])
-// 			return (us1[i] - us2[i]);
-// 		i++;
-// 	}
-// 	if (us1[i] == '\0' && i < n)
-// 		return (us1[i] - us2[i]);
-// 	return (0);
-// }
 
 int	ft_philo_printf(t_arg *arg, int id, char *msg)
 {
 	long long	now;
 
 	pthread_mutex_lock(&(arg->print));
-	now = ft_get_time();
+	now = get_time();
 	if (now == -1)
 		return (-1);
 	if (!(arg->finish))
-	{
 		printf("%lld %d %s\n", now - arg->start_time, id + 1, msg);
-	}
-	// if (ft_strncmp(msg, "died", 4) != 0)
+	if (ft_strncmp(msg, "died", 4) == 0)
+		return (0);
 	pthread_mutex_unlock(&(arg->print));
 	return (0);
 }
 
-static void	sleep_until_even_eat(t_arg *arg)
-{
-	struct timeval	get_time;
-	struct timeval	timestamp;
-	int				time_taken;
-
-	gettimeofday(&get_time, NULL);
-	while (1)
-	{
-		gettimeofday(&timestamp, NULL);
-		time_taken = timestamp.tv_usec - get_time.tv_usec + \
-			(timestamp.tv_sec - get_time.tv_sec) * 1000000;
-		if (time_taken > arg->time_to_eat * 900)
-			break ;
-		usleep(arg->time_to_eat);
-	}
-}
-
-int	ft_philo_start(t_arg *arg, t_philo *philo)
+int	philo_start(t_arg *arg, t_philo *philo)
 {
 	int		i;
 
 	i = 0;
 	while (i < arg->philo_num)
 	{	
-		philo[i].last_eat_time = ft_get_time();
+		philo[i].last_eat_time = get_time();
 		if (pthread_create(&(philo[i].thread), NULL, ft_thread, &(philo[i])))
 			return (1);
 		i++;
@@ -100,13 +61,15 @@ void	*ft_thread(void *argv)
 		if (arg->philo_num - 1 == philo->id && philo->eat_count == 0)
 			usleep(1);
 		ft_philo_action(arg, philo);
+		if (arg->philo_num == 1)
+			spend_time((long long)arg->time_to_sleep, arg);
 		if (arg->eat_times == philo->eat_count)
 		{
 			arg->finished_eat++;
 			break ;
 		}
 		ft_philo_printf(arg, philo->id, "is sleeping");
-		ft_pass_time((long long)arg->time_to_sleep, arg);
+		spend_time((long long)arg->time_to_sleep, arg);
 		ft_philo_printf(arg, philo->id, "is thinking");
 	}
 	return (0);
@@ -121,9 +84,9 @@ int	ft_philo_action(t_arg *arg, t_philo *philo)
 		pthread_mutex_lock(&(arg->forks[philo->right]));
 		ft_philo_printf(arg, philo->id, "has taken a fork");
 		ft_philo_printf(arg, philo->id, "is eating");
-		philo->last_eat_time = ft_get_time();
+		philo->last_eat_time = get_time();
 		philo->eat_count = philo->eat_count + 1;
-		ft_pass_time((long long)arg->time_to_eat, arg);
+		spend_time((long long)arg->time_to_eat, arg);
 		pthread_mutex_unlock(&(arg->forks[philo->right]));
 	}
 	pthread_mutex_unlock(&(arg->forks[philo->left]));
@@ -145,11 +108,12 @@ void	ft_philo_check_finish(t_arg *arg, t_philo *philo)
 		i = 0;
 		while (i < arg->philo_num)
 		{
-			now = ft_get_time();
+			now = get_time();
 			if ((now - philo[i].last_eat_time) >= arg->time_to_die)
 			{
 				ft_philo_printf(arg, i, "died");
 				arg->finish = 1;
+				pthread_mutex_unlock(&(arg->print));
 				break ;
 			}
 			i++;
