@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 20:20:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:55:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <string.h>
 # include <stdio.h>
@@ -25,21 +25,21 @@
 
 # define SUCCESS	0
 # define FAIL		1
+# define DEAD		10
 
 typedef struct s_philo
 {
 	struct s_arg	*arg;
 	pid_t			pid;
-	pthread_t		thread;
+	pthread_t		monitor;
 	int				id;
-	int				left;
-	int				right;
 	long long		last_eat_time;
 	int				eat_count;
 }				t_philo;
 
 typedef struct s_arg
 {
+	struct s_philo	*philo;
 	int				philo_num;
 	int				time_to_die;
 	int				time_to_eat;
@@ -52,23 +52,28 @@ typedef struct s_arg
 	sem_t			*print;
 }				t_arg;
 
-/* utils.c */
+/* utils_bonus.c */
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *str);
+size_t		ft_strlen(const char *s);
 void		sleep_until_even_eat(t_arg *arg);
 long long	get_time(void);
 void		spend_time(long long wait_time, t_arg *arg);
 
-/* init.c */
+/* init_bonus.c */
 int			init_sem(t_arg *arg);
 int			init_args(t_arg *arg, int argc, char **argv);
-int			init_philo(t_philo **philo, t_arg *arg);
+int			init_philo(t_arg *arg);
 
-/* philo.c */
+/* itoa_join_bonus.c */
+char		*ft_itoa(int n);
+char		*ft_strjoin(char const *s1, char *s2);
+
+/* philo_bonus.c */
 int			ph_stat_printf(t_arg *arg, int id, char *msg);
 int			ph_action(t_arg *arg, t_philo *philo);
-void		ph_check_finish(t_arg *arg, t_philo *philo);
-int			ph_start(t_arg *arg, t_philo *philo);
-void		*ph_thread(void *argv);
+void		*ph_check_finish(void *argv);
+int			ph_start(t_arg *arg);
+int			ph_thread(void *argv);
 
 #endif

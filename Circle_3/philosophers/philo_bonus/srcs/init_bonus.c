@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:22:04 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/25 20:41:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:48:32 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,20 @@ int	init_args(t_arg *arg, int argc, char **argv)
 	return (0);
 }
 
-int	init_philo(t_philo **philo, t_arg *arg)
+int	init_philo(t_arg *arg)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	*philo = malloc(sizeof(t_philo) * arg->philo_num);
-	if (!(*philo))
+	arg->philo = malloc(sizeof(t_philo) * arg->philo_num);
+	if (!arg->philo)
 		return (1);
 	while (i < arg->philo_num)
 	{
-		(*philo)[i].arg = arg;
-		(*philo)[i].id = i;
-		(*philo)[i].left = 0;
-		(*philo)[i].right = 0;
-		(*philo)[i].last_eat_time = get_time();
-		(*philo)[i].eat_count = 0;
+		arg->philo[i].arg = arg;
+		arg->philo[i].id = i;
+		arg->philo[i].last_eat_time = get_time();
+		arg->philo[i].eat_count = 0;
 		i++;
 	}
 	return (0);
