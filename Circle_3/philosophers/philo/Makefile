@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/09/27 20:02:30 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/09/28 08:43:24 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJ_M		=	$(MPATH:.c=.o)
 				@${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):		$(OBJ_M)
-				@$(CC) -fsanitize=thread -g $(OBJ_M) $(THREAD) -o $(NAME)
+				@$(CC) $(OBJ_M) $(THREAD) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 all:			$(NAME)
