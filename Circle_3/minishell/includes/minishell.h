@@ -26,5 +26,7 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 # endif
