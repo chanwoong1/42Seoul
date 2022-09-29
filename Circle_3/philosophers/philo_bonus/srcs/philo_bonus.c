@@ -6,7 +6,7 @@
 /*   By: chanwoong <chanwoong@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/29 12:53:24 by chanwoong        ###   ########.fr       */
+/*   Updated: 2022/09/29 12:55:22 by chanwoong        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ph_stat_printf(t_arg *arg, int id, char *msg)
 	sem_post(arg->print);
 	return (0);
 }
-// test
 
 int	ph_start(t_arg *arg)
 {
