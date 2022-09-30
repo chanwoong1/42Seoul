@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/29 14:40:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:12:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <dirent.h>
 # include <termios.h>
 # include <curses.h>
-# include <term.h>
+# include <term.h> 
 # include <readline/history.h>
 # include <readline/readline.h>
 
