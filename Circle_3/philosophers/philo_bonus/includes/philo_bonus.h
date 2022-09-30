@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 23:29:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/27 19:55:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:46:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char		*ft_strjoin(char const *s1, char *s2);
 
 /* philo_bonus.c */
 int			ph_stat_printf(t_arg *arg, int id, char *msg);
-int			ph_action(t_arg *arg, t_philo *philo);
+void		ph_action(t_arg *arg, t_philo *philo);
 void		*ph_check_finish(void *argv);
 int			ph_start(t_arg *arg);
 int			ph_thread(void *argv);
