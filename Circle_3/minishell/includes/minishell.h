@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/30 15:31:22 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/01 07:43:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 
 /* libft */
 # include "../libft/libft.h"
+
+/* get_next_line */
+# include "../gnl/get_next_line.h"
 
 typedef struct s_parse
 {

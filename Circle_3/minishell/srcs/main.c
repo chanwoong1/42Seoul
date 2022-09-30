@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:30:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/30 17:18:30 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/01 07:48:01 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	error_exit(char *msg, int code)
 	exit(code);
 }
 
-void	here_doc(t_parse **cmd_parse, char *limiter)
+void	here_doc(char *limiter)
 {
 	int		file;
 	char	*line;
@@ -29,7 +29,8 @@ void	here_doc(t_parse **cmd_parse, char *limiter)
 		error_exit("heredoc fail, try one more time.", 1);
 	while (1)
 	{
-		line = readline("heredoc> ");
+		write(1, "heredoc> ", 9);
+		line = get_next_line(0);
 		if (!line)
 			exit(1);
 		if (!ft_strncmp(limiter, line, ft_strlen(limiter)) \
@@ -47,7 +48,7 @@ void	get_i_fd(t_parse **cmd_parse, char **cmd_split)
 	if (!ft_strncmp(cmd_split[0], "<<", 2))
 	{
 		(*cmd_parse)->here_doc = 1;
-		here_doc(cmd_split[1], cmd_parse);
+		here_doc(cmd_split[1]);
 		(*cmd_parse)->i_fd = open(".heredoc_tmp", O_RDONLY);
 		if ((*cmd_parse)->i_fd < 0)
 		{
@@ -80,6 +81,19 @@ void	get_o_fd(t_parse **cmd_parse, char **cmd_split)
 		error_exit("fail with here_doc open, try one more time.", 1);
 }
 
+void	free_all_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
 void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd)
 {
 	char	**cmd_split;
@@ -91,7 +105,7 @@ void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd)
 		error_exit("malloc error of command, check your command.", 1);
 	get_i_fd(cmd_parse, cmd_split);
 	get_o_fd(cmd_parse, cmd_split);
-	free(cmd_split);	// free_all() 만들어서 교체
+	free_all_split(cmd_split);
 }
 
 int	main(int ac, char **argv, char **envp)
@@ -114,11 +128,11 @@ int	main(int ac, char **argv, char **envp)
 			break ;
 		printf("cmd : %s\n", cmd);
 		init_cmd_parse(&cmd_parse, envp, cmd);
-
 		// parse_cmd(cmd);
 		// 인자 파싱해주는 함수 만들기
 		// cmd마다 환경변수 찾아줘야하지않을까 ...
 		// 명령어마다 자식프로세스 생성
+		free(cmd);
 	}
 	return (0);
 }
