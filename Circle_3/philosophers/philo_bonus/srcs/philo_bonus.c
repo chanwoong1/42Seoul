@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/29 14:31:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:39:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ph_thread(void *argv)
 	return (0);
 }
 
-int	ph_action(t_arg *arg, t_philo *philo)
+void	ph_action(t_arg *arg, t_philo *philo)
 {
 	sem_wait(arg->forks);
 	ph_stat_printf(arg, philo->id, "has taken a fork");
@@ -101,7 +101,6 @@ int	ph_action(t_arg *arg, t_philo *philo)
 		sem_post(arg->forks);
 		sem_post(arg->forks);
 	}
-	return (0);
 }
 
 void	*ph_check_finish(void *argv)
