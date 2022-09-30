@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/30 11:12:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:31:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,16 @@
 # include <term.h> 
 # include <readline/history.h>
 # include <readline/readline.h>
+
+/* libft */
+# include "../libft/libft.h"
+
+typedef struct s_parse
+{
+	char	**envp;
+	int		i_fd;
+	int		o_fd;
+	int		here_doc;
+}	t_parse;
 
 # endif
