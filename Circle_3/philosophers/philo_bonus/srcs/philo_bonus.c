@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:19:10 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/28 18:46:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:39:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	ph_thread(void *argv)
 	arg = philo->arg;
 	if (pthread_create(&(philo->monitor), NULL, ph_check_finish, argv))
 		return (1);
+	if (philo->id % 2 == 0)
+		usleep(arg->time_to_eat * 1000);
 	while (!arg->finish)
 	{
 		ph_action(arg, philo);
