@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:30:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/09/30 15:34:03 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:18:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void	here_doc(t_parse **cmd_parse, char *limiter)
 	close(file);
 }
 
-void	is_fd(t_parse **cmd_parse, char **cmd_split, int i)
+void	get_i_fd(t_parse **cmd_parse, char **cmd_split)
 {
-	int	i;
-
 	if (!ft_strncmp(cmd_split[0], "<<", 2))
 	{
 		(*cmd_parse)->here_doc = 1;
@@ -63,11 +61,19 @@ void	is_fd(t_parse **cmd_parse, char **cmd_split, int i)
 		if ((*cmd_parse)->i_fd < 0)
 			(*cmd_parse)->i_fd = 0;
 	}
+}
+
+void	get_o_fd(t_parse **cmd_parse, char **cmd_split)
+{
+	int	i;
+
 	i = 0;
 	while (cmd_split[i])
 		i++;
 	if (!ft_strncmp(cmd_split[i - 2], ">>", 2))
 		(*cmd_parse)->o_fd = open(cmd_split[i - 1], O_RDWR | O_APPEND | O_CREAT, 0644);
+	else if (!ft_strncmp(cmd_split[i - 2], ">", 1))
+		(*cmd_parse)->o_fd = open(cmd_split[i - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
 	else
 		(*cmd_parse)->o_fd = 1;
 	if ((*cmd_parse)->o_fd < 0)
@@ -83,7 +89,9 @@ void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd)
 	cmd_split = ft_split(cmd, ' ');
 	if (!cmd_split)
 		error_exit("malloc error of command, check your command.", 1);
-	is_fd(cmd_parse, cmd_split);
+	get_i_fd(cmd_parse, cmd_split);
+	get_o_fd(cmd_parse, cmd_split);
+	free(cmd_split);	// free_all() 만들어서 교체
 }
 
 int	main(int ac, char **argv, char **envp)
@@ -106,6 +114,7 @@ int	main(int ac, char **argv, char **envp)
 			break ;
 		printf("cmd : %s\n", cmd);
 		init_cmd_parse(&cmd_parse, envp, cmd);
+
 		// parse_cmd(cmd);
 		// 인자 파싱해주는 함수 만들기
 		// cmd마다 환경변수 찾아줘야하지않을까 ...
