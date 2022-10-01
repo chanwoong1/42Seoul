@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanwjeo <chanwjeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 13:21:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/07/17 14:44:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/01 20:23:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_strcat(char *dest, const char *src)
 	*dest = '\0';
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*copy;
 	size_t	s1_size;
@@ -39,5 +39,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	copy[0] = '\0';
 	ft_strcat(copy, s1);
 	ft_strcat(copy + s1_size, s2);
+	free(s1);
 	return (copy);
 }

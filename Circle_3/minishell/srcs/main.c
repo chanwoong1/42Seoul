@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:30:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/01 07:48:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/01 20:26:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,42 @@ void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd)
 	free_all_split(cmd_split);
 }
 
+void	save_history(t_history *history, char *cmd, int idx)
+{
+	char *tmp;
+
+	if (!history->history)
+	{
+		tmp = ft_itoa(idx);
+		history->history = ft_strdup(tmp);
+		free(tmp);
+		history->history = ft_strjoin();		
+		history->history = ft_strjoin(history->history, cmd);
+
+	}
+	else
+	{
+		tmp = ft_strjoin(history->history, cmd);
+		free(history->history);
+		history->history = tmp;
+		free(tmp);
+	}
+}
+
 int	main(int ac, char **argv, char **envp)
 {
-	char	*cmd;
-	t_parse	*cmd_parse;
+	char		*cmd;
+	t_parse		*cmd_parse;
+	t_history	history;
+	int			idx;
 
 	// intro();
 	// 시작할 때 화면에 그림 띄우면 좋을듯 하다..
 	if (ac != 1)
 		error_exit("Don't input argument!!", 1);
 	(void)argv;
+	idx = 1;
+	history.history = 0;
 	while (1)
 	{
 		cmd_parse = (t_parse *)malloc(sizeof(t_parse));
@@ -126,6 +152,7 @@ int	main(int ac, char **argv, char **envp)
 		cmd = readline("minishell> ");
 		if (!cmd)
 			break ;
+		save_history(&history, cmd, idx);
 		printf("cmd : %s\n", cmd);
 		init_cmd_parse(&cmd_parse, envp, cmd);
 		// parse_cmd(cmd);
@@ -133,6 +160,8 @@ int	main(int ac, char **argv, char **envp)
 		// cmd마다 환경변수 찾아줘야하지않을까 ...
 		// 명령어마다 자식프로세스 생성
 		free(cmd);
+		idx++;
 	}
+	system("leaks minishell");
 	return (0);
 }

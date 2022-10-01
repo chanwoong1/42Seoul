@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/01 07:43:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/01 20:11:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,19 @@
 /* get_next_line */
 # include "../gnl/get_next_line.h"
 
+typedef struct s_history
+{
+	char *history;	
+}	t_history;
+
 typedef struct s_parse
 {
 	char	**envp;
 	int		i_fd;
 	int		o_fd;
 	int		here_doc;
+	int		quote;
+
 }	t_parse;
 
 # endif
