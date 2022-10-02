@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/10/02 16:46:39 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/10/02 17:37:53 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ MPATH_SRCS	=	$(PROMPT)/prompt.c \
 				$(UTILS)/util_free.c \
 				$(UTILS)/util_print.c \
 				$(PARSE)/init_parse.c \
+				$(PARSE)/init_shell.c \
 				$(PARSE)/heredoc.c \
 				$(PARSE)/history.c \
 				$(PARSE)/fd.c

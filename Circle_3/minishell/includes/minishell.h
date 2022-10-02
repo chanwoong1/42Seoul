@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 14:45:17 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:59:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,18 @@
 /* get_next_line */
 # include "../gnl/get_next_line.h"
 
-typedef struct s_history
+typedef struct s_shell
 {
-	char *history;	
-}	t_history;
+	char	*history;
+	char	**path;
+	int		idx;
+}	t_shell;
 
 typedef struct s_parse
 {
-	char	**envp;
+	int		s_quote;
+	int		d_quote;
+	int		bracket;
 	int		i_fd;
 	int		o_fd;
 	int		here_doc;
@@ -70,17 +74,24 @@ void	error_exit(char *msg, int code);
 parse
 */
 
+/* init_shell.c */
+void	init_shell(t_shell *shell, char **argv, char **envp);
+
 /* init_parse.c */
-void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd);
+void	init_cmd_parse(t_parse **cmd_parse, t_shell *shell, char *cmd);
 
 /* history.c */
-void	save_history(t_history *history, char *cmd, int idx);
-
-/* heredoc.c */
-void	here_doc(char *limiter);
+void	save_history(t_shell *shell, char *cmd, int idx);
 
 /* fd.c */
 void	get_i_fd(t_parse **cmd_parse, char **cmd_split);
 void	get_o_fd(t_parse **cmd_parse, char **cmd_split);
+
+/*
+heredoc
+*/
+
+/* heredoc.c */
+void	here_doc(char *limiter);
 
 # endif

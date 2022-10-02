@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:17:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 14:18:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 18:01:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	here_doc(char *limiter)
 	int		file;
 	char	*line;
 
-	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	unlink("./heredoc/heredoc_tmp");
+	file = open("./heredoc/heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file < 0)
 		error_exit("heredoc fail, try one more time.", 1);
 	while (1)
