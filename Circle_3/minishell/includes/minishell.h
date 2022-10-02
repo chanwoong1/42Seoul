@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/01 20:11:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:45:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,40 @@ typedef struct s_parse
 	int		o_fd;
 	int		here_doc;
 	int		quote;
-
+	int		num_of_split_cmd;
 }	t_parse;
+
+/*
+prompt
+*/
+
+/* prompt.c */
+
+/*
+utils
+*/
+
+/* util_free.c */
+void	free_all_split(char **split);
+
+/* util_print.c */
+void	error_exit(char *msg, int code);
+
+/*
+parse
+*/
+
+/* init_parse.c */
+void	init_cmd_parse(t_parse **cmd_parse, char **envp, char *cmd);
+
+/* history.c */
+void	save_history(t_history *history, char *cmd, int idx);
+
+/* heredoc.c */
+void	here_doc(char *limiter);
+
+/* fd.c */
+void	get_i_fd(t_parse **cmd_parse, char **cmd_split);
+void	get_o_fd(t_parse **cmd_parse, char **cmd_split);
 
 # endif
