@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:19:30 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 17:58:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:42:32 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,28 @@
 
 void	check_quote_and_branket(t_parse **cmd_parse, t_shell *shell, char *cmd)
 {
-	int i;
+	int	i;
+	int	open;
 
 	i = -1;
+	open = 0;
 	while (cmd[++i])
 	{
 		if (cmd[i] == '\'')
 			(*cmd_parse)->s_quote++;
 		if (cmd[i] == '\"')
 			(*cmd_parse)->d_quote++;
+		if (open == 0 && cmd[i] == ')')
+			error_exit("Error : not valid couple of branket", 1);
+		if (cmd[i] == '(')
+			open++;
+		if (cmd[i] == ')')
+			open--;
 	}
 	if ((*cmd_parse)->s_quote % 2 != 0 || (*cmd_parse)->d_quote % 2 != 0)
 		error_exit("Error : not valid couple of quote", 1);
-	
+	if (open != 0)
+		error_exit("Error : not valid couple of branket", 1);
 }
 
 void	init_cmd_parse(t_parse **cmd_parse, t_shell *shell, char *cmd)

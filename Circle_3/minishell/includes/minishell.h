@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 17:59:55 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 20:50:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,22 @@ typedef struct s_shell
 	int		idx;
 }	t_shell;
 
+typedef struct s_cmd
+{
+	char			**cmd;
+	struct s_cmd	*next;
+}	t_cmd;
 typedef struct s_parse
 {
-	int		s_quote;
-	int		d_quote;
-	int		bracket;
-	int		i_fd;
-	int		o_fd;
-	int		here_doc;
-	int		quote;
-	int		num_of_split_cmd;
+	struct s_cmd	*cmd;
+	int				s_quote;
+	int				d_quote;
+	int				bracket;
+	int				i_fd;
+	int				o_fd;
+	int				here_doc;
+	int				quote;
+	int				num_of_split_cmd;
 }	t_parse;
 
 /*
@@ -94,4 +100,4 @@ heredoc
 /* heredoc.c */
 void	here_doc(char *limiter);
 
-# endif
+#endif

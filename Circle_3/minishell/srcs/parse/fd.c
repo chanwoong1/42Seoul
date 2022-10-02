@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:43:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 18:01:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:40:08 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ void	get_o_fd(t_parse **cmd_parse, char **cmd_split)
 	while (cmd_split[i])
 		i++;
 	if (!ft_strncmp(cmd_split[i - 2], ">>", 2))
-		(*cmd_parse)->o_fd = open(cmd_split[i - 1], O_RDWR | O_APPEND | O_CREAT, 0644);
+		(*cmd_parse)->o_fd = open(cmd_split[i - 1], \
+								O_RDWR | O_APPEND | O_CREAT, 0644);
 	else if (!ft_strncmp(cmd_split[i - 2], ">", 1))
-		(*cmd_parse)->o_fd = open(cmd_split[i - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
+		(*cmd_parse)->o_fd = open(cmd_split[i - 1], \
+								O_RDWR | O_TRUNC | O_CREAT, 0644);
 	else
 		(*cmd_parse)->o_fd = 1;
 	if ((*cmd_parse)->o_fd < 0)
