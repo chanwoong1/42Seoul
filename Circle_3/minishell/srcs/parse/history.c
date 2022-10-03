@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:15:35 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 19:39:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/03 10:39:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	save_history(t_shell *shell, char *cmd, int idx)
 {
 	char	*tmp;
 
+	add_history (cmd);
 	if (idx == 1)
 	{
 		tmp = ft_itoa(idx);

@@ -6,13 +6,13 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 14:19:30 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 19:42:32 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/10/03 10:44:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	check_quote_and_branket(t_parse **cmd_parse, t_shell *shell, char *cmd)
+void	check_quote_and_branket(t_parse **cmd_parse, char *cmd)
 {
 	int	i;
 	int	open;
@@ -38,12 +38,21 @@ void	check_quote_and_branket(t_parse **cmd_parse, t_shell *shell, char *cmd)
 		error_exit("Error : not valid couple of branket", 1);
 }
 
+void	split_cmd(t_parse **cmd_parse, t_shell *shell, char *cmd)
+{
+	(*cmd_parse)->cmd = malloc(sizeof(t_cmd));
+	if (!(*cmd_parse)->cmd)
+		error_exit("Error : malloc fail", 1);
+	
+}
+
 void	init_cmd_parse(t_parse **cmd_parse, t_shell *shell, char *cmd)
 {
 	char	**cmd_split;
 
 	ft_memset(*cmd_parse, 0, sizeof(t_parse));
-	check_quote_and_branket(cmd_parse, shell, cmd);
+	check_quote_and_branket(cmd_parse, cmd);
+	split_cmd(cmd_parse, shell, cmd);
 	cmd_split = ft_split(cmd, ' ');
 	if (!cmd_split)
 		error_exit("malloc error of command, check your command.", 1);
