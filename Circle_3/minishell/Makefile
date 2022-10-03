@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/10/02 17:37:53 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/10/03 14:03:24 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,15 @@ LFT_FLAG = -L$(LFT_DIR) -lft -lreadline -I$(LFT_DIR)
 PROMPT		=	prompt
 PARSE		=	parse
 UTILS		=	utils
+HEREDOC		=	heredoc
 MPATH_SRCS	=	$(PROMPT)/prompt.c \
 				$(UTILS)/util_free.c \
 				$(UTILS)/util_print.c \
 				$(PARSE)/init_parse.c \
 				$(PARSE)/init_shell.c \
-				$(PARSE)/heredoc.c \
 				$(PARSE)/history.c \
-				$(PARSE)/fd.c
+				$(PARSE)/fd.c \
+				$(HEREDOC)/heredoc.c
 MPATH_DIR	=	srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
