@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/10/03 14:03:24 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/10/04 09:08:14 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJ_F		=	$(FUNC:.c=.o)
 				@${CC} ${CFLAGS} -c $< -o $@
 
 $(NAME):		$(OBJ_M) $(OBJ_F)
-				@make -s -C $(LFT_DIR)
+				@make -s -C $(LFT_DIR) all
 				@$(CC) $(CFLAGS) $(LFT_FLAG) $(OBJ_M) $(OBJ_F) -o $(NAME)
 				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
 
