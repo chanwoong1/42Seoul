@@ -44,6 +44,6 @@
 
 ### Circle_3
 
-- [philosophers](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_3/philosophers)
+- [philosophers](https://github.com/Chanwoong1/42Seoul/tree/master/Circle_3/philosophers) - 125/100
 
-	2022.09.22 ~
+	2022.09.22 ~ 2022.10.10
