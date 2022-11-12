@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/10/04 09:08:14 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/12 10:14:55 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ HEADER_SRCS	=	minishell.h
 HEADER_DIR	=	includes/
 HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
-LFT_DIR = ./libft
+LFT_DIR = ./srcs/libft
 LFT_FLAG = -L$(LFT_DIR) -lft -lreadline -I$(LFT_DIR)
 
 # FILES
@@ -41,8 +41,11 @@ MPATH_DIR	=	srcs/
 MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M		=	$(MPATH:.c=.o)
 
-FUNC 		=	gnl/get_next_line.c gnl/get_next_line_utils.c
+FUNC 		=	$(MPATH_DIR)/gnl/get_next_line.c \
+				$(MPATH_DIR)/gnl/get_next_line_utils.c
 OBJ_F		=	$(FUNC:.c=.o)
+
+
 
 #COMMANDS
 %.o:			%.c $(HEADER) Makefile

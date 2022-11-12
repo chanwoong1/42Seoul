@@ -6,98 +6,68 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:31:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/10/02 20:50:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/12 12:58:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-# include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include <sys/stat.h>
-# include <sys/errno.h>
-# include <sys/ioctl.h>
 # include <signal.h>
 # include <dirent.h>
-# include <termios.h>
-# include <curses.h>
-# include <term.h> 
-# include <readline/history.h>
-# include <readline/readline.h>
+# include "../srcs/libft/libft.h"
 
-/* libft */
-# include "../libft/libft.h"
+# define IS_QUOTE(x) (x == '"' || x == '\'')
 
-/* get_next_line */
-# include "../gnl/get_next_line.h"
-
-typedef struct s_shell
-{
-	char	*history;
-	char	**path;
-	int		idx;
-}	t_shell;
-
-typedef struct s_cmd
-{
-	char			**cmd;
-	struct s_cmd	*next;
-}	t_cmd;
-typedef struct s_parse
-{
-	struct s_cmd	*cmd;
-	int				s_quote;
-	int				d_quote;
-	int				bracket;
-	int				i_fd;
-	int				o_fd;
-	int				here_doc;
-	int				quote;
-	int				num_of_split_cmd;
-}	t_parse;
+char					**g_envv;
 
 /*
-prompt
+** src/cd_builtin.c
 */
-
-/* prompt.c */
+void					change_dir(char *path, int print_path);
+int						cd_builtin(char **command);
 
 /*
-utils
+** src/display_prompt_msg.c
 */
-
-/* util_free.c */
-void	free_all_split(char **split);
-
-/* util_print.c */
-void	error_exit(char *msg, int code);
+void					exit_shell(void);
+char					*parse_home_path(char *path, int reverse_parse);
+void					display_prompt_msg(void);
 
 /*
-parse
+** src/echo_builtin.c
 */
-
-/* init_shell.c */
-void	init_shell(t_shell *shell, char **argv, char **envp);
-
-/* init_parse.c */
-void	init_cmd_parse(t_parse **cmd_parse, t_shell *shell, char *cmd);
-
-/* history.c */
-void	save_history(t_shell *shell, char *cmd, int idx);
-
-/* fd.c */
-void	get_i_fd(t_parse **cmd_parse, char **cmd_split);
-void	get_o_fd(t_parse **cmd_parse, char **cmd_split);
+int						echo_builtin(char **command);
 
 /*
-heredoc
+** src/exec_command.c
 */
+int						exec_command(char **command);
 
-/* heredoc.c */
-void	here_doc(char *limiter);
+/*
+** src/setenv_builtin.c
+*/
+int						find_env_var(char *var);
+char					*get_env_var(char *var);
+char					**realloc_envv(int new_size);
+void					set_env_var(char *key, char *value);
+int						setenv_builtin(char **command);
+int						setenv_builtin(char **args);
 
+/*
+** src/signal_handler.c
+*/
+void					signal_handler(int signo);
+void					proc_signal_handler(int signo);
+
+/*
+** src/unsetenv_builtin.c
+*/
+void					print_env(void);
+void					init_envv(int ac, char **av, char **envv);
+int						unsetenv_builtin(char **command);
 #endif
