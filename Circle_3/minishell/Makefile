@@ -5,78 +5,65 @@
 #                                                     +:+ +:+         +:+      #
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/01 13:13:46 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/12 10:14:55 by chanwjeo         ###   ########.fr        #
+#    Created: 2016/12/13 11:43:23 by jrameau           #+#    #+#              #
+#    Updated: 2022/11/16 08:35:06 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# SETUP
-NAME		=	minishell
-CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
-RM			=	rm -rf
+# Project file
+NAME = minishell
 
-# HEADER
-HEADER_SRCS	=	minishell.h
-HEADER_DIR	=	includes/
-HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
+# Project builds and dirs
+SRCDIR = ./src/
+SRCNAMES = $(shell ls $(SRCDIR) | grep -E ".+\.c")
+SRC = $(addprefix $(SRCDIR), $(SRCNAMES))
+INC = ./inc/
+BUILDDIR = ./build/
+BUILDOBJS = $(addprefix $(BUILDDIR), $(SRCNAMES:.c=.o))
 
-LFT_DIR = ./srcs/libft
-LFT_FLAG = -L$(LFT_DIR) -lft -lreadline -I$(LFT_DIR)
+# Libft builds and dirs
+LIBDIR = ./libft/
+LIBFT = ./libft/libft.a
+LIBINC = ./libft/includes/
 
-# FILES
-PROMPT		=	prompt
-PARSE		=	parse
-UTILS		=	utils
-HEREDOC		=	heredoc
-MPATH_SRCS	=	$(PROMPT)/prompt.c \
-				$(UTILS)/util_free.c \
-				$(UTILS)/util_print.c \
-				$(PARSE)/init_parse.c \
-				$(PARSE)/init_shell.c \
-				$(PARSE)/history.c \
-				$(PARSE)/fd.c \
-				$(HEREDOC)/heredoc.c
-MPATH_DIR	=	srcs/
-MPATH		=	$(addprefix $(MPATH_DIR), $(MPATH_SRCS))
-OBJ_M		=	$(MPATH:.c=.o)
+# Optimization and Compiler flags and commands
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-FUNC 		=	$(MPATH_DIR)/gnl/get_next_line.c \
-				$(MPATH_DIR)/gnl/get_next_line_utils.c
-OBJ_F		=	$(FUNC:.c=.o)
+# Debugging flags
+DEBUG = -g
 
+# Main rule
+all: $(BUILDDIR) $(LIBFT) $(NAME)
 
+# Object dir rule
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
-#COMMANDS
-%.o:			%.c $(HEADER) Makefile
-				@${CC} ${CFLAGS} -c $< -o $@
+# Objects rule
+$(BUILDDIR)%.o:$(SRCDIR)%.c
+	$(CC) $(CFLAGS) -I$(LIBINC) -I$(INC) -o $@ -c $<
 
-$(NAME):		$(OBJ_M) $(OBJ_F)
-				@make -s -C $(LFT_DIR) all
-				@$(CC) $(CFLAGS) $(LFT_FLAG) $(OBJ_M) $(OBJ_F) -o $(NAME)
-				@echo -e "$(GREEN)$(NAME) created!$(DEFAULT)"
+# Project file rule
+$(NAME): $(BUILDOBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(BUILDOBJS) $(LIBFT)
 
-all:			$(NAME)
+# Libft rule
+$(LIBFT):
+	make -C $(LIBDIR)
 
-bonus:			all
-
+# Cleaning up the build files
 clean:
-				@make -s -C $(LFT_DIR) clean
-				@$(RM) $(OBJ_M)
-				@$(RM) $(OBJ_F)
-				@echo -e "$(YELLOW)object files deleted!$(DEFAULT)"
+	rm -rf $(BUILDDIR)
+	make -C $(LIBDIR) clean
 
-fclean:			clean
-				@make -s -C $(LFT_DIR) fclean
-				@$(RM) $(NAME)
-				@echo -e "$(RED)all deleted!$(DEFAULT)"
+# Getting rid of the project file
+fclean: clean
+	rm -rf $(NAME)
+	make -C $(LIBDIR) fclean
 
-re:				fclean all
+# Do both of the above
+re: fclean all
 
-.PHONY:		all clean fclean bonus re
-
-#COLORS
-RED			=	\033[1;31m
-GREEN		=	\033[1;32m
-YELLOW		=	\033[1;33m
-DEFAULT		=	\033[0m
+# Just in case those files exist in the root dir
+.PHONY: all fclean clean re
