@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:45:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 20:20:21 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 00:17:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,11 @@ extern char		*ft_strrchr(const char *str, int c);
 extern int		ft_strncmp(const char *str1, const char *str2, size_t n);
 
 /* ----------------------------
+ * * Copy src with len size of characters to dst.
+ * After copy, dst is not include newline. */
+extern int		ft_strlcpy_without_newline(char *dst, char *src, int len);
+
+/* ----------------------------
  * * Fill the first len bytes of the memory area 
  * pointed to by b with the constant byte c. */
 extern void		*ft_memset(void *b, int c, size_t len);
@@ -359,6 +364,11 @@ extern void		*ft_calloc(size_t nmemb, size_t bytes);
 extern char		*ft_strdup(const char *str1);
 
 /* ----------------------------
+ * * Return a pointer to a new string which is a duplicate of the string str1.
+ * The new string is not include newline.*/
+extern char		*ft_strdup_without_newline(char *s);
+
+/* ----------------------------
  * * Allocates and returns a substring from the string ’str’.
  * The substring begins at index ’start’ and is of maximum size ’len’.*/
 extern char		*ft_substr(char const *str, unsigned int start, size_t len);
@@ -367,6 +377,12 @@ extern char		*ft_substr(char const *str, unsigned int start, size_t len);
  * * Allocates and returns a new string, which is the result 
  * of the concatenation of ’str1’ and ’str2’ */
 extern char		*ft_strjoin(char const *str1, char const *str2);
+
+/* ----------------------------
+ * * Allocates and returns a new string, which is the result 
+ * of the concatenation of ’str1’ and ’str2’.
+ * The new string is not include newline. */
+extern char		*ft_strjoin_without_newline(char *s1, char *s2);
 
 /* ----------------------------
  * * Allocates and returns a copy of ’str1’ with the characters 

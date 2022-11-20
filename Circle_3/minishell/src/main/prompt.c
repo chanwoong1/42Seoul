@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:55:15 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/17 15:24:00 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 00:26:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,30 @@ void	show_shell_logo(void)
 	show_logo_2();
 }
 
+void	make_history(char *line, t_history *history)
+{
+	if (history->idx == 1)
+	{
+		history->history = ft_strdup_without_newline(ft_itoa(history->idx));
+		history->history = ft_strjoin_all(4, history->history, " ", line, "\n");
+		history->idx++;
+	}
+	else
+	{
+		history->history = ft_strjoin_all(5, history->history, history->idx, " ", line, "\n");
+		history->idx++;
+	}
+}
+
 /** show prompt_messege + readline */
-char	*readline_prompt(t_shell_config *config)
+char	*readline_prompt(t_shell_config *config, t_history *history)
 {
 	t_string	*prompt;
 	char		*line;
 
 	line = NULL;
 	prompt = new_string(64);
-	prompt->f_append(prompt, "\033[31m");
+	prompt->f_append(prompt, "\033[38;5;208m");
 	prompt->f_append(prompt, get_environ_value("USER", *config->envp));
 	prompt->f_append(prompt, ":");
 	prompt->f_append(prompt, get_environ_value("PWD", *config->envp));
@@ -103,5 +118,6 @@ char	*readline_prompt(t_shell_config *config)
 	prompt->f_append(prompt, "$ ");
 	line = readline(prompt->text);
 	delete_string(&prompt);
+	make_history(line, history);
 	return (line);
 }

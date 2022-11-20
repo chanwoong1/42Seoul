@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:02:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 20:08:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 00:34:26 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	run_shell(char *line, t_shell_config *config)
 	return (execute(syntax_tree, config));
 }
 
-void	shell_loop(t_shell_config *config)
+void	shell_loop(t_shell_config *config, t_history *history)
 {
 	char	*line;
 
 	while (true)
 	{
-		line = readline_prompt(config);
+		line = readline_prompt(config, history);
 		if (line == NULL)
 		{
 			printf("exit\n");
@@ -64,7 +64,10 @@ void	shell_loop(t_shell_config *config)
 			line = NULL;
 			continue ;
 		}
-		run_shell(line, config);
+		if (ft_strncmp(line, "history\n", 8) == 0)
+			printf("%s", history->history);
+		else
+			run_shell(line, config);
 		free(line);
 		line = NULL;
 	}
@@ -81,16 +84,24 @@ void	load_shell_config(t_shell_config *shell_config, char **env)
 	shell_config->pid_list = NULL;
 }
 
+static void	load_history(t_history	*history)
+{
+	history->history = ft_calloc(1, sizeof(char));
+	history->idx = 1;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_shell_config	shell_config;
+	t_history		history;
 
 	(void)ac;
 	(void)av;
 	load_shell_config(&shell_config, env);
+	load_history(&history);
 	set_signal();
 	show_shell_logo();
-	shell_loop(&shell_config);
+	shell_loop(&shell_config, &history);
 	delete_environ(shell_config.envp);
 	free(shell_config.envp);
 	return (EXIT_SUCCESS);
