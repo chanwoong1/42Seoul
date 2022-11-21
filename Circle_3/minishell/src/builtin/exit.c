@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:30:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 19:41:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:36:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ int	exec_exit(char **arglist, char **our_envp, t_shell_config *config)
 		status = config->last_cmd_wstatus;
 	else if (get_status(arglist[1], &status) == false)
 	{
-		ft_putstr_fd("lesh: exit: ", STDERR_FILENO);
+		ft_putstr_fd("orsh: exit: ", STDERR_FILENO);
 		ft_putstr_fd(arglist[1], STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		exit(255);
 	}
 	else if (arglist[2] != NULL)
 	{
-		ft_putstr_fd("lesh: exit: too many arguments\n", STDERR_FILENO);
+		ft_putstr_fd("orsh: exit: too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	if (g_is_sig_interupt == true)

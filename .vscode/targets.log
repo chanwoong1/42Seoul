@@ -10,8 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Nov 12 10:15:14 2022
- 
+# Make data base, printed on Mon Nov 21 08:23:15 2022
 
 # Variables
 
@@ -20,7 +19,7 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 ?F = $(notdir $?)
 # environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
+VSCODE_LOG_NATIVE = false
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -28,51 +27,55 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/chanwoong/git/42Seoul
+CURDIR := /Users/chanwjeo/git/42Seoul
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"6eb1e43add40af3ffb323dfa86580dd8.ko","_translationsConfigFile":"/Users/chanwoong/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/tcf.json","_cacheRoot":"/Users/chanwoong/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko","_resolvedLanguagePackCoreLocation":"/Users/chanwoong/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/6261075646f055b99068d3688932416f2346dd3b","_corruptedFile":"/Users/chanwoong/Library/Application Support/Code/clp/6eb1e43add40af3ffb323dfa86580dd8.ko/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
 MAKEFILE_LIST := 
 # environment
-__CFBundleIdentifier = com.microsoft.VSCode
+VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_CWD = /Users/chanwoong/git/42Seoul
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-97604d11-7637-408d-a0f6-61cef33c20b8.sock
 # environment
-PATH = /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/chanwoong/development/flutter/bin
+VSCODE_CWD = /Users/chanwjeo/git/42Seoul
+# environment
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.inVWWtIqzV/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.LFDIy3PThE/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-PWD = /Users/chanwoong/git/42Seoul
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/chanwjeo/git/42Seoul
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/chanwoong
+HOME = /Users/chanwjeo
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CLI = 1
+VSCODE_CODE_CACHE_PATH = /Users/chanwjeo/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/chanwoong/Library/Application Support/Code/CachedData/6261075646f055b99068d3688932416f2346dd3b
-# environment
-LOGNAME = chanwoong
+LOGNAME = chanwjeo
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-ZSH = /Users/chanwoong/.oh-my-zsh
+ZSH = /Users/chanwjeo/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -83,21 +86,20 @@ XPC_FLAGS = 0x0
 COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
- 
 # environment
 LC_TERMINAL = iTerm2
 # environment
-SHLVL = 3
+SHLVL = 2
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = chanwoong
+USER = chanwjeo
 # makefile
 .DEFAULT_GOAL := 
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:598ABCA3-C486-40B5-A09A-20D6E9552DEC
+TERM_SESSION_ID = w0t0p0:69DB8820-A2F4-4188-BF28-714B6790AF75
 # environment
 LESS = -R
 # automatic
@@ -109,13 +111,11 @@ TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/28/lrk2dpw51lv3c6cfww3rsd380000gn/T/
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/chanwoong/Library/Application Support/Code/1.73.1-main.sock
-# environment
-MallocNanoZone = 0
+VSCODE_IPC_HOOK = /Users/chanwjeo/Library/Application Support/Code/1.67.2-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -123,23 +123,21 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-TERM_PROGRAM_VERSION = 3.4.16
+TERM_PROGRAM_VERSION = 3.3.7
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.7237157.7237163.FDE9FD14-1B4D-4BA0-B6A1-53F57F350767
+XPC_SERVICE_NAME = com.microsoft.VSCode.2164.BAB8387A-1318-4497-8076-6DE160BF953C
 # environment
-LC_TERMINAL_VERSION = 3.4.16
+LC_TERMINAL_VERSION = 3.3.7
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:598ABCA3-C486-40B5-A09A-20D6E9552DEC
+ITERM_SESSION_ID = w0t0p0:69DB8820-A2F4-4188-BF28-714B6790AF75
 # environment
 COLORFGBG = 15;0
 # environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
-# environment
-COMMAND_MODE = unix2003
+__CF_USER_TEXT_ENCODING = 0x1984E:0x3:0x33
 # default
 MAKEFILES := 
 # automatic
@@ -163,7 +161,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 679
+VSCODE_PID = 91529
 # variable set hash-table stats:
 # Load=74/1024=7%, Rehash=0, Collisions=4/95=4%
 
@@ -173,8 +171,7 @@ VSCODE_PID = 679
 
 # Directories
 
- 
-# . (device 16777220, inode 390960): 14 files, no impossibilities.
+# . (device 16777225, inode 2601802): 14 files, no impossibilities.
 
 # 14 files, no impossibilities in 1 directories.
 
@@ -248,6 +245,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Nov 12 10:15:14 2022
+# Finished Make data base on Mon Nov 21 08:23:15 2022
 
  

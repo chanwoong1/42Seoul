@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:55:15 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 00:26:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:16:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,21 @@ void	show_shell_logo(void)
 
 void	make_history(char *line, t_history *history)
 {
-	if (history->idx == 1)
+	if (line)
 	{
-		history->history = ft_strdup_without_newline(ft_itoa(history->idx));
-		history->history = ft_strjoin_all(4, history->history, " ", line, "\n");
-		history->idx++;
-	}
-	else
-	{
-		history->history = ft_strjoin_all(5, history->history, history->idx, " ", line, "\n");
-		history->idx++;
+		if (history->idx == 1)
+		{
+			history->history = ft_strjoin(history->history, ft_itoa(history->idx));
+			history->history = ft_strjoin_all(4, history->history, " ", line, "\n");
+			history->idx++;
+		}
+		else
+		{
+			history->history = ft_strjoin(history->history, "    ");
+			history->history = ft_strjoin(history->history, ft_itoa(history->idx));
+			history->history = ft_strjoin_all(4, history->history, " ", line, "\n");
+			history->idx++;
+		}
 	}
 }
 

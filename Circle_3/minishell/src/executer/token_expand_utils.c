@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 19:20:29 by han-yeseul        #+#    #+#             */
-/*   Updated: 2022/11/16 19:41:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:36:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	expand_double_quote(t_string *str, t_iterator *iter, \
 	}
 	iter->f_unget(iter);
 	c = iter->f_peek(iter);
-	ft_putstr_fd("lesh: syntax error near unexpected token '\"'\n"\
+	ft_putstr_fd("orsh: syntax error near unexpected token '\"'\n"\
 				, STDERR_FILENO);
 	return (ERROR);
 }
@@ -131,7 +131,7 @@ int	expand_single_quote(t_string *str, t_iterator *iter)
 	}
 	iter->f_unget(iter);
 	c = iter->f_peek(iter);
-	ft_putstr_fd("lesh: syntax error near unexpected token '\''\n"\
+	ft_putstr_fd("orsh: syntax error near unexpected token '\''\n"\
 				, STDERR_FILENO);
 	return (ERROR);
 }

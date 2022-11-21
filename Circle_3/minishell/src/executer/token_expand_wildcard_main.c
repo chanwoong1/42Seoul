@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 00:44:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 19:41:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:36:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_list	*expand_wildcard_glob_and_return_list(t_list *cur_token, \
 	{
 		if (expanded_token != NULL && expanded_token->next != NULL)
 		{
-			printf("lesh: %s: ambiguous redirect\n", redir_err_messege);
+			printf("orsh: %s: ambiguous redirect\n", redir_err_messege);
 			ft_lstclear(&expanded_token, delete_token);
 			expanded_token = NULL;
 			*is_error = true;

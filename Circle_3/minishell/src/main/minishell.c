@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:02:06 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 00:34:26 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:24:08 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	shell_loop(t_shell_config *config, t_history *history)
 			line = NULL;
 			continue ;
 		}
-		if (ft_strncmp(line, "history\n", 8) == 0)
+		if (ft_strncmp(line, "history", 7) == 0)
 			printf("%s", history->history);
 		else
 			run_shell(line, config);
@@ -86,7 +86,7 @@ void	load_shell_config(t_shell_config *shell_config, char **env)
 
 static void	load_history(t_history	*history)
 {
-	history->history = ft_calloc(1, sizeof(char));
+	history->history = ft_strdup("    ");
 	history->idx = 1;
 }
 

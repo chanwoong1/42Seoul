@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:33:02 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 19:41:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:36:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	exec_pwd(char **arglist, char **our_envp)
 	buf = ft_calloc(1, MAXPATHLEN);
 	if (getcwd(buf, MAXPATHLEN) == NULL)
 	{
-		ft_perror("lesh: pwd");
+		ft_perror("orsh: pwd");
 		return (ERROR);
 	}
 	ft_putstr_fd(buf, STDOUT_FILENO);
