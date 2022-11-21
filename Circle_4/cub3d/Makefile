@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 21:26:09 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/21 15:08:29 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/21 21:10:18 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,22 +87,8 @@ CUSTOM = \033[38;5;135m
 #---------------------------------------------------------------------------
 #    Macbook compile option  (not include MLX)                                              |
 #---------------------------------------------------------------------------
-$(NAME): $(OBJ)
-	@make bonus -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a $(OBJ) -o $(NAME)
-	@echo "$(CUSTOM)╔══════════════════════════════════════════╗$(DEF_COLOR)"
-	@echo "$(CUSTOM)║         cub3d compile finished.          ║$(DEF_COLOR)"
-	@echo "$(CUSTOM)╠══════════════════════════════════════════╣$(DEF_COLOR)"
-	@echo "$(CUSTOM)║                                          ║$(DEF_COLOR)"
-	@echo "$(CUSTOM)║                        Have fun!         ║$(DEF_COLOR)"
-	@echo "$(CUSTOM)╚══════════════════════════════════════════╝$(DEF_COLOR)"
-
-# #-----------------------------------------------------------------------
-# #    Mac compile option                                                |
-# #-----------------------------------------------------------------------
 # $(NAME): $(OBJ)
 # 	@make bonus -C $(LIBFT_DIR)
-# 	@make -C $(MLX_DIR) all
 # 	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a $(OBJ) -o $(NAME)
 # 	@echo "$(CUSTOM)╔══════════════════════════════════════════╗$(DEF_COLOR)"
 # 	@echo "$(CUSTOM)║         cub3d compile finished.          ║$(DEF_COLOR)"
@@ -110,6 +96,20 @@ $(NAME): $(OBJ)
 # 	@echo "$(CUSTOM)║                                          ║$(DEF_COLOR)"
 # 	@echo "$(CUSTOM)║                        Have fun!         ║$(DEF_COLOR)"
 # 	@echo "$(CUSTOM)╚══════════════════════════════════════════╝$(DEF_COLOR)"
+
+#-----------------------------------------------------------------------
+#    Mac compile option                                                |
+#-----------------------------------------------------------------------
+$(NAME): $(OBJ)
+	@make bonus -C $(LIBFT_DIR)
+	@make -C $(MLX_DIR) all
+	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a -L./$(MLX_DIR) $(OBJ) -o $(NAME)
+	@echo "$(CUSTOM)╔══════════════════════════════════════════╗$(DEF_COLOR)"
+	@echo "$(CUSTOM)║         cub3d compile finished.          ║$(DEF_COLOR)"
+	@echo "$(CUSTOM)╠══════════════════════════════════════════╣$(DEF_COLOR)"
+	@echo "$(CUSTOM)║                                          ║$(DEF_COLOR)"
+	@echo "$(CUSTOM)║                        Have fun!         ║$(DEF_COLOR)"
+	@echo "$(CUSTOM)╚══════════════════════════════════════════╝$(DEF_COLOR)"
 
 %.o: %.c
 	@${CC} ${CFLAGS} -c $< -o $@

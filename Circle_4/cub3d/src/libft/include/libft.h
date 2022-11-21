@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:45:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 00:12:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:37:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -393,6 +393,11 @@ extern char		*ft_strtrim(char const *str1, char const *set);
  * * Allocates and returns an array of strings obtained by splitting 
  * ’s’ using the character ’c’ as a delimiter. */
 extern char		**ft_split(char const *str, char c);
+
+/* ----------------------------
+ * * Free allocated memory for 2d array.
+ * ’s’ using the character ’c’ as a delimiter. */
+void	free_double_array(void **array);
 
 /* ----------------------------
  * * Allocates and returns a string representing the integer 

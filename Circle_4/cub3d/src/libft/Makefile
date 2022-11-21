@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 15:31:26 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/21 13:46:41 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/21 17:35:02 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC_FILES       = ft_atoi ft_bzero ft_calloc ft_isalnum ft_isalpha \
 SRC2_FILES      = ft_isspace ft_nbrlen ft_putnbr_uint_fd ft_nbrlen_uint \
                   ft_convert_nbr_base_malloc ft_nputstr_fd ft_atoi_base \
 				  ft_strjoin_all ft_isinteger ft_strdup_without_newline \
-				  ft_strlcpy_without_newline ft_strjoin_without_newline
+				  ft_strlcpy_without_newline ft_strjoin_without_newline \
+				  free_double_array
 
 SRC3_FILES		= get_next_line get_next_line_utils \
 				  get_next_line_bonus get_next_line_utils_bonus
