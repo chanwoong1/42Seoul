@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 21:26:09 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/16 20:03:21 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/21 12:49:47 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,35 +85,17 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 #-----------------------------------------------------------------------
-#    linux compile option                                              |
-#-----------------------------------------------------------------------
-# $(NAME): $(OBJ)
-# 	@make bonus -C $(LIBFT_DIR)
-# 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT_DIR)libft.a -lreadline
-# 	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
-# 	@echo "$(ORANGE)|       Minishell compile finished.        |$(DEF_COLOR)"
-# 	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
-# 	@echo "$(ORANGE)|                                          |$(DEF_COLOR)"
-# 	@echo "$(ORANGE)|                        Have fun!         |$(DEF_COLOR)"
-# 	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
-
-# %.o: %.c
-# 	@${CC} ${CFLAGS} -c $< -o $@
-# 	@echo "$(ORANGE)Compiling... \t$< $(DEF_COLOR)"
-# -----------------------------------------------------------------------
-
-#-----------------------------------------------------------------------
 #    Mac compile option                                                |
 #-----------------------------------------------------------------------
 $(NAME): $(OBJ)
 	@make bonus -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) $(READLINE_COMFILE_FLAGS) $(LIBFT_DIR)libft.a $(OBJ) -o $(NAME)
-	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
-	@echo "$(ORANGE)|       Minishell compile finished.        |$(DEF_COLOR)"
-	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
-	@echo "$(ORANGE)|                                          |$(DEF_COLOR)"
-	@echo "$(ORANGE)|                        Have fun!         |$(DEF_COLOR)"
-	@echo "$(ORANGE)--------------------------------------------$(DEF_COLOR)"
+	@echo "$(ORANGE)╔══════════════════════════════════════════╗$(DEF_COLOR)"
+	@echo "$(ORANGE)║       Minishell compile finished.        ║$(DEF_COLOR)"
+	@echo "$(ORANGE)╠══════════════════════════════════════════╣$(DEF_COLOR)"
+	@echo "$(ORANGE)║                                          ║$(DEF_COLOR)"
+	@echo "$(ORANGE)║                        Have fun!         ║$(DEF_COLOR)"
+	@echo "$(ORANGE)╚══════════════════════════════════════════╝$(DEF_COLOR)"
 
 %.o: %.c
 	@${CC} ${CFLAGS} $(READLINE_OBJ_FLAGS) -c $< -o $@

@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 15:31:26 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/21 00:14:43 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/21 13:07:01 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ OBJ_MKDIR       = create_dir
 # Colors
 DEF_COLOR       = \033[0;39m
 GRAY            = \033[0;90m
-RED             = \033[0;91m
+RED				= \033[1;31m
+LIGHTRED        = \033[0;91m
 ORANGE			= \033[38;5;208m
 GREEN           = \033[0;92m
 YELLOW          = \033[0;93m
@@ -82,9 +83,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ_RESULT)
 	@$(AR) $(NAME) $^
-	@echo "$(ORANGE)===========================$(DEF_COLOR)"
-	@echo "$(ORANGE)| Libft compile finished. |$(DEF_COLOR)"
-	@echo "$(ORANGE)===========================$(DEF_COLOR)"
+	@echo "$(ORANGE)╔══════════════════════════════════════════╗$(DEF_COLOR)"
+	@echo "$(ORANGE)║         Libft compile finished.          ║$(DEF_COLOR)"
+	@echo "$(ORANGE)╚══════════════════════════════════════════╝$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_MKDIR)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

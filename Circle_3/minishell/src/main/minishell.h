@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:56:07 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 00:31:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:53:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_shell_config
 	t_list	*pid_list;
 }	t_shell_config;
 
-typedef struct	s_history
+typedef struct s_history
 {
 	char	*history;
 	int		idx;

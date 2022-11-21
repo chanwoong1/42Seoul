@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:57:07 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 11:09:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/21 11:57:17 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,6 @@ void	sig_ctrl_c(int signal)
 			ft_putstr_fd("\n", STDOUT_FILENO);
 		}
 	}
-}
-
-void sig_d(int signal)
-{
-	printf("here\n %d", signal);
 }
 
 void	set_signal(void)
