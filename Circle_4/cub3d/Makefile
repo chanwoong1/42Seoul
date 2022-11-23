@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 21:26:09 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/21 21:10:18 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/22 10:35:47 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,7 @@ CUSTOM = \033[38;5;135m
 $(NAME): $(OBJ)
 	@make bonus -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR) all
-	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a -L./$(MLX_DIR) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a -L./$(MLX_DIR) -lmlx $(OBJ) -o $(NAME)
 	@echo "$(CUSTOM)╔══════════════════════════════════════════╗$(DEF_COLOR)"
 	@echo "$(CUSTOM)║         cub3d compile finished.          ║$(DEF_COLOR)"
 	@echo "$(CUSTOM)╠══════════════════════════════════════════╣$(DEF_COLOR)"

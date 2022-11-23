@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:05:07 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 21:11:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:35:08 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
-// #include "../src/mlx/mlx.h"
+#include "../src/mlx/mlx.h"
+#include "../src/libft/include/libft.h"
 
 typedef struct s_img
 {
@@ -39,5 +40,12 @@ typedef struct s_map
 	int					c[3];
 
 }	t_map;
+
+/*
+ * main
+ */
+void	init_map(t_map *map);
+void	init_img(t_map *map, t_img *a, int i, char *xpm);
+void	validate_map(t_map *map, char *map_path);
 
 #endif

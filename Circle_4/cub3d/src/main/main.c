@@ -6,13 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:52:33 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 20:59:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/22 10:34:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include "../libft/include/libft.h"
-#include "../mlx/mlx.h"
 
 void	error_exit(char *msg)
 {
