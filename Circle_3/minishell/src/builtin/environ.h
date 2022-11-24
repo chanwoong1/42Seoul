@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 21:52:20 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/16 19:41:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/24 10:22:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**new_environ(char **system_envp);
 /**-
  * @ Find Key in envp list, then return pointer to Value. 
  * - NOTE: if no Key exists, then function returns NULL.
- * - src/builtin/environ.c
+ * - src/builtin/environ_utils.c
  **/
 char	*get_environ_value(const char *env_key, char **envp);
 

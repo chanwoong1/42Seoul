@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:55:15 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/21 11:54:49 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/24 12:30:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,13 @@ void	make_history(char *line, t_history *history)
 {
 	if (line)
 	{
-		if (history->idx == 1)
-		{
-			history->history = \
-				ft_strjoin(history->history, ft_itoa(history->idx));
-			history->history = \
-				ft_strjoin_all(4, history->history, " ", line, "\n");
-			history->idx++;
-		}
-		else
-		{
+		if (history->idx != 1)
 			history->history = ft_strjoin(history->history, "    ");
-			history->history = \
-				ft_strjoin(history->history, ft_itoa(history->idx));
-			history->history = \
-				ft_strjoin_all(4, history->history, " ", line, "\n");
-			history->idx++;
-		}
+		history->history = \
+			ft_strjoin(history->history, ft_itoa(history->idx));
+		history->history = \
+			ft_strjoin_all(4, history->history, " ", line, "\n");
+		history->idx++;
 	}
 }
 
