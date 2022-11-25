@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/23 12:27:13 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:00:47 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ Contact::~Contact()
 {
 }
 
-std::string	Contact::get_first_name()
+std::string	Contact::GetFirstName()
 {
 	return this->firstName;
 }
 
-std::string	Contact::get_last_name()
+std::string	Contact::GetLastName()
 {
 	return this->lastName;
 }
 
-std::string	Contact::get_nickname()
+std::string	Contact::GetNickName()
 {
 	return this->nickName;
 }

@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/15 21:26:09 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/22 10:35:47 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/24 18:46:09 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ CUSTOM = \033[38;5;135m
 $(NAME): $(OBJ)
 	@make bonus -C $(LIBFT_DIR)
 	@make -C $(MLX_DIR) all
-	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a -L./$(MLX_DIR) -lmlx $(OBJ) -o $(NAME)
+	@cp ./src/mlx/libmlx.dylib ./
+	@$(CC) $(CFLAGS) $(LIBFT_DIR)libft.a -L. -lmlx $(OBJ) -o $(NAME)
 	@echo "$(CUSTOM)╔══════════════════════════════════════════╗$(DEF_COLOR)"
 	@echo "$(CUSTOM)║         cub3d compile finished.          ║$(DEF_COLOR)"
 	@echo "$(CUSTOM)╠══════════════════════════════════════════╣$(DEF_COLOR)"
@@ -119,12 +120,14 @@ $(NAME): $(OBJ)
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@make clean -C $(MLX_DIR)
+	@rm -f libmlx.dylib
 	@rm -f $(OBJ)
 	@echo "$(CUSTOM)Cub3d obj files has been deleted.$(DEF_COLOR)"
 
 fclean:
 	@make fclean -C $(LIBFT_DIR)
 	@make clean -C $(MLX_DIR)
+	@rm -f libmlx.dylib
 	@rm -f $(OBJ)
 	@rm -f $(NAME)
 	@echo "$(CUSTOM)Cub3d archive files has been deleted.$(DEF_COLOR)"
