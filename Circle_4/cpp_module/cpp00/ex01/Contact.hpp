@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:35:32 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/23 15:59:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 08:40:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class Contact {
 	std::string GetFirstName();
 	std::string GetLastName();
 	std::string GetNickName();
+  std::string GetPhoneNumber();
+  std::string GetDarkestSecret();
 };
 
 #endif

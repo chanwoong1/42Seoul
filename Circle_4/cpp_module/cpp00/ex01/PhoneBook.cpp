@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:30:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/25 21:36:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 09:10:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void PhoneBook::SearchContact() {
   std::cout << "│ index │ first name │  last name │   nickname │" << std::endl;
   std::cout << "├───────┼────────────┼────────────┼────────────┤" << std::endl;
 
-  for (int i = 0; i < idx; i++) {
-    std::cout << "│   " << (i + 1) % 8 << "   │";
+  for (int i = 0; i < 8; i++) {
+    if (idx < 8 && idx == i)
+      break ;
+    std::cout << "│   " << i % 8 + 1 << "   │";
     DisplaySearchList(contact[i].GetFirstName());
     DisplaySearchList(contact[i].GetLastName());
     DisplaySearchList(contact[i].GetNickName());
@@ -60,7 +62,7 @@ void PhoneBook::SearchContact() {
   }
   std::cout << "└───────┴────────────┴────────────┴────────────┘" << std::endl;
   std::cout << std::endl << "Input index> ";
-
+  DisplayContact();
 }
 
 void PhoneBook::DisplaySearchList(std::string contactInfo) {
@@ -82,10 +84,21 @@ void PhoneBook::DisplaySearchList(std::string contactInfo) {
 }
 
 void PhoneBook::DisplayContact() {
-  int inputIndex;
-
-  std::cin >> inputIndex;
-  std::cout << "first name : " << contact[inputIndex].GetFirstName << std::endl;
-  std::cout << "first name : " << contact[inputIndex].GetFirstName << std::endl;
-  std::cout << "first name : " << contact[inputIndex].GetFirstName << std::endl;
+  std::string inputIndex;
+  int index;
+  
+  while (std::getline(std::cin, inputIndex)) {
+    try {
+      index = std::stoi(inputIndex);
+      std::cout << "first name : " << contact[index - 1].GetFirstName() << std::endl;
+      std::cout << "last name : " << contact[index - 1].GetLastName() << std::endl;
+      std::cout << "nickname : " << contact[index - 1].GetNickName() << std::endl;
+      std::cout << "phone number : " << contact[index - 1].GetPhoneNumber() << std::endl;
+      std::cout << "darkest secret : " << contact[index - 1].GetDarkestSecret() << std::endl;
+      break;
+    }
+    catch (...) {
+      std::cout << "It's not a valid index.\n";
+    }
+  }
 }

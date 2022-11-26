@@ -6,12 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/25 21:17:15 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 09:11:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
-// #include "Contact.hpp"
 #include <iostream>
 #include <string>
 
@@ -30,7 +29,7 @@ int main() {
 			phoneBook.AddContact();
 		else if (command == "SEARCH")
 			phoneBook.SearchContact();
-		else {
+		else if (command != "") {
 			std::cout << "It's not a valid command: " 
 				<< command << std::endl;
 		}

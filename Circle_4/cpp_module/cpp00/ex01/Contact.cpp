@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/23 16:00:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 09:11:58 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,14 @@ std::string	Contact::GetLastName()
 std::string	Contact::GetNickName()
 {
 	return this->nickName;
+}
+
+std::string	Contact::GetPhoneNumber()
+{
+	return this->phoneNumber;
+}
+
+std::string	Contact::GetDarkestSecret()
+{
+	return this->darkestSecret;
 }
