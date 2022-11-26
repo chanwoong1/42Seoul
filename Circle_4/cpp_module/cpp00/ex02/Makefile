@@ -6,11 +6,11 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/22 21:11:03 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/11/26 09:20:36 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/11/26 14:19:43 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= PhoneBook
+NAME			= test
 
 # CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS			= -Wall -Wextra -Werror -std=c++98
@@ -27,7 +27,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 # ------------------------------------------------------ #
 # SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC))) 
 
-SRC = Contact.cpp PhoneBook.cpp main.cpp
+SRC = Account.cpp test.cpp
 
 # ------------------------------------------------------ #
 

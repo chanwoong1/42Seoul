@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:18:38 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 08:31:19 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 11:11:50 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class PhoneBook {
     Contact CraeteContact();
     void    DisplaySearchList(std::string contactInfo);
     void    DisplayContact();
+    void    ValidateInputIndex(std::string inputIndex);
     int     idx;
 
   public:

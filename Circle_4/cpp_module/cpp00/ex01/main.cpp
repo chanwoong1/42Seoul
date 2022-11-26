@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 09:11:53 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/26 13:24:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,24 @@ int main() {
   std::string    command;
 
   std::cout << "My Awesome PhoneBook!" << std::endl;
+  std::cout << "command> ";
 	while (std::getline(std::cin, command))
 	{
 		if (command == "EXIT") {
 			std::cout << "exit" << std::endl;
 			break;
 		}
-		else if (command == "ADD")
-			phoneBook.AddContact();
-		else if (command == "SEARCH")
+		else if (command == "ADD") {
+      phoneBook.AddContact();
+      std::cout << "command> ";
+    }
+		else if (command == "SEARCH") {
 			phoneBook.SearchContact();
-		else if (command != "") {
-			std::cout << "It's not a valid command: " 
-				<< command << std::endl;
+      std::cout << "command> ";
+    }
+		else {
+			std::cout << "Invalid input - Command\n\n";
+      std::cout << "command> ";
 		}
 	}
 	return (0);
