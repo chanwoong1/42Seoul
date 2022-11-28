@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:33:30 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 17:56:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:45:30 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main()
 {
   std::cout << "Create HumanA class" << std::endl;
   {
-    Weapon club = Weapon("crude spiked club");
+    Weapon& club = Weapon("crude spiked club");
     HumanA bob("Bob", club);
     bob.attack();
     club.setType("some other type of club");

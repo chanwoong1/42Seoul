@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:38:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 18:45:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:01:14 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ void Weapon::setType(std::string type) {
 std::string Weapon::getType(void) {
   return this->_type;
 }
-
