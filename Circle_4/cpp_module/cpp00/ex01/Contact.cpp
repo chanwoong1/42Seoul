@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 09:11:58 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:58:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,29 @@ Contact::Contact(
 	this->darkestSecret = darkestSecret;
 }
 
-Contact::Contact()
-{
+Contact::Contact() {
 	Contact("", "", "", "", "");
 }
 
-Contact::~Contact()
-{
+Contact::~Contact() {
 }
 
-std::string	Contact::GetFirstName()
-{
+std::string	Contact::GetFirstName() {
 	return this->firstName;
 }
 
-std::string	Contact::GetLastName()
-{
+std::string	Contact::GetLastName() {
 	return this->lastName;
 }
 
-std::string	Contact::GetNickName()
-{
+std::string	Contact::GetNickName() {
 	return this->nickName;
 }
 
-std::string	Contact::GetPhoneNumber()
-{
+std::string	Contact::GetPhoneNumber() {
 	return this->phoneNumber;
 }
 
-std::string	Contact::GetDarkestSecret()
-{
+std::string	Contact::GetDarkestSecret() {
 	return this->darkestSecret;
 }

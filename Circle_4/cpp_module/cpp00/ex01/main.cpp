@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 13:24:35 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:27:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ int main() {
       std::cout << "command> ";
 		}
 	}
+  if (std::cin.eof()) {
+    std::cout << "Enter EOF. Program Exit." << std::endl;
+    return (0);
+  }
 	return (0);
 }

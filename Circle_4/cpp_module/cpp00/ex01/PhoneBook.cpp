@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:30:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 19:08:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:09:09 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,28 @@ PhoneBook::~PhoneBook() {
 }
 
 Contact PhoneBook::CraeteContact() {
-  std::string firstName;
-  std::string lastName;
-  std::string nickName;
-  std::string phoneNumber;
-  std::string darkestSecret;
-  
-  std::cout << "first name> ";
-  std::getline(std::cin, firstName);
-  std::cout << "last name> ";
-  std::getline(std::cin, lastName);
-  std::cout << "nick name> ";
-  std::getline(std::cin, nickName);
-  std::cout << "phone number> ";
-  std::getline(std::cin, phoneNumber);
-  std::cout << "darkest secret> ";
-  std::getline(std::cin, darkestSecret);
-  std::cout << std::endl;
-  return Contact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+  std::string contactInfo[5];
+  std::string coutList[5];
+  coutList[0] = "first name> ";
+  coutList[1] = "last name> ";
+  coutList[2] = "nick name> ";
+  coutList[3] = "phone number> ";
+  coutList[4] = "darkest secret> ";
+
+  for (int i = 0; i < 5; i++) {
+    std::cout << coutList[i];
+    std::getline(std::cin, contactInfo[i]);
+    if (std::cin.eof()) {
+      std::cout << "Enter EOF. Program Exit." << std::endl;
+    }
+  }
+  return Contact(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3], contactInfo[4]);
 }
 
 void PhoneBook::AddContact() {
   contact[idx % 8] = CraeteContact();
-  idx++;
+  idx += 1;
+  (idx > 16) ? idx -= 8 : idx;
 }
 
 void PhoneBook::SearchContact() {
@@ -88,7 +87,12 @@ void PhoneBook::DisplayContact() {
   int index;
   
   std::cout << std::endl << "Input index> ";
-  while (std::getline(std::cin, inputIndex)) {
+  while (1) {
+    std::getline(std::cin, inputIndex);
+    if (std::cin.eof()) {
+      std::cout << "Enter EOF. Program Exit." << std::endl;
+      break;
+    }
     try {
       ValidateInputIndex(inputIndex);
       index = std::stoi(inputIndex);
@@ -98,8 +102,7 @@ void PhoneBook::DisplayContact() {
       std::cout << "phone number : " << contact[index - 1].GetPhoneNumber() << std::endl;
       std::cout << "darkest secret : " << contact[index - 1].GetDarkestSecret() << std::endl;
       break;
-    }
-    catch (const char* message) {
+    } catch (const char* message) {
       std::cout << message;
       std::cout << std::endl << "Input index> ";
     }
