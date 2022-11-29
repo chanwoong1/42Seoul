@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:39:16 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 13:58:36 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:11:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Contact::Contact(
 }
 
 Contact::Contact() {
-	Contact("", "", "", "", "");
+	*this = Contact("", "", "", "", "");
 }
 
 Contact::~Contact() {

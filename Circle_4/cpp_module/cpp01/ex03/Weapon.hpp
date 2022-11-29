@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:34:22 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 18:45:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 08:58:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Weapon {
 
   public:
     Weapon();
-    Weapon( std::string type );
+    explicit Weapon( const std::string &type );
     ~Weapon();
-    void setType( std::string type );
-    std::string getType( void );
+    void setType( const std::string &type );
+    const std::string &getType( void ) const;
     
 };
 

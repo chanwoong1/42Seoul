@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:54:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/29 09:00:36 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/11/29 09:07:08 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/11/29 11:34:18 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include <string>
 #include <iostream>
+#include "ReadFile.hpp"
 
-HumanB::HumanB() {
-}
-
-HumanB::HumanB(const std::string &name) : _name(name), _type(NULL) {
-}
-
-HumanB::~HumanB() {
-}
-
-void HumanB::attack(void) const {
-  std::cout << this->_name << " attacks with his " 
-            << this->_type->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon *type) {
-  this->_type = type;
+int main(int ac, char **av) {
+  ReadFile readFile;
+  try {
+    if (ac != 4) throw "Error: Invalid number of arguments";
+    readFile.openFile(av[1]);
+    // ReadFile::openFile(av[1]);
+  } catch (const char *error_message) {
+    std::cout << error_message << std::endl;
+    return (1);
+  }
+  return (0);
 }

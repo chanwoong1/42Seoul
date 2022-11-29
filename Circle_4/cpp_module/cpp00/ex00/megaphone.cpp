@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:18:47 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 17:56:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:12:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av) {
   else {
     for (int i = 1; i < ac; i++) {
       for (int j = 0; av[i][j]; j++)
-        std::cout << static_cast<char>(toupper(av[i][j]));
+        std::cout << static_cast<char>(toupper(static_cast<int>(av[i][j])));
     }
     std::cout << std::endl;
   }

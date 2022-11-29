@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:53:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 17:54:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:00:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 class HumanB {
   private:
     std::string _name;
-    Weapon _type;
+    Weapon *_type;
 
   public:
-    HumanB( std::string name );
+    HumanB();
+    explicit HumanB( const std::string &name );
     ~HumanB();
-    void attack( void );
-    void setWeapon( Weapon type );
+    void attack( void ) const;
+    void setWeapon( Weapon *type );
 };
 
 #endif

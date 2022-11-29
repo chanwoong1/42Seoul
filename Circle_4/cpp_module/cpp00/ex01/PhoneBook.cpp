@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 21:30:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 13:09:09 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 13:05:00 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void PhoneBook::DisplayContact() {
     }
     try {
       ValidateInputIndex(inputIndex);
-      index = std::stoi(inputIndex);
+      index = std::atoi(inputIndex.c_str());
       std::cout << "first name : " << contact[index - 1].GetFirstName() << std::endl;
       std::cout << "last name : " << contact[index - 1].GetLastName() << std::endl;
       std::cout << "nickname : " << contact[index - 1].GetNickName() << std::endl;
@@ -112,6 +112,6 @@ void PhoneBook::DisplayContact() {
 void PhoneBook::ValidateInputIndex(std::string inputIndex) {
   if (inputIndex.length() != 1) throw "Invalid input - length\n";
   if (isdigit(inputIndex[0]) == 0) throw "Invalid input - It's not integer\n";
-  if (!(std::stoi(inputIndex) <= 8 && std::stoi(inputIndex) >= 1)) throw "Invalid input - Out of range\n";
-  if (this->idx < 8 && std::stoi(inputIndex) >= this->idx + 1) throw "Invalid input - Out of range\n";
+  if (!(std::atoi(inputIndex.c_str()) <= 8 && std::atoi(inputIndex.c_str()) >= 1)) throw "Invalid input - Out of range\n";
+  if (this->idx < 8 && std::atoi(inputIndex.c_str()) >= this->idx + 1) throw "Invalid input - Out of range\n";
 }

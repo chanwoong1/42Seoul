@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:38:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 20:01:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 08:57:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 Weapon::Weapon() {
 }
 
-Weapon::Weapon(std::string type) {
-  this->_type = type;
+Weapon::Weapon(const std::string &type) : _type(type){
 }
 
 Weapon::~Weapon() {
 }
 
-void Weapon::setType(std::string type) {
+void Weapon::setType(const std::string &type) {
   this->_type = type;
 }
 
-std::string Weapon::getType(void) {
+const std::string &Weapon::getType(void) const {
   return this->_type;
 }

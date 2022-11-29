@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:42:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 20:04:23 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/11/29 09:01:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 class HumanA {
   private:
     std::string _name;
-    Weapon _type;
+    Weapon &_type;
 
   public:
-    HumanA( std::string name, Weapon type );
+    HumanA( const std::string name, Weapon *type );
     ~HumanA();
-    void attack( void );
+    void attack( void ) const;
 };
 
 #endif

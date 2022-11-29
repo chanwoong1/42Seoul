@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   TestClass.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:54:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/29 09:00:36 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/11/29 17:37:51 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/11/29 17:54:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
-#include <iostream>
+#ifndef TEST_H_
+#define TEST_H_
 
-HumanB::HumanB() {
-}
+#define NC "\e[0m"
+#define RED "\e[0;31m"
+#define GRN "\e[0;32m"
+#define CYN "\e[0;36m"
+#define REDB "\e[41m"
 
-HumanB::HumanB(const std::string &name) : _name(name), _type(NULL) {
-}
+class TestClass {
+  private:
+    int total;
+    int success;
+    int failure;
+  
+  public:
+    TestClass();
+    ~TestClass();
+    void addTotal();
+    void addSuccess();
+    void addFailure();
+};
 
-HumanB::~HumanB() {
-}
-
-void HumanB::attack(void) const {
-  std::cout << this->_name << " attacks with his " 
-            << this->_type->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon *type) {
-  this->_type = type;
-}
+#endif

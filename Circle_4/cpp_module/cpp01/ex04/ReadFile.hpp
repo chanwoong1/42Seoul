@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   ReadFile.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:54:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/29 09:00:36 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/11/29 09:27:35 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/11/29 13:17:43 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#ifndef READFILE_H_
+#define READFILE_H_
+
+#include <fstream>
 #include <iostream>
+#include <string>
 
-HumanB::HumanB() {
-}
+class ReadFile {
+  private:
+    std::ifstream _ifs;
+    std::string _s1;
+    std::string _s2;
+    void isOpen( void );
+    void isValidInput( void );
 
-HumanB::HumanB(const std::string &name) : _name(name), _type(NULL) {
-}
+  public:
+    ReadFile();
+    ~ReadFile();
+    void openFile( const std::string fileName, const std::string s1, const std::string s2 );
+};
 
-HumanB::~HumanB() {
-}
-
-void HumanB::attack(void) const {
-  std::cout << this->_name << " attacks with his " 
-            << this->_type->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon *type) {
-  this->_type = type;
-}
+#endif
