@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 21:34:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/01 10:19:14 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/01 15:54:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,26 @@ void Harl::complain(std::string level) {
     &Harl::error
   };
   std::string findComplain("DEBUG,INFO,WARNING,ERROR");
+  size_t pos = level.find(",");
 
-  if (level.find(",") >= 0 && level.find(",") <= findComplain.length()) {
-    std::cout << "It's not my complain." << std::endl;
+  if (pos >= 0 && pos <= findComplain.length()) {
+    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     return ;
   }
   
-  switch (findComplain.find(level))
-  {
-  case 0:
-    (this->*f[0])();
-  case 6:
-    (this->*f[1])();
-  case 11:
-    (this->*f[2])();
-  case 19:
-    (this->*f[3])();
-    break;
-  default:
-    std::cout << "It's not my complain." << std::endl;
+  std::cout << "[ " << level << " ]" << std::endl;
+  switch (findComplain.find(level)) {
+    case 0:
+      (this->*f[0])();
+    case 6:
+      (this->*f[1])();
+    case 11:
+      (this->*f[2])();
+    case 19:
+      (this->*f[3])();
+      break;
+    default:
+      std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
   }
 }
 
