@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 21:34:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/01 09:41:18 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/01 10:19:14 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,15 @@ void Harl::complain(std::string level) {
   {
   case 0:
     (this->*f[0])();
-    break;
   case 6:
     (this->*f[1])();
-    break;
   case 11:
     (this->*f[2])();
-    break;
   case 19:
     (this->*f[3])();
     break;
   default:
     std::cout << "It's not my complain." << std::endl;
-    break;
   }
 }
 

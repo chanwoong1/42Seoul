@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 09:21:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/26 16:18:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/01 08:20:25 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 static std::ostream& _summary(int index, int amount, bool prev) {
-  return std::cout << "index:" << index
+  return std::cout << " index:" << index
           << (prev ? ";p_amount:" : ";amount:") << amount;
 }
 
@@ -43,7 +43,7 @@ int Account::getNbWithdrawals(void) {
 
 void Account::displayAccountsInfos(void) {
   Account::_displayTimestamp();
-  std::cout << "accounts:" << Account::_nbAccounts
+  std::cout << " accounts:" << Account::_nbAccounts
     << ";total:" << Account::_totalAmount
     << ";deposits:" << Account::_totalNbDeposits
     << ";withdrawals:" << Account::_totalNbWithdrawals << std::endl;
