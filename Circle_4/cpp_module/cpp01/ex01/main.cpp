@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:16:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 16:58:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/01 13:16:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(void) {
     zHorde[i].announce();
   }
   
+  delete [] zHorde;
   // system("leaks Zombie");
   return (0);
 }

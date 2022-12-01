@@ -6,11 +6,11 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:00:00 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/12/01 09:22:28 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/12/01 13:40:37 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= Harl
+NAME			= harl
 
 # CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS			= -Wall -Wextra -Werror -std=c++98
