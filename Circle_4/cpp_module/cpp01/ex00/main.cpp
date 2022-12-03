@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:16:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/01 13:12:50 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:34:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(void) {
   // It creates a zombie, name it, and the zombie announces itself.
   randomChump("randomChump");
   
+  // Zombie must be destroyed.
   delete newZ;
   // system("leaks Zombie");
   return (0);

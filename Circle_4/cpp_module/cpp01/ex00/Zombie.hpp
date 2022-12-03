@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:05:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/28 16:13:28 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/03 20:34:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ZOMBIE_H_
 
 #include <string>
+#include <iostream>
 
 class Zombie {
   private:
