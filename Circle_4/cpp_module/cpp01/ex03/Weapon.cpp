@@ -6,14 +6,11 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:38:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/29 08:57:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/04 23:09:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
-
-Weapon::Weapon() {
-}
 
 Weapon::Weapon(const std::string &type) : _type(type){
 }

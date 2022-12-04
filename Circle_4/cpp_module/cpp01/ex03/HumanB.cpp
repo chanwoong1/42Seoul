@@ -6,15 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:54:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/11/29 09:00:36 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/04 23:09:48 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 #include <iostream>
-
-HumanB::HumanB() {
-}
 
 HumanB::HumanB(const std::string &name) : _name(name), _type(NULL) {
 }
