@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 21:34:40 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/01 15:54:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/05 13:13:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,23 @@ void Harl::complain(std::string level) {
     return ;
   }
   
-  std::cout << "[ " << level << " ]" << std::endl;
   switch (findComplain.find(level)) {
     case 0:
+      std::cout << "[ DEBUG ]" << std::endl;
       (this->*f[0])();
+      std::cout << std::endl;
     case 6:
+      std::cout << "[ INFO ]" << std::endl;
       (this->*f[1])();
+      std::cout << std::endl;
     case 11:
+      std::cout << "[ WARNING ]" << std::endl;
       (this->*f[2])();
+      std::cout << std::endl;
     case 19:
+      std::cout << "[ ERROR ]" << std::endl;
       (this->*f[3])();
+      std::cout << std::endl;
       break;
     default:
       std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
