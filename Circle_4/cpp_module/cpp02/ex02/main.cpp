@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 21:13:56 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/07 21:26:25 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/12/01 13:52:11 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/12/09 17:12:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_H_
-#define SCAVTRAP_H_
+#include <iostream>
+#include "Fixed.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScavTrap : public ClapTrap {
-  private:
-  
+int main( void ) {
+  Fixed a;
+  Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+  std::cout << a << std::endl;
+  std::cout << ++a << std::endl;
+  std::cout << a << std::endl;
+  std::cout << a++ << std::endl;
+  std::cout << a << std::endl;
+  std::cout << b << std::endl;
+  std::cout << Fixed::max( a, b ) << std::endl;
+  return 0;
 }
-
-#endif

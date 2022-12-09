@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:57:11 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/09 16:36:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:20:24 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,30 @@ Fixed& Fixed::operator=(const Fixed& f) {
   if (this != &f)
     this->fixedPoint = f.getRawBits();
   return *this;
+}
+
+bool Fixed::operator>(const Fixed& f) {
+  return this->fixedPoint > f.fixedPoint;
+}
+
+bool Fixed::operator<(const Fixed& f) {
+  return this->fixedPoint < f.fixedPoint;
+}
+
+bool Fixed::operator>=(const Fixed& f) {
+  return this->fixedPoint >= f.fixedPoint;
+}
+
+bool Fixed::operator<=(const Fixed& f) {
+  return this->fixedPoint <= f.fixedPoint;
+}
+
+bool Fixed::operator==(const Fixed& f) {
+  return this->fixedPoint == f.fixedPoint;
+}
+
+bool Fixed::operator!=(const Fixed& f) {
+  return this->fixedPoint != f.fixedPoint;
 }
 
 Fixed::Fixed(void)

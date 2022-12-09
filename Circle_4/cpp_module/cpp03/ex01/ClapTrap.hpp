@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:00:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/07 21:00:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:21:40 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iostream>
 
 class ClapTrap {
-  private:
+  protected:
     std::string _name;
     unsigned int _hitPoints;
     unsigned int _energyPoints;
