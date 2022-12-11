@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:57:11 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/09 17:20:24 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/11 22:01:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,36 @@ Fixed::Fixed(const Fixed& f) {
 Fixed::~Fixed(void) {
   std::cout << "Destructor called" << std::endl;
 }
+
+/*
+* The 4 arithmetic operators (+, -, *, /)
+*/
+
+
+/*
+* The 4 increment / decrement operators (++a, a++, --a, a--)
+*/
+
+
+/*
+* A static member function min
+  ! that takes as parameters two references on fixed-point numbers, and returns a reference to the smallest one.
+*/
+
+
+/*
+* A static member function min
+  ! that takes as parameters two references to constant fixed-point numvers, and returns a reference to the smallest one.
+*/
+
+
+/*
+* A static member function max
+  ! that takes as parameters two references on fixed-point numbers, and returns a reference to the greatest one.
+*/
+
+
+/*
+* A static member function max
+  ! that takes as parameters two references to constant fixed-point numvers, and returns a reference to the greatest one.
+*/
