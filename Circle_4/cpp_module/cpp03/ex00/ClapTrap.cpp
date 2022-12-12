@@ -6,26 +6,60 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:01:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/07 21:06:40 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/13 03:05:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+/*
+* A default constructor
+* param: std::string name
+TODO: Initialize private parameters [ _hitPoints(10), _energyPoints(10), _attackDamage(0) ]
+! The constructor must also display a message.
+*/
 ClapTrap::ClapTrap(std::string name) : _hitPoints(10), _energyPoints(10), _attackDamage(0) {
   std::cout << "ClapTrap " << name << " is created." << std::endl;
   this->_name = name;
 }
 
-ClapTrap::~ClapTrap() {
-  std::cout << "ClapTrap " << this->_name << " is destructed." << std::endl; 
-}
-
+/*
+* A copy constructor
+*/
 ClapTrap::ClapTrap( const ClapTrap& clapTrap ) : _name(clapTrap.getName()), _hitPoints(clapTrap.getHitPoints()), _energyPoints(clapTrap.getEnergyPoints()), _attackDamage(clapTrap.getAttackDamage()) {
   std::cout << "Copy constructor called" << std::endl;
   *this = clapTrap;
 }
 
+/*
+* A copy assignment operator overload
+*/
+ClapTrap& ClapTrap::operator=( const ClapTrap& clapTrap ) {
+  std::cout << "Copy assignment operator called" << std::endl;
+  if (this != &clapTrap) {
+    _name = clapTrap.getName();
+    _hitPoints = clapTrap.getHitPoints();
+    _energyPoints = clapTrap.getEnergyPoints();
+    _attackDamage = clapTrap.getAttackDamage();
+  }
+  return (*this);
+}
+
+/*
+* A destructor
+! The destructor must also display a message.
+*/
+ClapTrap::~ClapTrap() {
+  std::cout << "ClapTrap " << this->_name << " is destructed." << std::endl; 
+}
+
+/*
+TODO: Add the following public member functions so the ClapTrap looks more realistic
+! When ClapTrack attacks, it causes its target to lose <attack damage> hit points.
+! When ClapTrap repairs itself, it gets <amount> hit points back.
+! Attacking and repairing cost 1 energy point each.
+! Of course, ClapTrap can’t do anything if it has no hit points or energy points left.
+*/
 std::string ClapTrap::getName(void) const {
   return _name;
 }
@@ -42,17 +76,10 @@ unsigned int ClapTrap::getAttackDamage(void) const {
   return _attackDamage;
 }
 
-ClapTrap& ClapTrap::operator=( const ClapTrap& clapTrap ) {
-  std::cout << "Copy assignment operator called" << std::endl;
-  if (this != &clapTrap) {
-    _name = clapTrap.getName();
-    _hitPoints = clapTrap.getHitPoints();
-    _energyPoints = clapTrap.getEnergyPoints();
-    _attackDamage = clapTrap.getAttackDamage();
-  }
-  return (*this);
-}
-
+/*
+TODO: Display a message to describe what happens.
+* example: ClapTrap <name> attacks <target>, causing <damage> points of damage!
+*/
 void ClapTrap::attack( const std::string& target ) {
   if (this->_energyPoints > 0 && this->_hitPoints != 0) {
     std::cout << "ClapTrap " << this->_name << " attacks "
