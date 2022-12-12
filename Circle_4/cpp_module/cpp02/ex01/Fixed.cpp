@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:57:11 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/11 21:39:36 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/12 10:34:13 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,31 @@ Fixed::Fixed(void)
   std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int v)
-  : fixedPoint(v << Fixed::fractionalBits) {
+Fixed::Fixed(const int value)
+  : fixedPoint(value << Fixed::fractionalBits) {
   std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float v)
-  : fixedPoint(static_cast<int>(roundf(v * (1 << Fixed::fractionalBits)))) {
+Fixed::Fixed(const float value)
+  : fixedPoint(static_cast<int>(roundf(value * (1 << Fixed::fractionalBits)))) {
   std::cout << "Float constructor called" << std::endl;
 }
 
 /*
 * A copy constructor
 */
-Fixed::Fixed(const Fixed& f) {
+Fixed::Fixed(const Fixed& fixed) {
   std::cout << "Copy constructor called" << std::endl;
-  *this = f;
+  *this = fixed;
 }
 
 /*
 * A copy assignment operator overload
 */
-Fixed& Fixed::operator=(const Fixed& f) {
+Fixed& Fixed::operator=(const Fixed& fixed) {
   std::cout << "Copy assignation operator called" << std::endl;
-  if (this != &f)
-    this->fixedPoint = f.getRawBits();
+  if (this != &fixed)
+    this->fixedPoint = fixed.getRawBits();
   return *this;
 }
 
@@ -94,6 +94,6 @@ int Fixed::toInt(void) const {
 * Add the following function to the Fixed class files 
 * An overload of the insertion ( << ) operator that inserts a floating-point representation of the fixed-point number into the output stream object passed as parameter.
 */
-std::ostream& operator<<(std::ostream& o, const Fixed& f) {
-  return o << f.toFloat();
+std::ostream& operator<<(std::ostream& ofs, const Fixed& fixed) {
+  return ofs << fixed.toFloat();
 }

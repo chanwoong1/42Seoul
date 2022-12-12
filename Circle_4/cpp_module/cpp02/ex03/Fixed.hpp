@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 13:52:28 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/12 11:49:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:17:05 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,6 @@ class Fixed {
     int toInt(void) const;
     
     /*
-    * The 6 comparison operations (>, <, >=, <=, ==, !=)
-    ? getRawBits 함수를 통해 반환받은 값을 비교하므로 bool 형태로 반환한다. (true or false)
-    */
-    bool operator>(const Fixed& fixed);
-    bool operator<(const Fixed& fixed);
-    bool operator>=(const Fixed& fixed);
-    bool operator<=(const Fixed& fixed);
-    bool operator==(const Fixed& fixed);
-    bool operator!=(const Fixed& fixed);
-
-    /*
-    * The 4 arithmetic operators (+, -, *, /)
-    ? 산술 연산자는 기존의 float 값에 인자로 받은 값을 이용해 연산 후 반환한다.
-    */
-    Fixed operator+(const Fixed& fixed);
-    Fixed operator-(const Fixed& fixed);
-    Fixed operator*(const Fixed& fixed);
-    Fixed operator/(const Fixed& fixed);
-
-    /*
     * The 4 increment / decrement operators (++a, a++, --a, a--)
     ? 전위 연산자와 후위 연산자를 구분하기 위해 인자를 void와 int형으로 작성해준다. (C++ 규칙)
     ? 전위 연산자는 레퍼런스로 반환해서 복사하지 않고 원본 값에 접근해서 사용할 수 있다.
@@ -110,6 +90,26 @@ class Fixed {
     */
     static const Fixed& max(const Fixed& fixed1, const Fixed& fixed2);
 };
+
+/*
+* The 6 comparison operations (>, <, >=, <=, ==, !=)
+? getRawBits 함수를 통해 반환받은 값을 비교하므로 bool 형태로 반환한다. (true or false)
+*/
+bool operator>(const Fixed& fixed1, const Fixed& fixed2);
+bool operator<(const Fixed& fixed1, const Fixed& fixed2);
+bool operator>=(const Fixed& fixed1, const Fixed& fixed2);
+bool operator<=(const Fixed& fixed1, const Fixed& fixed2);
+bool operator==(const Fixed& fixed1, const Fixed& fixed2);
+bool operator!=(const Fixed& fixed1, const Fixed& fixed2);
+
+/*
+* The 4 arithmetic operators (+, -, *, /)
+? 산술 연산자는 기존의 float 값에 인자로 받은 값을 이용해 연산 후 반환한다.
+*/
+Fixed operator+(const Fixed& fixed1, const Fixed& fixed2);
+Fixed operator-(const Fixed& fixed1, const Fixed& fixed2);
+Fixed operator*(const Fixed& fixed1, const Fixed& fixed2);
+Fixed operator/(const Fixed& fixed1, const Fixed& fixed2);
 
 /*
 * Add the following function to the Fixed class files 
