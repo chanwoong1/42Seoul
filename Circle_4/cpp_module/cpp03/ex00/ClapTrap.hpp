@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:00:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/13 03:05:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:27:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 class ClapTrap {
   private:
+    /*
+    * Name: This is passed as parameter to a constructor.
+    * Hit points: Initialize unsigned int 10 and represent the health of the ClapTrap.
+    * Energy points: Initialize unsigned int 10.
+    * Attack damage: Initialize unsigned int 0.
+    */
     std::string _name;
     unsigned int _hitPoints;
     unsigned int _energyPoints;
