@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:01:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/13 17:55:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:18:57 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@
 TODO: Initialize private parameters [ _hitPoints(10), _energyPoints(10), _attackDamage(0) ]
 ! The constructor must also display a message.
 */
+ClapTrap::ClapTrap()
+  : _name("ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  std::cout << "ClapTrap ClapTrap is created." << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name)
-  : _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
   std::cout << "ClapTrap " << name << " is created." << std::endl;
-  this->_name = name;
 }
 
 /*
@@ -29,15 +33,14 @@ ClapTrap::ClapTrap(std::string name)
 */
 ClapTrap::ClapTrap( const ClapTrap& clapTrap )
   : _name(clapTrap.getName()), _hitPoints(clapTrap.getHitPoints()), _energyPoints(clapTrap.getEnergyPoints()), _attackDamage(clapTrap.getAttackDamage()) {
-  std::cout << "Copy constructor called" << std::endl;
-  *this = clapTrap;
+  std::cout << "ClapTrap Copy constructor called" << std::endl;
 }
 
 /*
 * A copy assignment operator overload
 */
 ClapTrap& ClapTrap::operator=( const ClapTrap& clapTrap ) {
-  std::cout << "Copy assignment operator called" << std::endl;
+  std::cout << "ClapTrap Copy assignment operator called" << std::endl;
   if (this != &clapTrap) {
     _name = clapTrap.getName();
     _hitPoints = clapTrap.getHitPoints();
@@ -85,7 +88,7 @@ TODO: Display a message to describe what happens.
 void ClapTrap::attack( const std::string& target ) {
   if (this->_energyPoints == 0 || this->_hitPoints == 0) {
     (this->_energyPoints == 0) ?
-      std::cout << "Not enough energy." << std::endl :
+      std::cout << "ClapTrap is not enough energy." << std::endl :
       std::cout << this->_name << "'s HP is 0." << std::endl; 
     return ;
   }
@@ -109,7 +112,7 @@ void ClapTrap::takeDamage( unsigned int amount ) {
 void ClapTrap::beRepaired( unsigned int amount ) {
   if (this->_energyPoints == 0 || this->_hitPoints == 0) {
     (this->_energyPoints == 0) ?
-      std::cout << "Not enough energy." << std::endl :
+      std::cout << "ClapTrap is not enough energy." << std::endl :
       std::cout << this->_name << "'s HP is 0." << std::endl; 
     return ;
   }

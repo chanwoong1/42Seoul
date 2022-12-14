@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:00:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/13 17:27:23 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/14 00:37:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class ClapTrap {
     TODO: Initialize private parameters [ _hitPoints(10), _energyPoints(10), _attackDamage(0) ]
     ! The constructor must also display a message.
     */
+    ClapTrap();
     ClapTrap( std::string name );
 
     /*

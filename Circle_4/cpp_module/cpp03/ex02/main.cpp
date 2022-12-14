@@ -6,19 +6,19 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:04:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 01:50:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:02:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void) {
   std::string s1 = "chanwjeo";
   std::string s2 = "chanwoong";
   std::string s3 = "Jeong";
 
-  ScavTrap t1(s1);
-  ScavTrap t2(s2);
+  FragTrap t1(s1);
+  FragTrap t2(s2);
   ClapTrap t3(s3);
 
   std::cout << std::endl;
@@ -45,7 +45,7 @@ int main(void) {
   std::cout << std::endl;
 
   std::cout << std::endl;
-  t2.guardGate();
+  t2.highFivesGuys();
   std::cout << std::endl;
   return 0;
 }
