@@ -6,24 +6,23 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:04:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 16:02:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:41:33 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void) {
   std::string s1 = "chanwjeo";
   std::string s2 = "chanwoong";
   std::string s3 = "Jeong";
 
-  FragTrap t1(s1);
-  FragTrap t2(s2);
+  DiamondTrap t1(s1);
+  DiamondTrap t2(s2);
   ClapTrap t3(s3);
 
   std::cout << std::endl;
   t1.attack(s3);
-  t3.takeDamage(t1.getAttackDamage());
   t3.takeDamage(t1.getAttackDamage());
   std::cout << std::endl;
 

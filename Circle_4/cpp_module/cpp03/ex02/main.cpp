@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:04:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 16:02:39 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:42:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main(void) {
 
   std::cout << std::endl;
   t1.attack(s3);
-  t3.takeDamage(t1.getAttackDamage());
   t3.takeDamage(t1.getAttackDamage());
   std::cout << std::endl;
 
