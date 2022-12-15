@@ -6,14 +6,14 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 15:15:39 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/12/15 10:35:33 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/12/15 12:27:06 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= a.out
 
 # CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-CFLAGS			= -Wall -Wextra -Werror -std=c++98
+CFLAGS			= -Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 
 # NOTE : Add Source directory here
 # ------------------------------------------------------ #

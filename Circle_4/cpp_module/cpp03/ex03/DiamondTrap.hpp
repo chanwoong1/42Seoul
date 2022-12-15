@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:32:59 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 18:04:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:12:49 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ class DiamondTrap : public ScavTrap, public FragTrap {
       ! This member function will display both its name and its ClapTrap name.
     */
     void wheAmI(void);
+    void printStatus(void);
 };
 
 #endif

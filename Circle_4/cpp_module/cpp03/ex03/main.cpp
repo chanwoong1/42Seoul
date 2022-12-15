@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:04:21 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/15 10:41:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:51:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ int main(void) {
   DiamondTrap t1(s1);
   DiamondTrap t2(s2);
   ClapTrap t3(s3);
+  DiamondTrap t4;
+
+  std::cout << std::endl;
+  t1.printStatus();
+  std::cout << std::endl;
+  t2.printStatus();
+  std::cout << std::endl;
+  t4.printStatus();
+  std::cout << std::endl;
 
   std::cout << std::endl;
   t1.attack(s3);
@@ -45,6 +54,11 @@ int main(void) {
 
   std::cout << std::endl;
   t2.highFivesGuys();
+  std::cout << std::endl;
+  std::cout << std::endl;
+  t1.printStatus();
+  std::cout << std::endl;
+  t2.printStatus();
   std::cout << std::endl;
   return 0;
 }

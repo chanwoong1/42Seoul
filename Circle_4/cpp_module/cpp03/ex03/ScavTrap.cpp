@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 21:13:57 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 16:24:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:24:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void ScavTrap::attack(const std::string& target) {
   if (this->_energyPoints == 0 || this->_hitPoints == 0) {
     (this->_energyPoints == 0) ?
       std::cout << "ScavTrap is not enough energy." << std::endl :
-      std::cout << "ScavTrap " << this->_name << "'s HP is 0." << std::endl; 
+      std::cout << "ScavTrap " << this->_name << "'s HP is 0. Please repair !" << std::endl; 
     return ;
   }
 
@@ -75,7 +75,7 @@ void ScavTrap::guardGate() {
   if (this->_hitPoints == 0 || this->_energyPoints == 0) {
     (this->_energyPoints == 0) ?
       std::cout << "ScavTrap is not enough energy." << std::endl :
-      std::cout << "ScavTrap " << this->_name << "'s HP is 0." << std::endl; 
+      std::cout << "ScavTrap " << this->_name << "'s HP is 0. Please repair !" << std::endl; 
     return ;
   }
   std::cout << "ScavTrap " << this->_name << " has entered Gatekeeper mode." << std::endl;

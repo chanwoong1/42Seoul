@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:31:11 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/15 10:35:07 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:56:15 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 /*
 * A default constructor
+  ? 여기서 energyPoints를 50을 주는 이유는 ClapTrap -> ScavTrap -> FragTrap이라는 상속 과정으로 인해 결국 ClapTrap의 변수는 FragTrap에 의해 바뀌게 되어 ScavTrap을 통해 변수를 가져와도 FragTrap으로 변경한 값이 불러오게 된다.
+  ! 따라서 _energyPoints 변수에 직접 50을 넣어주는것으로 결정하고, 다이아몬드 상속이 이런 불편함 때문에 권장하지 않는 상속방법이라는 것을 알고 넘어가기로 결정했다.
 */
 DiamondTrap::DiamondTrap()
-  : ClapTrap(ClapTrap::_name + "_clap_name") {
+  : ClapTrap("DiamondTrap_clap_name") {
   std::cout << "DiamondTrap default constructor is called." << std::endl;
   this->_name = "DiamondTrap";
-  this->_hitPoints = FragTrap::_hitPoints;
-  this->_energyPoints = ScavTrap::_energyPoints;
-  this->_attackDamage = FragTrap::_attackDamage;  
+  this->_energyPoints = 50;
 }
 
 DiamondTrap::DiamondTrap(std::string name)
   : ClapTrap(name + "_clap_name") {
   std::cout << "DiamondTrap " << name << " is called." << std::endl;
   this->_name = name;
-  this->_hitPoints = FragTrap::_hitPoints;
-  this->_energyPoints = ScavTrap::_energyPoints;
-  this->_attackDamage = FragTrap::_attackDamage;
+  this->_energyPoints = 50;
 }
 
 /*
@@ -72,4 +70,12 @@ TODO: DiamondTrap will have its own special capacity
 void DiamondTrap::wheAmI(void) {
   std::cout << "My name is " << this->_name << "." << std::endl;
   std::cout << "My ClapTrap name is " << ClapTrap::getName() << "." << std::endl;
+}
+
+void DiamondTrap::printStatus(void) {
+  std::cout << "Name: " << this->_name << std::endl;
+  std::cout << "ClapTrap name: " << ClapTrap::_name << std::endl;
+  std::cout << "Hit points: " << this->_hitPoints << std::endl;
+  std::cout << "Energy points: " << this->_energyPoints << std::endl;
+  std::cout << "Attack damage: " << this->_attackDamage << std::endl;
 }

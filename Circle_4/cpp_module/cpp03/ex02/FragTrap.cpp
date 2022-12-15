@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 12:24:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 16:25:32 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:56:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void FragTrap::highFivesGuys() {
   if (this->_hitPoints == 0 || this->_energyPoints == 0) {
     (this->_energyPoints == 0) ?
       std::cout << "FragTrap is not enough energy." << std::endl :
-      std::cout << "FragTrap " << this->_name << "'s HP is 0." << std::endl; 
+      std::cout << "FragTrap " << this->_name << "'s HP is 0. Please repair !" << std::endl; 
     return ;
   }
   std::cout << "FragTrap " << this->_name << " high five!" << std::endl;

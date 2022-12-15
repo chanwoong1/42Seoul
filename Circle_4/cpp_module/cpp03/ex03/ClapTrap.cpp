@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:01:03 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/14 16:18:10 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/15 10:58:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void ClapTrap::attack( const std::string& target ) {
   if (this->_energyPoints == 0 || this->_hitPoints == 0) {
     (this->_energyPoints == 0) ?
       std::cout << "ClapTrap is not enough energy." << std::endl :
-      std::cout << this->_name << "'s HP is 0." << std::endl; 
+      std::cout << this->_name << "'s HP is 0. Please repair !" << std::endl; 
     return ;
   }
 
@@ -104,16 +104,14 @@ void ClapTrap::takeDamage( unsigned int amount ) {
   << std::endl;
   this->_hitPoints -= amount;
   if (this->_hitPoints <= 0) {
-    std::cout << this->_name << "'s HP is 0." << std::endl;
+    std::cout << this->_name << "'s HP is 0. Please repair !" << std::endl;
     this->_hitPoints = 0;
   }
 }
 
 void ClapTrap::beRepaired( unsigned int amount ) {
-  if (this->_energyPoints == 0 || this->_hitPoints == 0) {
-    (this->_energyPoints == 0) ?
-      std::cout << "ClapTrap is not enough energy." << std::endl :
-      std::cout << this->_name << "'s HP is 0." << std::endl; 
+  if (this->_energyPoints == 0) {
+      std::cout << "ClapTrap is not enough energy." << std::endl; 
     return ;
   }
   
