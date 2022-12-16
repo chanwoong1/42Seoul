@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 00:23:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 10:52:37 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:07:46 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 */
 Animal::Animal()
   : _type("Animal") {
-  std::cout << "Animal " << this->_type << " constructor is called." << std::endl;
+  std::cout << std::setw(15) << "[Animal] " << "create!!" << std::endl;
 }
 
 /*
 * A copy constructor
 */
-Animal::Animal(const Animal& animal) : _type(animal.getType()) {
-  std::cout << "Animal " << this->_type << " copy constructor is called." << std::endl;
+Animal::Animal(const Animal& animal)
+  : _type(animal.getType()) {
+  std::cout << std::setw(15) << "[Animal] " << "copy!!" << std::endl;
 }
 
 /*
@@ -43,7 +44,7 @@ Animal& Animal::operator=(const Animal& animal) {
   ! Destructor of each class must display specific messages.
 */
 Animal::~Animal() {
-  std::cout << "Animal " << this->_type << " destructor is called." << std::endl;
+  std::cout << std::setw(15) << "[Animal] " << "delete!!" << std::endl;
 }
 
 void Animal::makeSound() const {

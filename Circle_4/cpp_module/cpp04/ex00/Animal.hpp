@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 00:12:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 10:53:11 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:06:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 /*
 TODO: Start by implement a simple base class called Animal.

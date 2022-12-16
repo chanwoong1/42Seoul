@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 23:35:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 12:16:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:05:38 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main() {
   const Animal* meta = new Animal();
@@ -27,11 +28,13 @@ int main() {
   // ...
 
   const WrongAnimal* wrongMeta = new WrongAnimal();
+  const WrongAnimal* wrongCat = new WrongCat();
   wrongMeta->makeSound();
-  
+  wrongCat->makeSound();
   delete meta;
   delete i;
   delete j;
   delete wrongMeta;
+  delete wrongCat;
   return 0;
 }

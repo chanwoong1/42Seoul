@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:39:55 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 11:49:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:13:53 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 class WrongAnimal {
   protected:

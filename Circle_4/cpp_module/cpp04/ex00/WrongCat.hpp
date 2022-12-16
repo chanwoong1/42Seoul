@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:33:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 14:53:03 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 17:59:49 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "WrongAnimal.hpp"
 
-class WrongCat {
-  private:
-    /* data */
-
+class WrongCat : public WrongAnimal {
   public:
     /*
     * A default constructor
@@ -40,7 +38,7 @@ class WrongCat {
     /*
     * A destructor
     */
-    ~WrongCat();
+    virtual ~WrongCat();
 
     /*
     * Add it if you feel necessary additional member functions.

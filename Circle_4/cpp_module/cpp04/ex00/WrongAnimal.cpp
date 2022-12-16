@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 11:39:53 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 11:52:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:12:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 WrongAnimal::WrongAnimal()
   : _type("WrongAnimal") {
-  std::cout << "WrongAnimal constructor is called." << std::endl;
+  std::cout << std::setw(15) << "[WrongAnimal] " << "create!!" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& wrongAnimal) {
-  std::cout << "WrongAnimal copy constructor is called." << std::endl;
   this->_type = wrongAnimal.getType();
+  std::cout << std::setw(15) << "[WrongAnimal] " << "copy!!" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& wrongAnimal) {
@@ -29,7 +29,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& wrongAnimal) {
 }
 
 WrongAnimal::~WrongAnimal() {
-  std::cout << "WrongAnimal destructor is called." << std::endl;
+  std::cout << std::setw(15) << "[WrongAnimal] " << "delete!!" << std::endl;
 }
 
 void WrongAnimal::makeSound() const {
