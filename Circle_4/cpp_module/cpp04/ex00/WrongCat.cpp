@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:33:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 18:02:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:41:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,8 @@ WrongCat&	WrongCat::operator=(const WrongCat& ref) {
 */
 WrongCat::~WrongCat() {
   std::cout << std::setw(15) << "[WrongCat] " << "delete!!" << std::endl;
+}
+
+void WrongCat::makeSound() const {
+  std::cout << "WrongCat sound ~~~" << std::endl;
 }

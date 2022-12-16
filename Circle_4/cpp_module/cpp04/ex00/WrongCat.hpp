@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:33:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 17:59:49 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:39:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class WrongCat : public WrongAnimal {
     /*
     * Add it if you feel necessary additional member functions.
     */
-
+    void makeSound() const;
 };
 
 /*
