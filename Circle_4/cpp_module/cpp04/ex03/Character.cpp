@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 04:01:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 04:26:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/18 03:30:12 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
+  if (idx < 0 || idx > 3) {
+    std::cout << std::setw(15) << "[Character] " << "unequip - out of range" << std::endl;
+    return ;
+  }
   if (this->_inventory[idx])
     delete this->_inventory[idx];
   this->_inventory[idx] = NULL;

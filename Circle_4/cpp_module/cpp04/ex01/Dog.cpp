@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 01:24:38 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 23:35:59 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/18 00:53:51 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Dog::Dog() : Animal() {
 
 Dog::Dog(const Dog& dog) {
   this->_type = dog.getType();
+  this->brain = new Brain(*dog.getBrain());
   std::cout << std::setw(15) << "[Dog] " << "copy!!" << std::endl;
 }
 

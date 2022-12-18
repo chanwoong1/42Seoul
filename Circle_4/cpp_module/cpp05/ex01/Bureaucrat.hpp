@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:40:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 16:04:53 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:09:28 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 #define SET_W  30
 
+class Form;
+
 class Bureaucrat {
   private:
     /* data */
@@ -31,7 +33,7 @@ class Bureaucrat {
     * A default constructor
     */
     Bureaucrat();
-    Bureaucrat(std::string name, int grade);
+    Bureaucrat(const std::string& name, const int& grade);
 
     /*
     * A copy constructor
@@ -55,6 +57,8 @@ class Bureaucrat {
     const int& getGrade() const;
     void incrementGrade();
     void decrementGrade();
+
+    void signForm(const Form& form) const;
 
     /*
     TODO: Any attempt to instantiate a Bureaucrat using an invalid grade must throw an exception:

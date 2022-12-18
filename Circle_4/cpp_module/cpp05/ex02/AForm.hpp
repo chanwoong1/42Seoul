@@ -1,63 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 05:40:26 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 16:04:53 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/12/18 16:03:24 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/12/18 23:02:49 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Bureaucrat_HPP
-#define Bureaucrat_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <exception>
+#include "Bureaucrat.hpp"
 
 #define SET_W  30
 
-class Bureaucrat {
+class AForm {
   private:
     /* data */
     const std::string _name;
-    int _grade;
+    bool _beSigned;
+    const int _signGrade;
+    const int _executeGrade;
+
+    AForm();
 
   public:
     /*
     * A default constructor
     */
-    Bureaucrat();
-    Bureaucrat(std::string name, int grade);
+    AForm(const std::string& name, const int& signGrade, const int& executeGrade);
 
     /*
     * A copy constructor
     */
-    Bureaucrat(const Bureaucrat& ref);
+    AForm(const AForm& ref);
 
     /*
     * A assignment operator overload
     */
-    Bureaucrat&	operator=(const Bureaucrat& ref);
+    AForm&	operator=(const AForm& ref);
 
     /*
     * A destructor
     */
-    ~Bureaucrat();
+    virtual ~AForm();
 
     /*
-    * Add it if you feel necessary additional member functions.
-    */
-    const std::string& getName() const;
-    const int& getGrade() const;
-    void incrementGrade();
-    void decrementGrade();
-
-    /*
-    TODO: Any attempt to instantiate a Bureaucrat using an invalid grade must throw an exception:
+    TODO: The grades of the Form follow the same rules that apply to the Bureaucrat. Thus, the following exceptions will be thrown if a form grade is out of bounds
     */
     class GradeTooHighException : public std::exception {
       public:
@@ -67,11 +63,33 @@ class Bureaucrat {
       public:
         const char* what() const throw();
     };
+
+    /*
+    * Add it if you feel necessary additional member functions.
+    */
+
+    /*
+    * Getter
+    */
+    const std::string& getName() const;
+    const bool& getBeSigned() const;
+    const int& getSignGrade() const;
+    const int& getExecuteGrade() const;
+
+    /*
+    * Setter
+    */
+    void setName(std::string name);
+    void setBeSigned(bool b);
+
+    void beSigned(const Bureaucrat& bureaucrat);
+
+    virtual void execute(const Bureaucrat& bureaucrat) const = 0;
 };
 
 /*
 * Add it if you feel necessary additional functions.
 */
-std::ostream& operator<<(std::ostream& ofs, const Bureaucrat& ref);
+std::ostream& operator<<(std::ostream& ofs, const AForm& form);
 
-#endif  //Bureaucrat_HPP
+#endif

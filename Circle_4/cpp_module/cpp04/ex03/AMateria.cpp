@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 01:49:08 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 05:27:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/18 03:25:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ std::string const& AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-  (void)target;
+  std::cout << "This message will not print. " << target.getName() << " is not used too." << std::endl;
 }

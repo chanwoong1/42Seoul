@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 01:24:38 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 23:36:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/18 00:53:49 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Cat::Cat() : Animal() {
 
 Cat::Cat(const Cat& cat) {
   this->_type = cat.getType();
+  this->brain = new Brain(*cat.getBrain());
   std::cout << std::setw(15) << "[Cat] " << "copy!!" << std::endl;
 }
 
