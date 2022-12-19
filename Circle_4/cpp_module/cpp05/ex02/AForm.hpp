@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:03:24 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 23:02:49 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:00:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "Bureaucrat.hpp"
 
 #define SET_W  30
+
+class Bureaucrat;
 
 class AForm {
   private:
@@ -60,6 +62,16 @@ class AForm {
         const char* what() const throw();
     };
     class GradeTooLowException : public std::exception {
+      public:
+        const char* what() const throw();
+    };
+
+    class CouldNotGetSign : public std::exception {
+      public:
+        const char* what() const throw();
+    };
+
+    class CouldNotExecute : public std::exception {
       public:
         const char* what() const throw();
     };

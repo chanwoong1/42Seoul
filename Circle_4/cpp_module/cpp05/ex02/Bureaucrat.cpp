@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:40:25 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 22:49:33 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:48:29 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /*
 * A default constructor

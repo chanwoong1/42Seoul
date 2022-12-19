@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:31:11 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/15 23:34:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:06:02 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ DiamondTrap::DiamondTrap()
   : ClapTrap("DiamondTrap_clap_name") {
   std::cout << "DiamondTrap default constructor is called." << std::endl;
   this->_name = "DiamondTrap";
+  // this->_energyPoints = ScavTrap::_energyPoints;
   this->_energyPoints = 50;
 }
 

@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 15:15:39 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/12/18 20:43:44 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/12/19 17:04:47 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 # ------------------------------------------------------ #
 # SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC))) 
 
-SRC = Bureaucrat.cpp Form.cpp main.cpp
+SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp main.cpp
 
 # ------------------------------------------------------ #
 

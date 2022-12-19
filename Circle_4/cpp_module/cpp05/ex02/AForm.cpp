@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:17:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 23:02:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:05:36 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ AForm::AForm()
 
 AForm::AForm(const std::string& name, const int& signGrade, const int& executeGrade)
   : _name(name), _beSigned(false), _signGrade(signGrade), _executeGrade(executeGrade) {
-  if (this->_signGrade < 1 || this->_executeGrade < 1) throw Form::GradeTooHighException();
-  if (this->_signGrade > 150 || this->_executeGrade > 150) throw Form::GradeTooLowException(); 
+  if (this->_signGrade < 1 || this->_executeGrade < 1) throw AForm::GradeTooHighException();
+  if (this->_signGrade > 150 || this->_executeGrade > 150) throw AForm::GradeTooLowException(); 
 }
 
 /*
 * A copy constructor
 */
-AForm::AForm(const Form& ref)
+AForm::AForm(const AForm& ref)
   : _name(ref.getName()), _beSigned(ref.getBeSigned()), _signGrade(ref.getSignGrade()), _executeGrade(ref.getExecuteGrade()) {
 }
 
@@ -60,6 +60,14 @@ const char* AForm::GradeTooLowException::what() const throw() {
   return "Grade is too low.";
 }
 
+const char* AForm::CouldNotGetSign::what() const throw() {
+  return "Bureaucrat could not get sign. Grade is too low.";
+}
+
+const char* AForm::CouldNotExecute::what() const throw() {
+  return "Bureaucrat could not execute form. Grade is too low.";
+}
+
 const std::string& AForm::getName() const {
   return this->_name;
 }
@@ -77,6 +85,7 @@ const int& AForm::getExecuteGrade() const {
 }
 
 void AForm::beSigned(const Bureaucrat& bureaucrat) {
+  std::cout << bureaucrat.getGrade() << ", " << this->getSignGrade() << std::endl;
   if (bureaucrat.getGrade() <= this->getSignGrade()) {
     std::cout << bureaucrat.getName() << " is Signed" << std::endl;
     this->_beSigned = true;

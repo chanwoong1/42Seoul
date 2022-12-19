@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 22:50:50 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 23:27:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:01:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
 #include "AForm.hpp"
 
 #define SET_W  30
@@ -23,6 +24,9 @@
 class ShrubberyCreationForm : public AForm {
   private:
     /* data */
+    static const std::string _treeOfAscii;
+    std::string _target;
+
     ShrubberyCreationForm();
 
   public:
@@ -44,12 +48,12 @@ class ShrubberyCreationForm : public AForm {
     /*
     * A destructor
     */
-    ~ShrubberyCreationForm();
+    virtual ~ShrubberyCreationForm();
 
     /*
     * Add it if you feel necessary additional member functions.
     */
-    void execute(const Bureaucrat& bureaucrat);
+    virtual void execute(const Bureaucrat& bureaucrat) const;
 };
 
 #endif  //ShrubberyCreationForm_HPP
