@@ -1,59 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 22:50:50 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/20 02:49:37 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/12/20 10:17:00 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/12/20 10:19:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ShrubberyCreationForm_HPP
-#define ShrubberyCreationForm_HPP
+#ifndef PresidentialPardonForm_HPP
+#define PresidentialPardonForm_HPP
 
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <fstream>
 #include "AForm.hpp"
 
 #define SET_W  30
 
-class ShrubberyCreationForm : public AForm {
+class PresidentialPardonForm : public AForm{
   private:
     /* data */
-    static const std::string _treeOfAscii;
     std::string _target;
 
-    ShrubberyCreationForm();
+    PresidentialPardonForm();
 
   public:
     /*
     * A default constructor
     */
-    ShrubberyCreationForm(std::string target);
+    PresidentialPardonForm(std::string target);
 
     /*
     * A copy constructor
     */
-    ShrubberyCreationForm(const ShrubberyCreationForm& ref);
+    PresidentialPardonForm(const PresidentialPardonForm& ref);
 
     /*
     * A assignment operator overload
     */
-    ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& ref);
+    PresidentialPardonForm&	operator=(const PresidentialPardonForm& ref);
 
     /*
     * A destructor
     */
-    ~ShrubberyCreationForm();
+    ~PresidentialPardonForm();
 
     /*
     * Add it if you feel necessary additional member functions.
     */
-    void execute(const Bureaucrat& bureaucrat) const;
+    void execute(const Bureaucrat &bureaucrat) const;
 };
 
-#endif  //ShrubberyCreationForm_HPP
+/*
+* Add it if you feel necessary additional functions.
+*/
+
+#endif  //PresidentialPardonForm_HPP

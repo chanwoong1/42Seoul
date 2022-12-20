@@ -6,13 +6,17 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:39:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 15:30:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/20 01:24:19 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 int main() {
+  std::cout << "test0 - insertion operator overload" << std::endl;
+  Bureaucrat test0("test0", 75);
+  std::cout << test0 << std::endl;
+
   std::cout << "test1 - out of range grade input" << std::endl;
   try {
     Bureaucrat test1("test1", 200);

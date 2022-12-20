@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:40:25 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 06:41:42 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/20 01:19:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ const int& Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-  (this->_grade < 2) ? throw Bureaucrat::GradeTooHighException() : this->_grade--;
+  (this->_grade < 2) ? throw Bureaucrat::GradeTooHighException() : --this->_grade;
 }
 
 void Bureaucrat::decrementGrade() {
-  (this->_grade > 149) ? throw Bureaucrat::GradeTooLowException() : this->_grade++;
+  (this->_grade > 149) ? throw Bureaucrat::GradeTooLowException() : ++this->_grade;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {

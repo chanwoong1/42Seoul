@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:39:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 20:46:46 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/20 01:26:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void prevTest() {
   std::cout << "previous test start" << std::endl << std::endl;
+  
+  std::cout << "test0 - insertion operator overload" << std::endl;
+  Bureaucrat test0("test0", 75);
+  std::cout << test0 << std::endl;
+
   std::cout << "test1 - out of range grade input" << std::endl;
   try {
     Bureaucrat test1("test1", 200);
@@ -88,22 +93,14 @@ int main() {
   std::cout << "test3 - signForm test" << std::endl;
   std::cout << "Form form(\"form\", 75, 75);" << std::endl;
   std::cout << "Bureaucrat bu(\"bu\", 74);" << std::endl;
-  try {
-    Bureaucrat bu("bu", 74);
-    bu.signForm(form3);
-  } catch (std::exception& e) {
-    std::cout << "This message is not print." << std::endl;
-  }
+  Bureaucrat bu5("bu", 74);
+  bu5.signForm(form3);
 
   std::cout << std::endl;
   std::cout << "Form form(\"form\", 75, 75);" << std::endl;
   std::cout << "Bureaucrat bu(\"bu\", 76);" << std::endl;
-  try {
-    Bureaucrat bu("bu", 76);
-    bu.signForm(form3);
-  } catch (std::exception& e) {
-    std::cout << "This message is not print." << std::endl;
-  }
+  Bureaucrat bu("bu", 76);
+  bu.signForm(form3);
 
   std::cout << "test complete" << std::endl;
 	return 0;

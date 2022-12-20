@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:17:13 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 21:08:56 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/20 01:12:21 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,8 @@ const int& Form::getExecuteGrade() const {
 }
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
-  if (bureaucrat.getGrade() <= this->getSignGrade()) {
-    std::cout << bureaucrat.getName() << " is Signed" << std::endl;
-    this->_beSigned = true;
-    return ;
-  }
-  throw Form::GradeTooHighException();
+  (bureaucrat.getGrade() <= this->getSignGrade())
+    ? this->_beSigned = true : throw Form::GradeTooHighException();
 }
 
 std::ostream& operator<<(std::ostream& ofs, const Form& form) {

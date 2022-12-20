@@ -1,59 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 22:50:50 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/20 02:49:37 by chanwjeo         ###   ########.fr       */
+/*   Created: 2022/12/20 02:48:40 by chanwjeo          #+#    #+#             */
+/*   Updated: 2022/12/20 09:57:01 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ShrubberyCreationForm_HPP
-#define ShrubberyCreationForm_HPP
+#ifndef RobotomyRequestForm_HPP
+#define RobotomyRequestForm_HPP
 
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <fstream>
+#include <ctime>
 #include "AForm.hpp"
 
 #define SET_W  30
 
-class ShrubberyCreationForm : public AForm {
+class RobotomyRequestForm : public AForm{
   private:
     /* data */
-    static const std::string _treeOfAscii;
     std::string _target;
 
-    ShrubberyCreationForm();
+    RobotomyRequestForm();
 
   public:
     /*
     * A default constructor
     */
-    ShrubberyCreationForm(std::string target);
+    RobotomyRequestForm(std::string target);
 
     /*
     * A copy constructor
     */
-    ShrubberyCreationForm(const ShrubberyCreationForm& ref);
+    RobotomyRequestForm(const RobotomyRequestForm& ref);
 
     /*
     * A assignment operator overload
     */
-    ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& ref);
+    RobotomyRequestForm&	operator=(const RobotomyRequestForm& ref);
 
     /*
     * A destructor
     */
-    ~ShrubberyCreationForm();
+    ~RobotomyRequestForm();
 
     /*
     * Add it if you feel necessary additional member functions.
     */
-    void execute(const Bureaucrat& bureaucrat) const;
+    void execute(const Bureaucrat &bureaucrat) const;
 };
 
-#endif  //ShrubberyCreationForm_HPP
+/*
+* Add it if you feel necessary additional functions.
+*/
+
+#endif  //RobotomyRequestForm_HPP
