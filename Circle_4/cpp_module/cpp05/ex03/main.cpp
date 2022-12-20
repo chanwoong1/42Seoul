@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:39:34 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/20 12:59:43 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:32:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 void shrubberyTest(Bureaucrat b1, Bureaucrat b4) {
   std::cout << "ShrubberyCreateForm test" << std::endl;
-  AForm* f1 = new ShrubberyCreationForm("Christmas");
-  AForm* f2 = new ShrubberyCreationForm("Tree");
+  Intern  someRandomIntern;
+  AForm* f1 = someRandomIntern.makeForm("shrubbery creation", "Christmas");
+  AForm* f2 = someRandomIntern.makeForm("shrubbery creation", "Tree");
+  someRandomIntern.makeForm("shrubbery cr", "Christmas");
+  someRandomIntern.makeForm("shrubbery creation][robotomy request", "Christmas");
 
-  std::cout << std::endl;
-  std::cout << *f1 << *f2 << std::endl;
   std::cout << std::endl;
   std::cout << "Grade 140, can sign Shrubbery?" << std::endl;
   b4.signForm(*f1);
@@ -35,18 +37,20 @@ void shrubberyTest(Bureaucrat b1, Bureaucrat b4) {
   std::cout << "Signed, can execute Shrubbery?" << std::endl;
   b1.signForm(*f2);
   b1.executeForm(*f2);
+  std::cout << std::endl;
 
   delete f1;
   delete f2;
 }
 
 void robotomyTest(Bureaucrat b1, Bureaucrat b3) {
-  std::cout << "RobotomyRequestForm test" << std::endl;
-  AForm* f1 = new RobotomyRequestForm("f1");
-  AForm* f2 = new RobotomyRequestForm("f2");
+  std::cout << std::endl << "RobotomyRequestForm test" << std::endl;
+  Intern  someRandomIntern;
+  AForm* f1 = someRandomIntern.makeForm("robotomy request", "f1");
+  AForm* f2 = someRandomIntern.makeForm("robotomy request", "f2");
+  someRandomIntern.makeForm("robotomy requ", "f1");
+  someRandomIntern.makeForm("robotomy request][presidential pardon", "f2");
 
-  std::cout << std::endl;
-  std::cout << *f1 << *f2 << std::endl; 
   std::cout << std::endl;
   std::cout << "Grade 70, can sign Robotomy?" << std::endl;
   b3.signForm(*f1);
@@ -60,18 +64,20 @@ void robotomyTest(Bureaucrat b1, Bureaucrat b3) {
   std::cout << "Signed, can execute Robotomy?" << std::endl;
   b1.signForm(*f2);
   b1.executeForm(*f2);
+  std::cout << std::endl;
 
   delete f1;
   delete f2;
 }
 
 void presidentialTest(Bureaucrat b1, Bureaucrat b2) {
-  std::cout << "PresidentialPardonForm test" << std::endl;
-  AForm* f1 = new PresidentialPardonForm("f1");
-  AForm* f2 = new PresidentialPardonForm("f2");
+  std::cout << std::endl << "PresidentialPardonForm test" << std::endl;
+  Intern  someRandomIntern;
+  AForm* f1 = someRandomIntern.makeForm("presidential pardon", "f1");
+  AForm* f2 = someRandomIntern.makeForm("presidential pardon", "f2");
+  someRandomIntern.makeForm("presidential", "f1");
+  someRandomIntern.makeForm("presidential pardo", "f2");
 
-  std::cout << std::endl;
-  std::cout << *f1 << *f2 << std::endl; 
   std::cout << std::endl;
   std::cout << "Grade 70, can sign Pardon Form?" << std::endl;
   b2.signForm(*f1);
@@ -85,6 +91,7 @@ void presidentialTest(Bureaucrat b1, Bureaucrat b2) {
   std::cout << "Signed, can execute Pardon?" << std::endl;
   b1.signForm(*f2);
   b1.executeForm(*f2);
+  std::cout << std::endl;
 
   delete f1;
   delete f2;
