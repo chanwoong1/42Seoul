@@ -7,10 +7,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
  
-make: *** No rule to make target `all'.  Stop.
+make: *** No rule to make target `all'
+.  Stop.
 
 
-# Make data base, printed on Tue Dec 20 21:13:42 2022
+# Make data base, printed on Wed Dec 21 22:29:35 2022
 
 # Variables
 
@@ -41,7 +42,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-d025d317-bec1-48bb-9e27-cfc22fe1f9f2.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-354764a1-491c-4ef2-a6f0-91af7098de42.sock
 # environment
 VSCODE_CWD = /Users/chanwjeo/git/42Seoul
 # environment
@@ -55,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.0QxYHCfW5k/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2740txe2N4/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -103,7 +104,7 @@ USER = chanwjeo
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:324845BE-C9C1-44AB-B7A5-A2F07C4FAF07
+TERM_SESSION_ID = w0t0p0:54263CB9-E386-416C-A1F6-CFFAFFAFD774
 # environment
 LESS = -R
 # automatic
@@ -137,7 +138,7 @@ LC_TERMINAL_VERSION = 3.3.7
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:324845BE-C9C1-44AB-B7A5-A2F07C4FAF07
+ITERM_SESSION_ID = w0t0p0:54263CB9-E386-416C-A1F6-CFFAFFAFD774
 # environment
 COLORFGBG = 7;0
 # environment
@@ -165,7 +166,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 21812
+VSCODE_PID = 42838
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
@@ -249,6 +250,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Dec 20 21:13:42 2022
+# Finished Make data base on Wed Dec 21 22:29:35 2022
 
  
