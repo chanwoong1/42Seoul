@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/22 15:28:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:02:32 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ class Convert {
     void toInt();
     void toFloat();
     void toDouble();
+
+    // std::string getInput();
+    // const double getValue();
 };
 
 /*
