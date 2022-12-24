@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/21 23:28:48 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:28:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
 class Convert {
   private:
     /* data */
+    std::string _input;
+    const double _value;
 
+    Convert();
   public:
     /*
     * A default constructor
     */
-    Convert();
+    Convert(std::string& input);
     Convert(char c);
     Convert(int n);
     Convert(float f);
@@ -51,7 +54,10 @@ class Convert {
     /*
     * Add it if you feel necessary additional member functions.
     */
-
+    void toChar();
+    void toInt();
+    void toFloat();
+    void toDouble();
 };
 
 /*

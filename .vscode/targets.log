@@ -11,7 +11,7 @@ make: *** No rule to make target `all'
 .  Stop.
 
 
-# Make data base, printed on Wed Dec 21 22:29:35 2022
+# Make data base, printed on Sat Dec 24 14:48:54 2022
 
 # Variables
 
@@ -42,7 +42,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-354764a1-491c-4ef2-a6f0-91af7098de42.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-8f937747-9660-4686-a78a-1be4e4e2f8f1.sock
 # environment
 VSCODE_CWD = /Users/chanwjeo/git/42Seoul
 # environment
@@ -56,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.2740txe2N4/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.T0LiytQhLV/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -166,7 +166,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 42838
+VSCODE_PID = 95628
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
@@ -250,6 +250,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Wed Dec 21 22:29:35 2022
+# Finished Make data base on Sat Dec 24 14:48:54 2022
 
  
