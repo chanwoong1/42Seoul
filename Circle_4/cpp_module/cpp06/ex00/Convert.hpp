@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/24 15:02:32 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/25 14:47:04 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Convert {
     /* data */
     std::string _input;
     const double _value;
+    bool _error;
 
     Convert();
   public:
@@ -51,13 +52,16 @@ class Convert {
     */
     ~Convert();
 
+    const std::string& getInput() const;
+    const double& getValue() const;
+
     /*
     * Add it if you feel necessary additional member functions.
     */
-    void toChar();
-    void toInt();
-    void toFloat();
-    void toDouble();
+    char toChar() const;
+    int toInt() const;
+    float toFloat() const;
+    double toDouble() const;
 
     // std::string getInput();
     // const double getValue();
