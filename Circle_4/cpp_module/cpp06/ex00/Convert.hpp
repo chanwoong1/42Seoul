@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/25 14:47:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/28 00:00:42 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cmath>
 
 #define SET_W  30
 
@@ -31,11 +32,7 @@ class Convert {
     /*
     * A default constructor
     */
-    Convert(std::string& input);
-    Convert(char c);
-    Convert(int n);
-    Convert(float f);
-    Convert(double d);
+    Convert(const std::string& input);
 
     /*
     * A copy constructor
@@ -54,6 +51,7 @@ class Convert {
 
     const std::string& getInput() const;
     const double& getValue() const;
+    const bool& getError() const;
 
     /*
     * Add it if you feel necessary additional member functions.
@@ -62,13 +60,12 @@ class Convert {
     int toInt() const;
     float toFloat() const;
     double toDouble() const;
-
-    // std::string getInput();
-    // const double getValue();
+    static void printResult(std::ostream& ofs, const Convert& convert);
 };
 
 /*
 * Add it if you feel necessary additional functions.
 */
+std::ostream& operator<<(std::ostream& ofs, const Convert& convert);
 
 #endif  //Convert_HPP
