@@ -11,7 +11,7 @@ make: *** No rule to make target `all'
 .  Stop.
 
 
-# Make data base, printed on Sun Dec 25 14:32:50 2022
+# Make data base, printed on Wed Dec 28 11:58:08 2022
 
 # Variables
 
@@ -42,7 +42,7 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-cfbd4cb5-a3c7-4420-9409-7ad5926b7e93.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-0abe2f26-2517-4967-89bc-c84dee4d1709.sock
 # environment
 VSCODE_CWD = /Users/chanwjeo/git/42Seoul
 # environment
@@ -56,7 +56,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.curDcgAi5e/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GnQVzMGbmS/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -104,7 +104,7 @@ USER = chanwjeo
 # default
 MAKECMDGOALS := all
 # environment
-TERM_SESSION_ID = w0t0p0:486B2B7D-138A-44C1-8F7F-D6DFDA6145F6
+TERM_SESSION_ID = w0t0p0:993A0B91-A9B2-446E-AF68-D56FE2F1AC9D
 # environment
 LESS = -R
 # automatic
@@ -138,7 +138,7 @@ LC_TERMINAL_VERSION = 3.3.7
 # automatic
 +F = $(notdir $+)
 # environment
-ITERM_SESSION_ID = w0t0p0:486B2B7D-138A-44C1-8F7F-D6DFDA6145F6
+ITERM_SESSION_ID = w0t0p0:993A0B91-A9B2-446E-AF68-D56FE2F1AC9D
 # environment
 COLORFGBG = 7;0
 # environment
@@ -166,7 +166,7 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 71753
+VSCODE_PID = 85150
 # variable set hash-table stats:
 # Load=76/1024=7%, Rehash=0, Collisions=4/97=4%
 
@@ -250,6 +250,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sun Dec 25 14:32:50 2022
+# Finished Make data base on Wed Dec 28 11:58:08 2022
 
  
