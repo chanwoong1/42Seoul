@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 23:35:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 02:00:22 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:20:09 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,13 @@ int main() {
   // ...
 
   delete i;
+  i = NULL;
+
   delete j;
+  j = NULL;
   
   std::cout << std::endl << "prevMainTest" << std::endl << std::endl;
   prevMainTest();
+  system("leaks a.out");
   return 0;
 }

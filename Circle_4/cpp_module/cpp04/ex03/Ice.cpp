@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 03:39:17 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 05:30:47 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:39:37 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 /*
 * A default constructor
 */
-Ice::Ice() {
-  this->_type = "ice";
+Ice::Ice() : AMateria("ice") {
   std::cout << std::setw(15) << "[Ice] " << "create!!" << std::endl;
 }
 
 /*
 * A copy constructor
 */
-Ice::Ice(const Ice& ref) {
-  this->_type = ref.getType();
+Ice::Ice(const Ice& ref) : AMateria(ref.getType()) {
   std::cout << std::setw(15) << "[Ice] " << "copy!!" << std::endl;
 }
 
@@ -48,7 +46,7 @@ Ice::~Ice() {
 }
 
 AMateria* Ice::clone() const {
-  return (new Ice(*this));
+  return (new Ice());
 }
 
 void Ice::use(ICharacter& target) {

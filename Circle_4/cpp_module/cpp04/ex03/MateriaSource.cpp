@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 00:52:28 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 05:31:34 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:12:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,17 @@ MateriaSource::~MateriaSource() {
 * Add it if you feel necessary additional member functions.
 */
 const AMateria* MateriaSource::getAMateria(int idx) const {
+  if (idx < 0 || idx > 3) {
+    std::cout << std::setw(15) << "[AMateria] " << "getAMateria - out of range" << std::endl;
+    return NULL;
+  }
   return this->_amateria[idx];
 }
 
 void MateriaSource::learnMateria(AMateria* amateria) {
   for (int i = 0; i < 4; i++) {
     if (this->_amateria[i] == NULL) {
-      this->_amateria[i] = amateria;
+      this->_amateria[i] = amateria->clone();
       std::cout << std::setw(15) << "[MateriaSource] " << "learnMateria success!!" << std::endl;
       return ;
     }

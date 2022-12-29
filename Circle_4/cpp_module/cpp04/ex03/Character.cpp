@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 04:01:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 03:30:12 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:03:56 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,25 @@
 * A default constructor
 */
 Character::Character()
-  : _name("") {
+  : _name(""), _floorSize(0) {
   for (int i = 0; i < 4; i++) {
     this->_inventory[i] = NULL;
+  }
+  
+  for (int i = 0; i < 10; i++) {
+    this->_floor[i] = NULL;
   }
   std::cout << std::setw(15) << "[Character] " << "create!!" << std::endl;
 }
 
 Character::Character(std::string name)
-  : _name(name) {
+  : _name(name), _floorSize(0) {
   for (int i = 0; i < 4; i++) {
     this->_inventory[i] = NULL;
+  }
+  
+  for (int i = 0; i < 10; i++) {
+    this->_floor[i] = NULL;
   }
   std::cout << std::setw(15) << "[Character] " << "create!!" << std::endl;
 }
@@ -34,14 +42,20 @@ Character::Character(std::string name)
 /*
 * A copy constructor
 */
-Character::Character(const Character& ref) {
-  this->_name = ref._name;
+Character::Character(const Character& ref)
+  : _name(ref._name), _floorSize(ref._floorSize) {
   for (int i = 0; i < 4; i++) {
     if (this->_inventory[i])
       delete this->_inventory[i];
     this->_inventory[i] = NULL;
     if (ref._inventory[i])
-      this->_inventory[i] = ref._inventory[i];
+      this->_inventory[i] = ref._inventory[i]->clone();
+  }
+
+  for (int i = 0; i < 10; i++) {
+    this->_floor[i] = NULL;
+    if (ref._floor[i])
+      this->_floor[i] = ref._floor[i]->clone();
   }
   std::cout << std::setw(15) << "[Character] " << "copy!!" << std::endl;
 }
@@ -59,7 +73,14 @@ Character&	Character::operator=(const Character& ref) {
         delete this->_inventory[i];
       this->_inventory[i] = NULL;
       if (ref._inventory[i])
-        this->_inventory[i] = ref._inventory[i];
+        this->_inventory[i] = ref._inventory[i]->clone();
+    }
+    
+    this->_floorSize = ref._floorSize;
+    for (int i = 0; i < 10; i++) {
+      this->_floor[i] = NULL;
+      if (ref._floor[i])
+        this->_floor[i] = ref._floor[i]->clone();
     }
   }
   return *this;
@@ -69,6 +90,13 @@ Character&	Character::operator=(const Character& ref) {
 * A destructor
 */
 Character::~Character() {
+  for (int i = 0; i < 4; i++) {
+    if (this->_inventory[i])
+      delete this->_inventory[i];
+    this->_inventory[i] = NULL;
+  }
+
+  this->cleanFloor();
   std::cout << std::setw(15) << "[Character] " << "delete!!" << std::endl;
 }
 
@@ -92,9 +120,7 @@ void Character::unequip(int idx) {
     std::cout << std::setw(15) << "[Character] " << "unequip - out of range" << std::endl;
     return ;
   }
-  if (this->_inventory[idx])
-    delete this->_inventory[idx];
-  this->_inventory[idx] = NULL;
+  this->floor(idx);
   std::cout << std::setw(15) << "[Character] " << "unequip success!!" << std::endl;
 }
 
@@ -108,4 +134,30 @@ void Character::use(int idx, ICharacter& target) {
     return ;
   }
   this->_inventory[idx]->use(target);
+}
+
+void Character::floor(int idx) {
+  if (this->_inventory[idx]) {
+    for (int i = 0; i < 10; i++) {
+      if (this->_floor[i] == NULL) {
+        this->_floor[i] = this->_inventory[idx];
+        this->_inventory[idx] = NULL;
+        ++this->_floorSize;
+        break;
+      }
+    }
+  }
+
+  if (this->_floorSize == 10)
+    this->cleanFloor();
+}
+
+void Character::cleanFloor() {
+  for (int i = 0; i < 10; i++) {
+    if (this->_floor[i]) {
+      delete this->_floor[i];
+      this->_floor[i] = NULL;
+    }
+  }
+  this->_floorSize = 0;
 }

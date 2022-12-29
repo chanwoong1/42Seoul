@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 03:45:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 05:30:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:40:11 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 /*
 * A default constructor
 */
-Cure::Cure() {
-  this->_type = "cure";
+Cure::Cure() : AMateria("cure") {
   std::cout << std::setw(15) << "[Cure] " << "create!!" << std::endl;
 }
 
 /*
 * A copy constructor
 */
-Cure::Cure(const Cure& ref) {
-  this->_type = ref.getType();
+Cure::Cure(const Cure& ref) : AMateria(ref.getType()) {
   std::cout << std::setw(15) << "[Cure] " << "copy!!" << std::endl;
 }
 
@@ -48,7 +46,7 @@ Cure::~Cure() {
 }
 
 AMateria* Cure::clone() const {
-  return (new Cure(*this));
+  return (new Cure());
 }
 
 void Cure::use(ICharacter& target) {

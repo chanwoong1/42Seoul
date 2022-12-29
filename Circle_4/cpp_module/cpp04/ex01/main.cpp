@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 23:35:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 23:05:02 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:17:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int main(void){
 	d = NULL;
 	delete d2;
 	d2 = NULL;
-
+  system("leaks a.out");
 	return 0;
 }

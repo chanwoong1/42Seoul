@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 23:35:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/16 18:05:38 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:18:31 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,22 @@ int main() {
   const WrongAnimal* wrongCat = new WrongCat();
   wrongMeta->makeSound();
   wrongCat->makeSound();
+
   delete meta;
+  meta = NULL;
+
   delete i;
+  i = NULL;
+
   delete j;
+  j = NULL;
+
   delete wrongMeta;
+  wrongMeta = NULL;
+
   delete wrongCat;
+  wrongCat = NULL;
+  
+  // system("leaks a.out");
   return 0;
 }

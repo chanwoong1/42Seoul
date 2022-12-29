@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 03:52:47 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/17 04:54:25 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:02:55 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Character : public ICharacter {
     /* data */
     std::string _name;
     AMateria*   _inventory[4];
+    int         _floorSize;    
+    AMateria*   _floor[10];
 
   public:
     /*
@@ -54,6 +56,8 @@ class Character : public ICharacter {
     void equip(AMateria* m);
     void unequip(int idx);
     void use(int idx, ICharacter& target);
+    void floor(int idx);
+    void cleanFloor();
 };
 
 #endif  //Character_HPP
