@@ -6,30 +6,31 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:50:15 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/30 11:05:58 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:43:45 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 #include <iostream>
 
-void intArrayTest() {
-  std::cout << "Int array test start" << std::endl << std::endl;
+int main(void) {
+  std::string s[6] = { "42", "Seoul", "cpp", "module", "07", "chanwjeo" };
+  int i[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+  double d[10] = { 0.0, 1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9};
+  char c[12] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l' };
 
-  int intArray1[10];
-  for (int i = 0; i < 10; i++) {
-    intArray1[i] = i;
-  }
-  printArray(intArray1, 10);
-
-  std::cout << std::endl << "iter to multiple2 function" << std::endl;
-  iter(intArray1, 10, multiple2);
-  printArray(intArray1, 10);
-}
-
-
-int main() {
-  intArrayTest();
+  std::cout << "Iter test" << std::endl << std::endl;
+  std::cout << "String Iteration\t: ";
+  iter(s, 6, print);
+  std::cout << std::endl;
+  std::cout << "Int Iteration\t\t: ";
+  iter(i, 10, print);
+  std::cout << std::endl;
+  std::cout << "Double Iteration\t: ";
+  iter(d, 10, print);
+  std::cout << std::endl;
+  std::cout << "Char Iteration\t\t: ";
+  iter(c, 12, print);
+  std::cout << std::endl;
   return 0;
-
 }
