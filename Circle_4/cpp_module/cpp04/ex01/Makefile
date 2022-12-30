@@ -6,14 +6,14 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 15:15:39 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/12/16 20:25:50 by chanwjeo         ###   ########.fr        #
+#    Updated: 2022/12/30 11:23:22 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= a.out
 
-# CFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
-CFLAGS			= -Wall -Wextra -Werror -std=c++98
+# CXXFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
+CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 
 # NOTE : Add Source directory here
 # ------------------------------------------------------ #
@@ -52,13 +52,13 @@ CUSTOM = \033[38;5;135m
 #    Mac compile option                                                |
 #-----------------------------------------------------------------------
 $(NAME): $(OBJ)
-	@$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)╔══════════════════════════════════════════╗$(DEF_COLOR)"
 	@echo "$(GREEN)║      cpp_04 ex01 compile finished.       ║$(DEF_COLOR)"
 	@echo "$(GREEN)╚══════════════════════════════════════════╝$(DEF_COLOR)"
 
 %.o: %.cpp
-	@${CXX} ${CFLAGS} -c $< -o $@
+	@${CXX} ${CXXFLAGS} -c $< -o $@
 	@echo "$(GREEN)Compiling... \t$< $(DEF_COLOR)"
 # #-----------------------------------------------------------------------
 
