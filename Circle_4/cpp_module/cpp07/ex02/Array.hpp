@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:37:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/30 15:46:31 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/31 02:26:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,18 @@ class Array {
       ! When accessing an element with the [ ] operator, if its index is out of bounds, an std::exception is thrown.
     */
     T& operator[](unsigned int idx) {
-      if (idx < 0 || idx > this->_arraySize) throw;
+      if (idx < 0 || idx > this->_arraySize - 1) throw OutOfBounds();
       return this->_array[idx];
     }
 
     const T& operator[](unsigned int idx) const {
-      if (idx < 0 || idx > this->_arraySize) throw;
+      if (idx < 0 || idx > this->_arraySize - 1) throw OutOfBounds();
       return this->_array[idx];
     }
 
+    /*
+    TODO: When accessing an element with the [ ] operator, if its index is out of bounds, an std::exception is thrown.
+    */
     class OutOfBounds : public std::exception {
       public:
         const char* what() const throw() {

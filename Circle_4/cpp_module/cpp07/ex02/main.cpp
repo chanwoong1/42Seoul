@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 14:45:02 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/30 15:44:38 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2022/12/31 02:40:22 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ int main() {
   for (int i = 0; i < 10; ++i) {
     std::cout << "\t" << charArray[i];
   }
-  std::cout << std::endl;
+  std::cout << std::endl << std::endl;
+
+  std::cout << "exception test" << std::endl;
+  try {
+    std::cout << "intArray[10] = 10 ->\t";
+    intArray[10] = 10;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+  try {
+    std::cout << "intArray[-1] = 10 ->\t";
+    intArray[-1] = 10;
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
   return 0;
 }
