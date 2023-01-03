@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:44:00 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/30 12:41:42 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:42:06 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@
 #include <cstddef>
 
 template <typename T>
-void iter(T* array, std::size_t lengthOfArray, void (*f)(T&)) {
+void iter(const T* array, std::size_t lengthOfArray, void (*f)(const T &)) {
   for (std::size_t idx = 0; idx < lengthOfArray; ++idx) {
     f(array[idx]);
   }
-  std::cout << std::endl;
 }
 
 template <typename T>
-void print(T& arg) {
+void print(const T& arg) {
   std::cout << arg << "\t";
 }
 

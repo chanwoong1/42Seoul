@@ -8,6 +8,9 @@
 		"readline.h": "c",
 		"mlx.h": "c",
 		"ostream": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"stack": "cpp",
+		"iterator": "cpp",
+		"list": "cpp"
 	}
 }
