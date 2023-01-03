@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:37:52 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/31 02:26:16 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:05:54 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ class Array {
     * Add it if you feel necessary additional member functions.
     TODO: A member function size() that returns the number of elements in the array. This member function takes no parameter and musn't modify the current instance.
     */
-    unsigned int size() {
+    unsigned int size() const {
       return this->_arraySize;
     }
 };
