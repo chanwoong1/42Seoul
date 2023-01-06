@@ -11,6 +11,9 @@
 		"fstream": "cpp",
 		"stack": "cpp",
 		"iterator": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"vector": "cpp",
+		"__config": "cpp",
+		"memory": "cpp"
 	}
 }
