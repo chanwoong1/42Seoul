@@ -6,11 +6,11 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 13:29:16 by chanwjeo          #+#    #+#              #
-#    Updated: 2022/12/30 11:21:53 by chanwjeo         ###   ########.fr        #
+#    Updated: 2023/03/20 00:32:58 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= convert
+NAME			= Serializer
 
 # CXXFLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
@@ -25,9 +25,9 @@ CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 
 # NOTE : Add to SRC here
 # ------------------------------------------------------ #
-# SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC))) 
+# SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC)))
 
-SRC = main.cpp
+SRC = main.cpp Serializer.cpp
 
 # ------------------------------------------------------ #
 
