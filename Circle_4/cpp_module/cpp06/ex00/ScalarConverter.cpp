@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Convert.cpp                                        :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:37 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/28 01:28:04 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/20 00:06:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Convert.hpp"
+#include "ScalarConverter.hpp"
 
 /*
 * A default constructor
 */
-Convert::Convert()
+ScalarConverter::ScalarConverter()
   : _input(""), _value(0.0), _error(false) {
 }
 
@@ -23,8 +23,8 @@ Convert::Convert()
 TODO: Input must convert to double type.
   ! If were not convert input, occur error.
 */
-Convert::Convert(const std::string& input)
-  : _input(input), _value(0.0), _error(false) {
+void ScalarConverter::convert(const std::string& input) {
+  _input = input;
   try {
     char *ptr = NULL;
     *(const_cast<double*>(&_value)) = std::strtod(_input.c_str(), &ptr);
@@ -40,14 +40,14 @@ Convert::Convert(const std::string& input)
 /*
 * A copy constructor
 */
-Convert::Convert(const Convert& ref)
+ScalarConverter::ScalarConverter(const ScalarConverter& ref)
   : _input(ref._input), _value(ref._value), _error(ref._error) {
 }
 
 /*
 * A assignment operator overload
 */
-Convert&	Convert::operator=(const Convert& ref) {
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& ref) {
   if (this != &ref) {
     this->_input = ref._input;
     this->_error = ref._error;
@@ -59,18 +59,18 @@ Convert&	Convert::operator=(const Convert& ref) {
 /*
 * A destructor
 */
-Convert::~Convert() {
+ScalarConverter::~ScalarConverter() {
 }
 
-const std::string& Convert::getInput() const {
+const std::string& ScalarConverter::getInput() const {
   return this->_input;
 }
 
-const double& Convert::getValue() const {
+const double& ScalarConverter::getValue() const {
   return this->_value;
 }
 
-const bool& Convert::getError() const {
+const bool& ScalarConverter::getError() const {
   return this->_error;
 }
 
@@ -78,26 +78,26 @@ const bool& Convert::getError() const {
 * static_cast
   ! Converts between types using a combination of implicit and user-defined conversions.
 */
-char Convert::toChar(void) const {
+char ScalarConverter::toChar(void) const {
   return static_cast<char>(_value);
 }
 
-int Convert::toInt(void) const {
+int ScalarConverter::toInt(void) const {
   return static_cast<int>(_value);
 }
 
-float Convert::toFloat(void) const {
+float ScalarConverter::toFloat(void) const {
   return static_cast<float>(_value);
 }
 
-double Convert::toDouble(void) const {
+double ScalarConverter::toDouble(void) const {
   return static_cast<double>(_value);
 }
 
 /*
 * Display output
 */
-static void printResult(std::ostream& ofs, const Convert& convert) {
+static void printResult(std::ostream& ofs, const ScalarConverter& convert) {
   /*
   * char
   TODO: Nan and inf are not convert to char type.
@@ -107,7 +107,7 @@ static void printResult(std::ostream& ofs, const Convert& convert) {
   (std::isnan(convert.getValue()) || std::isinf(convert.getValue()))
     ? ofs << "impossible" << std::endl : (std::isprint(convert.toChar()))
     ? ofs << "'" << convert.toChar() << "'" << std::endl : ofs << "Non displayable" << std::endl;
-  
+
   /*
   * int
   TODO: Nan and inf are not convert to int type.
@@ -134,10 +134,10 @@ static void printResult(std::ostream& ofs, const Convert& convert) {
 
   (convert.toDouble() == static_cast<int64_t>(convert.toDouble()))
     ? ofs << "double: " << convert.toDouble() << ".0" << std::endl
-    : ofs << "double: " << std::setprecision(std::numeric_limits<float>::digits10) << convert.toDouble() << "f" << std::endl;
+    : ofs << "double: " << std::setprecision(std::numeric_limits<float>::digits10) << convert.toDouble() << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& ofs, const Convert& convert) {
+std::ostream& operator<<(std::ostream& ofs, const ScalarConverter& convert) {
   if (convert.getError()) {
     return ofs << "Convert Failure" << std::endl;
   }

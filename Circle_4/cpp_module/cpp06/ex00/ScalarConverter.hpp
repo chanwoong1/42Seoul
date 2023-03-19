@@ -6,12 +6,12 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:26:39 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/28 00:00:42 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/19 23:57:44 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Convert_HPP
-#define Convert_HPP
+#ifndef ScalarConverter_HPP
+#define ScalarConverter_HPP
 
 #include <iostream>
 #include <string>
@@ -20,38 +20,39 @@
 
 #define SET_W  30
 
-class Convert {
+class ScalarConverter {
   private:
     /* data */
     std::string _input;
     const double _value;
     bool _error;
 
-    Convert();
   public:
     /*
     * A default constructor
     */
-    Convert(const std::string& input);
+    ScalarConverter();
 
     /*
     * A copy constructor
     */
-    Convert(const Convert& ref);
+    ScalarConverter(const ScalarConverter& ref);
 
     /*
     * A assignment operator overload
     */
-    Convert&	operator=(const Convert& ref);
+    ScalarConverter&	operator=(const ScalarConverter& ref);
 
     /*
     * A destructor
     */
-    ~Convert();
+    ~ScalarConverter();
 
     const std::string& getInput() const;
     const double& getValue() const;
     const bool& getError() const;
+
+    void convert(const std::string& input);
 
     /*
     * Add it if you feel necessary additional member functions.
@@ -60,12 +61,12 @@ class Convert {
     int toInt() const;
     float toFloat() const;
     double toDouble() const;
-    static void printResult(std::ostream& ofs, const Convert& convert);
+    static void printResult(std::ostream& ofs, const ScalarConverter& convert);
 };
 
 /*
 * Add it if you feel necessary additional functions.
 */
-std::ostream& operator<<(std::ostream& ofs, const Convert& convert);
+std::ostream& operator<<(std::ostream& ofs, const ScalarConverter& convert);
 
 #endif  //Convert_HPP
