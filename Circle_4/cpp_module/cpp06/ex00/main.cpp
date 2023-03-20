@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 23:07:54 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/20 00:08:54 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:20:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int main(int ac, char **av) {
     std::cerr << "Invaild number of argument. Check it!" << std::endl;
     return (1);
   }
-  static ScalarConverter convert;
-
-  convert.convert(av[1]);
-  std::cout << convert;
+  ScalarConverter::convert(av[1]);
   return (0);
 }
