@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 00:20:05 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/20 00:32:27 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:43:16 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ class Serializer {
     /*
     * Add it if you feel necessary additional member functions.
     */
-    uintptr_t serialize(Data* ptr);
-    Data* deserialize(uintptr_t raw);
+    static uintptr_t serialize(Data* ptr);
+    static Data* deserialize(uintptr_t raw);
 };
 
 /*
