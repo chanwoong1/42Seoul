@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 10:50:15 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/30 12:43:45 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:46:10 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int main(void) {
 
   std::cout << "Iter test" << std::endl << std::endl;
   std::cout << "String Iteration\t: ";
-  iter(s, 6, print);
+  ::iter(s, 6, print);
   std::cout << std::endl;
   std::cout << "Int Iteration\t\t: ";
-  iter(i, 10, print);
+  ::iter(i, 10, print);
   std::cout << std::endl;
   std::cout << "Double Iteration\t: ";
-  iter(d, 10, print);
+  ::iter(d, 10, print);
   std::cout << std::endl;
   std::cout << "Char Iteration\t\t: ";
-  iter(c, 12, print);
+  ::iter(c, 12, print);
   std::cout << std::endl;
   return 0;
 }

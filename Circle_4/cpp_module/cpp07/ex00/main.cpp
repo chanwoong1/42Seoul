@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 14:32:07 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/29 17:12:01 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:48:35 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void swapTest() {
   std::cout << "A : " << A << std::endl;
   std::cout << "B : " << B << std::endl << std::endl;
 
-  swap(A, B);
+  ::swap(A, B);
   std::cout << "After swap" << std::endl;
   std::cout << "A : " << A << std::endl;
   std::cout << "B : " << B << std::endl << std::endl;
@@ -36,7 +36,7 @@ void swapTest() {
   std::cout << "intA : " << intA << std::endl;
   std::cout << "intB : " << intB << std::endl << std::endl;
 
-  swap(intA, intB);
+  ::swap(intA, intB);
   std::cout << "After swap" << std::endl;
   std::cout << "intA : " << intA << std::endl;
   std::cout << "intB : " << intB << std::endl << std::endl;
@@ -49,7 +49,7 @@ void swapTest() {
   std::cout << "charA : " << charA << std::endl;
   std::cout << "charB : " << charB << std::endl << std::endl;
 
-  swap(charA, charB);
+  ::swap(charA, charB);
   std::cout << "After swap" << std::endl;
   std::cout << "charA : " << charA << std::endl;
   std::cout << "charB : " << charB << std::endl << std::endl;
@@ -63,7 +63,7 @@ void swapTest() {
   // std::cout << "mixA : " << mixA << std::endl;
   // std::cout << "mixB : " << mixB << std::endl;
 
-  // swap(mixA, mixB);
+  // ::swap(mixA, mixB);
   // std::cout << "After swap" << std::endl;
   // std::cout << "mixA : " << mixA << std::endl;
   // std::cout << "mixA : " << mixB << std::endl;
@@ -78,7 +78,7 @@ void minTest() {
   std::cout << "Type: string" << std::endl;
   std::cout << "A : " << A << std::endl;
   std::cout << "B : " << B << std::endl << std::endl;
-  std::cout << "min(A, B) : " << min(A, B) << std::endl << std::endl;
+  std::cout << "min(A, B) : " << ::min(A, B) << std::endl << std::endl;
 
   int intA = 67890;
   int intB = 12345;
@@ -86,7 +86,7 @@ void minTest() {
   std::cout << "Type: int" << std::endl;
   std::cout << "intA : " << intA << std::endl;
   std::cout << "intB : " << intB << std::endl << std::endl;
-  std::cout << "min(intA, intB) : " << min(intA, intB) << std::endl << std::endl;
+  std::cout << "min(intA, intB) : " << ::min(intA, intB) << std::endl << std::endl;
 
   char charA = 'A';
   char charB = 'Z';
@@ -94,14 +94,14 @@ void minTest() {
   std::cout << "Type: char" << std::endl;
   std::cout << "charA : " << charA << std::endl;
   std::cout << "charB : " << charB << std::endl;
-  std::cout << "min(charA, charB) : " << min(charA, charB) << std::endl << std::endl;
+  std::cout << "min(charA, charB) : " << ::min(charA, charB) << std::endl << std::endl;
 
   int sameA = 10;
   int sameB = 10;
 
   std::cout << "sameA address : " << &sameA << std::endl;
   std::cout << "sameB address : " << &sameB << std::endl;
-  std::cout << "min(sameA, sameB) address : " << &min(sameA, sameB) << std::endl;
+  std::cout << "min(sameA, sameB) address : " << &::min(sameA, sameB) << std::endl;
 
   /* Mix type can not work this function. */
   // int mixA = 12345;
@@ -124,7 +124,7 @@ void maxTest() {
   std::cout << "Type: string" << std::endl;
   std::cout << "A : " << A << std::endl;
   std::cout << "B : " << B << std::endl << std::endl;
-  std::cout << "max(A, B) : " << max(A, B) << std::endl << std::endl;
+  std::cout << "max(A, B) : " << ::max(A, B) << std::endl << std::endl;
 
   int intA = 67890;
   int intB = 12345;
@@ -132,7 +132,7 @@ void maxTest() {
   std::cout << "Type: int" << std::endl;
   std::cout << "intA : " << intA << std::endl;
   std::cout << "intB : " << intB << std::endl << std::endl;
-  std::cout << "max(intA, intB) : " << max(intA, intB) << std::endl << std::endl;
+  std::cout << "max(intA, intB) : " << ::max(intA, intB) << std::endl << std::endl;
 
   char charA = 'A';
   char charB = 'Z';
@@ -140,14 +140,14 @@ void maxTest() {
   std::cout << "Type: char" << std::endl;
   std::cout << "charA : " << charA << std::endl;
   std::cout << "charB : " << charB << std::endl;
-  std::cout << "max(charA, charB) : " << max(charA, charB) << std::endl << std::endl;
+  std::cout << "max(charA, charB) : " << ::max(charA, charB) << std::endl << std::endl;
 
   int sameA = 10;
   int sameB = 10;
 
   std::cout << "sameA address : " << &sameA << std::endl;
   std::cout << "sameB address : " << &sameB << std::endl;
-  std::cout << "max(sameA, sameB) address : " << &max(sameA, sameB) << std::endl;
+  std::cout << "max(sameA, sameB) address : " << &::max(sameA, sameB) << std::endl;
 
   /* Mix type can not work this function. */
   // int mixA = 12345;
