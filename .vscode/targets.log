@@ -6,11 +6,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
+<<<<<<< HEAD
 # Make data base, printed on Tue Mar 28 15:23:45 2023
+=======
+# Make data base, printed on Tue Mar 21 10:53:54 2023
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 
 # Variables
 
@@ -21,7 +22,7 @@ make: *** No rule to make target `all'.  Stop.
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
-VSCODE_LOG_NATIVE = false
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -29,18 +30,23 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/chanwjeo/git/42Seoul
+CURDIR := /Users/chanwoong/git/42Seoul
 # makefile
 SHELL = /bin/sh
 # environment
+<<<<<<< HEAD
 VSCODE_NLS_CONFIG = {"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"06a05ce9d2dd94d8f4e2a502d338b5ea.ko","_translationsConfigFile":"/Users/chanwjeo/Library/Application Support/Code/clp/06a05ce9d2dd94d8f4e2a502d338b5ea.ko/tcf.json","_cacheRoot":"/Users/chanwjeo/Library/Application Support/Code/clp/06a05ce9d2dd94d8f4e2a502d338b5ea.ko","_resolvedLanguagePackCoreLocation":"/Users/chanwjeo/Library/Application Support/Code/clp/06a05ce9d2dd94d8f4e2a502d338b5ea.ko/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5","_corruptedFile":"/Users/chanwjeo/Library/Application Support/Code/clp/06a05ce9d2dd94d8f4e2a502d338b5ea.ko/corrupted.info","_languagePackSupport":true}
+=======
+VSCODE_NLS_CONFIG = {"locale":"ko-kr","availableLanguages":{"*":"ko"},"_languagePackId":"babdb3636560716096f6d4246f14d7fe.ko","_translationsConfigFile":"/Users/chanwoong/Library/Application Support/Code/clp/babdb3636560716096f6d4246f14d7fe.ko/tcf.json","_cacheRoot":"/Users/chanwoong/Library/Application Support/Code/clp/babdb3636560716096f6d4246f14d7fe.ko","_corruptedFile":"/Users/chanwoong/Library/Application Support/Code/clp/babdb3636560716096f6d4246f14d7fe.ko/corrupted.info","_resolvedLanguagePackCoreLocation":"/Users/chanwoong/Library/Application Support/Code/clp/babdb3636560716096f6d4246f14d7fe.ko/5e805b79fcb6ba4c2d23712967df89a089da575b","_languagePackSupport":true}
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 # environment
 _ = /usr/bin/make
 # makefile
 MAKEFILE_LIST := 
 # environment
-VSCODE_VERBOSE_LOGGING = true
+__CFBundleIdentifier = com.microsoft.VSCode
 # environment
+<<<<<<< HEAD
 VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/vscode-ipc-5254bd96-e69a-4c11-beb0-404798fc4b3b.sock
 # environment
 VSCODE_CWD = /Users/chanwjeo/git/42Seoul
@@ -52,38 +58,51 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 LaunchInstanceID = 2A5DEB1E-2E47-422C-AB03-44CA13804285
 # environment
 VSCODE_LOG_STACK = false
+=======
+VSCODE_CWD = /Users/chanwoong/git/42Seoul
+# environment
+PATH = /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/chanwoong/development/flutter/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = 282DEF2D-C086-48C1-B567-58E3ADFF4E8C
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
+<<<<<<< HEAD
 LS_COLORS = di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
 # environment
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.dwbPypyyW8/Listeners
+=======
+LS_COLORS = di=34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=37;41:sg=30;43:tw=30;42:ow=34;42:
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.e1rQIWKb8F/Listeners
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
-PWD = /Users/chanwjeo/git/42Seoul
+PWD = /Users/chanwoong/git/42Seoul
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/chanwjeo
+HOME = /Users/chanwoong
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/chanwjeo/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /Users/chanwoong/Library/Application Support/Code/CachedData/5e805b79fcb6ba4c2d23712967df89a089da575b
 # environment
-LOGNAME = chanwjeo
+LOGNAME = chanwoong
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-ZSH = /Users/chanwjeo/.oh-my-zsh
+ZSH = /Users/chanwoong/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -101,13 +120,17 @@ SHLVL = 3
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = chanwjeo
+USER = chanwoong
 # makefile
 .DEFAULT_GOAL := 
 # default
 MAKECMDGOALS := all
 # environment
+<<<<<<< HEAD
 TERM_SESSION_ID = w0t0p0:A868A9B6-3754-40E0-91FB-B49EBD930713
+=======
+TERM_SESSION_ID = w0t0p0:5852658C-A56D-469D-AD8A-65A23BFDCAB2
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 # environment
 LESS = -R
 # automatic
@@ -119,11 +142,13 @@ TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cr9r00362f/T/
+TMPDIR = /var/folders/28/lrk2dpw51lv3c6cfww3rsd380000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/chanwjeo/Library/Application Support/Code/1.67.2-main.sock
+VSCODE_IPC_HOOK = /Users/chanwoong/Library/Application Support/Code/1.76-main.sock
+# environment
+MallocNanoZone = 0
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -133,7 +158,7 @@ MFLAGS = -Rrqp
 # environment
 TERM_PROGRAM_VERSION = 3.4.19
 # environment
-XPC_SERVICE_NAME = 0
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.14991892.14991898.08F4D67C-19EA-47D5-869B-A62AD0E0E9E0
 # environment
 LC_TERMINAL_VERSION = 3.4.19
 # automatic
@@ -141,12 +166,21 @@ LC_TERMINAL_VERSION = 3.4.19
 # automatic
 +F = $(notdir $+)
 # environment
+<<<<<<< HEAD
 ITERM_SESSION_ID = w0t0p0:A868A9B6-3754-40E0-91FB-B49EBD930713
+=======
+ITERM_SESSION_ID = w0t0p0:5852658C-A56D-469D-AD8A-65A23BFDCAB2
 # environment
-COLORFGBG = 7;0
+COLORFGBG = 15;0
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 # environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x3:0x33
+# environment
+<<<<<<< HEAD
 __CF_USER_TEXT_ENCODING = 0x1984E:0x3:0x33
 # environment
+=======
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
@@ -173,9 +207,15 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
+<<<<<<< HEAD
 VSCODE_PID = 4709
 # variable set hash-table stats:
 # Load=80/1024=8%, Rehash=0, Collisions=4/101=4%
+=======
+VSCODE_PID = 77377
+# variable set hash-table stats:
+# Load=78/1024=8%, Rehash=0, Collisions=4/99=4%
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 
 # Pattern-specific Variable Values
 
@@ -183,7 +223,11 @@ VSCODE_PID = 4709
 
 # Directories
 
+<<<<<<< HEAD
 # . (device 16777225, inode 4204215): 15 files, no impossibilities.
+=======
+# . (device 16777220, inode 390960): 15 files, no impossibilities.
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 
 # 15 files, no impossibilities in 1 directories.
 
@@ -257,6 +301,12 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
+<<<<<<< HEAD
 # Finished Make data base on Tue Mar 28 15:23:45 2023
+=======
+# Finished Make data base on Tue Mar 21 10:53:54 2023
+>>>>>>> c9bc14358e7ec1fa269a4f1a9f4d24c09a9fa359
 
  
+make: *** No rule to make target `all'.  Stop.
+

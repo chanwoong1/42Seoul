@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 01:24:38 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 00:53:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:57:09 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Cat& Cat::operator=(const Cat& cat) {
   std::cout << std::setw(15) << "[Cat] " << "operator=!!" << std::endl;
   if (this != &cat) {
     this->_type = cat.getType();
-    *brain = *cat.getBrain(); 
+    this->brain = new Brain(*cat.getBrain());
   }
   return *this;
 }

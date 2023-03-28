@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 01:24:38 by chanwjeo          #+#    #+#             */
-/*   Updated: 2022/12/18 00:53:51 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:12:23 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Dog& Dog::operator=(const Dog& dog) {
   std::cout << std::setw(15) << "[Dog] " << "operator=!!" << std::endl;
   if (this != &dog) {
     this->_type = dog.getType();
-    *brain = *dog.getBrain();
+    this->brain = new Brain(*dog.getBrain());
   }
   return *this;
 }
