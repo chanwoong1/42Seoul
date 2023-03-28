@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:24:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/28 16:47:06 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:08:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class RPN {
     /* data */
     std::stack<double> rpn;
     std::stack<std::string> splitString;
-    int rpnSize;
+    int numberOfValues;
 
     RPN();
   public:
@@ -56,13 +56,14 @@ class RPN {
     */
     void split(char *av);
     void validateInput(std::string s);
+    bool isOperator(char op);
     void calculate();
+    double calculator(double a, double b, char op);
 
     class Error : public std::exception {
       public:
         const char* what() const throw();
     };
-
 };
 
 /*
