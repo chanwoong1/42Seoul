@@ -1,5 +1,6 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory `/Users/chanwjeo/git/42Seoul'
+ 
 make: Leaving directory `/Users/chanwjeo/git/42Seoul'
  
 make: *** No targets specified and no makefile found.  Stop.
