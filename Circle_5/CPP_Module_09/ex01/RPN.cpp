@@ -6,12 +6,7 @@
 RPN::RPN() {}
 
 RPN::RPN(char *av) {
-  try {
-    split(av);
-    calculate();
-  } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
-  }
+  this->stringArgv = av;
 }
 
 /*
@@ -26,6 +21,7 @@ RPN::RPN(const RPN& ref) {
 */
 RPN& RPN::operator=(const RPN& ref) {
   if (this != &ref) {
+    this->stringArgv = ref.stringArgv;
     this->splitString = ref.splitString;
     this->rpn = ref.rpn;
   }
@@ -38,12 +34,21 @@ RPN& RPN::operator=(const RPN& ref) {
 RPN::~RPN() {
 }
 
-void RPN::split(char *av) {
-  std::string stringTmp(av);
-  std::istringstream ss(stringTmp);
+void RPN::play() {
+  try {
+    split();
+    calculate();
+  } catch (std::exception& e) {
+    std::cerr << e.what() << std::endl;
+  }
+}
+
+void RPN::split() {
+  std::istringstream ss(this->stringArgv);
   std::string stringBuffer;
   std::stack<std::string> tmp;
   while (std::getline(ss, stringBuffer, ' ')) {
+    if (stringBuffer.empty()) continue;
     tmp.push(stringBuffer);
   }
 

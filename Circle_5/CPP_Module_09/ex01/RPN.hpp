@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:24:27 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/28 22:08:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:20:39 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,21 @@
 class RPN {
   private:
     /* data */
+    std::string stringArgv;
     std::stack<double> rpn;
     std::stack<std::string> splitString;
     int numberOfValues;
 
     RPN();
+
+    /*
+    * Add it if you feel necessary additional member functions.
+    */
+    void split();
+    void validateInput(std::string s);
+    bool isOperator(char op);
+    void calculate();
+    double calculator(double a, double b, char op);
   public:
     /*
     * A default constructor
@@ -51,14 +61,7 @@ class RPN {
     */
     ~RPN();
 
-    /*
-    * Add it if you feel necessary additional member functions.
-    */
-    void split(char *av);
-    void validateInput(std::string s);
-    bool isOperator(char op);
-    void calculate();
-    double calculator(double a, double b, char op);
+    void play();
 
     class Error : public std::exception {
       public:

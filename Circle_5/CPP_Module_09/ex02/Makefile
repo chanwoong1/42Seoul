@@ -6,7 +6,7 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 15:23:00 by chanwjeo          #+#    #+#              #
-#    Updated: 2023/03/29 16:27:38 by chanwjeo         ###   ########.fr        #
+#    Updated: 2023/03/30 20:56:31 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 # ------------------------------------------------------ #
 # SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC)))
 
-SRC = main.cpp #PmergeMe.cpp
+SRC = main.cpp PmergeMe.cpp
 
 # ------------------------------------------------------ #
 
@@ -53,7 +53,7 @@ CUSTOM = \033[38;5;135m
 $(NAME): $(OBJ)
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)╔══════════════════════════════════════════╗$(DEF_COLOR)"
-	@echo "$(GREEN)║      cpp_09 ex01 compile finished.       ║$(DEF_COLOR)"
+	@echo "$(GREEN)║      cpp_09 ex02 compile finished.       ║$(DEF_COLOR)"
 	@echo "$(GREEN)╚══════════════════════════════════════════╝$(DEF_COLOR)"
 
 %.o: %.cpp
@@ -63,14 +63,14 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
-	@echo "$(CUSTOM)ex01 obj files has been deleted.$(DEF_COLOR)"
+	@echo "$(CUSTOM)ex02 obj files has been deleted.$(DEF_COLOR)"
 
 fclean:
 	@rm -f $(OBJ)
 	@rm -f $(NAME)
-	@echo "$(CUSTOM)ex01 archive files has been deleted.$(DEF_COLOR)"
+	@echo "$(CUSTOM)ex02 archive files has been deleted.$(DEF_COLOR)"
 
 re: fclean all
-	@echo "$(CUSTOM)Cleaned and rebuilt ex01.$(DEF_COLOR)"
+	@echo "$(CUSTOM)Cleaned and rebuilt ex02.$(DEF_COLOR)"
 
 .PHONY: all clean fclean re

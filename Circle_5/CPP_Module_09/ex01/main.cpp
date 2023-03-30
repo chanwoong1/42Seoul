@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:14:49 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/28 22:09:41 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:20:52 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int main(int ac, char **av) {
     return 1;
   }
   RPN rpn(av[1]);
+  rpn.play();
   return 0;
 }

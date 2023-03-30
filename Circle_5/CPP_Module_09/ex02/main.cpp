@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/29 16:49:52 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/03/30 20:14:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool validateInput(std::string s) {
   double value = std::strtod(s.c_str(), &ptr);
   if (value == 0.0 && !std::isdigit(s[0])) return false;
   if (*ptr && std::strcmp(ptr, "f")) return false;
-  if (value < 0) return false;
+  if (value < 0 || value > 2147483647) return false;
   return (value == static_cast<int>(value));
 }
 
@@ -33,15 +33,16 @@ int main(int ac, char **av) {
     std::istringstream ss(stringTmp);
     std::string stringBuffer;
     while (std::getline(ss, stringBuffer, ' ')) {
-      if (validateInput(stringBuffer) == false) {
-        std::cout << "[" << stringBuffer << "]" << std::endl;
+      if (!stringBuffer.empty() && validateInput(stringBuffer) == false) {
         std::cerr << "Error" << std::endl;
         return 1;
       }
-      std::cout << stringBuffer << std::endl;
+      if (stringBuffer.empty()) continue;
       originalData.push_back(static_cast<int>(strtod(stringBuffer.c_str(), NULL)));
     }
     ++i;
   }
+  PmergeMe pm(originalData);
+  pm.sort();
   return 0;
 }
