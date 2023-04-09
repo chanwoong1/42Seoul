@@ -6,11 +6,11 @@
 #    By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 15:23:00 by chanwjeo          #+#    #+#              #
-#    Updated: 2023/04/09 12:44:29 by chanwjeo         ###   ########.fr        #
+#    Updated: 2023/04/09 12:45:18 by chanwjeo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= RPN
+NAME			= btc
 
 CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 
@@ -26,7 +26,7 @@ CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 # ------------------------------------------------------ #
 # SRC = $(addsuffix .c, $(addprefix $(MAIN_DIR), $(MAIN_SRC)))
 
-SRC = main.cpp RPN.cpp
+SRC = main.cpp BitcoinExchange.cpp
 
 # ------------------------------------------------------ #
 
