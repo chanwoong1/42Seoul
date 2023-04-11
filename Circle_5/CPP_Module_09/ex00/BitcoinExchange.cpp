@@ -13,27 +13,83 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& origin) {
 
 BitcoinExchange:: ~BitcoinExchange() {}
 
+void BitcoinExchange::play(char *file) {
+  try {
+    checkCsvFile();
+    checkInputFile(file);
+  } catch (...) {
+    return ;
+  }
+  bitcoin(file);
+}
+
+int BitcoinExchange::validateDate(std::string s) {
+  if (s.length() != 10) return FALSE;
+  std::string date_split;
+  std::istringstream ss(s);
+  int	year, month, day;
+  int idx = 0;
+
+  while (std::getline(ss, date_split, '-')) {
+    if (idx == 0) {
+      std::istringstream(date_split) >> year;
+      if (year < 1000 || year > 9999) return FALSE;
+    } else if (idx == 1) {
+      std::istringstream(date_split) >> month;
+      if (month < 1 || month > 12) return FALSE;
+    } else if (idx == 2) {
+      std::istringstream(date_split) >> day;
+      if (day < 1 || day > 31) return FALSE;
+      if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)) return FALSE;
+      if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+        if (day > 29 && month == 2) return FALSE;
+      } else if (day > 28 && month == 2) return FALSE;
+    }
+    idx++;
+  }
+
+  if (idx != 3) return FALSE;
+  return TRUE;
+}
+
+int BitcoinExchange::validateInput(std::string s) {
+  char *ptr = NULL;
+  double value = std::strtod(s.c_str(), &ptr);
+  if (value == 0.0 && !std::isdigit(s[0])) return FALSE;
+  if (*ptr && std::strcmp(ptr, "f")) return FALSE;
+  if (value < 0) return FALSE;
+  return TRUE;
+}
+
 void BitcoinExchange::checkCsvFile() {
   std::ifstream csv("data.csv");
   std::string read;
-  float n;
   size_t date_size;
+  float value;
 
   if (!csv) {
-    std::cerr <<"Error: could not open database file"<< std::endl;
+    std::cout << "Error: could not open database file" << std::endl;
     throw Error();
   }
 
   if (std::getline(csv, read).eof()) {
-    std::cerr << "Error: file empty or no data in." << std::endl;
+    std::cout << "Error: file empty or no data in." << std::endl;
     throw Error();
   }
 
   while(std::getline(csv, read)) {
     if (read != "date,exchange_rate") {
       date_size = read.find(',');
-      std::istringstream(read.substr(date_size + 1, read.length())) >> n;
-      bitcoinData[read.substr(0, date_size)] = n;
+      if (validateDate(read.substr(0, date_size)) == FALSE) {
+        std::cout << "Error: include invalid date." << std::endl;
+        throw Error();
+      }
+      if (validateInput(read.substr(date_size + 1, read.length())) == FALSE) {
+        std::cout << "Error: include invalid value." << std::endl;
+        throw Error();
+      }
+      std::istringstream(read.substr(date_size + 1, read.length())) >> value;
+      bitcoinData[read.substr(0, date_size)] = value;
     }
   }
 }
@@ -54,16 +110,15 @@ void BitcoinExchange::checkInputFile(char *file) {
   }
 
   if(str.compare("date | value") != 0) {
-    std::cout  << "Error : File format error." << std::endl;
+    std::cout << "Error : File format error." << std::endl;
     throw Error();
   }
 
   str.erase();
   fs.close();
-  return ;
 }
 
-void BitcoinExchange::Bitcoin(char *file) {
+void BitcoinExchange::bitcoin(char *file) {
   std::ifstream configfile(file);
 
   std::string read;
@@ -81,7 +136,7 @@ void	BitcoinExchange::checkInfo(std::string info) {
 
   while (std::getline(formats, str, ' ')) {
     if (idx == 0) {
-      if (checkDate(str) == 0) return ;
+      if (checkDate(str) == FALSE) return ;
       date = str;
     }
 
@@ -91,7 +146,7 @@ void	BitcoinExchange::checkInfo(std::string info) {
     }
 
     if (idx == 2) {
-      if (checkValue(str) == 0) return ;
+      if (checkValue(str) == FALSE) return ;
       value = std::strtod(str.c_str(), NULL);
       if (value > 1000) {
         std::cout << "Error: too large a number." <<std::endl;
@@ -117,14 +172,14 @@ int BitcoinExchange::checkDate(const std::string &dates) {
 
   if (dates.find('-', dates.length() - 1) != std::string::npos) {
     std::cout << "Error: incorrect date formate => " << dates << std::endl;
-    return 0;
+    return FALSE;
   }
   while (std::getline(ss, date_split, '-')) {
     if (idx == 0) {
       std::istringstream(date_split) >> year;
       if (year < 2009 || year > 2022) {
         std::cout << "Error: invalid year => " << dates <<std::endl;
-        return 0;
+        return FALSE;
       }
     }
 
@@ -132,7 +187,7 @@ int BitcoinExchange::checkDate(const std::string &dates) {
       std::istringstream(date_split) >> month;
       if (month < 1 || month > 12) {
         std::cout << "Error: invalid month => " << dates << std::endl;
-        return 0;
+        return FALSE;
       }
     }
 
@@ -140,32 +195,32 @@ int BitcoinExchange::checkDate(const std::string &dates) {
       std::istringstream(date_split) >> day;
       if (day < 1 || day > 31) {
         std::cout << "Error: bad input => " << dates << std::endl;
-        return 0;
+        return FALSE;
       }
 
       if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)) {
         std::cout << "Error: incorrect days => " << dates << std::endl;
-        return 0;
+        return FALSE;
       }
 
       if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
         if (day > 29 && month == 2) {
           std::cout << "Error: incorrect days => " << dates << std::endl;
-          return 0;
+          return FALSE;
         }
       } else if (day > 28 && month == 2) {
         std::cout << "Error: incorrect days => " << dates << std::endl;
-        return 0;
+        return FALSE;
       }
     }
     idx++;
   }
 
   if (idx != 3) {
-    std::cout<<"Error : Wrong format => " << dates <<std::endl;
-    return 0;
+    std::cout << "Error : Wrong format => " << dates <<std::endl;
+    return FALSE;
   }
-  return 1;
+  return TRUE;
 }
 
 int BitcoinExchange::checkValue(const std::string& str) {
@@ -174,29 +229,29 @@ int BitcoinExchange::checkValue(const std::string& str) {
 
   if (str.find('.', 0) == 0 || str.find('.', str.length() - 1) != std::string::npos) {
     std::cout << "Error: not a Number" << std::endl;
-    return 0;
+    return FALSE;
   }
 
   if (value == 0.0 && !std::isdigit(str[0])) {
     std::cout << "Error: not a Number" << std::endl;
-    return 0;
+    return FALSE;
   }
 
   if (*ptr && std::strcmp(ptr, "f")) {
     std::cout << "Error: not a Number" << std::endl;
-    return 0;
+    return FALSE;
   }
 
   if (value < 0) {
     std::cout << "Error: not a positive number." << std::endl;
-    return 0;
+    return FALSE;
   }
 
   if (str.length() > 10 || (str.length() == 10 && value > 2147483647)) {
     std::cout << "Error: too large a number."<< std::endl;
-    return 0;
+    return FALSE;
   }
-  return 1;
+  return TRUE;
 }
 
 void	BitcoinExchange::printBit(std::string date, float n) {

@@ -39,7 +39,7 @@ void RPN::play() {
     split();
     calculate();
   } catch (std::exception& e) {
-    std::cerr << e.what() << std::endl;
+    std::cout << e.what() << std::endl;
   }
 }
 

@@ -6,7 +6,7 @@
 /*   By: chanwjeo <chanwjeo@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:15:19 by chanwjeo          #+#    #+#             */
-/*   Updated: 2023/03/30 20:14:20 by chanwjeo         ###   ########.fr       */
+/*   Updated: 2023/04/11 08:40:20 by chanwjeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool validateInput(std::string s) {
 
 int main(int ac, char **av) {
   if (ac < 2) {
-    std::cerr << "Error" << std::endl;
+    std::cout << "Error" << std::endl;
     return 1;
   }
   std::vector<int> originalData;
@@ -34,7 +34,7 @@ int main(int ac, char **av) {
     std::string stringBuffer;
     while (std::getline(ss, stringBuffer, ' ')) {
       if (!stringBuffer.empty() && validateInput(stringBuffer) == false) {
-        std::cerr << "Error" << std::endl;
+        std::cout << "Error" << std::endl;
         return 1;
       }
       if (stringBuffer.empty()) continue;
