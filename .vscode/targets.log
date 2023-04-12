@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Tue Apr 11 08:37:59 2023
+# Make data base, printed on Wed Apr 12 13:15:38 2023
 
 # Variables
 
@@ -128,7 +128,7 @@ MFLAGS = -Rrqp
 # environment
 TERM_PROGRAM_VERSION = 3.4.19
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.17918303.17918309.11B8058A-73BB-49D0-A8DF-FE42CFE1D89B
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.17918303.17918309.98195F31-B6AC-4ED9-B88F-F3E1D6E40EB3
 # environment
 LC_TERMINAL_VERSION = 3.4.19
 # automatic
@@ -252,7 +252,7 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Tue Apr 11 08:37:59 2023
+# Finished Make data base on Wed Apr 12 13:15:38 2023
 
  
 make: *** No rule to make target `all'.  Stop.

@@ -177,7 +177,7 @@ int BitcoinExchange::checkDate(const std::string &dates) {
   while (std::getline(ss, date_split, '-')) {
     if (idx == 0) {
       std::istringstream(date_split) >> year;
-      if (year < 2009 || year > 2022) {
+      if (year < 2009 || year > 9999) {
         std::cout << "Error: invalid year => " << dates <<std::endl;
         return FALSE;
       }
