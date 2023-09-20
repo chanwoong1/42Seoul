@@ -14,11 +14,11 @@ def main():
     if len(args) == 0:
         return 1
     if len(args) > 1:
-        print("AssertionError: more than one argument is provided")
+        print("AssertionError: more than one argument is provided", file=sys.stderr)
         return 1
     object = args[0]
     if is_digit(object) is False:
-        print("AssertionError: argument is not an integer")
+        print("AssertionError: argument is not an integer", file=sys.stderr)
         return 1
     print("I'm Even.") if int(object) % 2 == 0 else print("I'm Odd.")
     return 0

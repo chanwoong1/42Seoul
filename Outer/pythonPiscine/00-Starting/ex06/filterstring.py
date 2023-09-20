@@ -35,13 +35,13 @@ def main():
     """
     args = sys.argv[1:]
     if len(args) != 2:
-        print("AssertionError: the arguments are bad")
+        print("AssertionError: the arguments are bad", file=sys.stderr)
         return 1
     if not args[1].isdigit():
-        print("AssertionError: the arguments are bad")
+        print("AssertionError: the arguments are bad", file=sys.stderr)
         return 1
     if not validate_string(args[0]):
-        print("AssertionError: the arguments are bad")
+        print("AssertionError: the arguments are bad", file=sys.stderr)
         return 1
     print(filterstring(args[0], int(args[1])))
     return 0
