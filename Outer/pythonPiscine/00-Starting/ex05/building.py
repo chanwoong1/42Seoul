@@ -74,4 +74,10 @@ def main():
 
 
 if __name__ == "__main__":
+    # print(print_length_of_text.__doc__)
+    # print(print_number_of_uppercase.__doc__)
+    # print(print_number_of_lowercase.__doc__)
+    # print(print_number_of_punctuation.__doc__)
+    # print(print_number_of_spaces.__doc__)
+    # print(print_number_of_digits.__doc__)
     main()

@@ -15,5 +15,10 @@
 		"vector": "cpp",
 		"__config": "cpp",
 		"memory": "cpp"
-	}
+	},
+	"[python]": {
+		"editor.tabSize": 4,
+		"editor.insertSpaces": true,
+		"editor.detectIndentation": false
+	},
 }
