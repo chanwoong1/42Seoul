@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry]
+name = "ft_package"
+version = "0.0.1"
+description = "A sample test package"
+authors = ["chanwjeo <chanwjeo@student.42seoul.kr>"]
+homepage = "https://github.com/chanwoong1"
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
