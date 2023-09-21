@@ -5,7 +5,8 @@ setup(
     name="ft_package",
     # 패키지 버전
     version="0.0.1",
-    # 패키지에 포함시킬 모듈과 패키지들의 목록, find_packages() 함수는 자동으로 모든 패키지와 서브 패키지를 찾아 목록을 반환한다.
+    # 패키지에 포함시킬 모듈과 패키지들의 목록
+    # find_packages() 함수는 자동으로 모든 패키지와 서브 패키지를 찾아 목록을 반환한다.
     packages=find_packages(),
     # 패키지 설치에 필요한 다른 패키지들의 목록
     install_requires=[],  # 필요한 경우, 이곳에 의존성 패키지들을 나열한다.
