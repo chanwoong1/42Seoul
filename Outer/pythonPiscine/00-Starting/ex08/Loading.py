@@ -16,3 +16,10 @@ def ft_tqdm(lst: range) -> None:
             end="",
         )
         yield item
+
+
+def main():
+    """main() -> None"""
+    for _ in ft_tqdm(range(3333)):
+        pass
+    print()

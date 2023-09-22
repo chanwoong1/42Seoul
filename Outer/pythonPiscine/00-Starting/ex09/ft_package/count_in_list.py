@@ -11,7 +11,11 @@ def count_in_list(lst, element):
     return lst.count(element)
 
 
-if __name__ == "__main__":
-    # Test the function
+def main():
+    """main() -> None"""
     print(count_in_list(["toto", "tata", "toto"], "toto"))  # output: 2
     print(count_in_list(["toto", "tata", "toto"], "tutu"))  # output: 0
+
+
+if __name__ == "__main__":
+    main()
