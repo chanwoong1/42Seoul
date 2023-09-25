@@ -7,12 +7,12 @@ def ft_tqdm(lst: range) -> None:
     Yields:
         item: item of the range
     """
-    total = len(lst)
-    width = 40
+    t = len(lst)
+    w = 40
     for i, item in enumerate(lst, 1):
-        progress = int(width * i / total)
+        p = int(w * i / t)
         print(
-            f"\r{round(i/total*100)}%|{'█' * progress}{' ' * (width - progress)}| {i}/{total}",
+            f"\r{round(i/t*100)}%|{'█' * p}{' ' * (w - p)}| {i}/{t}",
             end="",
         )
         yield item
@@ -23,3 +23,7 @@ def main():
     for _ in ft_tqdm(range(3333)):
         pass
     print()
+
+
+if __name__ == "__main__":
+    main()

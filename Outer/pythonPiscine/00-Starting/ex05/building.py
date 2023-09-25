@@ -52,7 +52,8 @@ def main():
     """
     args = sys.argv[1:]
     if len(args) > 1:
-        print("AssertionError: more than one argument is provided", file=sys.stderr)
+        print("AssertionError: more than one argument is provided",
+              file=sys.stderr)
         return 1
     if len(args) == 0:
         final_text = ""

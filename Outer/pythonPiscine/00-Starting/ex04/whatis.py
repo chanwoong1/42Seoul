@@ -14,7 +14,8 @@ def main():
     if len(args) == 0:
         return 1
     if len(args) > 1:
-        print("AssertionError: more than one argument is provided", file=sys.stderr)
+        print("AssertionError: more than one argument is provided",
+              file=sys.stderr)
         return 1
     object = args[0]
     if is_digit(object) is False:
