@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import numpy as np
 from load_image import ft_load
 
@@ -37,7 +37,7 @@ def main():
         print("The shape of image is:", loaded_image.shape)
         print(loaded_image)
 
-        zoomed_image = zoom_image(loaded_image, zoom_size=(800, 800))
+        zoomed_image = zoom_image(loaded_image)
 
         print("New shape after slicing:", zoomed_image.shape)
         print(zoomed_image)

@@ -19,7 +19,6 @@ def ft_load(path: str) -> np.array:
             raise Exception("path is not a valid image")
         if plt.imread(path) is None:
             raise Exception("path is not a valid image")
-        print("The shape of image is:", np.array(plt.imread(path)).shape)
         return np.array(plt.imread(path))
     except Exception as e:
         print("Error:", e, file=sys.stderr)

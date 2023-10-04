@@ -1,4 +1,12 @@
 def validate_input(lst: list[int | float]) -> bool:
+    """validate_input(lst: list[int | float])
+
+    Args:
+        lst (list[int  |  float]): array of numbers
+
+    Returns:
+        bool: True if all elements are int or float, False otherwise
+    """
     return type(lst) == list and sum(
         [1 for i in lst if type(i) == int or type(i) == float]
     ) == len(lst)
