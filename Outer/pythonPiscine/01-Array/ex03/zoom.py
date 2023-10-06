@@ -25,7 +25,7 @@ def zoom_image(image, zoom_size=(400, 400)):
         x - crop_size_x : x + crop_size_x,
     ]
 
-    return cropped
+    return np.mean(cropped, axis=2, keepdims=True).astype(np.uint8)
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
     loaded_image = ft_load(image_path)
 
     if loaded_image is not None and zoom_image(loaded_image) is not None:
-        print("The shape of image is:", loaded_image.shape)
+        # print("The shape of image is:", loaded_image.shape)
         print(loaded_image)
 
         zoomed_image = zoom_image(loaded_image)
@@ -43,7 +43,7 @@ def main():
         print(zoomed_image)
 
         # Displaying the zoomed image
-        plt.imshow(zoomed_image, cmap="gray" if len(zoomed_image.shape) == 2 else None)
+        plt.imshow(zoomed_image[:, :, 0:], cmap="gray")
         plt.show()
 
 
